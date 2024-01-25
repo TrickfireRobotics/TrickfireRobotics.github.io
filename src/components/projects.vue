@@ -26,8 +26,8 @@ export default {
                         PROJECT
                     </h1>
                     <p style="color: white;">
-                        In six years, we have built four rovers for the NASA Robotics Mining
-                        Competition - A competition hosted by NASA, where fifty teams across
+                        In six years, we have built four rovers for the NASA RMC and URC Competition
+                        where fifty teams across
                         the United States compete to build the best rover that can mine under a
                         simulated surface of the moon. A rover starts at the home base,
                         navigates through obstacles, and then reaches a mining zone where it
@@ -41,23 +41,10 @@ export default {
 
         <section id="projects_section">
             <div id="projects_rows">
-
-                <!--Houdini-->
-                <aboutUs :image__left="projectsSectionData[0].image" :title="projectsSectionData[0].title"
-                    :text="projectsSectionData[0].content"
-                    :image__left__responsive="projectsSectionData[0].imageResponsive" />
-                <!--Atlas-->
-                <aboutUs :image__left="projectsSectionData[1].image" :title="projectsSectionData[1].title"
-                    :text="projectsSectionData[1].content"
-                    :image__left__responsive="projectsSectionData[1].imageResponsive" />
-                <!--Grimlock-->
-                <aboutUs :image__left="projectsSectionData[2].image" :title="projectsSectionData[2].title"
-                    :text="projectsSectionData[2].content"
-                    :image__left__responsive="projectsSectionData[2].imageResponsive" />
-                <!--Daybreak-->
-                <aboutUs :image__left="projectsSectionData[3].image" :title="projectsSectionData[3].title"
-                    :text="projectsSectionData[3].content"
-                    :image__left__responsive="projectsSectionData[3].imageResponsive" />
+                <div v-for="(projectData) in projectsSectionData">
+                    <aboutUs :image__left="projectData.image" :title="projectData.title" :text="projectData.content"
+                        :image__left__responsive="projectData.imageResponsive" :isFifBlock="true" />
+                </div>
             </div>
         </section>
     </div>

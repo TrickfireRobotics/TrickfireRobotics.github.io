@@ -1,7 +1,7 @@
 import type { sectionsDisplayObject } from "./sectionDisplay_interface";
 
-const basePath = './src/assets/Trickfire_image/slanted_image/about_us/'
-const baseResponsivePath = './src/assets/Trickfire_image/original_image/about_us/'
+const basePath = 'https://raw.githubusercontent.com/TrickfireRobotics/TrickfireRobotics.github.io/dev/src/assets/Trickfire_image/slanted_image/about_us/'
+const baseResponsivePath = 'https://raw.githubusercontent.com/TrickfireRobotics/TrickfireRobotics.github.io/dev/src/assets/Trickfire_image/original_image/about_us/'
 
 const aboutUsSectionData: sectionsDisplayObject[] = [{
     title: "SOFTWARE TEAM",
@@ -22,17 +22,13 @@ const aboutUsSectionData: sectionsDisplayObject[] = [{
 },
 {
     title: "FINANCE TEAM",
-    content: "The finance team is the backbone of the backbone of TrickFire's technical side. Their goal is to secure funding for everything that is done in the team - to build a rover can cost tens of thousands of dollars. It is the job of this team to plan years in advance to ensure the coffers are always filled, either by applying for grants or finding industry sponsors.",
+    content: "The finance team is the backbone of TrickFire's logistical side. Their goal is to secure funding for everything that is done in the team and to coordinate purchases - URC rovers cost tens of thousands of dollars and have hundreds of parts. This team plans a year or more in advance to ensure the club is funded, both by applying for grants and finding industry sponsors.",
     image: `${basePath}slanted_finance.png`,
     imageResponsive: `${baseResponsivePath}unslanted_finance.png`
 },
 {
-    title: "OUTREACH TEAM",
-    content: "If a robotics team makes a rover, but no one knows about it, was the rover really built? Our outreach team puts TrickFire Robotics on the map! Being the backbone of TrickFire’s technical side includes:" +
-        "\n• Recruiting new members" +
-        "\n• Reaching out to local industry" +
-        "\n• Handling public relations" +
-        "\n• Keeping our social media up to date",
+    title: "MARKETING TEAM",
+    content: "The marketing team is focused on recruitment, outreach efforts to the community, and the making of marketing materials. The marketing team ensures sponsorship promises are met. They also update the club Instagram and LinkedIn.",
     image: `${basePath}slanted_outreach_2016.png`,
     imageResponsive: `${baseResponsivePath}unslanted_outreach_2016.jpg`
 }

@@ -1,62 +1,21 @@
 @import './variable.scss';
 
-nav {
-    background-color: $primary-green;
+
+.navBar-activePage {
+    position: relative;
+    font-weight: 600 !important;
+}
+
+.navBar-activePage::before {
+    content: '';
+    position: absolute;
+    top: calc(100% - 3px);
+    left: 0;
+    height: 3px;
     width: 100%;
-    z-index: 10;
-    transition: all 0.4s;
+    background-color: $black;
 
-    .nav__burger {
+    @media screen and (max-width:850px) {
         display: none;
-
-        @media screen and (max-width:500px) {
-            display: block;
-        }
     }
-
-    ul {
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-
-        a {
-            text-decoration: none;
-            color: $white;
-        }
-
-        a:hover {
-            color: $white;
-        }
-
-        li {
-            width: fit-content;
-
-        }
-
-        /* the underline of active page*/
-        .navBar-activePage {
-            position: relative;
-            font-weight: 600;
-        }
-
-        .navBar-activePage::before {
-            content: '';
-            position: absolute;
-            top: calc(100% - 3px);
-            left: 0;
-            height: 3px;
-            width: 100%;
-            background-color: $black;
-
-            @media screen and (max-width:850px) {
-                display: none;
-            }
-        }
-
-        @media screen and (max-width:850px) {
-            flex-direction: column;
-            margin-top: -100px !important;
-        }
-    }
-
 }

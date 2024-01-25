@@ -22,7 +22,7 @@ let teamScheduleInWeek = new Map()
 let calendar: Array<{
     active: boolean,
     date: number,
-    color: string
+    color: Array<string>
 }> = []
 
 
@@ -80,37 +80,39 @@ export default {
             this.calendar = []
 
             for (let i = firstDateofMonth; i > 0; i--) {
-
                 this.calendar.push({
                     active: false,
                     date: lastDateofLastMonth - i + 1,
-                    color: ''
+                    color: []
                 })
             }
             for (let i = 1; i <= lastDateofMonth; i++) {
                 this.calendar.push({
                     active: true,
                     date: i,
-                    color: ''
+                    color: []
                 })
             }
             for (let i = lastDayofMonth; i < 6; i++) {
                 this.calendar.push({
                     active: false,
                     date: i - lastDayofMonth + 1,
-                    color: ''
+                    color: []
                 })
             }
 
             for (let i = 0; i < this.calendar.length; i++) {
-                this.calendar[i].color = teamScheduleInWeek.get(i % 7)
+                this.calendar[i].color = teamScheduleInWeek.get(i % 7);
             }
-            //console.log(this.calendar)
+
+            console.log(this.calendar);
         },
 
         handleShowCalendarBtn() {
             this.isCalendarShow = !this.isCalendarShow
         }
+
+
     },
 
     props: ['calendarSchedule'],
@@ -118,11 +120,26 @@ export default {
         this.teamSchedule = JSON.parse(JSON.stringify(this.calendarSchedule))
         //this.teamScheduleInWeek.set(0,'')
         this.teamSchedule.forEach(team => {
-            teamScheduleInWeek.set(
-                dateInWeeks.indexOf(`${team.dayInWeek.slice(0, 1)}${team.dayInWeek.slice(1).toLowerCase()}`),
-                team.color
-            )
+            //console.log(teamScheduleInWeek.get(dateInWeeks.indexOf(`${team.dayInWeek.slice(0, 1)}${team.dayInWeek.slice(1).toLowerCase()}`)))
+            //teamScheduleInWeek.get(dateInWeeks.indexOf(`${team.dayInWeek.slice(0, 1)}${team.dayInWeek.slice(1).toLowerCase()}`)).push(team.color)
+            if (teamScheduleInWeek.has(dateInWeeks.indexOf(`${team.dayInWeek.slice(0, 1)}${team.dayInWeek.slice(1).toLowerCase()}`))) {
+                const colorList = teamScheduleInWeek.get(dateInWeeks.indexOf(`${team.dayInWeek.slice(0, 1)}${team.dayInWeek.slice(1).toLowerCase()}`));
+                if (colorList.isArray) {
+                    colorList.foreach((color: string) => {
+                        if (team.color != color) {
+                            colorList.push(team.color)
+                        }
+                    })
+                }
+            } else {
+                teamScheduleInWeek.set(
+                    dateInWeeks.indexOf(`${team.dayInWeek.slice(0, 1)}${team.dayInWeek.slice(1).toLowerCase()}`),
+                    [team.color]
+                )
+            }
         })
+
+        console.log(this.teamSchedule);
         this.generateCalendar()
     }
 }
@@ -161,10 +178,10 @@ export default {
                 <p class=" mb-4 text-center fs-5">TEAM SCHEDULE</p>
                 <div v-if="teamSchedule" v-for=" schedule  in  teamSchedule ">
                     <div class="d-flex align-items-center my-4">
-                        <div class="mr-5 teamSchedule__colorMark" :style="{
+                        <div class="me-3 teamSchedule__colorMark" :style="{
                             'background-color': schedule.color,
-                            height: '20px',
-                            width: '20px'
+                            height: '15px',
+                            width: '15px'
                         }
                             "></div>
                         <p class="my-0 fs-5">
@@ -200,10 +217,12 @@ export default {
                 <div class="calendar__date d-flex align-items-center">
                     <div class="my-4" :class="!date.active ? 'inactive' : ''" v-for=" date  in  calendar ">
                         {{ date.date }}
-                        <div :style="{
-                            'background-color': date.color
-                        }
-                            "></div>
+                        <div class="d-flex justify-content-evenly calendar__color__container">
+                            <div v-for=" color  in  date.color" :style="{
+                                'background-color': color
+                            }">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
