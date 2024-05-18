@@ -1,0 +1,93 @@
+/*Homepage*/
+.trickfire_text {
+  color: rgb(223, 223, 223);
+  font: bold;
+  font-size: clamp(3rem, 7vw, 6rem);
+  white-space: normal;
+}
+
+.text-intro {
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(223, 223, 223);
+}
+
+.trickfire_logo_left_text {
+  margin-left: 10%;
+  order: 1;
+  margin-top: 5%;
+}
+
+.trickfire_logo {
+  margin-top: 5%;
+  margin-left: 5%;
+  width: 100%;
+  height: 100%;
+  max-width: clamp(15rem, 20vw, 18rem);
+  order: 2;
+}
+
+.join-us-button {
+  text-align: center;
+  font-size: 40px;
+}
+
+/*calendar*/
+.calendar-block {
+  margin: 0 auto;
+}
+
+.calendar-iframe {
+  height: clamp(37rem, 50vh, 70rem);
+  width: clamp(40rem, 70vw, 100rem);
+}
+
+/*For the title screen*/
+@media only screen and (max-width: 767.5px) {
+  .trickfire_text {
+    color: aliceblue;
+    font: bold;
+    font-size: 50px;
+    text-align: center;
+  }
+  .text-intro {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(233, 233, 233);
+    text-align: center;
+  }
+  .trickfire_logo_left_text {
+    margin-left: 0%;
+    margin-top: 0%;
+    order: 2;
+  }
+  .trickfire_logo {
+    content: url("../images/front_logo.svg");
+    max-width: 20%;
+    max-height: 60%;
+    margin-left: 40%;
+    order: 1;
+  }
+  .small_calendar-iframe {
+    height: max(5rem, 70vw);
+    width: max(5rem, 95vw);
+  }
+}
+.top-divider-edges-image {
+  background-image: url("../images/divider1_tip.png");
+}
+
+.bottom-divider-edges-image {
+  background-image: url("../images/divider2_tip.png");
+}
+
+.divider-edges {
+  width: calc((100vw - 2000px) / 2);
+  background-repeat: repeat-x;
+}
+
+.team-calendar-text {
+  justify-content: center;
+  text-align: center;
+  font-size: clamp(2rem, 10vw, 6rem);
+}/*# sourceMappingURL=home_page_style.css.map */
