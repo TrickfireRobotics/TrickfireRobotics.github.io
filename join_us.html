@@ -50,6 +50,12 @@
                 $('#footer').load('./assets/moduleHtml/footer.html');
             });
         </script>
+        <!-- Updates Deadline text dynamicaly -->
+        <script
+            type="module"
+            async
+            src="./assets/javascript/deadlineText.js"
+        ></script>
     </head>
 
     <body>
@@ -102,9 +108,10 @@
                             >
                                 TrickFire Robotics Application Link
                             </a>
-                            <br/>
-                            <b>Deadline: April 29th at 11:59 PM</b>
-
+                            <br />
+                            <b data-deadline>
+                                Deadline: Please check the form above</b
+                            >
                         </p>
                     </div>
                 </div>
@@ -147,8 +154,10 @@
                         >
                             TrickFire Robotics Application Link
                         </a>
-                        <br/>
-                        <b>Deadline: April 29th at 11:59 PM</b>
+                        <br />
+                        <b data-deadline>
+                            Deadline: Please check the form above</b
+                        >
                     </p>
                 </div>
             </div>
@@ -156,6 +165,7 @@
         </section>
 
         <footer id="footer"></footer>
+
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"

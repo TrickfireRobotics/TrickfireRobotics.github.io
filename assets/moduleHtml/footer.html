@@ -57,11 +57,9 @@
             </p>
         </div>
         <script>
-            console.log(document.getElementById('copyright-text').innerText);
             let copyrightTextElement =
                 document.getElementById('copyright-text');
             let currentYear = new Date().getFullYear();
-            console.log(currentYear);
             copyrightTextElement.innerText =
                 copyrightTextElement.innerText.replace('2022', currentYear);
         </script>
