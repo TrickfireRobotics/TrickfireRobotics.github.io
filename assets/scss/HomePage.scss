@@ -1,0 +1,13 @@
+@import "./variables.scss";
+
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-color;
+}
+li {
+  margin-bottom: 2em;
+  text-align: center;
+}
