@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
+  position: relative;
 }
 
 h1,
@@ -16,6 +16,294 @@ h4 {
   font-family: $header-font;
 }
 
-p {
+p,
+a {
   font-family: $text-font;
+}
+
+//Header Desktop Styles
+header {
+  width: 100%;
+  height: 5em;
+  padding: 1em 6vw;
+  background-color: $background-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+header a {
+  text-decoration: none;
+}
+
+header ul {
+  display: flex;
+  list-style-type: none;
+}
+
+header ul a {
+  margin-left: 4vw;
+  text-decoration: none;
+  font-weight: 400;
+  color: white;
+}
+
+header ul a:hover {
+  text-decoration: underline;
+}
+
+header #navTitleSection {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+header #navTitleSection h1 {
+  color: $neon-green;
+  font-size: x-large;
+  margin-top: 0.2em;
+}
+
+header #navTitleSection img {
+  width: 1.75em;
+}
+
+header #navSponsorLink {
+  border: 2px solid hsl(133, 97%, 38%);
+  border-radius: 0.5em;
+  text-decoration: none;
+  padding: 0.3em 2em;
+  color: white;
+  transition: background-color, color ease-in-out 0.25s;
+}
+
+header #navSponsorLink:hover {
+  background-color: hsl(133, 97%, 38%);
+  color: black;
+}
+
+header button {
+  display: none;
+}
+
+header [aria-hidden*="false"],
+header navbar#dropDownNav {
+  display: none;
+  background-color: red;
+}
+
+//Footer Desktop Styles
+footer {
+  background-color: $background-color;
+  color: white;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+footer hr {
+  margin: 0 6vw;
+}
+
+footer #footerContentContainer {
+  display: flex;
+  padding: 3em 0;
+}
+
+footer #footerTitleContainer {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer #footerTitleContainer a {
+  display: flex;
+  align-items: center;
+  color: $neon-green;
+}
+
+footer #footerTitleContainer a h2 {
+  color: $neon-green;
+  text-align: center;
+}
+
+footer #footerTitleContainer img {
+  aspect-ratio: 1 / 1;
+  width: 6em;
+}
+
+footer section {
+  flex-basis: 15%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+footer section h2 {
+  font-size: medium;
+}
+
+footer section ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+footer section li {
+  list-style-type: none;
+}
+
+footer section li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.9rem;
+}
+
+footer section li a:hover {
+  text-decoration: underline;
+}
+
+footer section li a img {
+  width: 1.75em;
+}
+
+footer #mobileFooterContentContainer {
+  display: none;
+}
+
+footer p {
+  font-family: $header-font;
+  text-align: center;
+  font-size: small;
+  padding-bottom: 1em;
+}
+
+@media only screen and (max-width: 768px) {
+  //Moves down main for fixed navbar
+  main {
+    top: 5em;
+  }
+
+  //Header Mobile Styles
+  header {
+    overflow: visible;
+    position: fixed;
+    z-index: 2;
+  }
+  header button {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    border: none;
+    background-color: transparent;
+  }
+  header button img {
+    aspect-ratio: 1 / 1;
+    width: 3em;
+  }
+  header button p {
+    font-size: 1rem;
+    color: hsl(0, 0%, 70%);
+  }
+
+  header navbar {
+    display: none;
+  }
+
+  header navbar#dropDownNav {
+    display: inline-block;
+    position: absolute;
+    top: 5em;
+    background-color: hsla(0, 0%, 0%, 0.886);
+    z-index: 1;
+    padding: 3em;
+    padding-top: 0.5em;
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: transform 0.1s linear;
+  }
+
+  header navbar#dropDownNav[aria-hidden*="false"] {
+    transform: scaleY(1);
+  }
+
+  header navbar#dropDownNav ul {
+    flex-direction: column;
+  }
+
+  header navbar#dropDownNav ul li a {
+    margin: 0;
+    padding: 2em 1.5em;
+  }
+
+  header navbar#dropDownNav ul li {
+    padding: 2em 1.5em;
+  }
+
+  header navbar#dropDownNav ul li:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0%;
+    height: 0.1em;
+    background-color: hsl(0, 2%, 35%);
+  }
+
+  header #navSponsorLink {
+    display: none;
+  }
+
+  header navbar ul li:first-child,
+  header navbar ul li:last-child {
+    display: inline-block;
+  }
+
+  //Footer Mobile Styles
+  footer {
+    top: 5em;
+  }
+
+  footer section ul {
+    flex-direction: row;
+  }
+
+  footer section ul a {
+    font-size: medium;
+  }
+
+  footer #footerContentContainer {
+    display: none;
+  }
+
+  footer #mobileFooterContentContainer {
+    display: block;
+  }
+
+  footer #mobileContactContainer ul {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20vw;
+    margin-top: 2em;
+    align-items: center;
+  }
+
+  footer #mobileContactContainer ul li {
+    margin: auto 0;
+  }
+
+  footer #siteLinkContainer ul {
+    display: flex;
+    justify-content: space-between;
+    margin: 2em 25vw;
+    align-items: center;
+  }
+
+  footer #siteLinkContainer ul li {
+    margin: auto 0;
+  }
 }

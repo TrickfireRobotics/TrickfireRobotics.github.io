@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <title>Robots</title>
+
+    <!-- General Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TrickFire Robotics has built rovers for the NASA Robotics Mining Competition (RMC) and the University Rover Challenge (URC)."
+    />
 
     <!-- Link Font Awesome -->
     <link
@@ -23,10 +30,6 @@
     <!-- Link CSS -->
     <link rel="stylesheet" type="text/css" href="assets/scss/Robots.css" />
     <link rel="stylesheet" type="text/css" href="assets/scss/default.css" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-    />
 
     <!-- jquery -->
     <script
@@ -36,21 +39,15 @@
     ></script>
 
     <!-- Loads module Html -->
-    <script>
-      $(document).ready(function () {
-        $("#navbar").load("./assets/moduleHtml/navbar.html");
-      });
-      $(document).ready(function () {
-        $("#footer").load("./assets/moduleHtml/footer.html");
-      });
-    </script>
+    <script src="./components/Header.js"></script>
+    <script src="./components/Footer.js"></script>
   </head>
 
   <body>
-    <nav id="navbar"></nav>
+    <!-- Header will be loaded here -->
     <main>
       <h1>Robots</h1>
     </main>
-    <footer id="footer"></footer>
+    <!-- Footer will be loaded here -->
   </body>
 </html>
