@@ -61,7 +61,7 @@ $(document).ready(function () {
       <a href = "./" aria-roledescription = "Go to HomePage">
         <div id="navTitleSection" role="presentation">
           <img
-            src="./assets/images/icons/TrickFireLogo.svg"
+            src="./assets/images/logos/TrickFireLogo.svg"
             alt="TrickFire Logo"
           />
           <h1>TrickFire</h1>
@@ -89,7 +89,7 @@ $(document).ready(function () {
 
   //Set the navbar link of the current page to be bold.
   $(navClass).each(function () {
-    $(this).css("font-weight", "bold");
+    $(this).addClass("currPage");
   });
 
   //Assign click event listener to dropdown menu button to toggle aria roles. This also toggles the display of the dropdown menu.
