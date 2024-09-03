@@ -73,7 +73,7 @@ main {
         border-radius: 2em;
         display: flex;
         background-image: linear-gradient(
-          to left,
+          to right,
           hsl(133, 97%, 38%),
           $neon-green
         );
@@ -103,26 +103,26 @@ main {
         }
 
         img.leftPointArrow {
-          display: inline-block;
+          display: none;
         }
         img.rightPointArrow {
-          display: none;
+          display: inline-block;
+          transform: rotate(180deg);
         }
       }
 
-      a.leaveSiteLink:has(img.rightPointArrow) {
+      a.leaveSiteLink:has(img.leftPointArrow) {
         background-image: linear-gradient(
-          to right,
+          to left,
           hsl(133, 97%, 38%),
           $neon-green
         );
 
         img.leftPointArrow {
-          display: none;
+          display: inline-block;
         }
         img.rightPointArrow {
-          display: inline-block;
-          transform: rotateY(180deg);
+          display: none;
         }
       }
 
@@ -185,15 +185,15 @@ main {
 
         a.leaveSiteLink:has(img.rightPointArrow) {
           background-image: linear-gradient(
-            to left,
+            to right,
             hsl(133, 97%, 38%),
             $neon-green
           );
           img.leftPointArrow {
-            display: inline-block;
+            display: none;
           }
           img.rightPointArrow {
-            display: none;
+            display: inline-block;
           }
         }
 
