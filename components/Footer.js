@@ -9,7 +9,7 @@ $(document).ready(function () {
           <a href="./" aria-label = "TrickFire logo and title" aria-roledescription="Go to HomePage">
             <div id="navTitleSection" role="presentation">
               <img
-                src="./assets/images/icons/TrickFireLogo.svg"
+                src="./assets/images/logos/TrickFireLogo.svg"
                 alt="TrickFire logo"
               />
             </div>
