@@ -1,0 +1,162 @@
+main {
+  background-color: rgb(24, 24, 24);
+  color: white;
+  padding: 7em 6vw;
+  overflow-x: hidden;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  gap: 8em;
+}
+main section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 4em;
+}
+main section div.imageContainer {
+  width: 50%;
+  padding: 2em 0;
+}
+main section div.imageContainer img {
+  width: 100%;
+  height: auto;
+  border: hsl(222, 61%, 87%) 0.5em solid;
+}
+main section div.imageContainer::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  left: 0%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: hsl(0, 0%, 65%);
+  filter: blur(20vw);
+}
+main section .mobile {
+  display: none;
+}
+main section article {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+main section article .articleHeader {
+  width: 100%;
+  padding-bottom: 2em;
+}
+main section article h2 {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1em;
+}
+main section article p {
+  line-height: 1.6em;
+  letter-spacing: 0.05em;
+  color: hsl(0, 0%, 80%);
+}
+main section article p a {
+  color: rgb(0, 255, 0);
+}
+main section article a.leaveSiteLink {
+  width: 100%;
+  border-radius: 2em;
+  display: flex;
+  background-image: linear-gradient(to left, hsl(133, 97%, 38%), rgb(0, 255, 0));
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  transition: background-image 2s linear;
+}
+main section article a.leaveSiteLink div {
+  text-decoration: none;
+  color: black;
+  flex-basis: 85%;
+  flex-grow: 1;
+  padding: 0.5em;
+}
+main section article a.leaveSiteLink img {
+  aspect-ratio: 1/1;
+  width: auto;
+  height: 100%;
+  flex-basis: 5%;
+  flex-grow: 0;
+  padding: 0.5em;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 4px white;
+}
+main section article a.leaveSiteLink img.leftPointArrow {
+  display: inline-block;
+}
+main section article a.leaveSiteLink img.rightPointArrow {
+  display: none;
+}
+main section article a.leaveSiteLink:has(img.rightPointArrow) {
+  background-image: linear-gradient(to right, hsl(133, 97%, 38%), rgb(0, 255, 0));
+}
+main section article a.leaveSiteLink:has(img.rightPointArrow) img.leftPointArrow {
+  display: none;
+}
+main section article a.leaveSiteLink:has(img.rightPointArrow) img.rightPointArrow {
+  display: inline-block;
+  transform: rotateY(180deg);
+}
+main section article a.leaveSiteLink:hover {
+  background-image: linear-gradient(to left, hsl(133, 91%, 29%), rgb(69, 139, 96));
+}
+main section article a.leaveSiteLink:hover div {
+  color: white;
+}
+main section article a.leaveSiteLink:has(img.rightPointArrow):hover {
+  background-image: linear-gradient(to right, hsl(133, 91%, 29%), rgb(69, 139, 96));
+}
+
+@media only screen and (max-width: 768px) {
+  main {
+    padding: 3em 6vw;
+    gap: 4em;
+  }
+  main section {
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+  }
+  main section div.imageContainer {
+    width: 100%;
+  }
+  main section .mobile {
+    display: inline-block;
+  }
+  main section .desktop {
+    display: none;
+  }
+  main section h2 {
+    text-align: center;
+    font-size: 1rem;
+  }
+  main section div.imageContainer {
+    padding: 1em 0;
+  }
+  main section div.imageContainer::before {
+    filter: blur(5vh);
+  }
+  main section article {
+    width: 100%;
+  }
+  main section article a.leaveSiteLink:has(img.rightPointArrow) {
+    background-image: linear-gradient(to left, hsl(133, 97%, 38%), rgb(0, 255, 0));
+  }
+  main section article a.leaveSiteLink:has(img.rightPointArrow) img.leftPointArrow {
+    display: inline-block;
+  }
+  main section article a.leaveSiteLink:has(img.rightPointArrow) img.rightPointArrow {
+    display: none;
+  }
+  main section article a.leaveSiteLink:has(img.rightPointArrow):hover {
+    background-image: linear-gradient(to left, hsl(133, 91%, 29%), rgb(69, 139, 96));
+  }
+}/*# sourceMappingURL=JoinUs.css.map */

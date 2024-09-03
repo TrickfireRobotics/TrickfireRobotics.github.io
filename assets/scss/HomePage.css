@@ -1,0 +1,12 @@
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(24, 24, 24);
+}
+
+main li {
+  margin-bottom: 2em;
+  text-align: center;
+}/*# sourceMappingURL=HomePage.css.map */

@@ -1,0 +1,85 @@
+main .upcoming-events {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 100px;
+}
+main .event-card {
+  width: 325px;
+  background-color: rgb(116, 186, 143);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 20px;
+  position: relative;
+}
+main .image-container {
+  position: relative;
+}
+main .event {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+main .time {
+  position: absolute;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+  color: #FFF;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+main .time img.clock {
+  width: 16px;
+  height: 16px;
+}
+main .date {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+main .title {
+  padding: 10px;
+  background-color: rgb(69, 139, 96);
+}
+main .title h2 {
+  font-size: 1.5em;
+  margin: 0;
+}
+main .location {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(69, 139, 96);
+}
+main .location img.waypoint {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+main .location h3 {
+  font-size: 1.2em;
+  margin: 0;
+}
+main .tags {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  background-color: var(--accent-background-color);
+}
+main .tags div {
+  border-radius: 3px;
+  border: 1px solid var(--accent-text-color);
+  padding: 5px 8px;
+  margin: 5px;
+}
+main .tags p {
+  margin: 0;
+  font-size: 0.9em;
+  color: var(--accent-text-color);
+}/*# sourceMappingURL=events.css.map */
