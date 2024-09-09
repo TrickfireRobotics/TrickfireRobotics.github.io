@@ -2,22 +2,47 @@
 
 main {
   background-color: $background-color;
-  color: white;
   padding: 7em 6vw;
   overflow-x: hidden;
   width: 100vw;
   display: flex;
   flex-direction: column;
-  gap: 8em;
+  gap: 7em;
+
+  h2 {
+    font-size: calc(1rem + 1.5vw);
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    color: hsl(0, 100%, 99%);
+  }
+
+  p {
+    line-height: 160%;
+    letter-spacing: 0.05em;
+    font-weight: 300;
+    color: hsl(0, 5%, 95%);
+    font-size: calc(1rem + 0.1vw);
+
+    a {
+      text-decoration: none;
+      color: $neon-green;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
   section {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    gap: 4em;
+    gap: 5vw;
 
     div.imageContainer {
       width: 50%;
-      padding: 2em 0;
+      margin: auto 0;
+
       img {
         width: 100%;
         height: auto;
@@ -36,51 +61,30 @@ main {
       filter: blur(20vw);
     }
 
-    .mobile {
-      display: none;
-    }
-
     article {
       width: 50%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
 
-      .articleHeader {
+      div.articleHeader {
         width: 100%;
         padding-bottom: 2em;
       }
 
       h2 {
-        display: inline-block;
-        font-weight: 400;
-        font-size: 2rem;
-        letter-spacing: 0.1em;
-        margin-bottom: 1em;
-      }
-
-      p {
-        line-height: 1.6em;
-        letter-spacing: 0.05em;
-        color: hsl(0, 0%, 80%);
-        a {
-          color: $neon-green;
-        }
+        margin-bottom: 0.5em;
       }
 
       a.leaveSiteLink {
         width: 100%;
         border-radius: 2em;
         display: flex;
-        background-image: linear-gradient(
-          to right,
-          hsl(133, 97%, 38%),
-          $neon-green
-        );
+        background-color: hsl(133, 97%, 38%);
         text-align: center;
         text-decoration: none;
-        color: black;
-        transition: background-image 2s linear;
+        transition: all 0.1s ease-in-out;
+        border: solid black 2px;
 
         div {
           text-decoration: none;
@@ -88,6 +92,7 @@ main {
           flex-basis: 85%;
           flex-grow: 1;
           padding: 0.5em;
+          font-weight: 500;
         }
 
         img {
@@ -105,44 +110,47 @@ main {
         img.leftPointArrow {
           display: none;
         }
+
         img.rightPointArrow {
           display: inline-block;
           transform: rotate(180deg);
         }
       }
 
-      a.leaveSiteLink:has(img.leftPointArrow) {
-        background-image: linear-gradient(
-          to left,
-          hsl(133, 97%, 38%),
-          $neon-green
-        );
-
-        img.leftPointArrow {
-          display: inline-block;
-        }
-        img.rightPointArrow {
-          display: none;
-        }
-      }
-
       a.leaveSiteLink:hover {
-        background-image: linear-gradient(
-          to left,
-          hsl(133, 91%, 29%),
-          $muted-green
-        );
+        background-color: hsl(133, 91%, 29%);
+        transform: translateY(-4px);
+        box-shadow: 0 4px 0 black;
+
         div {
           color: white;
         }
       }
 
-      a.leaveSiteLink:has(img.rightPointArrow):hover {
-        background-image: linear-gradient(
-          to right,
-          hsl(133, 91%, 29%),
-          $muted-green
-        );
+      a.leaveSiteLink:active {
+        background-color: hsl(133, 97%, 38%);
+        transform: translateY(0);
+        box-shadow: none;
+
+        div {
+          color: black;
+        }
+      }
+    }
+  }
+
+  section.reversed {
+    flex-direction: row-reverse;
+
+    a.leaveSiteLink {
+      background-color: hsl(133, 97%, 38%);
+
+      img.leftPointArrow {
+        display: inline-block;
+      }
+
+      img.rightPointArrow {
+        display: none;
       }
     }
   }
@@ -150,61 +158,50 @@ main {
 @media only screen and (max-width: 768px) {
   main {
     padding: 3em 6vw;
-    gap: 4em;
+    gap: 5em;
     section {
-      flex-direction: column;
-      gap: 0;
+      flex-direction: column-reverse !important;
+      gap: 4;
       margin: 0;
 
       div.imageContainer {
         width: 100%;
       }
 
-      .mobile {
-        display: inline-block;
-      }
-
-      .desktop {
-        display: none;
-      }
-
-      h2 {
-        text-align: center;
-        font-size: 1rem;
-      }
-
-      div.imageContainer {
-        padding: 1em 0;
-      }
       div.imageContainer::before {
-        filter: blur(5vh);
+        filter: blur(5svh);
       }
 
       article {
         width: 100%;
 
-        a.leaveSiteLink:has(img.rightPointArrow) {
-          background-image: linear-gradient(
-            to right,
-            hsl(133, 97%, 38%),
-            $neon-green
-          );
-          img.leftPointArrow {
-            display: none;
+        a.leaveSiteLink {
+          div {
+            padding: 0.7em 0;
           }
+
+          img {
+            padding: 0.7em;
+          }
+
+          img.leftPointArrow {
+            display: none !important;
+          }
+
           img.rightPointArrow {
-            display: inline-block;
+            display: inline-block !important;
+            transform: rotate(180deg);
           }
         }
 
-        a.leaveSiteLink:has(img.rightPointArrow):hover {
-          background-image: linear-gradient(
-            to left,
-            hsl(133, 91%, 29%),
-            $muted-green
-          );
+        div.articleHeader {
+          padding-bottom: 3em;
         }
       }
+    }
+
+    section.reversed {
+      flex-direction: column;
     }
   }
 }
