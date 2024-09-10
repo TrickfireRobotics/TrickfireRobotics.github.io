@@ -1,0 +1,218 @@
+html {
+  background-color: black;
+}
+
+main {
+  overflow: none;
+}
+main p {
+  line-height: 160%;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+  color: hsl(0, 5%, 95%);
+  font-size: calc(1rem + 0.1vw);
+}
+main h3 {
+  font-size: calc(1rem + 1.5vw);
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  color: rgb(0, 255, 0);
+}
+main hr {
+  border: 0.1px solid hsl(0, 0%, 40%);
+}
+main section {
+  background-color: rgb(23, 23, 23);
+}
+main div#backgroundContainer {
+  width: 100vw;
+  position: absolute;
+}
+main div#backgroundContainer img#moonBackground {
+  width: 100%;
+  height: auto;
+  z-index: -1;
+}
+main div#backgroundContainer::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+main section#teamTextSection {
+  background-color: transparent;
+  background-image: linear-gradient(to bottom, hsla(0, 0%, 9%, 0.2), rgb(23, 23, 23));
+  padding: 0 6vw;
+}
+main section#teamTextSection h2 {
+  padding: 15vw 0;
+  font-family: "Outfit", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 5rem;
+  line-height: 5rem;
+  color: hsl(0, 100%, 99%);
+  animation: fadeIn 1.2s ease-in-out;
+}
+@keyframes fadeIn {
+  0% {
+    transform: translateY(1em);
+    opacity: 0%;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 100%;
+  }
+}
+main section#teamTextSection div {
+  display: flex;
+  justify-content: space-between;
+}
+main section#teamTextSection div hr {
+  display: none;
+}
+main section#teamTextSection div article {
+  width: 40%;
+}
+main section#teamTextSection article {
+  padding: 1.5em 0;
+}
+main section#teamTextSection article p {
+  padding-top: 2em;
+  padding-bottom: 4em;
+}
+main section#teamLeadersSection {
+  background-color: rgb(23, 23, 23);
+  padding: 4em 6vw;
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
+  color: white;
+}
+main section#teamLeadersSection h3#leaderTitle {
+  color: rgb(0, 255, 0);
+}
+main section#teamLeadersSection article {
+  display: flex;
+  gap: 1.5em;
+}
+main section#teamLeadersSection article div.profile img {
+  aspect-ratio: 1/1;
+  width: 5em;
+}
+main section#teamLeadersSection article div.profile h3 {
+  text-align: center;
+  color: hsl(0, 100%, 99%);
+  font-size: calc(1rem + 0.1vw);
+  padding-top: 0.5em;
+}
+main section#teamLeadersSection article div.quote h3 {
+  color: black;
+  display: inline-block;
+  padding: 0.4em 4em;
+  border-radius: 0.5em;
+  margin-bottom: 0.75em;
+  font-size: calc(1rem + 0.4vw);
+  background-color: rgb(69, 139, 96);
+  box-shadow: 0 -0.2em 0 hsl(143, 34%, 30%) inset;
+}
+main section#teamLeadersSection article.reversed {
+  flex-direction: row-reverse;
+}
+main section#teamLeadersSection article.reversed div.quote {
+  text-align: right;
+}
+main section#teamInstagramSection {
+  background-color: rgb(23, 23, 23);
+  padding: 4em 6vw;
+}
+main section#teamInstagramSection div#photoContainer {
+  display: grid;
+  padding: 2em 4em;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+}
+main section#teamInstagramSection div#photoContainer a {
+  overflow: hidden;
+}
+main section#teamInstagramSection div#photoContainer img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 1/1;
+  -o-object-position: center;
+     object-position: center;
+  transition: transform 0.2s ease-in-out;
+}
+main section#teamInstagramSection div#photoContainer img.postIconOverlay {
+  position: absolute;
+  padding: 40%;
+  z-index: 1;
+  opacity: 0;
+}
+main section#teamInstagramSection div#photoContainer img.postIconOverlay:hover {
+  background-color: hsla(0, 0%, 0%, 0.4);
+  opacity: 100%;
+}
+main section#teamInstagramSection div#photoContainer a:hover img {
+  transform: scale(1.1);
+}
+main section#teamCompetitionSection {
+  text-align: center;
+  padding: 4em 12vw;
+}
+main section#teamCompetitionSection div#awardLogoContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 6em 0;
+}
+main section#teamCompetitionSection div#awardLogoContainer img {
+  height: 8em;
+  width: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  main section#teamTextSection div {
+    flex-direction: column;
+  }
+  main section#teamTextSection div hr {
+    display: inline-block;
+  }
+  main section#teamTextSection div article {
+    width: 100%;
+  }
+  main section#teamTextSection h2 {
+    font-size: 2.6rem;
+    line-height: normal;
+    padding-top: 12svh;
+    padding-bottom: 12svh;
+  }
+  main section#teamTextSection article p {
+    padding-bottom: 3em;
+  }
+  main section#teamLeadersSection article div.quote h3 {
+    font-size: 1rem;
+    padding: 0.4em 0.4em;
+    text-align: center;
+    width: 100%;
+  }
+  main section#teamLeadersSection article.reversed {
+    flex-direction: row;
+  }
+  main section#teamLeadersSection article.reversed div.quote {
+    text-align: left;
+  }
+  main section#teamInstagramSection {
+    padding: 2em 6vw;
+  }
+  main section#teamInstagramSection div#photoContainer {
+    padding: 3em 0 0 0;
+    grid-template-columns: 1fr 1fr;
+  }
+  main section#teamCompetitionSection div#awardLogoContainer {
+    gap: 4em;
+    flex-direction: column;
+    padding: 0 6vw;
+    padding-top: 3em;
+    align-items: center;
+  }
+}/*# sourceMappingURL=OurStory.css.map */
