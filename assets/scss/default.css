@@ -28,7 +28,7 @@ header {
   width: 100%;
   height: 5em;
   padding: 1em 6vw;
-  background-color: rgb(24, 24, 24);
+  background-color: rgb(23, 23, 23);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,7 +45,7 @@ header ul {
 header ul a {
   margin-left: 4vw;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: normal;
   color: hsl(0, 0%, 70%);
   transition: color 0.1s linear;
 }
@@ -98,7 +98,7 @@ header #navSponsorLink {
 }
 header #navSponsorLink:hover {
   background-color: hsl(133, 97%, 38%);
-  color: rgb(24, 24, 24);
+  color: rgb(23, 23, 23);
 }
 header button {
   display: none;
@@ -111,7 +111,7 @@ header navbar#dropDownNav {
 }
 
 footer {
-  background-color: rgb(24, 24, 24);
+  background-color: rgb(23, 23, 23);
   color: white;
 }
 footer a {
@@ -120,6 +120,7 @@ footer a {
 }
 footer hr {
   margin: 0 6vw;
+  border: 0.1px solid hsl(0, 0%, 40%);
 }
 footer #footerContentContainer {
   display: flex;
@@ -165,7 +166,8 @@ footer section li a {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  font-size: 0.9rem;
+  font-size: calc(1rem + 0.01vw);
+  font-weight: 300;
   padding: 0.5em 0;
   color: hsl(0, 0%, 70%);
   transition: color 0.1s linear;
@@ -199,17 +201,17 @@ footer p {
   header button {
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 0.5em;
     border: none;
     background-color: transparent;
-    padding: 0.5em 1em;
+    padding: 0.25em;
   }
   header button img {
     aspect-ratio: 1/1;
     width: 3em;
   }
   header button p {
-    font-size: 1rem;
+    font-size: calc(1rem + 0.01vw);
     color: hsl(0, 0%, 70%);
   }
   header button[aria-expanded=true] {
@@ -231,7 +233,7 @@ footer p {
     padding-top: 0.5em;
     transform-origin: top;
     transform: scaleY(0);
-    transition: transform 0.1s linear;
+    transition: transform 0.2s ease-in-out;
   }
   header navbar#dropDownNav ul {
     flex-direction: column;
@@ -309,5 +311,11 @@ footer p {
   }
   footer #siteLinkContainer ul li {
     margin: auto 0;
+  }
+
+}
+@media screen and (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
   }
 }/*# sourceMappingURL=default.css.map */
