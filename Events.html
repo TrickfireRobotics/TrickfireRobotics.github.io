@@ -38,44 +38,92 @@
   <body>
     <!-- Header will be loaded here -->
     <main>
-      <h1>Upcoming Events</h1>
-    <div class="upcoming-events">
-        <div class="event-card">
-            <div class="image-container">
-                <div class="time">
-                  <div class="date">
-                      <img src="assets/images/icons/clock.svg" alt="" class="clock">
-                      <h3>Oct 10th, 24</h3>
+      <div class="page-setup">
+        <h1>Upcoming Events</h1>
+        
+        <!-- Event container with fixed buttons to scroll through events-->
+        <div class="upcoming-events-wrapper">
+          <button class="back-button">
+            <img src="assets/images/icons/backward.png" alt="Back" class="button-img">
+          </button>
+      
+          <div class="upcoming-events">
+            <!-- Event cards will be added here with Javascript-->
+          </div>
+      
+          <button class="next-button">
+            <img src="assets/images/icons/forward.png" alt="Next" class="button-img">
+          </button>
+        <!-- Previous Events cards which their time is before the current date are put here-->
+        </div>
+        <h1>Previous Events</h1>
+        <div class="previous-events">
+        </div>
+      </div>
+      <!-- Popup HTML -->
+      <div class="popup" id="popup">
+        <div class="popup-content">
+          <span id="closePopup" class="close-button">X</span>
+          <div class="first-column">
+            <img src="" alt="" class="popup-img">
+            <div class="date-hold">
+              <img src="assets/images/icons/clock.svg" alt="" class="clock">
+              <p class="popup-date">Oct 10th, 24</p>
+             </div>
+            <div class="hour-hold">
+              <p class="popup-time">8 pm - 11 pm</p>
+            </div>
+            <div class="location-hold">
+              <img src="assets/images/icons/waypoint.png" alt="" class="waypoint">
+              <p class="popup-location">UWB INV-011</p>
+            </div>
+          </div>
+          <div class="second-column">
+            <h2 id="popup-title">Event Title</h2>
+            <p id="popup-description">Description: </p>
+            <div class="share">
+              <span class="link"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- Old Commented out Event Card HTML -->
+          <!-- <div class="event-card" id="event1">
+              <div class="image-container">
+                  <div class="time">
+                    <div class="date">
+                        <img src="assets/images/icons/clock.svg" alt="" class="clock">
+                        <h3 class="event-date">Oct 10th, 24</h3>
+                    </div>
+                    <div class="hour">
+                        <h3 class="event-time">8 pm - 11 pm</h3>
+                    </div>
+                </div>
+                  <img src="assets/images/photos/college_fair_outreach_2017.jpg" alt="" class="event">
+              </div>
+              <div class="title">
+                  <h2 class="event-title">Kick Off & Orientation</h2>
+              </div>
+              <div class="location">
+                  <img src="assets/images/icons/waypoint.png" alt="" class="waypoint">
+                  <h3 class="event-location">UWB INV-011</h3>
+              </div>
+              <div class="tags">
+                  <div>
+                      <p class="event-tag">Welcome</p>
                   </div>
-                  <div class="hour">
-                      <h3>8 pm - 11 pm</h3>
+                  <div>
+                      <p class="event-tag">Lab</p>
+                  </div>
+                  <div>
+                      <p class="event-tag">Sub-team</p>
+                  </div>
+                  <div>
+                      <p class="event-tag">Lab</p>
                   </div>
               </div>
-                <img src="assets/images/photos/college_fair_outreach_2017.jpg" alt="" class="event">
-            </div>
-            <div class="title">
-                <h2>Kick Off & Orientation</h2>
-            </div>
-            <div class="location">
-                <img src="assets/images/icons/waypoint.png" alt="" class="waypoint">
-                <h3>UWB INV-011</h3>
-            </div>
-            <div class="tags">
-                <div>
-                    <p>Welcome</p>
-                </div>
-                <div>
-                    <p>Lab</p>
-                </div>
-                <div>
-                    <p>Sub-team</p>
-                </div>
-                <div>
-                    <p>Lab</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        </div> -->
+    <script src="assets/javascript/Event.js"></script>
     </main>
     <!-- Footer will be loaded here -->
   </body>

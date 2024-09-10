@@ -1,16 +1,58 @@
+main {
+  background-color: rgb(24, 24, 24);
+}
+main h1 {
+  color: #FFF;
+}
+main .page-setup {
+  overflow: hidden;
+  justify-content: center;
+  padding: 100px;
+}
+main .upcoming-events-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 main .upcoming-events {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 100px;
+  justify-content: flex-start;
+  flex-wrap: unset;
+  margin-top: 20px;
+  align-items: start;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  margin-bottom: 40px;
+}
+main .upcoming-events::-webkit-scrollbar {
+  display: none;
+}
+main .previous-events {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: unset;
+  margin-top: 20px;
+  align-items: start;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+main .previous-events .title {
+  background-color: #65746B;
+}
+main .previous-events .tags,
+main .previous-events .location {
+  background-color: #929D97;
 }
 main .event-card {
-  width: 325px;
+  width: 300px;
   background-color: rgb(116, 186, 143);
   border-radius: 8px;
   overflow: hidden;
-  margin: 20px;
+  margin: 40px;
   position: relative;
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 main .image-container {
   position: relative;
@@ -24,62 +66,141 @@ main .event {
 }
 main .time {
   position: absolute;
-  bottom: 0px;
+  bottom: 0%;
+  right: 0%;
+  left: 0%;
   background-color: rgba(0, 0, 0, 0.6);
-  padding: 5px 10px;
+  padding: 0.6rem 0.5rem;
   color: #FFF;
   z-index: 1;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 5%;
+  font-size: 0.8rem;
+  font-family: "Outfit", Arial, sans-serif;
+  letter-spacing: -1px;
 }
-main .time img.clock {
-  width: 16px;
-  height: 16px;
+main .clock {
+  width: 1rem;
+  height: 1rem;
 }
 main .date {
   display: flex;
-  gap: 10px;
+  gap: 0.8rem;
   align-items: center;
+  white-space: nowrap;
 }
 main .title {
-  padding: 10px;
-  background-color: rgb(69, 139, 96);
+  padding: 0.4rem 0.3rem 0.3rem 0.8rem;
+  font-family: "Overpass Mono", "Courier New", monospace;
+  background-color: rgb(116, 186, 143);
 }
 main .title h2 {
-  font-size: 1.5em;
+  font-size: 1.3em;
+  letter-spacing: -1px;
   margin: 0;
 }
 main .location {
   display: flex;
-  align-items: center;
-  padding: 10px;
+  align-items: flex-start;
+  padding: 0.5rem 0.8rem 0rem 0.8rem;
   background-color: rgb(69, 139, 96);
 }
-main .location img.waypoint {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
+main .waypoint {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.5rem;
 }
 main .location h3 {
-  font-size: 1.2em;
-  margin: 0;
+  font-size: 1.2rem;
+  font-family: "Outfit", Arial, sans-serif;
+  font-weight: lighter;
+  color: #FFF;
+  margin: 0%;
 }
 main .tags {
   display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
-  background-color: var(--accent-background-color);
+  flex-wrap: nowrap;
+  overflow: hidden;
+  padding: 0.3rem;
+  padding-bottom: 0.1rem;
+  background-color: rgb(69, 139, 96);
 }
 main .tags div {
   border-radius: 3px;
-  border: 1px solid var(--accent-text-color);
-  padding: 5px 8px;
+  border: 1px solid #ddd;
+  padding: 3px 8px;
   margin: 5px;
 }
 main .tags p {
   margin: 0;
-  font-size: 0.9em;
-  color: var(--accent-text-color);
+  font-size: 0.8em;
+  color: #FFF;
+  font-weight: lighter;
+}
+main .button-img {
+  width: 25px;
+  height: 25px;
+}
+main .next-button,
+main .back-button {
+  position: absolute; /* This allows buttons to stay fixed inside the container */
+  top: 50%; /* Align the button vertically in the middle */
+  transform: translateY(-50%); /* Center the button */
+  background: #FFF;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  opacity: 66%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+}
+main .next-button:hover,
+main .back-button:hover {
+  opacity: 100%;
+  transition: 0.25s all ease-in-out;
+}
+main .next-button {
+  right: 10px; /* Position on the right of the container */
+}
+main .back-button {
+  left: 10px; /* Position on the left of the container */
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Popup content */
+.popup-content {
+  background: linear-gradient(to right, #A6A6A6, #D9D9D9);
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  margin: auto;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
 }/*# sourceMappingURL=events.css.map */
