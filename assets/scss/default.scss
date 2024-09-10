@@ -48,7 +48,7 @@ header {
     a {
       margin-left: 4vw;
       text-decoration: none;
-      font-weight: 400;
+      font-weight: normal;
       color: hsl(0, 0%, 70%);
       transition: color 0.1s linear;
     }
@@ -131,6 +131,7 @@ footer {
 
   hr {
     margin: 0 6vw;
+    border: 0.1px solid hsl(0, 0%, 40%);
   }
 
   #footerContentContainer {
@@ -183,7 +184,8 @@ footer {
         display: inline-flex;
         align-items: center;
         gap: 0.5em;
-        font-size: 0.9rem;
+        font-size: calc(1rem + 0.01vw);
+        font-weight: 300;
         padding: 0.5em 0;
         color: hsl(0, 0%, 70%);
         transition: color 0.1s linear;
@@ -225,16 +227,16 @@ footer {
     button {
       display: flex;
       align-items: center;
-      gap: 1em;
+      gap: 0.5em;
       border: none;
       background-color: transparent;
-      padding: 0.5em 1em;
+      padding: 0.25em;
       img {
         aspect-ratio: 1 / 1;
         width: 3em;
       }
       p {
-        font-size: 1rem;
+        font-size: calc(1rem + 0.01vw);
         color: hsl(0, 0%, 70%);
       }
     }
@@ -260,7 +262,7 @@ footer {
       padding-top: 0.5em;
       transform-origin: top;
       transform: scaleY(0);
-      transition: transform 0.1s linear;
+      transition: transform 0.2s ease-in-out;
 
       ul {
         flex-direction: column;
@@ -351,5 +353,10 @@ footer {
         margin: auto 0;
       }
     }
+  }
+}
+@media screen and (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
   }
 }

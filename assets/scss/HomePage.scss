@@ -1,13 +1,418 @@
 @import "./variables.scss";
 
 main {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $background-color;
+  width: 100vw;
+  h2 {
+    font-size: calc(1rem + 2.5vw);
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    color: hsl(0, 100%, 99%);
+  }
+
+  p {
+    line-height: 160%;
+    letter-spacing: 0.05em;
+    font-weight: 300;
+    color: hsl(0, 5%, 95%);
+    font-size: calc(1rem + 0.05vw);
+
+    a {
+      color: $neon-green;
+    }
+  }
+
+  div#introductionSection,
+  div#starBackgroundSection {
+    padding: 7em 6vw;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 7em;
+    overflow: none;
+
+    img.backgroundImage {
+      position: absolute;
+      z-index: -1;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    section {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      width: 100%;
+      gap: 5vw;
+
+      div.imageContainer {
+        width: 50%;
+        margin: auto 0;
+
+        img.main {
+          width: 100%;
+          height: auto;
+          border: hsl(222, 61%, 87%) 0.5em solid;
+        }
+
+        div#galleryImagesContainer {
+          img {
+            display: none;
+            width: 100%;
+            height: 60svh;
+            object-fit: cover;
+          }
+        }
+
+        div#galleryButtonsContainer {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          padding: 1em;
+          z-index: 1;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          img {
+            flex-basis: 2%;
+            aspect-ratio: 1 / 1;
+            padding: 0.4em;
+            background-color: hsla(0, 0%, 80%);
+            transition: background-color, transform 0.1s ease-in-out;
+            border-radius: 50%;
+            cursor: pointer;
+          }
+
+          img:hover {
+            background-color: hsla(0, 0%, 12%);
+            transform: scale(1.2);
+          }
+
+          img#backArrow:hover {
+            transform: rotate(180deg) scale(1.2);
+          }
+
+          img#backArrow {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      div.imageContainer::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        left: 0%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: hsl(0, 0%, 65%);
+        filter: blur(20vw);
+      }
+
+      article {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        div.articleHeader {
+          width: 100%;
+          padding-bottom: 2em;
+        }
+
+        h2 {
+          margin-bottom: 0.5em;
+        }
+
+        a.leaveSiteLink {
+          width: 100%;
+          border-radius: 2em;
+          display: flex;
+          background-color: hsl(133, 97%, 38%);
+          text-align: center;
+          text-decoration: none;
+          font-weight: 500;
+          transition: all 0.1s ease-in-out;
+          border: solid black 2px;
+
+          div {
+            text-decoration: none;
+            color: black;
+            flex-basis: 85%;
+            flex-grow: 1;
+            padding: 0.5em;
+          }
+
+          img {
+            aspect-ratio: 1/1;
+            width: auto;
+            height: 100%;
+            flex-basis: 5%;
+            flex-grow: 0;
+            padding: 0.5em;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 4px white;
+          }
+
+          img.leftPointArrow {
+            display: inline-block;
+          }
+
+          img.rightPointArrow {
+            display: none;
+          }
+        }
+
+        a.leaveSiteLink:hover {
+          background-color: hsl(133, 91%, 29%);
+          transform: translateY(-4px);
+          box-shadow: 0 4px 0 black;
+          div {
+            color: white;
+          }
+        }
+
+        a.leaveSiteLink:active {
+          background-color: hsl(133, 97%, 38%);
+          transform: translate(0);
+          box-shadow: none;
+
+          div {
+            color: black;
+          }
+        }
+      }
+    }
+
+    section.reversed {
+      flex-direction: row;
+      a.leaveSiteLink {
+        img.leftPointArrow {
+          display: none;
+        }
+
+        img.rightPointArrow {
+          display: inline-block;
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  div#introductionSection::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: hsla(0, 0%, 9%, 90%);
+    backdrop-filter: blur(0.1em);
+  }
+
+  section#missionSection {
+    padding: 4em 6vw;
+    display: flex;
+    justify-content: space-between;
+    background-color: #1f1f1f;
+    overflow: hidden;
+    article {
+      background-color: black;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding: 1em;
+      border-radius: 1em;
+      flex-basis: 25%;
+
+      img {
+        width: 60%;
+        margin: 0 auto;
+        padding: 1em 0;
+        color: hsl(133, 97%, 38%);
+      }
+
+      h3 {
+        color: hsl(0, 100%, 98%);
+        padding: 0.5em 0;
+        font-weight: normal;
+        letter-spacing: 0.1em;
+      }
+
+      p {
+        padding: 1.5em 0;
+      }
+    }
+  }
+
+  section#missionSection::before {
+    content: "";
+    background-color: $neon-green;
+    position: absolute;
+    top: 23%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    border-radius: 100%;
+    filter: blur(20em);
+  }
+
+  div#starBackgroundSection::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: hsla(250, 40%, 10%, 40%);
+  }
+
+  div#starBackgroundSection {
+    section#teamCompetitionSection {
+      flex-direction: column;
+      text-align: center;
+      padding: 0em 7vw;
+
+      div#awardLogoContainer {
+        display: flex;
+        justify-content: space-between;
+        padding: 2em 0;
+
+        img {
+          height: 8em;
+          width: auto;
+        }
+      }
+    }
+
+    section#teamCompetitionSection::before {
+      background-color: $neon-green;
+      width: 100%;
+      height: 45%;
+      content: "";
+      position: absolute;
+      top: 20%;
+      left: 0;
+      border-radius: 50%;
+      filter: blur(20em);
+    }
+  }
 }
-main li {
-  margin-bottom: 2em;
-  text-align: center;
+@media only screen and (max-width: 768px) {
+  main {
+    div#introductionSection,
+    div#starBackgroundSection {
+      padding: 3em 6vw;
+      gap: 5em;
+
+      img.backgroundImage {
+        width: auto;
+      }
+
+      section {
+        flex-direction: column-reverse !important;
+        margin: 0;
+        gap: 2em;
+
+        div.imageContainer {
+          width: 100%;
+          div#galleryImagesContainer {
+            img {
+              display: none;
+              width: 100%;
+              height: 50svh;
+              object-fit: cover;
+            }
+          }
+        }
+
+        div.imageContainer::before {
+          filter: blur(5vh);
+        }
+
+        article {
+          width: 100%;
+
+          a.leaveSiteLink {
+            div {
+              padding: 0.7em 0;
+            }
+            img {
+              padding: 0.7em;
+            }
+            img.leftPointArrow {
+              display: none !important;
+            }
+
+            img.rightPointArrow {
+              display: inline-block !important;
+              transform: rotate(180deg);
+            }
+          }
+
+          div.articleHeader {
+            padding-bottom: 3em;
+          }
+        }
+      }
+
+      section.reversed {
+        flex-direction: column;
+      }
+
+      section#teamCompetitionSection {
+        flex-direction: column !important;
+        div#awardLogoContainer {
+          gap: 4em;
+          flex-direction: column;
+          padding: 0 6vw;
+          padding-top: 1.5em;
+          align-items: center;
+        }
+      }
+    }
+
+    section#missionSection {
+      background-color: black;
+      overflow-y: visible;
+      flex-direction: column;
+      gap: 2em;
+
+      article {
+        flex-direction: row;
+        background-color: hsl(0, 0%, 19%);
+        text-align: left;
+        gap: 1em;
+
+        img {
+          height: 4em;
+          width: auto;
+          padding: 0;
+          margin: auto 0;
+        }
+
+        h3,
+        p,
+        img {
+          padding: 0;
+        }
+      }
+    }
+
+    section#missionSection::before {
+      background-color: transparent;
+    }
+
+    div#starBackgroundSection {
+      background-color: black;
+      overflow-y: visible;
+    }
+  }
 }
