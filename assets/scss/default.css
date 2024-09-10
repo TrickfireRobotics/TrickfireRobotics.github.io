@@ -1,0 +1,320 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Overpass Mono", "Courier New", monospace;
+}
+
+p,
+a {
+  font-family: "Outfit", Arial, sans-serif;
+}
+
+main {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+header {
+  width: 100%;
+  height: 5em;
+  padding: 1em 6vw;
+  background-color: rgb(23, 23, 23);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+header a {
+  text-decoration: none;
+  color: hsl(0, 100%, 99%);
+}
+header ul {
+  display: flex;
+  list-style-type: none;
+}
+header ul a {
+  margin-left: 4vw;
+  text-decoration: none;
+  font-weight: normal;
+  color: hsl(0, 0%, 70%);
+  transition: color 0.1s linear;
+}
+header ul a.currPage {
+  color: hsl(0, 100%, 99%);
+  font-weight: bold;
+}
+header ul a.currPage::before {
+  display: inline-block;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0.1em;
+  background-color: hsl(0, 100%, 99%);
+  animation: underlineFadeIn 0.33s cubic-bezier(0.37, 0, 0.63, 1) forwards;
+}
+@keyframes underlineFadeIn {
+  0% {
+    top: 170%;
+    opacity: 0;
+  }
+  100% {
+    top: 120%;
+    opacity: 100%;
+  }
+}
+header ul a:hover {
+  color: hsl(0, 100%, 99%);
+}
+header #navTitleSection {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+header #navTitleSection h1 {
+  color: rgb(0, 255, 0);
+  font-size: x-large;
+  margin-top: 0.2em;
+}
+header #navTitleSection img {
+  width: 1.75em;
+}
+header #navSponsorLink {
+  border: 2px solid hsl(133, 97%, 38%);
+  border-radius: 0.5em;
+  text-decoration: none;
+  padding: 0.3em 2em;
+  color: white;
+  transition: background-color, color ease-in-out 0.33s;
+}
+header #navSponsorLink:hover {
+  background-color: hsl(133, 97%, 38%);
+  color: rgb(23, 23, 23);
+}
+header button {
+  display: none;
+}
+
+header [aria-hidden*=false],
+header navbar#dropDownNav {
+  display: none;
+  background-color: red;
+}
+
+footer {
+  background-color: rgb(23, 23, 23);
+  color: white;
+}
+footer a {
+  text-decoration: none;
+  color: white;
+}
+footer hr {
+  margin: 0 6vw;
+  border: 0.1px solid hsl(0, 0%, 40%);
+}
+footer #footerContentContainer {
+  display: flex;
+  padding: 3em 0;
+}
+footer #footerTitleContainer {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer #footerTitleContainer a {
+  display: flex;
+  align-items: center;
+  color: rgb(0, 255, 0);
+}
+footer #footerTitleContainer a h2 {
+  color: rgb(0, 255, 0);
+  text-align: center;
+}
+footer #footerTitleContainer img {
+  aspect-ratio: 1/1;
+  width: 6em;
+}
+footer section {
+  flex-basis: 15%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+footer section h2 {
+  font-size: medium;
+}
+footer section ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+footer section li {
+  list-style-type: none;
+}
+footer section li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: calc(1rem + 0.01vw);
+  font-weight: 300;
+  padding: 0.5em 0;
+  color: hsl(0, 0%, 70%);
+  transition: color 0.1s linear;
+}
+footer section li a img {
+  width: 1.75em;
+}
+footer section li a:hover {
+  color: hsl(0, 100%, 99%);
+}
+footer #mobileFooterContentContainer {
+  display: none;
+}
+footer p {
+  font-family: "Overpass Mono", "Courier New", monospace;
+  text-align: center;
+  font-size: small;
+  padding-bottom: 1em;
+  color: hsl(0, 0%, 70%);
+}
+
+@media only screen and (max-width: 768px) {
+  main {
+    top: 5em;
+  }
+  header {
+    overflow: visible;
+    position: fixed;
+    z-index: 2;
+  }
+  header button {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    border: none;
+    background-color: transparent;
+    padding: 0.25em;
+  }
+  header button img {
+    aspect-ratio: 1/1;
+    width: 3em;
+  }
+  header button p {
+    font-size: calc(1rem + 0.01vw);
+    color: hsl(0, 0%, 70%);
+  }
+  header button[aria-expanded=true] {
+    background-color: hsla(0, 0%, 70%, 0.1);
+  }
+  header button[aria-expanded=true] p {
+    color: hsl(0, 100%, 98%);
+  }
+  header navbar {
+    display: none;
+  }
+  header navbar#dropDownNav {
+    display: inline-block;
+    position: absolute;
+    top: 5em;
+    background-color: hsla(0, 0%, 0%, 0.886);
+    z-index: 1;
+    padding: 3em;
+    padding-top: 0.5em;
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: transform 0.2s ease-in-out;
+  }
+  header navbar#dropDownNav ul {
+    flex-direction: column;
+  }
+  header navbar#dropDownNav ul li {
+    padding: 2em 1.5em;
+  }
+  header navbar#dropDownNav ul li a {
+    margin: 0;
+    padding: 2em 1.5em;
+  }
+  header navbar#dropDownNav ul li a.currPage::before {
+    display: none;
+    animation: underlineFadeIn 0.33s cubic-bezier(0.37, 0, 0.63, 1) forwards;
+  }
+  @keyframes underlineFadeIn {
+    0% {
+      top: 120%;
+      opacity: 0;
+    }
+    100% {
+      top: 50%;
+      opacity: 100%;
+    }
+  }
+  header navbar#dropDownNav ul li:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0%;
+    height: 0.1em;
+    background-color: hsl(0, 2%, 35%);
+  }
+  header navbar#dropDownNav[aria-hidden*=false] {
+    transform: scaleY(1);
+  }
+  header #navSponsorLink {
+    display: none;
+  }
+  header navbar ul li:first-child,
+  header navbar ul li:last-child {
+    display: inline-block;
+  }
+  footer {
+    top: 5em;
+  }
+  footer section ul {
+    flex-direction: row;
+  }
+  footer section ul a {
+    font-size: medium;
+  }
+  footer #footerContentContainer {
+    display: none;
+  }
+  footer #mobileFooterContentContainer {
+    display: block;
+  }
+  footer #mobileContactContainer ul {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20vw;
+    margin-top: 2em;
+    align-items: center;
+  }
+  footer #mobileContactContainer ul li {
+    margin: auto 0;
+  }
+  footer #siteLinkContainer ul {
+    display: flex;
+    justify-content: space-between;
+    margin: 2em 25vw;
+    align-items: center;
+  }
+  footer #siteLinkContainer ul li {
+    margin: auto 0;
+  }
+}
+@media screen and (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+}/*# sourceMappingURL=default.css.map */
