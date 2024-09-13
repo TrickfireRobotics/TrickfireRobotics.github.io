@@ -28,24 +28,6 @@ const events = [
         image: 'assets/images/photos/outreach_trickfire_robotics_compressed.jpg'
     },
     {
-        date: 'Nov 20th, 23',
-        time: '3 pm - 6 pm',
-        title: 'Hackathon Event',
-        location: 'Auditorium 3',
-        tags: ['Coding', 'Competition'],
-        description: "A fun and engaging orientation session to kickstart the new term!",
-        image: 'assets/images/photos/outreach_trickfire_robotics_compressed.jpg'
-    },
-    {
-        date: 'Nov 20th, 23',
-        time: '3 pm - 6 pm',
-        title: 'Hackathon Event',
-        location: 'Auditorium 3',
-        tags: ['Coding', 'Competition'],
-        description: "A fun and engaging orientation session to kickstart the new term!",
-        image: 'assets/images/photos/outreach_trickfire_robotics_compressed.jpg'
-    },
-    {
         date: 'Nov 20th, 24',
         time: '3 pm - 6 pm',
         title: 'Hackathon Event',
@@ -56,6 +38,24 @@ const events = [
     },
     {
         date: 'Nov 20th, 24',
+        time: '3 pm - 6 pm',
+        title: 'Hackathon Event',
+        location: 'Auditorium 3',
+        tags: ['Coding', 'Competition'],
+        description: "A fun and engaging orientation session to kickstart the new term!",
+        image: 'assets/images/photos/outreach_trickfire_robotics_compressed.jpg'
+    },
+    {
+        date: 'Nov 20th, 23',
+        time: '3 pm - 6 pm',
+        title: 'Hackathon Event',
+        location: 'Auditorium 3',
+        tags: ['Coding', 'Competition'],
+        description: "A fun and engaging orientation session to kickstart the new term!",
+        image: 'assets/images/photos/outreach_trickfire_robotics_compressed.jpg'
+    },
+    {
+        date: 'Nov 20th, 23',
         time: '3 pm - 6 pm',
         title: 'Hackathon Event',
         location: 'Auditorium 3',
@@ -222,9 +222,9 @@ const popupDescription = document.getElementById("popup-description");
 function openPopup(eventData) {
   popupTitle.textContent = eventData.title;
   popupImg.src = eventData.image
-  popupDate.textContent = "Date: " + eventData.date;
-  popupTime.textContent = "Time: " + eventData.time;
-  popupLocation.textContent = "Location: " + eventData.location;
+  popupDate.textContent = eventData.date;
+  popupTime.textContent = eventData.time;
+  popupLocation.textContent = eventData.location;
   popupDescription.textContent = eventData.description;
 
   // Revealing the popup
@@ -235,14 +235,7 @@ function openPopup(eventData) {
 document.querySelectorAll('.event-card').forEach((card, index) => {
   card.addEventListener('click', () => {
     openPopup(events[index]);
-    console.log('Activated Popup');
   });
-});
-
-// Closing the popup when the close button is clicked
-closePopup.addEventListener('click', () => {
-  popup.style.display = "none";
-  console.log('Activated Popup');
 });
 
 // Closing the popup when clicking outside of the popup content

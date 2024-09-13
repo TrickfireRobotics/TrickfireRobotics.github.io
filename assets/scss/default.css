@@ -316,6 +316,7 @@ footer p {
   footer #siteLinkContainer ul li {
     margin: auto 0;
   }
+
 }
 @media screen and (prefers-reduced-motion: reduce) {
   * {
