@@ -1,8 +1,10 @@
 /* Implementation currently uses Mock Data from API to avoid using up views */
 async function getInstagramPosts() {
   let data = localStorage.getItem("instagramResponse");
-  if (!data) {
-    try {
+  const photoContainer = $("#photoContainer");
+  photoContainer.empty();
+  try {
+    if (!data) {
       //const response = await fetch('FETCH URL');
       if (true /*response.ok*/) {
         data = JSON.stringify({
@@ -1218,27 +1220,32 @@ async function getInstagramPosts() {
       } else {
         throw new Error("Error recieving behold fetch");
       }
-    } catch (err) {
-      console.log(err);
     }
-  }
-  JSON.parse(data).posts.forEach((post) => {
-    const link = $("<a></a>");
-    const icon = $(
-      `<img class = "postIconOverlay" src = "assets/images/icons/InstagramIcon.svg" alt = "Instagram icon"/>`
-    );
-    link.attr("href", post.permalink);
-    const picture = $(`<img />`);
+    JSON.parse(data).posts.forEach((post) => {
+      const link = $("<a></a>");
+      const icon = $(
+        `<img class = "postIconOverlay" src = "assets/images/icons/InstagramIcon.svg" alt = "Instagram icon"/>`
+      );
+      link.attr("href", post.permalink);
+      const picture = $(`<img />`);
 
-    picture.attr("src", post.sizes.small.mediaUrl);
-    picture.attr(
-      "srcset",
-      `${post.sizes.small.mediaUrl} 768w, ${post.sizes.medium.mediaUrl} 1200w`
-    );
-    picture.attr("alt", post.caption);
-    link.append(icon);
-    link.append(picture);
-    $("#photoContainer").append(link);
-  });
+      picture.attr("src", post.sizes.small.mediaUrl);
+      picture.attr(
+        "srcset",
+        `${post.sizes.small.mediaUrl} 768w, ${post.sizes.medium.mediaUrl} 1200w`
+      );
+      picture.attr("alt", post.caption);
+      link.append(icon);
+      link.append(picture);
+      photoContainer.append(link);
+    });
+  } catch (err) {
+    console.log(err);
+    const errorMessage = $("<h4>Error Loading Instagram Feed</h4>");
+    const refreshButton = $("<button>Refresh</button>");
+    refreshButton.click(getInstagramPosts);
+    photoContainer.append(errorMessage);
+    photoContainer.append(refreshButton);
+  }
 }
 getInstagramPosts();
