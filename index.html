@@ -33,28 +33,221 @@
     <!-- Loads module Html -->
     <script src="./components/Header.js"></script>
     <script src="./components/Footer.js"></script>
+
+    <!-- Loads image gallery functionality -->
+    <script src="./assets/javascript/imageGallery.js" defer></script>
   </head>
 
   <body>
     <!-- Header will be loaded here -->
     <main>
-      <ul>
-        <li>
-          <h1><a href="./Events.html">Events</a></h1>
-        </li>
-        <li>
-          <h1><a href="./OurStory.html">Our Story</a></h1>
-        </li>
-        <li>
-          <h1><a href="./JoinUs.html">Join Us</a></h1>
-        </li>
-        <li>
-          <h1><a href="./Robots.html">Robots</a></h1>
-        </li>
-        <li>
-          <h1><a href="./Sponsor.html">Sponsor</a></h1>
-        </li>
-      </ul>
+      <div id="introductionSection" role="presentation">
+        <img
+          src="assets/images/photos/mobileAsteroidSurface.jpg"
+          srcset="
+            assets/images/photos/mobileAsteroidSurface.webp   700w,
+            assets/images/photos/desktopAsteroidSurface.webp 1200w
+          "
+          class="backgroundImage"
+          alt="Asteroid surface background"
+        />
+        <section class="reversed">
+          <article>
+            <div class="articleHeader" role="presentation">
+              <h2>Introduction</h2>
+              <p>
+                Text about the RobotText about the RobotText about the RobotText
+                about the RobotText about the RobotText about the RobotText
+                about the RobotText about the RobotText about the RobotText
+                about the Robot
+              </p>
+            </div>
+            <a
+              class="leaveSiteLink"
+              href="mailto:tfrbtcs@uw.edu"
+              target="_blank"
+            >
+              <img
+                class="leftPointArrow"
+                src="assets/images/icons/arrowIcon.svg"
+                alt="Arrow icon"
+              />
+              <div role="presentation">Explore More</div>
+              <img
+                class="rightPointArrow"
+                src="assets/images/icons/arrowIcon.svg"
+                alt="Arrow icon"
+              />
+            </a>
+          </article>
+          <div class="imageContainer" role="presentation">
+            <img
+              src="./assets/images/photos/teaching_new_member.jpg"
+              alt="Student member giving presentation"
+              class="main"
+            />
+          </div>
+        </section>
+        <section>
+          <article>
+            <div class="articleHeader" role="presentation">
+              <h2>Introduction</h2>
+              <p>
+                Text about the RobotText about the RobotText about the RobotText
+                about the RobotText about the RobotText about the RobotText
+                about the RobotText about the RobotText about the RobotText
+                about the Robot
+              </p>
+            </div>
+            <a
+              class="leaveSiteLink"
+              href="mailto:tfrbtcs@uw.edu"
+              target="_blank"
+            >
+              <img
+                class="leftPointArrow"
+                src="assets/images/icons/arrowIcon.svg"
+                alt="Arrow icon"
+              />
+              <div role="presentation">Explore More</div>
+              <img
+                class="rightPointArrow"
+                src="assets/images/icons/arrowIcon.svg"
+                alt="Arrow icon"
+              />
+            </a>
+          </article>
+          <div class="imageContainer" role="presentation">
+            <img
+              src="./assets/images/photos/teaching_new_member.jpg"
+              alt="Student member giving presentation"
+              class="main"
+            />
+          </div>
+        </section>
+      </div>
+      <section id="missionSection">
+        <article>
+          <img
+            src="assets/images/icons/placeHolderIcon.svg"
+            alt="Icon placeholder"
+          />
+          <div class="contentContainer" role="presentation">
+            <h3>Mission/Value</h3>
+            <p>
+              Our advantages top 3, robots or team. Our advantages top 3, robots
+              or team.
+            </p>
+          </div>
+        </article>
+        <article>
+          <img
+            src="assets/images/icons/placeHolderIcon.svg"
+            alt="Icon placeholder"
+          />
+          <div class="contentContainer" role="presentation">
+            <h3>Mission/Value</h3>
+            <p>
+              Our advantages top 3, robots or team. Our advantages top 3, robots
+              or team.
+            </p>
+          </div>
+        </article>
+        <article>
+          <img
+            src="assets/images/icons/placeHolderIcon.svg"
+            alt="Icon placeholder"
+          />
+          <div class="contentContainer" role="presentation">
+            <h3>Mission/Value</h3>
+            <p>
+              Our advantages top 3, robots or team. Our advantages top 3, robots
+              or team.
+            </p>
+          </div>
+        </article>
+      </section>
+      <div id="starBackgroundSection" role="presentation">
+        <img
+          src="assets/images/photos/starBackground.webp"
+          class="backgroundImage"
+          alt="Starry night background"
+        />
+        <section id="imageGallerySection">
+          <article>
+            <div class="articleHeader" role="presentation">
+              <h2>Image Gallery</h2>
+              <p>
+                Text about the RobotText about the RobotText about the RobotText
+                about the RobotText about the RobotText about the RobotText
+                about the RobotText about the RobotText about the RobotText
+                about the Robot
+              </p>
+            </div>
+            <a class="leaveSiteLink" href="./OurStory.html" target="_blank">
+              <img
+                class="leftPointArrow"
+                src="assets/images/icons/arrowIcon.svg"
+                alt="Arrow icon"
+              />
+              <div>Our Story</div>
+              <img
+                class="rightPointArrow"
+                src="assets/images/icons/arrowIcon.svg"
+                alt="Arrow icon"
+              />
+            </a>
+          </article>
+          <div class="imageContainer" role="presentation">
+            <div id="galleryButtonsContainer">
+              <img
+                id="backArrow"
+                src="./assets/images/icons/imageCarouselArrow.svg"
+                alt="Back arrow button"
+              />
+              <img
+                id="forwardArrow"
+                src="./assets/images/icons/imageCarouselArrow.svg"
+                alt="Forward arrow button"
+              />
+            </div>
+            <div id="galleryImagesContainer">
+              <img
+                src="./assets/images/photos/outreach_trickfire_robotics_compressed.jpg"
+                alt="TrickFire student members giving robot presentation"
+                class="main"
+              />
+              <img
+                src="./assets/images/photos/college_fair_outreach_2017.jpg"
+                alt="TrickFire student members giving robot presentation"
+                class="main"
+              />
+              <img
+                src="./assets/images/photos/mechanical.png"
+                alt="TrickFire student members giving robot presentation"
+                class="main"
+              />
+            </div>
+          </div>
+        </section>
+        <section id="teamCompetitionSection">
+          <h2>Awards</h2>
+          <div id="awardLogoContainer" role="presentation">
+            <img
+              src="assets/images/sponsors/nvidia.png"
+              alt="Logo placeholder"
+            />
+            <img
+              src="assets/images/sponsors/nvidia.png"
+              alt="Logo placeholder"
+            />
+            <img
+              src="assets/images/sponsors/nvidia.png"
+              alt="Logo placeholder"
+            />
+          </div>
+        </section>
+      </div>
     </main>
     <!-- Footer will be loaded here -->
   </body>
