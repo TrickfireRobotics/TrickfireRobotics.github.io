@@ -1,1 +1,212 @@
 @import "./variables.scss";
+
+main {
+  padding: 5em 6vw;
+  color: hsl(0, 100%, 99%);
+  display: flex;
+  flex-direction: column;
+  gap: 6em;
+
+  ul,
+  ol,
+  p {
+    color: hsl(0, 5%, 95%);
+    font-weight: 300;
+    font-family: $text-font;
+    font-size: calc(1rem + 0.1vw);
+    line-height: 160%;
+    letter-spacing: 0.05em;
+  }
+
+  li,
+  p {
+    margin: 1em 0;
+    a {
+      text-decoration: none;
+      color: $neon-green;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    font-size: calc(1rem + 3vw);
+  }
+
+  h3 {
+    font-size: calc(1rem + 1.5vw);
+  }
+
+  picture {
+    width: 50%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: hsl(222, 61%, 87%) 0.5em solid;
+    }
+  }
+  picture#starBackgroundContainer {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    img {
+      width: 100%;
+      height: auto;
+      border: none;
+    }
+  }
+  section#introductionSection {
+    div.mainContentContainer {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 5vw;
+      margin: 2.5em 0;
+      article {
+        width: 50%;
+        margin: auto 0;
+      }
+    }
+  }
+  section#sponsorshipFundsSection {
+    h3 {
+      text-align: center;
+    }
+    div#fundLocationContainer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1vw;
+      margin: 2.5em 0;
+      article.fundLocation {
+        background-color: black;
+        text-align: center;
+        padding: 1.5em;
+        flex-basis: 25%;
+        border-radius: 1.5em;
+        img {
+          height: auto;
+          width: 40%;
+          margin: 1em;
+        }
+        h4 {
+          color: $neon-green;
+          font-size: calc(1rem + 0.1vw);
+          margin-bottom: 1em;
+        }
+      }
+      @media only screen and (max-width: 1000px) {
+        grid-template-columns: 1fr;
+        gap: 2svh;
+        article.fundLocation {
+          img {
+            width: 20%;
+          }
+        }
+      }
+    }
+  }
+  section#sponsorsSection {
+    text-align: center;
+    margin: {
+      left: 12vw;
+      right: 12vw;
+    }
+
+    div#sponsorLogoContainer {
+      display: flex;
+      justify-content: space-between;
+      margin: 8svh 0;
+
+      img {
+        height: 8em;
+        width: auto;
+      }
+    }
+  }
+  section#howToSection {
+    h3 {
+      text-align: center;
+    }
+    div.mainContentContainer {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 5vw;
+      margin: 2em 0;
+      article {
+        flex-basis: 70%;
+        background-color: hsl(0, 0%, 19%, 70%);
+        padding: 0.5em 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1.5em;
+        ol {
+          padding-left: 1.5em;
+        }
+        p {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    section#introductionSection {
+      div.mainContentContainer {
+        flex-direction: column-reverse;
+        article {
+          width: 100%;
+          h3 {
+            text-align: center;
+          }
+          ul {
+            padding-left: 1em;
+          }
+        }
+      }
+    }
+    picture {
+      width: 100%;
+    }
+    section#howToSection {
+      div.mainContentContainer {
+        flex-direction: column-reverse;
+      }
+    }
+    section#sponsorsSection {
+      div#sponsorLogoContainer {
+        gap: 4em;
+        flex-direction: column;
+        padding: 0 6vw;
+        align-items: center;
+      }
+    }
+  }
+}
+main::before {
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(
+    to top,
+    $background-color 75%,
+    transparent 100%
+  );
+  content: "";
+  position: absolute;
+}
+@media only screen and (max-width: 768px) {
+  main::before {
+    background-image: linear-gradient(
+      to top,
+      $background-color 85%,
+      transparent 100%
+    );
+  }
+}

@@ -1,5 +1,5 @@
 main {
-  background-color: rgb(24, 24, 24);
+  background-color: rgb(23, 23, 23);
 }
 main h1 {
   color: #FFF;
@@ -203,4 +203,4 @@ main .back-button {
   right: 20px;
   font-size: 30px;
   cursor: pointer;
-}/*# sourceMappingURL=events.css.map */
+}/*# sourceMappingURL=Events.css.map */
