@@ -81,19 +81,15 @@ main {
             flex-basis: 2%;
             aspect-ratio: 1 / 1;
             padding: 0.4em;
-            background-color: hsla(0, 0%, 80%);
-            transition: background-color, transform 0.1s ease-in-out;
+            background-color: hsla(0, 0%, 100%);
+            opacity: 66%;
+            transition: all 0.1s ease-in-out;
             border-radius: 50%;
             cursor: pointer;
           }
 
           img:hover {
-            background-color: hsla(0, 0%, 12%);
-            transform: scale(1.2);
-          }
-
-          img#backArrow:hover {
-            transform: rotate(180deg) scale(1.2);
+            opacity: 100%;
           }
 
           img#backArrow {
