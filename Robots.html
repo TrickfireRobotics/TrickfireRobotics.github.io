@@ -60,56 +60,158 @@
     <link rel="stylesheet" href="styles.css"> <!-- Link to the compiled CSS from SCSS -->
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <img src="logo.png" alt="Company Logo" class="logo">
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <div class="robots-section">
-            <!-- Robot Card Example -->
-            <div class="robot-card">
-                <img src="robot1.jpg" alt="Robot Image">
-                <div class="robot-details">
-                    <h3 class="robot-name">Viatior</h3>
-                    <p class="robot-description">An autonomous robot designed for surveillance.</p>
-                    <div class="specs">
-                        <div class="spec">
-                            <span class="label">Height</span>
-                            <span class="value">120 cm</span>
-                        </div>
-                        <div class="spec">
-                            <span class="label">Weight</span>
-                            <span class="value">30 kg</span>
-                        </div>
-                        <div class="spec">
-                            <span class="label">Speed</span>
-                            <span class="value">15 km/h</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Additional robots would be similarly marked up -->
-        </div>
-
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="social-icons">
-                    <a href="https://twitter.com"><img src="twitter-icon.png" alt="Twitter"></a>
-                    <a href="https://facebook.com"><img src="facebook-icon.png" alt="Facebook"></a>
-                </div>
-                <div class="footer-links">
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#terms">Terms of Service</a>
-                </div>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Projects - TrickFire Robotics</title>
+      <style>
+          body {
+              font-family: Arial, sans-serif;
+              background-color: #1c1c1c;
+              color: white;
+              margin: 0;
+          }
+          header {
+              background-color: #222;
+              padding: 15px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+          }
+          header img {
+              width: 150px;
+          }
+          nav a {
+              color: white;
+              text-decoration: none;
+              margin-left: 20px;
+          }
+          .projects {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              margin: 20px;
+          }
+          .project-card {
+              background-color: #333;
+              border-radius: 8px;
+              padding: 20px;
+              margin: 20px;
+              width: 80%;
+              max-width: 1000px;
+              display: flex;
+              flex-direction: row;
+          }
+          .project-card img {
+              width: 40%;
+              border-radius: 8px;
+              margin-right: 20px;
+          }
+          .project-info {
+              width: 60%;
+          }
+          .project-info h2 {
+              color: #00ff00;
+          }
+          footer {
+              background-color: #222;
+              padding: 20px;
+              text-align: center;
+          }
+          footer img {
+              width: 30px;
+              margin: 0 10px;
+          }
+      </style>
+  </head>
+  <body>
+  
+  <header>
+      <div>
+          <img src="logo.png" alt="TrickFire Logo">
+      </div>
+      <nav>
+          <a href="#projects">Projects</a>
+          <a href="#ourteam">Our Team</a>
+          <a href="#events">Events</a>
+          <a href="#join">Join Us</a>
+          <a href="#sponsor">Sponsor</a>
+      </nav>
+  </header>
+  
+  <section class="projects">
+      <div class="project-card">
+          <img src="viator.png" alt="Viator">
+          <div class="project-info">
+              <h2>Viator</h2>
+              <p>The Viator rover is a flexible 4WD ground vehicle...</p>
+              <ul>
+                  <li>4 Degrees of Freedom Arm</li>
+                  <li>Omnidirectional Wheels</li>
+              </ul>
+          </div>
+      </div>
+  
+      <div class="project-card">
+          <img src="houdini.png" alt="Houdini">
+          <div class="project-info">
+              <h2>Houdini</h2>
+              <p>Houdini is a six-legged walking robot designed for...</p>
+              <ul>
+                  <li>6 Degrees of Freedom Arm</li>
+                  <li>Omnidirectional Wheels</li>
+              </ul>
+          </div>
+      </div>
+  
+      <div class="project-card">
+          <img src="atlas.png" alt="Atlas">
+          <div class="project-info">
+              <h2>Atlas</h2>
+              <p>Atlas is equipped with a heavy-duty claw arm...</p>
+              <ul>
+                  <li>6 Degrees of Freedom Arm</li>
+                  <li>Omnidirectional Wheels</li>
+              </ul>
+          </div>
+      </div>
+  
+      <div class="project-card">
+          <img src="grimlock.png" alt="Grimlock">
+          <div class="project-info">
+              <h2>Grimlock</h2>
+              <p>Grimlock is a highly adaptable ground robot...</p>
+              <ul>
+                  <li>4 Degrees of Freedom Arm</li>
+                  <li>Omnidirectional Wheels</li>
+              </ul>
+          </div>
+      </div>
+  
+      <div class="project-card">
+          <img src="daybreak.png" alt="Daybreak">
+          <div class="project-info">
+              <h2>Daybreak</h2>
+              <p>Daybreak is a versatile drone capable of aerial...</p>
+              <ul>
+                  <li>6 Degrees of Freedom Arm</li>
+                  <li>Omnidirectional Wheels</li>
+              </ul>
+          </div>
+      </div>
+  </section>
+  
+  <footer>
+      <p>© TrickFire Robotics</p>
+      <div>
+          <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+          <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+          <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+      </div>
+  </footer>
+  
+  </body>
+  </html>
+  
