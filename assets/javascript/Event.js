@@ -220,7 +220,7 @@ function addEventCards() {
 
     events.forEach(event => {
         const eventDate = parseEventDateTime(event);
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 1000) {
             eventCard = createMobileEventCard(event);
         } else {
             eventCard = createDeskTopEventCard(event);
@@ -286,28 +286,46 @@ function openPopup(eventData) {
   popup.style.display = "flex";
 }
 
-// Adding event listeners to each card
-document.querySelectorAll('.event-card').forEach((card, index) => {
-  card.addEventListener('click', () => {
-    if (window.innerWidth > 768) {
-        openPopup(events[index]);
-    }
-  });
-});
+// // Adding event listeners to each card
+// document.querySelectorAll('.event-card').forEach((card, index) => {
+//   card.addEventListener('click', () => {
+//     console.log("activated")
+//     console.log(window.innerWidth)
+//     if (window.innerWidth >= 1000) {
+//         openPopup(events[index]);
+//     }
+//   });
+// });
 
-// Closing the popup when clicking outside of the popup content
-popup.addEventListener('click', (e) => {
-  if (e.target === popup) {
-    popup.style.display = "none";
-  }
-});
+// // Closing the popup when clicking outside of the popup content
+// popup.addEventListener('click', (e) => {
+//   if (e.target === popup) {
+//     popup.style.display = "none";
+//   }
+// });
+
+function addPopupEventListeners() {
+    document.querySelectorAll('.event-card').forEach((card, index) => {
+        card.addEventListener('click', () => {
+            console.log("activated");
+            if (window.innerWidth >= 1000) {
+                openPopup(events[index]);
+            }
+        });
+    });
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+          popup.style.display = "none";
+        }
+    });
+}
 
 // Mobile Commands for UI
 
 // Get references to the elements
 const upcomingButton = document.getElementById('upcoming-header');
 const previousButton = document.getElementById('previous-header');
-const upcomingEvents = document.querySelector('.upcoming-events-wrapper');
+const upcomingEvents = document.querySelector('.upcoming-card-wrapper');
 const previousEvents = document.querySelector('.previous-events-wrapper');
 
 // Function to show upcoming events
@@ -328,8 +346,44 @@ function showPreviousEvents() {
   upcomingButton.classList.remove('active');
   previousButton.classList.add('active');
 }
+function showAllEvents() {
+    previousEvents.style.display = 'flex'; 
+    upcomingEvents.style.display = 'flex'; 
+    upcomingButton.classList.add('active');
+    previousButton.classList.remove('active');
+}
 
 // Add event listeners to the titles
 upcomingButton.addEventListener('click', showUpcomingEvents);
 previousButton.addEventListener('click', showPreviousEvents);
 
+function resetEventCards() {
+    const eventCards = document.querySelectorAll('.event-card');
+
+    // Clear current event cards
+    eventCards.forEach(card => {
+        card.remove();
+    });
+}
+
+let flag = false;
+
+window.addEventListener('resize', () => {
+    const width = window.innerWidth;
+
+    if (width >= 1000 && !flag) {
+        resetEventCards(); 
+        addEventCards();
+        addPopupEventListeners(); 
+        flag = true;
+        showAllEvents();
+    } else if (width < 1000 && flag) {
+        resetEventCards(); 
+        addEventCards();
+        addPopupEventListeners(); 
+        flag = false;
+        showUpcomingEvents();
+    }
+});
+
+addPopupEventListeners(); 
