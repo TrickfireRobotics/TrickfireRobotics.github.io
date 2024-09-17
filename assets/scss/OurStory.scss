@@ -29,18 +29,18 @@ main {
     background-color: $background-color;
   }
 
-  div#backgroundContainer {
+  picture#backgroundContainer {
     width: 100vw;
     position: absolute;
 
-    img#moonBackground {
+    img {
       width: 100%;
       height: auto;
       z-index: -1;
     }
   }
 
-  div#backgroundContainer::before {
+  picture#backgroundContainer::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -57,7 +57,7 @@ main {
     padding: 0 6vw;
 
     h2 {
-      padding: 15vw 0;
+      padding: 8vw 0;
       font-family: $text-font;
       font-weight: 400;
       font-size: 5rem;
@@ -101,7 +101,7 @@ main {
   }
   section#teamLeadersSection {
     background-color: $background-color;
-    padding: 4em 6vw;
+    padding: 1.5em 6vw;
     display: flex;
     flex-direction: column;
     gap: 4em;
@@ -118,7 +118,9 @@ main {
       div.profile {
         img {
           aspect-ratio: 1/1;
-          width: 5em;
+          width: 7em;
+          border-radius: 50%;
+          border: hsl(222, 61%, 87%) 0.2em solid;
         }
 
         h3 {
@@ -277,20 +279,9 @@ main {
 
     section#teamInstagramSection {
       padding: 2em 6vw;
-
       div#photoContainer {
-        padding: 3em 0 0 0;
+        margin: 2em 0;
         grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    section#teamCompetitionSection {
-      div#awardLogoContainer {
-        gap: 4em;
-        flex-direction: column;
-        padding: 0 6vw;
-        padding-top: 3em;
-        align-items: center;
       }
     }
   }

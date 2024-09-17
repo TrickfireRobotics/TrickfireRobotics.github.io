@@ -5,7 +5,7 @@ main {
   color: hsl(0, 100%, 99%);
   display: flex;
   flex-direction: column;
-  gap: 6em;
+  gap: 7em;
 
   ul,
   ol,
@@ -22,12 +22,7 @@ main {
   p {
     margin: 1em 0;
     a {
-      text-decoration: none;
       color: $neon-green;
-    }
-
-    a:hover {
-      text-decoration: underline;
     }
   }
 
@@ -57,7 +52,7 @@ main {
     z-index: -1;
     img {
       width: 100%;
-      height: auto;
+      height: 100%;
       border: none;
     }
   }
@@ -66,7 +61,7 @@ main {
       display: flex;
       flex-direction: row-reverse;
       gap: 5vw;
-      margin: 2.5em 0;
+      margin-top: 5em;
       article {
         width: 50%;
         margin: auto 0;
@@ -81,7 +76,7 @@ main {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1vw;
-      margin: 2.5em 0;
+      margin-top: 2.5em;
       article.fundLocation {
         background-color: black;
         text-align: center;
@@ -159,6 +154,7 @@ main {
     section#introductionSection {
       div.mainContentContainer {
         flex-direction: column-reverse;
+        margin-top: 6vh;
         article {
           width: 100%;
           h3 {
@@ -202,6 +198,14 @@ main::before {
   position: absolute;
 }
 @media only screen and (max-width: 768px) {
+  main {
+    padding: 6vh 6vw 8vh 6vw;
+    gap: 8vh;
+    h2 {
+      font-size: calc(1rem + 3vw);
+      margin: 0.2em 0;
+    }
+  }
   main::before {
     background-image: linear-gradient(
       to top,
