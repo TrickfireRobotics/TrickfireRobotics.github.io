@@ -19,8 +19,8 @@ $(document).ready(function () {
         <section aria-label = "Join us links">
           <h2>Join Us</h2>
           <ul role = "menu">
-            <li role  = "menuitem"><a href = "./JoinUs#studentsSection.html">Students</a></li>
-            <li role = "menuitem"><a href = "./JoinUs#mentorsSection.html">Mentors</a></li>
+            <li role  = "menuitem"><a href = "./JoinUs.html">Students</a></li>
+            <li role = "menuitem"><a href = "./JoinUs.html">Mentors</a></li>
           </ul>
         </section>
         <section aria-label = "Robot links">
