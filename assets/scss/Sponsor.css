@@ -3,7 +3,7 @@ main {
   color: hsl(0, 100%, 99%);
   display: flex;
   flex-direction: column;
-  gap: 6em;
+  gap: 7em;
 }
 main ul,
 main ol,
@@ -21,12 +21,7 @@ main p {
 }
 main li a,
 main p a {
-  text-decoration: none;
   color: rgb(0, 255, 0);
-}
-main li a:hover,
-main p a:hover {
-  text-decoration: underline;
 }
 main h2 {
   text-align: center;
@@ -54,14 +49,14 @@ main picture#starBackgroundContainer {
 }
 main picture#starBackgroundContainer img {
   width: 100%;
-  height: auto;
+  height: 100%;
   border: none;
 }
 main section#introductionSection div.mainContentContainer {
   display: flex;
   flex-direction: row-reverse;
   gap: 5vw;
-  margin: 2.5em 0;
+  margin-top: 5em;
 }
 main section#introductionSection div.mainContentContainer article {
   width: 50%;
@@ -74,7 +69,7 @@ main section#sponsorshipFundsSection div#fundLocationContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1vw;
-  margin: 2.5em 0;
+  margin-top: 2.5em;
 }
 main section#sponsorshipFundsSection div#fundLocationContainer article.fundLocation {
   background-color: black;
@@ -143,6 +138,7 @@ main section#howToSection div.mainContentContainer article p {
 @media only screen and (max-width: 768px) {
   main section#introductionSection div.mainContentContainer {
     flex-direction: column-reverse;
+    margin-top: 6vh;
   }
   main section#introductionSection div.mainContentContainer article {
     width: 100%;
@@ -178,6 +174,14 @@ main::before {
 }
 
 @media only screen and (max-width: 768px) {
+  main {
+    padding: 6vh 6vw 8vh 6vw;
+    gap: 8vh;
+  }
+  main h2 {
+    font-size: calc(1rem + 3vw);
+    margin: 0.2em 0;
+  }
   main::before {
     background-image: linear-gradient(to top, rgb(23, 23, 23) 85%, transparent 100%);
   }

@@ -12,30 +12,35 @@ main p {
   letter-spacing: 0.05em;
   font-weight: 300;
   color: hsl(0, 5%, 95%);
-  font-size: calc(1rem + 0.05vw);
+  font-size: calc(1rem + 0.1vw);
 }
 main p a {
   color: rgb(0, 255, 0);
 }
 main div#introductionSection,
 main div#starBackgroundSection {
-  padding: 7em 6vw;
+  padding: 4em 6vw 5em 6vw;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 7em;
   overflow: none;
 }
-main div#introductionSection img.backgroundImage,
-main div#starBackgroundSection img.backgroundImage {
+main div#introductionSection picture.backgroundImage,
+main div#starBackgroundSection picture.backgroundImage {
   position: absolute;
   z-index: -1;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
-  background-size: cover;
-  background-position: center;
+}
+main div#introductionSection picture.backgroundImage img,
+main div#starBackgroundSection picture.backgroundImage img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 main div#introductionSection section,
 main div#starBackgroundSection section {
@@ -53,14 +58,13 @@ main div#starBackgroundSection section div.imageContainer {
 main div#introductionSection section div.imageContainer img.main,
 main div#starBackgroundSection section div.imageContainer img.main {
   width: 100%;
-  height: auto;
+  height: 100%;
   border: hsl(222, 61%, 87%) 0.5em solid;
 }
 main div#introductionSection section div.imageContainer div#galleryImagesContainer img,
 main div#starBackgroundSection section div.imageContainer div#galleryImagesContainer img {
   display: none;
   width: 100%;
-  height: 60svh;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -94,6 +98,16 @@ main div#introductionSection section div.imageContainer div#galleryButtonsContai
 main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img#backArrow {
   transform: rotate(180deg);
 }
+main div#introductionSection section div.imageContainer#heroTrickFireLogo,
+main div#starBackgroundSection section div.imageContainer#heroTrickFireLogo {
+  display: flex;
+  justify-content: center;
+}
+main div#introductionSection section div.imageContainer#heroTrickFireLogo img,
+main div#starBackgroundSection section div.imageContainer#heroTrickFireLogo img {
+  border: none;
+  width: 45%;
+}
 main div#introductionSection section div.imageContainer::before,
 main div#starBackgroundSection section div.imageContainer::before {
   content: "";
@@ -103,7 +117,7 @@ main div#starBackgroundSection section div.imageContainer::before {
   height: 100%;
   border-radius: 50%;
   background-color: hsl(0, 0%, 65%);
-  filter: blur(20vw);
+  filter: blur(10vw);
 }
 main div#introductionSection section article,
 main div#starBackgroundSection section article {
@@ -116,6 +130,12 @@ main div#introductionSection section article div.articleHeader,
 main div#starBackgroundSection section article div.articleHeader {
   width: 100%;
   padding-bottom: 2em;
+}
+main div#introductionSection section article div#linkContainer,
+main div#starBackgroundSection section article div#linkContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 main div#introductionSection section article h2,
 main div#starBackgroundSection section article h2 {
@@ -208,12 +228,18 @@ main div#introductionSection::before {
 }
 main section#missionSection {
   padding: 4em 6vw;
-  display: flex;
-  justify-content: space-between;
   background-color: #1f1f1f;
   overflow: hidden;
+  text-align: center;
 }
-main section#missionSection article {
+main section#missionSection h2 {
+  margin-bottom: 0.75em;
+}
+main section#missionSection div#cardContainer {
+  display: flex;
+  justify-content: space-between;
+}
+main section#missionSection div#cardContainer article {
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -222,19 +248,20 @@ main section#missionSection article {
   border-radius: 1em;
   flex-basis: 25%;
 }
-main section#missionSection article img {
-  width: 60%;
+main section#missionSection div#cardContainer article img {
+  width: 65%;
+  aspect-ratio: 1/1;
   margin: 0 auto;
   padding: 1em 0;
   color: hsl(133, 97%, 38%);
 }
-main section#missionSection article h3 {
+main section#missionSection div#cardContainer article h3 {
   color: hsl(0, 100%, 98%);
   padding: 0.5em 0;
   font-weight: normal;
   letter-spacing: 0.1em;
 }
-main section#missionSection article p {
+main section#missionSection div#cardContainer article p {
   padding: 1.5em 0;
 }
 main section#missionSection::before {
@@ -360,24 +387,29 @@ main div#starBackgroundSection section#teamCompetitionSection::before {
   main section#missionSection {
     background-color: black;
     overflow-y: visible;
+  }
+  main section#missionSection h2 {
+    margin-bottom: 3vh;
+  }
+  main section#missionSection div#cardContainer {
     flex-direction: column;
     gap: 2em;
   }
-  main section#missionSection article {
+  main section#missionSection div#cardContainer article {
     flex-direction: row;
     background-color: hsl(0, 0%, 19%);
     text-align: left;
     gap: 1em;
   }
-  main section#missionSection article img {
+  main section#missionSection div#cardContainer article img {
     height: 4em;
     width: auto;
     padding: 0;
     margin: auto 0;
   }
-  main section#missionSection article h3,
-  main section#missionSection article p,
-  main section#missionSection article img {
+  main section#missionSection div#cardContainer article h3,
+  main section#missionSection div#cardContainer article p,
+  main section#missionSection div#cardContainer article img {
     padding: 0;
   }
   main section#missionSection::before {

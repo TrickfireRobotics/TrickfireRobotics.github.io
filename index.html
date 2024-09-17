@@ -42,47 +42,75 @@
     <!-- Header will be loaded here -->
     <main>
       <div id="introductionSection" role="presentation">
-        <img
-          src="assets/images/photos/mobileAsteroidSurface.jpg"
-          srcset="
-            assets/images/photos/mobileAsteroidSurface.webp   700w,
-            assets/images/photos/desktopAsteroidSurface.webp 1200w
-          "
-          class="backgroundImage"
-          alt="Asteroid surface background"
-        />
+        <picture class="backgroundImage">
+          <source
+            type="image/webp"
+            srcset="
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-320w.webp   320w,
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-768w.webp   768w,
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-1920w.webp 1920w
+            "
+          />
+          <img
+            src="assets/images/photos/starRainBackground.jpg"
+            srcset="
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-320w.jpg   320w,
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-768w.jpg   768w,
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-1920w.jpg 1920w
+            "
+            sizes="100vw"
+            alt="Background image of asteroid surface"
+            class="backgroundImage"
+          />
+        </picture>
         <section class="reversed">
           <article>
             <div class="articleHeader" role="presentation">
-              <h2>Introduction</h2>
+              <h2>UW Bothell's Premiere Robotics Team</h2>
               <p>
-                Text about the RobotText about the RobotText about the RobotText
-                about the RobotText about the RobotText about the RobotText
-                about the RobotText about the RobotText about the RobotText
-                about the Robot
+                TrickFire Robotics is a student-led robotics team focused on
+                providing a unique educational experience through hands-on work
+                on large scale projects. TrickFire originally competed in the
+                NASA Lunabotics RMC from 2016 to 2021 and now competes in the
+                University Rover Challenge hosted by The Mars Society.
               </p>
             </div>
-            <a
-              class="leaveSiteLink"
-              href="mailto:tfrbtcs@uw.edu"
-              target="_blank"
-            >
-              <img
-                class="leftPointArrow"
-                src="assets/images/icons/arrowIcon.svg"
-                alt="Arrow icon"
-              />
-              <div role="presentation">Explore More</div>
-              <img
-                class="rightPointArrow"
-                src="assets/images/icons/arrowIcon.svg"
-                alt="Arrow icon"
-              />
-            </a>
+            <div id="linkContainer" role="presentation">
+              <a class="leaveSiteLink" href="./JoinUs.html">
+                <img
+                  class="leftPointArrow"
+                  src="assets/images/icons/arrowIcon.svg"
+                  alt="Arrow icon"
+                />
+                <div>Join Us</div>
+                <img
+                  class="rightPointArrow"
+                  src="assets/images/icons/arrowIcon.svg"
+                  alt="Arrow icon"
+                />
+              </a>
+              <a class="leaveSiteLink" href="./Sponsor.html">
+                <img
+                  class="leftPointArrow"
+                  src="assets/images/icons/arrowIcon.svg"
+                  alt="Arrow icon"
+                />
+                <div>Sponsor Us</div>
+                <img
+                  class="rightPointArrow"
+                  src="assets/images/icons/arrowIcon.svg"
+                  alt="Arrow icon"
+                />
+              </a>
+            </div>
           </article>
-          <div class="imageContainer" role="presentation">
+          <div
+            class="imageContainer"
+            id="heroTrickFireLogo"
+            role="presentation"
+          >
             <img
-              src="./assets/images/photos/teaching_new_member.jpg"
+              src="./assets/images/logos/TrickFireLogo.svg"
               alt="Student member giving presentation"
               class="main"
             />
@@ -123,61 +151,80 @@
         </section>
       </div>
       <section id="missionSection">
-        <article>
-          <img
-            src="assets/images/icons/spiralGearIcon.svg"
-            alt="Figure of a gear"
-          />
-          <div class="contentContainer" role="presentation">
-            <p>
-              We will help students develop their technical skills through
-              hands-on experience with different fields of engineering, life
-              detection, finance, and marketing
-            </p>
-          </div>
-        </article>
-        <article>
-          <img
-            src="assets/images/icons/suitIcon.svg"
-            alt="Figure of a business suit"
-          />
-          <div class="contentContainer" role="presentation">
-            <p>
-              We will help students develop professional skills by working with
-              a large-scale team of diverse students of different majors and
-              backgrounds.
-            </p>
-          </div>
-        </article>
-        <article>
-          <img
-            src="assets/images/icons/communityIcon.svg"
-            alt="Figure of a group of people"
-          />
-          <div class="contentContainer" role="presentation">
-            <p>
-              We will foster a strong and inclusive community at the University
-              of Washington Bothell by creating opportunities for students to
-              engage, collaborate, and support each other
-            </p>
-          </div>
-        </article>
+        <h2>Our Goals</h2>
+        <div id="cardContainer">
+          <article>
+            <img
+              src="assets/images/icons/spiralGearIcon.svg"
+              alt="Figure of a gear"
+            />
+            <div class="contentContainer" role="presentation">
+              <p>
+                We will help students develop their technical skills through
+                hands-on experience with different fields of engineering, life
+                detection, finance, and marketing
+              </p>
+            </div>
+          </article>
+          <article>
+            <img
+              src="assets/images/icons/suitIcon.svg"
+              alt="Figure of a business suit"
+            />
+            <div class="contentContainer" role="presentation">
+              <p>
+                We will help students develop professional skills by working
+                with a large-scale team of diverse students of different majors
+                and backgrounds.
+              </p>
+            </div>
+          </article>
+          <article>
+            <img
+              src="assets/images/icons/communityIcon.svg"
+              alt="Figure of a group of people"
+            />
+            <div class="contentContainer" role="presentation">
+              <p>
+                We will foster a strong and inclusive community at the
+                University of Washington Bothell by creating opportunities for
+                students to engage, collaborate, and support each other
+              </p>
+            </div>
+          </article>
+        </div>
       </section>
       <div id="starBackgroundSection" role="presentation">
-        <img
-          src="assets/images/photos/starBackground.webp"
-          class="backgroundImage"
-          alt="Starry night background"
-        />
+        <picture class="backgroundImage">
+          <source
+            type="image/webp"
+            srcset="
+              assets/images/photos/StarryNightBackground/StarryNightBackground-320w.webp   320w,
+              assets/images/photos/StarryNightBackground/StarryNightBackground-768w.webp   768w,
+              assets/images/photos/StarryNightBackground/StarryNightBackground-1920w.webp 1920w
+            "
+          />
+          <img
+            src="assets/images/photos/starRainBackground.jpg"
+            srcset="
+              assets/images/photos/StarryNightBackground/StarryNightBackground-320w.jpg   320w,
+              assets/images/photos/StarryNightBackground/StarryNightBackground-768w.jpg   768w,
+              assets/images/photos/StarryNightBackground/StarryNightBackground-1920w.jpg 1920w
+            "
+            sizes="100vw"
+            alt="Background image of a starry night"
+            class="backgroundImage"
+          />
+        </picture>
         <section id="imageGallerySection">
           <article>
             <div class="articleHeader" role="presentation">
               <h2>Our Story</h2>
               <p>
-                Text about the RobotText about the RobotText about the RobotText
-                about the RobotText about the RobotText about the RobotText
-                about the RobotText about the RobotText about the RobotText
-                about the Robot
+                Our gallery provides a glimpse into TrickFire’s day-to-day
+                activities. Here, you may see members working with the rover,
+                running tests, photoshoots featuring the rover, and photos from
+                past events that we hosted.
               </p>
             </div>
             <a class="leaveSiteLink" href="./OurStory.html" target="_blank">

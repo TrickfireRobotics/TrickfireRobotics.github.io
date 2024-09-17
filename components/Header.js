@@ -11,23 +11,23 @@ $(document).ready(function () {
     case "/":
       subpageName = "HomePage";
       break;
-    case "/Robots.html":
+    case "/robots":
       subpageName = "Robots";
       navClass = ".robots";
       break;
-    case "/OurStory.html":
+    case "/ourstory":
       subpageName = "Our Story";
       navClass = ".ourStory";
       break;
-    case "/Events.html":
+    case "/events":
       subpageName = "Events";
       navClass = ".events";
       break;
-    case "/JoinUs.html":
+    case "/joinus":
       subpageName = "Join Us";
       navClass = ".joinUs";
       break;
-    case "/Sponsor.html":
+    case "/sponsor":
       subpageName = "Sponsor";
       navClass = ".sponsor";
       break;
