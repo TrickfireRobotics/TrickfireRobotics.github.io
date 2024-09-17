@@ -4,6 +4,8 @@ $(document).ready(function () {
     url = new URL(window.location.href).pathname;
   let subpageName, navClass;
 
+  console.log(url);
+
   //Assign subpageName and navClass according to the current URL path.
   switch (url) {
     case "/":
@@ -89,6 +91,7 @@ $(document).ready(function () {
 
   //Set the navbar link of the current page to be bold.
   $(navClass).each(function () {
+    console.log("Selecting Current Page");
     $(this).addClass("currPage");
   });
 

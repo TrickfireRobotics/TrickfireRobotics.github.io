@@ -80,19 +80,15 @@ main div#starBackgroundSection section div.imageContainer div#galleryButtonsCont
   flex-basis: 2%;
   aspect-ratio: 1/1;
   padding: 0.4em;
-  background-color: hsl(0, 0%, 80%);
-  transition: background-color, transform 0.1s ease-in-out;
+  background-color: hsl(0, 0%, 100%);
+  opacity: 66%;
+  transition: all 0.1s ease-in-out;
   border-radius: 50%;
   cursor: pointer;
 }
 main div#introductionSection section div.imageContainer div#galleryButtonsContainer img:hover,
 main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img:hover {
-  background-color: hsl(0, 0%, 12%);
-  transform: scale(1.2);
-}
-main div#introductionSection section div.imageContainer div#galleryButtonsContainer img#backArrow:hover,
-main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img#backArrow:hover {
-  transform: rotate(180deg) scale(1.2);
+  opacity: 100%;
 }
 main div#introductionSection section div.imageContainer div#galleryButtonsContainer img#backArrow,
 main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img#backArrow {

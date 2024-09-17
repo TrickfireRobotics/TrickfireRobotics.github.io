@@ -7,6 +7,10 @@
   position: relative;
 }
 
+html {
+  background-color: rgb(23, 23, 23);
+}
+
 h1,
 h2,
 h3,

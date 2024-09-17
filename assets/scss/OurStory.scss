@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 html {
-  background-color: black;
+  background-color: black !important;
 }
 main {
   overflow: none;
@@ -156,7 +156,7 @@ main {
 
     div#photoContainer {
       display: grid;
-      padding: 2em 4em;
+      margin: 2em 4em;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 1em;
 
@@ -186,6 +186,31 @@ main {
 
       a:hover img {
         transform: scale(1.1);
+      }
+    }
+    div#photoContainer:has(button) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 4em 4em;
+
+      h4 {
+        color: hsl(0, 100%, 99%);
+        font-size: calc(1rem + 0.4vw);
+      }
+      button {
+        width: 25%;
+        background-color: hsl(133, 97%, 38%);
+        padding: 1.5em 0.5em;
+        margin: 1em 0;
+        border: none;
+        font-size: calc(1rem + 0.1vw);
+        border-radius: 1em;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: hsl(133, 91%, 29%);
       }
     }
   }
