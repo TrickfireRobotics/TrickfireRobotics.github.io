@@ -38,26 +38,36 @@
   <body>
     <!-- Header will be loaded here -->
     <main>
+      <!-- Mobile Page Navigation-->
       <div class="page-setup">
-        <h1>Upcoming Events</h1>
-        
-        <!-- Event container with fixed buttons to scroll through events-->
+        <div class="events-navigation">
+          <div class="upcoming-header active" id="upcoming-header">Upcoming Events</div>
+          <div class="previous-header" id="previous-header">Previous Events</div>
+        </div>
         <div class="upcoming-events-wrapper">
-          <button class="back-button">
-            <img src="assets/images/icons/backward.png" alt="Back" class="button-img">
-          </button>
-      
-          <div class="upcoming-events">
-            <!-- Event cards will be added here with Javascript-->
-          </div>
-      
-          <button class="next-button">
-            <img src="assets/images/icons/forward.png" alt="Next" class="button-img">
-          </button>
+          <h1 class="upcoming-title">Upcoming Events</h1>
+          
+          <!-- Event container with fixed buttons to scroll through events-->
+          <div class="upcoming-card-wrapper">
+            <button class="back-button">
+              <img src="assets/images/icons/backward.png" alt="Back" class="button-img">
+            </button>
+        
+            <div class="upcoming-events">
+              <!-- Event cards will be added here with Javascript-->
+            </div>
+        
+            <button class="next-button">
+              <img src="assets/images/icons/forward.png" alt="Next" class="button-img">
+            </button>
+        </div>
         <!-- Previous Events cards which their time is before the current date are put here-->
         </div>
-        <h1>Previous Events</h1>
-        <div class="previous-events">
+        <div class="previous-events-wrapper">
+          <h1 class="previous-title">Previous Events</h1>
+          <div class="previous-events">
+            <!-- Event cards will be added here with Javascript-->
+          </div>
         </div>
       </div>
       <!-- Popup HTML -->

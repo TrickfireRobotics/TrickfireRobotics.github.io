@@ -1,6 +1,6 @@
 @import "./variables.scss";
 
-main{
+main {
     background-color: $background-color;
 
 h1 {
@@ -11,7 +11,7 @@ h1 {
     justify-content: center;
     padding: 100px;
 }
-.upcoming-events-wrapper {
+.upcoming-card-wrapper {
     position: relative;
     display: flex;
     align-items: center;
@@ -161,9 +161,9 @@ h1 {
 
 .next-button,
 .back-button  {
-    position: absolute; /* This allows buttons to stay fixed inside the container */
-    top: 50%; /* Align the button vertically in the middle */
-    transform: translateY(-50%); /* Center the button */
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%);
     background: #FFF;
     border: none;
     border-radius: 50%;
@@ -183,82 +183,14 @@ h1 {
     transition: 0.25s all ease-in-out;
 }
 .next-button {
-    right: 10px; /* Position on the right of the container */
+    right: 10px; 
   }
   
   .back-button {
-    left: 10px; /* Position on the left of the container */
+    left: 10px; 
   }
 
-}
 
-// // Popup CSS 
-
-// .popup {
-//     display: none;
-//     position: fixed;
-//     z-index: 10;
-//     left: 0;
-//     top: 0;
-//     width: 100%; 
-//     height: 100%; 
-//     background-color: rgba(0,0,0,0.5);
-//     justify-content: center;
-//     align-items: center;
-//     text-align: center;
-//     border: 1px solid #ddd;
-//   }
-  
-//   /* Popup content */
-//   .popup-content {
-//     background: linear-gradient(to right, #A6A6A6, #D9D9D9);
-//     display: flex;
-//     padding: 20px;
-//     border-radius: 8px;
-//     width: 50%;
-//     height: 45%;
-//     margin: auto;
-//     border: 1px solid #ddd;
-//   }
-  
-//   /* Close button */
-//   .close {
-//     position: fixed;
-//     top: 10px;
-//     right: 20px;
-//     font-size: 30px;
-//     cursor: pointer;
-//     border: 1px solid #ddd;
-//   }
-//   .first-column {
-//     justify-content: center;
-//     border: 1px solid #ddd;
-//   }
-//   .second-column {
-//     border: 1px solid #ddd;
-//   }
-//   .popup-img {
-//     width: 100%;
-//     height: 70%;
-//     padding: 10px;
-//     border: 1px solid #ddd;
-//   }
-
-//   .time-hold {
-//     display: flex;
-//     padding: 10px;
-//     gap: 10px;
-//     border: 1px solid #ddd;
-//   }
-//   .hour-hold {
-//     display: flex;
-//     border: 1px solid #ddd;
-//   }
-
-//   .location-hold {
-//     display: flex;
-//     border: 1px solid #ddd;
-//   }
 
 .popup {
     display: none;
@@ -367,16 +299,118 @@ h1 {
     padding: 3px 10px 5px 10px;
     border: 1px solid #000;
   }
-  
-  @media (max-width: 768px) {
-    .popup-content {
-      flex-direction: column;
-      width: 90%;
-      height: auto;
-    }
-  
-    .first-column, .second-column {
-      width: 100%;
-    }
+  .events-navigation {
+    display: none;
   }
-  
+  @media (max-width: 1000px) {
+    .page-setup {
+        justify-content: center;
+        padding: 10px;
+    }
+    .events-navigation {
+        display: flex;
+        flex-direction: row;
+        background-color: #3B3B3B;
+        width: 100%;
+        gap: 20px;
+        justify-content: center;
+        border-radius: 5px;
+    }
+    .upcoming-title,
+    .previous-title {
+        display: none;
+    }
+    .back-button,
+    .next-button {
+        display: none;
+    }
+    .previous-events-wrapper {
+        display: none;
+        margin-bottom: 160px;
+        height: 450px;
+    }
+    .upcoming-header,
+    .previous-header {
+        display: block;
+        width: 50%;
+        text-align: center;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #3B3B3B; 
+        color: #fff;
+        font-family: $header-font;
+    }
+    .upcoming-header.active {
+        background-color: $muted-green; 
+    }
+    .previous-header.active {
+        background-color: #B2B2B2;
+    }
+    .upcoming-events {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .previous-events {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    //Event Card restyle
+    .event-card {
+        height: 95px;
+        width: 90%;
+        border: 1px solid #FFF;
+        display: flex;
+        margin: 40px 6px 0px 6px;
+        background-color: $muted-green;
+        border: 1px solid $muted-green;
+    }
+    .title {
+        background-color: $muted-green;
+        color: #FFF;
+        padding: 7px 7px 7px 20px;
+        font-size: 15px;
+    }
+    .event{
+        width: 80px;
+        height: 100%;
+        border: 1px solid $muted-green;
+        object-fit:cover;
+        flex: 1;
+    }
+    .titleAndTime {
+        width: 75%;
+        gap: 0;
+    }
+    .time{
+        font-size: 12px;
+        padding-bottom: 15px;
+        padding-top: 15px;
+        background-color: #000;
+        letter-spacing: normal;
+    }
+    .time img {
+        width: 17px;
+        left: 5px;
+    }
+    //Previous Events Coloring 
+    .previous-events .event-card {
+        border: none;
+        background-color:#2C2C2C;
+        box-shadow: 0px 5px 5px rgba(50, 50, 50, 0.6);
+    }
+    .previous-events .title {
+        background-color: #2C2C2C;
+        color: #727272;
+    }
+    .previous-events .time {
+        background-color: #2C2C2C;
+        color: #9C9B9B;
+    }
+    .previous-events .time img {
+        color: #9C9B9B;
+    }
+    .previous-events .event {
+        border: none;
+    }
+}  
+}

@@ -84,8 +84,8 @@ function parseEventDateTime(event) {
     return new Date(validDateString);
 }
 
-// Function to create the event card
-function createEventCard(event) {
+// Function to create the event card for Desktop screens
+function createDeskTopEventCard(event) {
     // Creating a new div for the event card
     const eventCard = document.createElement('div');
     eventCard.classList.add('event-card');
@@ -161,15 +161,70 @@ function createEventCard(event) {
 
     return eventCard;
 }
+// Function to create the event card for mobile screens
+function createMobileEventCard(event) {
+    // Creating a new div for the event card
+    const eventCard = document.createElement('div');
+    eventCard.classList.add('event-card');
+
+    // Creating the image
+    const eventImage = document.createElement('img');
+    eventImage.classList.add('event');
+    eventImage.src = event.image;
+
+    // Creating the container for the title and time 
+    const titleTimeContainer = document.createElement('div');
+    titleTimeContainer.classList.add('titleAndTime')
+    // Creating the time container
+    const timeContainer = document.createElement('div');
+    timeContainer.classList.add('time');
+    const dateDiv = document.createElement('div');
+    dateDiv.classList.add('date');
+    const clockImg = document.createElement('img');
+    clockImg.src = 'assets/images/icons/clock.svg';
+    clockImg.classList.add('clock');
+    const dateText = document.createElement('h3');
+    dateText.textContent = event.date;
+    dateDiv.appendChild(clockImg);
+    dateDiv.appendChild(dateText);
+
+    const hourDiv = document.createElement('div');
+    hourDiv.classList.add('hour');
+    const hourText = document.createElement('h3');
+    hourText.textContent = event.time;
+    hourDiv.appendChild(hourText);
+    timeContainer.appendChild(dateDiv);
+    timeContainer.appendChild(hourDiv);
+
+    // Creating the title of the event
+    const titleDiv = document.createElement('div');
+    titleDiv.classList.add('title');
+    const titleText = document.createElement('h2');
+    titleText.textContent = event.title;
+    titleDiv.appendChild(titleText);
+
+    // Append everything to the event card
+    titleTimeContainer.appendChild(titleDiv);
+    titleTimeContainer.appendChild(timeContainer);
+    eventCard.appendChild(titleTimeContainer);
+    eventCard.appendChild(eventImage);
+
+    return eventCard;
+}
 // Function to organize cards into previous and upcoming events
 function addEventCards() {
     const eventContainer = document.querySelector('.upcoming-events');
     const previousContainer = document.querySelector('.previous-events');
     const now = new Date();
+    let eventCard;
 
     events.forEach(event => {
         const eventDate = parseEventDateTime(event);
-        const eventCard = createEventCard(event);
+        if (window.innerWidth <= 768) {
+            eventCard = createMobileEventCard(event);
+        } else {
+            eventCard = createDeskTopEventCard(event);
+        }
 
         if (eventDate > now) {
         // Append to upcoming events
@@ -234,7 +289,9 @@ function openPopup(eventData) {
 // Adding event listeners to each card
 document.querySelectorAll('.event-card').forEach((card, index) => {
   card.addEventListener('click', () => {
-    openPopup(events[index]);
+    if (window.innerWidth > 768) {
+        openPopup(events[index]);
+    }
   });
 });
 
@@ -244,3 +301,35 @@ popup.addEventListener('click', (e) => {
     popup.style.display = "none";
   }
 });
+
+// Mobile Commands for UI
+
+// Get references to the elements
+const upcomingButton = document.getElementById('upcoming-header');
+const previousButton = document.getElementById('previous-header');
+const upcomingEvents = document.querySelector('.upcoming-events-wrapper');
+const previousEvents = document.querySelector('.previous-events-wrapper');
+
+// Function to show upcoming events
+function showUpcomingEvents() {
+  upcomingEvents.style.display = 'flex'; 
+  previousEvents.style.display = 'none'; 
+
+  // Add active class to style the selected button
+  upcomingButton.classList.add('active');
+  previousButton.classList.remove('active');
+}
+
+// Function to show previous events
+function showPreviousEvents() {
+  upcomingEvents.style.display = 'none';
+  previousEvents.style.display = 'flex'; 
+  // Add active class to style the selected button
+  upcomingButton.classList.remove('active');
+  previousButton.classList.add('active');
+}
+
+// Add event listeners to the titles
+upcomingButton.addEventListener('click', showUpcomingEvents);
+previousButton.addEventListener('click', showPreviousEvents);
+
