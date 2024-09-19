@@ -51,25 +51,35 @@ main div#starBackgroundSection section {
   gap: 5vw;
 }
 main div#introductionSection section div.imageContainer,
-main div#starBackgroundSection section div.imageContainer {
+main div#introductionSection section picture.imageContainer,
+main div#starBackgroundSection section div.imageContainer,
+main div#starBackgroundSection section picture.imageContainer {
   width: 50%;
   margin: auto 0;
 }
 main div#introductionSection section div.imageContainer img.main,
-main div#starBackgroundSection section div.imageContainer img.main {
+main div#introductionSection section picture.imageContainer img.main,
+main div#starBackgroundSection section div.imageContainer img.main,
+main div#starBackgroundSection section picture.imageContainer img.main {
   width: 100%;
-  height: 100%;
+  height: auto;
   border: hsl(222, 61%, 87%) 0.5em solid;
 }
-main div#introductionSection section div.imageContainer div#galleryImagesContainer img,
-main div#starBackgroundSection section div.imageContainer div#galleryImagesContainer img {
+main div#introductionSection section div.imageContainer div#galleryImagesContainer picture img,
+main div#introductionSection section picture.imageContainer div#galleryImagesContainer picture img,
+main div#starBackgroundSection section div.imageContainer div#galleryImagesContainer picture img,
+main div#starBackgroundSection section picture.imageContainer div#galleryImagesContainer picture img {
   display: none;
   width: 100%;
+  height: auto;
   -o-object-fit: cover;
      object-fit: cover;
+  border: hsl(222, 61%, 87%) 0.5em solid;
 }
 main div#introductionSection section div.imageContainer div#galleryButtonsContainer,
-main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer {
+main div#introductionSection section picture.imageContainer div#galleryButtonsContainer,
+main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer,
+main div#starBackgroundSection section picture.imageContainer div#galleryButtonsContainer {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -80,7 +90,9 @@ main div#starBackgroundSection section div.imageContainer div#galleryButtonsCont
   align-items: center;
 }
 main div#introductionSection section div.imageContainer div#galleryButtonsContainer img,
-main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img {
+main div#introductionSection section picture.imageContainer div#galleryButtonsContainer img,
+main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img,
+main div#starBackgroundSection section picture.imageContainer div#galleryButtonsContainer img {
   flex-basis: 2%;
   aspect-ratio: 1/1;
   padding: 0.4em;
@@ -91,25 +103,23 @@ main div#starBackgroundSection section div.imageContainer div#galleryButtonsCont
   cursor: pointer;
 }
 main div#introductionSection section div.imageContainer div#galleryButtonsContainer img:hover,
-main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img:hover {
+main div#introductionSection section picture.imageContainer div#galleryButtonsContainer img:hover,
+main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img:hover,
+main div#starBackgroundSection section picture.imageContainer div#galleryButtonsContainer img:hover {
   opacity: 100%;
 }
 main div#introductionSection section div.imageContainer div#galleryButtonsContainer img#backArrow,
-main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img#backArrow {
+main div#introductionSection section picture.imageContainer div#galleryButtonsContainer img#backArrow,
+main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img#backArrow,
+main div#starBackgroundSection section picture.imageContainer div#galleryButtonsContainer img#backArrow {
   transform: rotate(180deg);
 }
-main div#introductionSection section div.imageContainer#heroTrickFireLogo,
-main div#starBackgroundSection section div.imageContainer#heroTrickFireLogo {
-  display: flex;
-  justify-content: center;
-}
-main div#introductionSection section div.imageContainer#heroTrickFireLogo img,
-main div#starBackgroundSection section div.imageContainer#heroTrickFireLogo img {
+main div#introductionSection section picture#heroTrickFireLogo img,
+main div#starBackgroundSection section picture#heroTrickFireLogo img {
   border: none;
-  width: 45%;
 }
-main div#introductionSection section div.imageContainer::before,
-main div#starBackgroundSection section div.imageContainer::before {
+main div#introductionSection section picture.imageContainer::before,
+main div#starBackgroundSection section picture.imageContainer::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -317,31 +327,27 @@ main div#starBackgroundSection section#teamCompetitionSection::before {
     padding: 3em 6vw;
     gap: 5em;
   }
-  main div#introductionSection img.backgroundImage,
-  main div#starBackgroundSection img.backgroundImage {
-    width: auto;
-  }
   main div#introductionSection section,
   main div#starBackgroundSection section {
     flex-direction: column-reverse !important;
     margin: 0;
     gap: 2em;
   }
+  main div#introductionSection section picture.imageContainer,
   main div#introductionSection section div.imageContainer,
+  main div#starBackgroundSection section picture.imageContainer,
   main div#starBackgroundSection section div.imageContainer {
     width: 100%;
   }
+  main div#introductionSection section picture.imageContainer div#galleryImagesContainer img,
   main div#introductionSection section div.imageContainer div#galleryImagesContainer img,
+  main div#starBackgroundSection section picture.imageContainer div#galleryImagesContainer img,
   main div#starBackgroundSection section div.imageContainer div#galleryImagesContainer img {
     display: none;
     width: 100%;
     height: 50svh;
     -o-object-fit: cover;
        object-fit: cover;
-  }
-  main div#introductionSection section div.imageContainer::before,
-  main div#starBackgroundSection section div.imageContainer::before {
-    filter: blur(5vh);
   }
   main div#introductionSection section article,
   main div#starBackgroundSection section article {
