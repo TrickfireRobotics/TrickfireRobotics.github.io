@@ -159,6 +159,8 @@ function createDeskTopEventCard(event) {
     eventCard.appendChild(locationDiv);
     eventCard.appendChild(tagsDiv);
 
+    eventCard.dataset.eventInfo = JSON.stringify(event);
+
     return eventCard;
 }
 // Function to create the event card for mobile screens
@@ -209,6 +211,8 @@ function createMobileEventCard(event) {
     eventCard.appendChild(titleTimeContainer);
     eventCard.appendChild(eventImage);
 
+    eventCard.dataset.eventInfo = JSON.stringify(event);
+    
     return eventCard;
 }
 // Function to organize cards into previous and upcoming events
@@ -307,10 +311,8 @@ function openPopup(eventData) {
 function addPopupEventListeners() {
     document.querySelectorAll('.event-card').forEach((card, index) => {
         card.addEventListener('click', () => {
-            console.log("activated");
-            if (window.innerWidth >= 1000) {
-                openPopup(events[index]);
-            }
+            const eventData = JSON.parse(card.dataset.eventInfo);
+            openPopup(eventData);
         });
     });
     popup.addEventListener('click', (e) => {
