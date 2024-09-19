@@ -104,27 +104,32 @@
               </a>
             </div>
           </article>
-          <div
-            class="imageContainer"
-            id="heroTrickFireLogo"
-            role="presentation"
-          >
+          <picture class="imageContainer" id="heroTrickFireLogo">
             <img
-              src="./assets/images/logos/TrickFireLogo.svg"
-              alt="Student member giving presentation"
+              src="assets/images/logos/HeroTrickFireLogo/TrickFireLogo-1920w.png"
+              srcset="
+                assets/images/logos/HeroTrickFireLogo/TrickFireLogo-320w.png   320w,
+                assets/images/logos/HeroTrickFireLogo/TrickFireLogo-768w.png   768w,
+                assets/images/logos/HeroTrickFireLogo/TrickFireLogo-1920w.png 1920w
+              "
+              sizes="(max-width: 768px) 100vw, 40vw"
+              alt="Background image of a starry night"
               class="main"
             />
-          </div>
+          </picture>
         </section>
         <section>
           <article>
             <div class="articleHeader" role="presentation">
               <h2>Our Robot</h2>
               <p>
-                Our current rover, Viator, is set to participate in the
-                University Rover Challenge. Through iterative development, our
-                robot will be capable of helping astronauts accomplish a variety
-                of tasks.
+                Our current rover, Viator, is designed specifically for the
+                University Rover Challenge (URC). Through iterative development,
+                our robot will be able to accomplish a wide variety of tasks to
+                help astronauts over the course of four URC missions. For
+                example, the rover will be able to extract regolith, detect
+                life, and type. Viator and related prototypes give us the bulk
+                of our recent experience and hands-on work.
               </p>
             </div>
             <a class="leaveSiteLink" href="Robots.html" target="_blank">
@@ -141,13 +146,27 @@
               />
             </a>
           </article>
-          <div class="imageContainer" role="presentation">
+          <picture class="imageContainer">
+            <source
+              type="image/webp"
+              srcset="
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-320w.webp   320w,
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-768w.webp   768w,
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-1920w.webp 1920w
+              "
+            />
             <img
-              src="./assets/images/photos/teaching_new_member.jpg"
-              alt="Student member giving presentation"
+              src="assets/images/photos/FullRoverPhoto/FullRoverPhoto-1920w.jpg"
+              srcset="
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-320w.jpg   320w,
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-768w.jpg   768w,
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-1920w.jpg 1920w
+              "
+              sizes="100vw"
+              alt="Background image of a starry night"
               class="main"
             />
-          </div>
+          </picture>
         </section>
       </div>
       <section id="missionSection">
@@ -205,7 +224,7 @@
             "
           />
           <img
-            src="assets/images/photos/starRainBackground.jpg"
+            src="assets/images/photos/StarryNightBackground/StarryNightBackground-1920w.jpg"
             srcset="
               assets/images/photos/StarryNightBackground/StarryNightBackground-320w.jpg   320w,
               assets/images/photos/StarryNightBackground/StarryNightBackground-768w.jpg   768w,
@@ -214,6 +233,8 @@
             sizes="100vw"
             alt="Background image of a starry night"
             class="backgroundImage"
+            loading="lazy"
+            encoding="async"
           />
         </picture>
         <section id="imageGallerySection">
@@ -247,47 +268,81 @@
                 id="backArrow"
                 src="./assets/images/icons/imageCarouselArrow.svg"
                 alt="Back arrow button"
+                loading="lazy"
+                encoding="async"
               />
               <img
                 id="forwardArrow"
                 src="./assets/images/icons/imageCarouselArrow.svg"
                 alt="Forward arrow button"
+                loading="lazy"
+                encoding="async"
               />
             </div>
             <div id="galleryImagesContainer">
-              <img
-                src="./assets/images/photos/outreach_trickfire_robotics_compressed.jpg"
-                alt="TrickFire student members giving robot presentation"
-                class="main"
-              />
-              <img
-                src="./assets/images/photos/college_fair_outreach_2017.jpg"
-                alt="TrickFire student members giving robot presentation"
-                class="main"
-              />
-              <img
-                src="./assets/images/photos/mechanical.png"
-                alt="TrickFire student members giving robot presentation"
-                class="main"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-320w.webp   320w,
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-768w.webp   768w,
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-1920w.webp 1920w
+                  "
+                />
+                <img
+                  src="assets/images/photos/2024TeamPhoto/2024TeamPhoto-1920w.jpg"
+                  srcset="
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-320w.jpg   320w,
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-768w.jpg   768w,
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-1920w.jpg 1920w
+                  "
+                  sizes="(max-width: 768px) 90vw, 30vw"
+                  alt="Photo of the 2020 team in front of Bothell's W"
+                  loading="lazy"
+                  encoding="async"
+                />
+              </picture>
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/images/photos/2020TeamPhoto/2020TeamPhoto-320w.webp   320w,
+                    assets/images/photos/2020TeamPhoto/2020TeamPhoto-768w.webp   768w,
+                    assets/images/photos/2020TeamPhoto/2020TeamPhoto-1920w.webp 1920w
+                  "
+                />
+                <img
+                  src="assets/images/photos/2020TeamPhoto/2020TeamPhoto-1920w.jpg"
+                  srcset="
+                    assets/images/photos/2020TeamPhoto/2020TeamPhoto-320w.jpg   320w,
+                    assets/images/photos/2020TeamPhoto/2020TeamPhoto-768w.jpg   768w,
+                    assets/images/photos/2020TeamPhoto/2020TeamPhoto-1920w.jpg 1920w
+                  "
+                  sizes="(max-width: 768px) 40vw, 100vw"
+                  alt="Photo of the 2020 team in front of Bothell's W"
+                />
+              </picture>
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-320w.webp   320w,
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-768w.webp   768w,
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-1920w.webp 1920w
+                  "
+                />
+                <img
+                  src="assets/images/photos/2017TeamPhoto/2017TeamPhoto-1920w.jpg"
+                  srcset="
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-320w.jpg   320w,
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-768w.jpg   768w,
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-1920w.jpg 1920w
+                  "
+                  sizes="(max-width: 768px) 40vw, 100vw"
+                  alt="Photo of the 2017 Team in the stands at a competition"
+                />
+              </picture>
             </div>
-          </div>
-        </section>
-        <section id="teamCompetitionSection">
-          <h2>Awards</h2>
-          <div id="awardLogoContainer" role="presentation">
-            <img
-              src="assets/images/sponsors/nvidia.png"
-              alt="Logo placeholder"
-            />
-            <img
-              src="assets/images/sponsors/nvidia.png"
-              alt="Logo placeholder"
-            />
-            <img
-              src="assets/images/sponsors/nvidia.png"
-              alt="Logo placeholder"
-            />
           </div>
         </section>
       </div>

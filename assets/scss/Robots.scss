@@ -2,13 +2,13 @@
 
 // Variables for easy theme customization
 $background-color: #1c1c1c; // Dark background for the entire page
-$text-color: #ffffff;       // White text color
-$accent-color: #00ff00;     // Accent color used for highlights
-$card-bg-color: #2b2b2b;    // Background color for robot cards
-$font-size: 16px;           // Base font size
-$border-radius: 8px;        // Border radius for rounded corners
-$padding: 20px;             // Standard padding for sections
-$gap: 20px;                 // Gap between elements
+$text-color: #ffffff; // White text color
+$accent-color: #00ff00; // Accent color used for highlights
+$card-bg-color: #2b2b2b; // Background color for robot cards
+$font-size: 16px; // Base font size
+$border-radius: 8px; // Border radius for rounded corners
+$padding: 20px; // Standard padding for sections
+$gap: 20px; // Gap between elements
 
 // General body styling
 body {
@@ -98,7 +98,10 @@ body {
         gap: 15px;
 
         .spec {
-          background-color: lighten($card-bg-color, 5%); // Slightly lighter than card bg
+          background-color: lighten(
+            $card-bg-color,
+            5%
+          ); // Slightly lighter than card bg
           padding: 10px;
           border-radius: $border-radius;
           text-align: center;
@@ -187,4 +190,3 @@ body {
     gap: 10px; // Reduce gap further for smaller screens
   }
 }
-

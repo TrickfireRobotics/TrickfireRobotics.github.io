@@ -51,21 +51,24 @@ main {
       width: 100%;
       gap: 5vw;
 
-      div.imageContainer {
+      div.imageContainer,
+      picture.imageContainer {
         width: 50%;
         margin: auto 0;
 
         img.main {
           width: 100%;
-          height: 100%;
+          height: auto;
           border: hsl(222, 61%, 87%) 0.5em solid;
         }
 
         div#galleryImagesContainer {
-          img {
+          picture img {
             display: none;
             width: 100%;
+            height: auto;
             object-fit: cover;
+            border: hsl(222, 61%, 87%) 0.5em solid;
           }
         }
 
@@ -100,16 +103,11 @@ main {
         }
       }
 
-      div.imageContainer#heroTrickFireLogo {
-        display: flex;
-        justify-content: center;
-        img {
-          border: none;
-          width: 45%;
-        }
+      picture#heroTrickFireLogo img {
+        border: none;
       }
 
-      div.imageContainer::before {
+      picture.imageContainer::before {
         content: "";
         position: absolute;
         width: 100%;
@@ -332,15 +330,12 @@ main {
       padding: 3em 6vw;
       gap: 5em;
 
-      img.backgroundImage {
-        width: auto;
-      }
-
       section {
         flex-direction: column-reverse !important;
         margin: 0;
         gap: 2em;
 
+        picture.imageContainer,
         div.imageContainer {
           width: 100%;
           div#galleryImagesContainer {
@@ -351,10 +346,6 @@ main {
               object-fit: cover;
             }
           }
-        }
-
-        div.imageContainer::before {
-          filter: blur(5vh);
         }
 
         article {

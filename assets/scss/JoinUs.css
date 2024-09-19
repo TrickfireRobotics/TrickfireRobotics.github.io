@@ -29,17 +29,17 @@ main section {
   width: 100%;
   gap: 5vw;
 }
-main section div.imageContainer {
+main section picture.imageContainer {
   width: 50%;
 }
-main section div.imageContainer img {
+main section picture.imageContainer img {
   width: 100%;
   height: 100% !important;
   -o-object-fit: cover;
      object-fit: cover;
   border: hsl(222, 61%, 87%) 0.5em solid;
 }
-main section div.imageContainer::before {
+main section picture.imageContainer::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -141,7 +141,7 @@ main section.reversed a.leaveSiteLink img.rightPointArrow {
     gap: 4;
     margin: 0;
   }
-  main section div.imageContainer {
+  main section picture.imageContainer {
     width: 100%;
   }
   main section div.imageContainer::before {
