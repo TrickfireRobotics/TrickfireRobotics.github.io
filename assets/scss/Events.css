@@ -189,6 +189,7 @@ main .popup {
   text-align: center;
   transition: all 1s ease-in-out;
 }
+
 main .popup-content {
   background: linear-gradient(to right, #a6a6a6, #d9d9d9);
   display: flex;
@@ -199,18 +200,21 @@ main .popup-content {
   justify-content: space-between;
   color: #000;
 }
+
 main .first-column {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 40%;
 }
+
 main .popup-img {
   width: 100%;
   height: auto;
   border-radius: 8px;
   margin-bottom: 10px;
 }
+
 main .time-hold,
 main .location-hold {
   display: flex;
@@ -218,12 +222,14 @@ main .location-hold {
   margin-bottom: 10px;
   gap: 10px;
 }
+
 main .popup-clock,
 main .popup-waypoint {
   width: 25px;
   height: 25px;
   margin-right: 10px;
 }
+
 main .popup-date,
 main .popup-time,
 main .popup-location {

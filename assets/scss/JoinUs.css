@@ -1,6 +1,6 @@
 main {
   background-color: rgb(23, 23, 23);
-  padding: 7em 6vw;
+  padding: 5em 6vw 7em 6vw;
   overflow-x: hidden;
   width: 100vw;
   display: flex;
@@ -21,11 +21,7 @@ main p {
   font-size: calc(1rem + 0.1vw);
 }
 main p a {
-  text-decoration: none;
   color: rgb(0, 255, 0);
-}
-main p a:hover {
-  text-decoration: underline;
 }
 main section {
   display: flex;
@@ -33,16 +29,17 @@ main section {
   width: 100%;
   gap: 5vw;
 }
-main section div.imageContainer {
+main section picture.imageContainer {
   width: 50%;
-  margin: auto 0;
 }
-main section div.imageContainer img {
+main section picture.imageContainer img {
   width: 100%;
-  height: auto;
+  height: 100% !important;
+  -o-object-fit: cover;
+     object-fit: cover;
   border: hsl(222, 61%, 87%) 0.5em solid;
 }
-main section div.imageContainer::before {
+main section picture.imageContainer::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -132,15 +129,19 @@ main section.reversed a.leaveSiteLink img.rightPointArrow {
 
 @media only screen and (max-width: 768px) {
   main {
-    padding: 3em 6vw;
-    gap: 5em;
+    padding: 4vh 6vw 8vh 6vw;
+    gap: 8vh;
+  }
+  main h2 {
+    font-size: calc(1rem + 3vw);
+    margin: 0.2em 0;
   }
   main section {
     flex-direction: column-reverse !important;
     gap: 4;
     margin: 0;
   }
-  main section div.imageContainer {
+  main section picture.imageContainer {
     width: 100%;
   }
   main section div.imageContainer::before {

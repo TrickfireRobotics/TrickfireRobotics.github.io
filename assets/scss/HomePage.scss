@@ -14,7 +14,7 @@ main {
     letter-spacing: 0.05em;
     font-weight: 300;
     color: hsl(0, 5%, 95%);
-    font-size: calc(1rem + 0.05vw);
+    font-size: calc(1rem + 0.1vw);
 
     a {
       color: $neon-green;
@@ -23,22 +23,25 @@ main {
 
   div#introductionSection,
   div#starBackgroundSection {
-    padding: 7em 6vw;
+    padding: 4em 6vw 5em 6vw;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 7em;
     overflow: none;
 
-    img.backgroundImage {
+    picture.backgroundImage {
       position: absolute;
       z-index: -1;
       height: 100%;
       width: 100%;
       top: 0;
       left: 0;
-      background-size: cover;
-      background-position: center;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
     }
 
     section {
@@ -48,7 +51,8 @@ main {
       width: 100%;
       gap: 5vw;
 
-      div.imageContainer {
+      div.imageContainer,
+      picture.imageContainer {
         width: 50%;
         margin: auto 0;
 
@@ -59,11 +63,12 @@ main {
         }
 
         div#galleryImagesContainer {
-          img {
+          picture img {
             display: none;
             width: 100%;
-            height: 60svh;
+            height: auto;
             object-fit: cover;
+            border: hsl(222, 61%, 87%) 0.5em solid;
           }
         }
 
@@ -98,7 +103,11 @@ main {
         }
       }
 
-      div.imageContainer::before {
+      picture#heroTrickFireLogo img {
+        border: none;
+      }
+
+      picture.imageContainer::before {
         content: "";
         position: absolute;
         width: 100%;
@@ -106,7 +115,7 @@ main {
         height: 100%;
         border-radius: 50%;
         background-color: hsl(0, 0%, 65%);
-        filter: blur(20vw);
+        filter: blur(10vw);
       }
 
       article {
@@ -118,6 +127,12 @@ main {
         div.articleHeader {
           width: 100%;
           padding-bottom: 2em;
+        }
+
+        div#linkContainer {
+          display: flex;
+          flex-direction: column;
+          gap: 1em;
         }
 
         h2 {
@@ -214,35 +229,42 @@ main {
 
   section#missionSection {
     padding: 4em 6vw;
-    display: flex;
-    justify-content: space-between;
     background-color: #1f1f1f;
     overflow: hidden;
-    article {
-      background-color: black;
+    text-align: center;
+    h2 {
+      margin-bottom: 0.75em;
+    }
+    div#cardContainer {
       display: flex;
-      flex-direction: column;
-      text-align: center;
-      padding: 1em;
-      border-radius: 1em;
-      flex-basis: 25%;
+      justify-content: space-between;
+      article {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 1em;
+        border-radius: 1em;
+        flex-basis: 25%;
 
-      img {
-        width: 60%;
-        margin: 0 auto;
-        padding: 1em 0;
-        color: hsl(133, 97%, 38%);
-      }
+        img {
+          width: 65%;
+          aspect-ratio: 1 / 1;
+          margin: 0 auto;
+          padding: 1em 0;
+          color: hsl(133, 97%, 38%);
+        }
 
-      h3 {
-        color: hsl(0, 100%, 98%);
-        padding: 0.5em 0;
-        font-weight: normal;
-        letter-spacing: 0.1em;
-      }
+        h3 {
+          color: hsl(0, 100%, 98%);
+          padding: 0.5em 0;
+          font-weight: normal;
+          letter-spacing: 0.1em;
+        }
 
-      p {
-        padding: 1.5em 0;
+        p {
+          padding: 1.5em 0;
+        }
       }
     }
   }
@@ -308,15 +330,12 @@ main {
       padding: 3em 6vw;
       gap: 5em;
 
-      img.backgroundImage {
-        width: auto;
-      }
-
       section {
         flex-direction: column-reverse !important;
         margin: 0;
         gap: 2em;
 
+        picture.imageContainer,
         div.imageContainer {
           width: 100%;
           div#galleryImagesContainer {
@@ -327,10 +346,6 @@ main {
               object-fit: cover;
             }
           }
-        }
-
-        div.imageContainer::before {
-          filter: blur(5vh);
         }
 
         article {
@@ -378,26 +393,30 @@ main {
     section#missionSection {
       background-color: black;
       overflow-y: visible;
-      flex-direction: column;
-      gap: 2em;
+      h2 {
+        margin-bottom: 3vh;
+      }
+      div#cardContainer {
+        flex-direction: column;
+        gap: 2em;
+        article {
+          flex-direction: row;
+          background-color: hsl(0, 0%, 19%);
+          text-align: left;
+          gap: 1em;
 
-      article {
-        flex-direction: row;
-        background-color: hsl(0, 0%, 19%);
-        text-align: left;
-        gap: 1em;
+          img {
+            height: 4em;
+            width: auto;
+            padding: 0;
+            margin: auto 0;
+          }
 
-        img {
-          height: 4em;
-          width: auto;
-          padding: 0;
-          margin: auto 0;
-        }
-
-        h3,
-        p,
-        img {
-          padding: 0;
+          h3,
+          p,
+          img {
+            padding: 0;
+          }
         }
       }
     }

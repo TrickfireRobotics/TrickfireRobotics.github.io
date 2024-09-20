@@ -24,8 +24,9 @@ a {
 }
 
 main {
-  overflow-x: hidden;
+  overflow: hidden;
   max-width: 100%;
+  top: 5em;
 }
 
 header {
@@ -37,6 +38,8 @@ header {
   justify-content: space-between;
   align-items: center;
   color: white;
+  position: fixed;
+  z-index: 9999;
 }
 header a {
   text-decoration: none;
@@ -117,6 +120,7 @@ header navbar#dropDownNav {
 footer {
   background-color: rgb(23, 23, 23);
   color: white;
+  top: 5em;
 }
 footer a {
   text-decoration: none;

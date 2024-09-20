@@ -12,30 +12,35 @@ main p {
   letter-spacing: 0.05em;
   font-weight: 300;
   color: hsl(0, 5%, 95%);
-  font-size: calc(1rem + 0.05vw);
+  font-size: calc(1rem + 0.1vw);
 }
 main p a {
   color: rgb(0, 255, 0);
 }
 main div#introductionSection,
 main div#starBackgroundSection {
-  padding: 7em 6vw;
+  padding: 4em 6vw 5em 6vw;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 7em;
   overflow: none;
 }
-main div#introductionSection img.backgroundImage,
-main div#starBackgroundSection img.backgroundImage {
+main div#introductionSection picture.backgroundImage,
+main div#starBackgroundSection picture.backgroundImage {
   position: absolute;
   z-index: -1;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
-  background-size: cover;
-  background-position: center;
+}
+main div#introductionSection picture.backgroundImage img,
+main div#starBackgroundSection picture.backgroundImage img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 main div#introductionSection section,
 main div#starBackgroundSection section {
@@ -46,26 +51,35 @@ main div#starBackgroundSection section {
   gap: 5vw;
 }
 main div#introductionSection section div.imageContainer,
-main div#starBackgroundSection section div.imageContainer {
+main div#introductionSection section picture.imageContainer,
+main div#starBackgroundSection section div.imageContainer,
+main div#starBackgroundSection section picture.imageContainer {
   width: 50%;
   margin: auto 0;
 }
 main div#introductionSection section div.imageContainer img.main,
-main div#starBackgroundSection section div.imageContainer img.main {
+main div#introductionSection section picture.imageContainer img.main,
+main div#starBackgroundSection section div.imageContainer img.main,
+main div#starBackgroundSection section picture.imageContainer img.main {
   width: 100%;
   height: auto;
   border: hsl(222, 61%, 87%) 0.5em solid;
 }
-main div#introductionSection section div.imageContainer div#galleryImagesContainer img,
-main div#starBackgroundSection section div.imageContainer div#galleryImagesContainer img {
+main div#introductionSection section div.imageContainer div#galleryImagesContainer picture img,
+main div#introductionSection section picture.imageContainer div#galleryImagesContainer picture img,
+main div#starBackgroundSection section div.imageContainer div#galleryImagesContainer picture img,
+main div#starBackgroundSection section picture.imageContainer div#galleryImagesContainer picture img {
   display: none;
   width: 100%;
-  height: 60svh;
+  height: auto;
   -o-object-fit: cover;
      object-fit: cover;
+  border: hsl(222, 61%, 87%) 0.5em solid;
 }
 main div#introductionSection section div.imageContainer div#galleryButtonsContainer,
-main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer {
+main div#introductionSection section picture.imageContainer div#galleryButtonsContainer,
+main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer,
+main div#starBackgroundSection section picture.imageContainer div#galleryButtonsContainer {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -76,7 +90,9 @@ main div#starBackgroundSection section div.imageContainer div#galleryButtonsCont
   align-items: center;
 }
 main div#introductionSection section div.imageContainer div#galleryButtonsContainer img,
-main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img {
+main div#introductionSection section picture.imageContainer div#galleryButtonsContainer img,
+main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img,
+main div#starBackgroundSection section picture.imageContainer div#galleryButtonsContainer img {
   flex-basis: 2%;
   aspect-ratio: 1/1;
   padding: 0.4em;
@@ -87,15 +103,23 @@ main div#starBackgroundSection section div.imageContainer div#galleryButtonsCont
   cursor: pointer;
 }
 main div#introductionSection section div.imageContainer div#galleryButtonsContainer img:hover,
-main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img:hover {
+main div#introductionSection section picture.imageContainer div#galleryButtonsContainer img:hover,
+main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img:hover,
+main div#starBackgroundSection section picture.imageContainer div#galleryButtonsContainer img:hover {
   opacity: 100%;
 }
 main div#introductionSection section div.imageContainer div#galleryButtonsContainer img#backArrow,
-main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img#backArrow {
+main div#introductionSection section picture.imageContainer div#galleryButtonsContainer img#backArrow,
+main div#starBackgroundSection section div.imageContainer div#galleryButtonsContainer img#backArrow,
+main div#starBackgroundSection section picture.imageContainer div#galleryButtonsContainer img#backArrow {
   transform: rotate(180deg);
 }
-main div#introductionSection section div.imageContainer::before,
-main div#starBackgroundSection section div.imageContainer::before {
+main div#introductionSection section picture#heroTrickFireLogo img,
+main div#starBackgroundSection section picture#heroTrickFireLogo img {
+  border: none;
+}
+main div#introductionSection section picture.imageContainer::before,
+main div#starBackgroundSection section picture.imageContainer::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -103,7 +127,7 @@ main div#starBackgroundSection section div.imageContainer::before {
   height: 100%;
   border-radius: 50%;
   background-color: hsl(0, 0%, 65%);
-  filter: blur(20vw);
+  filter: blur(10vw);
 }
 main div#introductionSection section article,
 main div#starBackgroundSection section article {
@@ -116,6 +140,12 @@ main div#introductionSection section article div.articleHeader,
 main div#starBackgroundSection section article div.articleHeader {
   width: 100%;
   padding-bottom: 2em;
+}
+main div#introductionSection section article div#linkContainer,
+main div#starBackgroundSection section article div#linkContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 main div#introductionSection section article h2,
 main div#starBackgroundSection section article h2 {
@@ -208,12 +238,18 @@ main div#introductionSection::before {
 }
 main section#missionSection {
   padding: 4em 6vw;
-  display: flex;
-  justify-content: space-between;
   background-color: #1f1f1f;
   overflow: hidden;
+  text-align: center;
 }
-main section#missionSection article {
+main section#missionSection h2 {
+  margin-bottom: 0.75em;
+}
+main section#missionSection div#cardContainer {
+  display: flex;
+  justify-content: space-between;
+}
+main section#missionSection div#cardContainer article {
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -222,19 +258,20 @@ main section#missionSection article {
   border-radius: 1em;
   flex-basis: 25%;
 }
-main section#missionSection article img {
-  width: 60%;
+main section#missionSection div#cardContainer article img {
+  width: 65%;
+  aspect-ratio: 1/1;
   margin: 0 auto;
   padding: 1em 0;
   color: hsl(133, 97%, 38%);
 }
-main section#missionSection article h3 {
+main section#missionSection div#cardContainer article h3 {
   color: hsl(0, 100%, 98%);
   padding: 0.5em 0;
   font-weight: normal;
   letter-spacing: 0.1em;
 }
-main section#missionSection article p {
+main section#missionSection div#cardContainer article p {
   padding: 1.5em 0;
 }
 main section#missionSection::before {
@@ -290,31 +327,27 @@ main div#starBackgroundSection section#teamCompetitionSection::before {
     padding: 3em 6vw;
     gap: 5em;
   }
-  main div#introductionSection img.backgroundImage,
-  main div#starBackgroundSection img.backgroundImage {
-    width: auto;
-  }
   main div#introductionSection section,
   main div#starBackgroundSection section {
     flex-direction: column-reverse !important;
     margin: 0;
     gap: 2em;
   }
+  main div#introductionSection section picture.imageContainer,
   main div#introductionSection section div.imageContainer,
+  main div#starBackgroundSection section picture.imageContainer,
   main div#starBackgroundSection section div.imageContainer {
     width: 100%;
   }
+  main div#introductionSection section picture.imageContainer div#galleryImagesContainer img,
   main div#introductionSection section div.imageContainer div#galleryImagesContainer img,
+  main div#starBackgroundSection section picture.imageContainer div#galleryImagesContainer img,
   main div#starBackgroundSection section div.imageContainer div#galleryImagesContainer img {
     display: none;
     width: 100%;
     height: 50svh;
     -o-object-fit: cover;
        object-fit: cover;
-  }
-  main div#introductionSection section div.imageContainer::before,
-  main div#starBackgroundSection section div.imageContainer::before {
-    filter: blur(5vh);
   }
   main div#introductionSection section article,
   main div#starBackgroundSection section article {
@@ -360,24 +393,29 @@ main div#starBackgroundSection section#teamCompetitionSection::before {
   main section#missionSection {
     background-color: black;
     overflow-y: visible;
+  }
+  main section#missionSection h2 {
+    margin-bottom: 3vh;
+  }
+  main section#missionSection div#cardContainer {
     flex-direction: column;
     gap: 2em;
   }
-  main section#missionSection article {
+  main section#missionSection div#cardContainer article {
     flex-direction: row;
     background-color: hsl(0, 0%, 19%);
     text-align: left;
     gap: 1em;
   }
-  main section#missionSection article img {
+  main section#missionSection div#cardContainer article img {
     height: 4em;
     width: auto;
     padding: 0;
     margin: auto 0;
   }
-  main section#missionSection article h3,
-  main section#missionSection article p,
-  main section#missionSection article img {
+  main section#missionSection div#cardContainer article h3,
+  main section#missionSection div#cardContainer article p,
+  main section#missionSection div#cardContainer article img {
     padding: 0;
   }
   main section#missionSection::before {

@@ -26,8 +26,9 @@ a {
 }
 
 main {
-  overflow-x: hidden;
+  overflow: hidden;
   max-width: 100%;
+  top: 5em;
 }
 
 //Header Desktop Styles
@@ -40,6 +41,8 @@ header {
   justify-content: space-between;
   align-items: center;
   color: white;
+  position: fixed;
+  z-index: 9999;
 
   a {
     text-decoration: none;
@@ -127,6 +130,7 @@ header navbar#dropDownNav {
 footer {
   background-color: $background-color;
   color: white;
+  top: 5em;
 
   a {
     text-decoration: none;

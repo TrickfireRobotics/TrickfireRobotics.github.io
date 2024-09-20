@@ -1,1 +1,192 @@
 @import "./variables.scss";
+
+// Variables for easy theme customization
+$background-color: #1c1c1c; // Dark background for the entire page
+$text-color: #ffffff; // White text color
+$accent-color: #00ff00; // Accent color used for highlights
+$card-bg-color: #2b2b2b; // Background color for robot cards
+$font-size: 16px; // Base font size
+$border-radius: 8px; // Border radius for rounded corners
+$padding: 20px; // Standard padding for sections
+$gap: 20px; // Gap between elements
+
+// General body styling
+body {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: Arial, sans-serif;
+}
+
+// Container to center content and set max-width
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $padding;
+}
+
+// Header section with logo and navigation
+.header {
+  text-align: center; // Centering the header content
+  margin-bottom: 40px;
+
+  .logo {
+    max-width: 150px; // Setting max-width for the logo
+    margin-bottom: 20px;
+  }
+
+  // Navigation styling
+  nav {
+    ul {
+      list-style: none; // Removing default list styling
+      display: flex;
+      justify-content: center; // Centering the navigation items
+      gap: 30px;
+
+      li {
+        a {
+          color: $text-color;
+          text-decoration: none; // Removing underline from links
+          font-size: $font-size;
+
+          &:hover {
+            color: $accent-color; // Change color on hover
+          }
+        }
+      }
+    }
+  }
+}
+
+// Robots section containing all robot cards
+.robots-section {
+  background-color: $background-color;
+
+  // Individual robot card styling
+  .robot-card {
+    display: flex;
+    align-items: center;
+    background-color: $card-bg-color;
+    border-radius: $border-radius;
+    margin-bottom: $gap;
+    padding: $padding;
+
+    img {
+      max-width: 150px;
+      margin-right: $padding; // Space between image and text
+      border-radius: $border-radius;
+    }
+
+    // Details about the robot
+    .robot-details {
+      flex: 1; // Allow details to take up remaining space
+
+      .robot-name {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .robot-description {
+        line-height: 1.5;
+        margin-bottom: 10px;
+        font-size: $font-size;
+      }
+
+      // Specifications section
+      .specs {
+        display: flex;
+        justify-content: flex-start;
+        gap: 15px;
+
+        .spec {
+          background-color: lighten(
+            $card-bg-color,
+            5%
+          ); // Slightly lighter than card bg
+          padding: 10px;
+          border-radius: $border-radius;
+          text-align: center;
+          flex: 1; // Evenly distribute space among specs
+
+          .label {
+            font-size: 0.875rem;
+            color: $accent-color; // Highlight the label with accent color
+          }
+
+          .value {
+            font-size: 1rem;
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Footer styling
+.footer {
+  text-align: center;
+  padding: $padding;
+  background-color: $background-color;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    // Social media icons
+    .social-icons {
+      display: flex;
+      gap: 15px;
+
+      a {
+        color: $text-color;
+
+        &:hover {
+          color: $accent-color;
+        }
+      }
+    }
+
+    // Footer links (e.g., privacy policy, terms of service)
+    .footer-links {
+      display: flex;
+      gap: 20px;
+
+      a {
+        color: $text-color;
+        text-decoration: none;
+
+        &:hover {
+          color: $accent-color;
+        }
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .robot-card {
+    flex-direction: column; // Stack image and text vertically
+    text-align: center; // Center text for better appearance
+
+    img {
+      margin: 0 auto $padding auto; // Center image with margin on top and bottom
+    }
+  }
+
+  .footer-content {
+    flex-direction: column; // Stack footer content vertically
+    gap: 20px; // Increase spacing for readability
+  }
+}
+
+@media (max-width: 480px) {
+  .robot-card {
+    padding: $padding / 2; // Reduce padding for smaller screens
+  }
+
+  .footer-content {
+    gap: 10px; // Reduce gap further for smaller screens
+  }
+}

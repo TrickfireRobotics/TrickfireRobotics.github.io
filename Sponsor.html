@@ -40,15 +40,20 @@
     <main>
       <picture id="starBackgroundContainer">
         <source
-          media="(min-width: 768px)"
-          srcset="assets/images/photos/desktopStarRainBackground.webp"
-        />
-        <source
-          media="(max-width: 768px)"
-          srcset="assets/images/photos/mobileStarRainBackground.webp"
+          type="image/webp"
+          srcset="
+            assets/images/photos/starRainBackground/starRainBackground-320w.webp   320w,
+            assets/images/photos/starRainBackground/starRainBackground-768w.webp   768w,
+            assets/images/photos/starRainBackground/starRainBackground-1920w.webp 1920w
+          "
         />
         <img
-          src="assets/images/photos/starRainBackground.jpg"
+          srcset="
+            assets/images/photos/starRainBackground/starRainBackground-320w.jpg   320w,
+            assets/images/photos/starRainBackground/starRainBackground-768w.jpg   768w,
+            assets/images/photos/starRainBackground/starRainBackground-1920w.jpg 1920w
+          "
+          sizes="100vw"
           alt="Background image of falling stars"
         />
       </picture>
@@ -77,12 +82,23 @@
             </ul>
           </article>
           <picture>
-            <source srcset="assets/images/photos/2024RoverRevealGroup.webp" />
+            <source
+              type="image/webp"
+              srcset="
+                assets/images/photos/2024RoverRevealGroup/2024RoverRevealGroup-320w.webp   320w,
+                assets/images/photos/2024RoverRevealGroup/2024RoverRevealGroup-768w.webp   768w,
+                assets/images/photos/2024RoverRevealGroup/2024RoverRevealGroup-1920w.webp 1920w
+              "
+            />
             <img
-              src="assets/images/photos/2024RoverRevealGroup.jpg"
-              alt="Team photo with the 2024 Viator rover"
-              loading="lazy"
-              decoding="async"
+              src="assets/images/photos/starRainBackground.jpg"
+              srcset="
+                assets/images/photos/2024RoverRevealGroup/2024RoverRevealGroup-320w.jpg   320w,
+                assets/images/photos/2024RoverRevealGroup/2024RoverRevealGroup-768w.jpg   768w,
+                assets/images/photos/2024RoverRevealGroup/2024RoverRevealGroup-1920w.jpg 1920w
+              "
+              sizes="(max-width: 768px) 90vw, 40vw"
+              alt="Background image of falling stars"
             />
           </picture>
         </div>
@@ -105,6 +121,8 @@
             <img
               src="assets/images/icons/placeHolderIcon.svg"
               alt="Lightbulb figure"
+              loading="lazy"
+              encoding="async"
             />
             <h4>Technology and Innovation</h4>
             <p>
@@ -116,6 +134,8 @@
             <img
               src="assets/images/icons/developmentIcon.svg"
               alt="Building blocks figure"
+              loading="lazy"
+              encoding="async"
             />
             <h4>Project Development</h4>
             <p>
@@ -124,7 +144,12 @@
             </p>
           </article>
           <article class="fundLocation">
-            <img src="assets/images/icons/gearIcon.svg" alt="Gear figure" />
+            <img
+              src="assets/images/icons/gearIcon.svg"
+              alt="Gear figure"
+              loading="lazy"
+              encoding="async"
+            />
             <h4>Equipment and Tools</h4>
             <p>
               Providing essential equipment, tools, materials to build and
@@ -160,22 +185,25 @@
             </p>
           </article>
           <picture>
-            <source srcset="assets/images/photos/ViatorStreetPhoto.webp" />
+            <source
+              type="image/webp"
+              srcset="
+                assets/images/photos/ViatorStreetPhoto/ViatorStreetPhoto-320w.webp   320w,
+                assets/images/photos/ViatorStreetPhoto/ViatorStreetPhoto-768w.webp   768w,
+                assets/images/photos/ViatorStreetPhoto/ViatorStreetPhoto-1920w.webp 1920w
+              "
+            />
             <img
-              src="assets/images/photos/ViatorStreetPhoto.jpg"
-              alt="Street photo of the 2024 Viator rover"
-              loading="lazy"
-              decoding="async"
+              src="assets/images/photos/starRainBackground.jpg"
+              srcset="
+                assets/images/photos/ViatorStreetPhoto/ViatorStreetPhoto-320w.jpg   320w,
+                assets/images/photos/ViatorStreetPhoto/ViatorStreetPhoto-768w.jpg   768w,
+                assets/images/photos/ViatorStreetPhoto/ViatorStreetPhoto-1920w.jpg 1920w
+              "
+              sizes="(max-width: 768px) 90vw, 35vw"
+              alt="Background image of falling stars"
             />
           </picture>
-        </div>
-      </section>
-      <section id="sponsorsSection">
-        <h3>Sponsors / Partners</h3>
-        <div id="sponsorLogoContainer" role="presentation">
-          <img src="assets/images/sponsors/nvidia.png" alt="Logo placeholder" />
-          <img src="assets/images/sponsors/nvidia.png" alt="Logo placeholder" />
-          <img src="assets/images/sponsors/nvidia.png" alt="Logo placeholder" />
         </div>
       </section>
     </main>

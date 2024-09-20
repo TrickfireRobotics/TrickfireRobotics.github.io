@@ -41,17 +41,27 @@
   <body>
     <!-- Header will be loaded here -->
     <main>
-      <div id="backgroundContainer" role="presentation">
-        <img
-          id="moonBackground"
+      <picture id="backgroundContainer">
+        <source
+          type="image/webp"
           srcset="
-            /assets/images/photos/mobileMoonBackground.webp   768w,
-            /assets/images/photos/desktopMoonBackground.webp 1200w
+            assets/images/photos/MoonBackground/MoonBackground-320w.webp   320w,
+            assets/images/photos/MoonBackground/MoonBackground-768w.webp   768w,
+            assets/images/photos/MoonBackground/MoonBackground-1920w.webp 1920w
           "
-          src="/assets/images/photos/mobileMoonBackground.jpg"
-          alt="Background of the moon"
         />
-      </div>
+        <img
+          src="assets/images/photos/starRainBackground.jpg"
+          srcset="
+            assets/images/photos/MoonBackground/MoonBackground-320w.jpg   320w,
+            assets/images/photos/MoonBackground/MoonBackground-768w.jpg   768w,
+            assets/images/photos/MoonBackground/MoonBackground-1920w.jpg 1920w
+          "
+          sizes="100vw"
+          alt="Background image of a starry night"
+          class="backgroundImage"
+        />
+      </picture>
       <section id="teamTextSection">
         <h2>
           We believe that good design is powerful, hard work is essential, and
@@ -62,16 +72,15 @@
           <article>
             <h3>Mission</h3>
             <p>
-              Here need a sentence about our mission, think about why we do this
-              project, or something inspired you.
+              Our mission is to develop ourselves by developing a rover for
+              space, among our other projects.
             </p>
           </article>
           <hr role="presentation" />
           <article>
             <h3>Value</h3>
             <p>
-              Here need a sentence about our value, think about why we do this
-              project, or why you are here.
+              Key club values are communication, execution, and determination.
             </p>
           </article>
         </div>
@@ -79,13 +88,14 @@
         <article>
           <h3>About Us</h3>
           <p>
-            TrickFire’s mission is to give students the hands-on, applicable
-            experience crucial to entering the working world. Here, students can
-            gain skills in software, mechanical and electrical engineering, and
-            business skills such as budget management and communications. All of
-            these skills will prepare students for their resumes, and they will
-            be able to talk about their work in TrickFire, while having fun
-            along the way!
+            TrickFire’s mission is to give us students hands-on, relevant
+            experiences crucial to entering the working world. Here, students
+            can gain skills in software, mechanical, and electrical engineering,
+            business, and marketing. You can work on a robotic arm, a
+            sponsorship packet, and a drone all in the same club if you’re
+            willing to put in the time. All of these learning opportunities and
+            experiences will improve our resumes, give us great talking points,
+            and create fond memories!
           </p>
         </article>
         <hr role="presentation" />
@@ -106,10 +116,116 @@
         <h3 id="leaderTitle">Team Leaders</h3>
         <article>
           <div class="profile" role="presentation">
-            <img
-              src="assets\images\photos\ProfilePlaceholder.webp"
-              alt="Placeholder profile"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/images/photos/ProfileImages/VladProfile.webp"
+              />
+              <img
+                src="assets/images/photos/ProfileImages/VladProfile.jpg"
+                alt="Profile picture of Vlad"
+              />
+            </picture>
+            <h3>Vlad</h3>
+          </div>
+          <div class="quote" role="presentation">
+            <h3>“Robots are pretty neat!"</h3>
+            <p>
+              As the software lead, I am responsible for leading the development
+              of rover code that is well-documented, easy to expand, and that is
+              robust through heavy cooperation with the rest of the software
+              team. As one of the presidents, I work with Adan R. to direct
+              TrickFire's overall direction.
+            </p>
+          </div>
+        </article>
+        <article class="reversed">
+          <div class="profile" role="presentation">
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/images/photos/ProfileImages/AdanProfile.webp"
+              />
+              <img
+                src="assets/images/photos/ProfileImages/AdanProfile.jpg"
+                alt="Profile picture of Adan"
+              />
+            </picture>
+            <h3>Adan</h3>
+          </div>
+          <div class="quote" role="presentation">
+            <h3>“Our rovers use grease. Money is one kind.”</h3>
+            <p>
+              As the Finance Lead, I am responsible for locating and securing
+              funding for the club. I coordinate and approve all club purchases,
+              be they for parts, materials, or tools. Among my other
+              responsibilities, as the other president of the club, I help
+              organize club events and keep track of the club and rover budget.
+            </p>
+          </div>
+        </article>
+        <article>
+          <div class="profile" role="presentation">
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/images/photos/ProfileImages/ThomasProfile.webp"
+              />
+              <img
+                src="assets/images/photos/ProfileImages/ThomasProfile.jpg"
+                alt="Profile picture of Thomas"
+              />
+            </picture>
+            <h3>Thomas</h3>
+          </div>
+          <div class="quote" role="presentation">
+            <h3>“Making things picture perfect”</h3>
+            <p>
+              As the Marketing Lead for TrickFire Robotics team, I oversee a
+              branding team and oversees all marketing projects for recruitment
+              and events that the club hosts throughout the year! As one of the
+              officers I also work with Adan R. to manage university and alumni
+              relations!
+            </p>
+          </div>
+        </article>
+        <article class="reversed">
+          <div class="profile" role="presentation">
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/images/photos/ProfileImages/DangProfile.webp"
+              />
+              <img
+                src="assets/images/photos/ProfileImages/DangProfile.jpg"
+                alt="Profile picture of Adan"
+              />
+            </picture>
+            <h3>Dang</h3>
+          </div>
+          <div class="quote" role="presentation">
+            <h3>“Life is wild!”</h3>
+            <p>
+              As the Biology Lead, I work with our Biology team to develop
+              detection methods that can identify microbes in the soil. We aim
+              to develop light, accurate and efficient systems that can detect
+              life in multi ways from imaging to metabolism. Working with a
+              rover system, we aim to be open-minded about untraditional life
+              forms and always look beyond just Earth mophologies.
+            </p>
+          </div>
+        </article>
+        <article>
+          <div class="profile" role="presentation">
+            <source
+                type="image/webp"
+                srcset="assets/images/photos/ProfileImages/JasonProfile.webp"
+              />
+              <img
+                src="assets/images/photos/ProfileImages/JasonProfile.jpg"
+                alt="Profile picture of Jason"
+              />
+            </picture>
             <h3>Jason</h3>
           </div>
           <div class="quote" role="presentation">
@@ -123,52 +239,52 @@
         </article>
         <article class="reversed">
           <div class="profile" role="presentation">
-            <img
-              src="assets\images\photos\ProfilePlaceholder.webp"
-              alt="Placeholder profile"
-            />
-            <h3>Name</h3>
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/images/photos/ProfileImages/ChristianProfile.webp"
+              />
+              <img
+                src="assets/images/photos/ProfileImages/ChristianProfile.jpg"
+                alt="Profile picture of Jason"
+              />
+            </picture>
+            <h3>Christian</h3>
           </div>
           <div class="quote" role="presentation">
-            <h3>“Quote, or motto”</h3>
+            <h3>"Don't let out the magic smoke!"
+            </h3>
             <p>
-              Job responsibilitiesJob responsibilitiesJob responsibilitiesJob
-              responsibilities Job responsibilitiesJob responsibilitiesJob
-              responsibilities
+              As the electrical co-lead, I'm responsible for ensuring key electrical systems are properly integrated into the robots. Additionally, I work with my co-lead, Jason T., to provide effective documention and understanding of electrical systems for all members of TrickFire.
+
             </p>
           </div>
         </article>
         <article>
           <div class="profile" role="presentation">
-            <img
-              src="assets\images\photos\ProfilePlaceholder.webp"
-              alt="Placeholder profile"
-            />
-            <h3>Name</h3>
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/images/photos/ProfileImages/EliasProfile.webp"
+              />
+              <img
+                src="assets/images/photos/ProfileImages/EliasProfile.jpg"
+                alt="Profile picture of Elias"
+              />
+            </picture>
+            <h3>Elias</h3>
           </div>
           <div class="quote" role="presentation">
-            <h3>“Quote, or motto”</h3>
+            <h3>“Go find a way to break it!”</h3>
             <p>
-              Job responsibilitiesJob responsibilitiesJob responsibilitiesJob
-              responsibilities Job responsibilitiesJob responsibilitiesJob
-              responsibilities
-            </p>
-          </div>
-        </article>
-        <article class="reversed">
-          <div class="profile" role="presentation">
-            <img
-              src="assets\images\photos\ProfilePlaceholder.webp"
-              alt="Placeholder Profile"
-            />
-            <h3>Name</h3>
-          </div>
-          <div class="quote" role="presentation">
-            <h3>“Quote, or motto”</h3>
-            <p>
-              Job responsibilitiesJob responsibilitiesJob responsibilitiesJob
-              responsibilities Job responsibilitiesJob responsibilitiesJob
-              responsibilities
+              As the Mechanical Lead of TrickFire, I lead the drafting and
+              design of static and dynamic rover systems. I encourage Design for
+              Manufacturing (DFM) to a high standard. DFM is the most important
+              lesson a hands-on project can offer. Mechanical Engineers must
+              learn how to utilize standard and innovative manufacturing tools
+              just as we learned to use our environment to shape the modern
+              world. The Trickfire Mechanical Team is determined to make it to
+              competition and will use iterative design cycles to achieve this.
             </p>
           </div>
         </article>

@@ -1222,11 +1222,10 @@ async function getInstagramPosts() {
       }
     }
     JSON.parse(data).posts.forEach((post) => {
-      const link = $("<a></a>");
+      const link = $(`<a href = '${post.permalink}' target = '_blank'></a>`);
       const icon = $(
         `<img class = "postIconOverlay" src = "assets/images/icons/InstagramIcon.svg" alt = "Instagram icon"/>`
       );
-      link.attr("href", post.permalink);
       const picture = $(`<img />`);
 
       picture.attr("src", post.sizes.small.mediaUrl);

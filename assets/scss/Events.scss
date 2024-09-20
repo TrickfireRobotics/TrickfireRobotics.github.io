@@ -92,14 +92,12 @@ main {
     width: 1rem;
     height: 1rem;
   }
-
   .date {
     display: flex;
     gap: 0.8rem;
     align-items: center;
     white-space: nowrap;
   }
-
   .title {
     padding: 0.4rem 0.3rem 0.3rem 0.8rem;
     font-family: $header-font;
