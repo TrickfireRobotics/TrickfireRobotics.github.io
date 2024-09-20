@@ -1,192 +1,241 @@
 @import "./variables.scss";
 
-// Variables for easy theme customization
-$background-color: #1c1c1c; // Dark background for the entire page
-$text-color: #ffffff; // White text color
-$accent-color: #00ff00; // Accent color used for highlights
-$card-bg-color: #2b2b2b; // Background color for robot cards
-$font-size: 16px; // Base font size
-$border-radius: 8px; // Border radius for rounded corners
-$padding: 20px; // Standard padding for sections
-$gap: 20px; // Gap between elements
+main {
+  overflow-x: hidden;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
 
-// General body styling
-body {
-  background-color: $background-color;
-  color: $text-color;
-  font-family: Arial, sans-serif;
-}
-
-// Container to center content and set max-width
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: $padding;
-}
-
-// Header section with logo and navigation
-.header {
-  text-align: center; // Centering the header content
-  margin-bottom: 40px;
-
-  .logo {
-    max-width: 150px; // Setting max-width for the logo
-    margin-bottom: 20px;
+  h2 {
+    font-size: calc(1rem + 1.5vw);
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    color: hsl(0, 100%, 99%);
   }
 
-  // Navigation styling
-  nav {
+  p,
+  li {
+    line-height: 160%;
+    letter-spacing: 0.05em;
+    font-weight: 300;
+    color: hsl(0, 5%, 95%);
+    font-size: calc(1rem + 0.1vw);
+
+    a {
+      color: $neon-green;
+    }
+  }
+
+  section {
+    width: 100%;
+    padding: 7em 6vw;
+
+    div.contentContainer {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: 5vw;
+    }
+
+    h3 {
+      color: $neon-green;
+      font-size: calc(1rem + 0.5vw);
+      font-weight: normal;
+    }
+
+    picture.backgroundImage {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 6vw;
+      bottom: 14svh;
+      z-index: -1;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
     ul {
-      list-style: none; // Removing default list styling
-      display: flex;
-      justify-content: center; // Centering the navigation items
-      gap: 30px;
-
+      padding-left: 1em;
+      margin-top: 0.5em;
       li {
-        a {
-          color: $text-color;
-          text-decoration: none; // Removing underline from links
-          font-size: $font-size;
-
-          &:hover {
-            color: $accent-color; // Change color on hover
-          }
-        }
+        font-size: calc(1rem + 0.2vw);
+        font-family: $text-font;
       }
     }
-  }
-}
 
-// Robots section containing all robot cards
-.robots-section {
-  background-color: $background-color;
+    picture.imageContainer {
+      width: 50%;
 
-  // Individual robot card styling
-  .robot-card {
-    display: flex;
-    align-items: center;
-    background-color: $card-bg-color;
-    border-radius: $border-radius;
-    margin-bottom: $gap;
-    padding: $padding;
-
-    img {
-      max-width: 150px;
-      margin-right: $padding; // Space between image and text
-      border-radius: $border-radius;
+      img {
+        width: 100%;
+        height: 100% !important;
+        object-fit: cover;
+        border: hsl(222, 61%, 87%) 0.5em solid;
+      }
     }
 
-    // Details about the robot
-    .robot-details {
-      flex: 1; // Allow details to take up remaining space
+    article {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
-      .robot-name {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
+      div.articleHeader {
+        width: 100%;
+        padding-bottom: 2em;
       }
 
-      .robot-description {
-        line-height: 1.5;
-        margin-bottom: 10px;
-        font-size: $font-size;
+      h2 {
+        margin-bottom: 0.5em;
       }
 
-      // Specifications section
-      .specs {
+      a.leaveSiteLink {
+        width: 100%;
+        border-radius: 2em;
         display: flex;
-        justify-content: flex-start;
-        gap: 15px;
-
-        .spec {
-          background-color: lighten(
-            $card-bg-color,
-            5%
-          ); // Slightly lighter than card bg
-          padding: 10px;
-          border-radius: $border-radius;
-          text-align: center;
-          flex: 1; // Evenly distribute space among specs
-
-          .label {
-            font-size: 0.875rem;
-            color: $accent-color; // Highlight the label with accent color
-          }
-
-          .value {
-            font-size: 1rem;
-            margin-top: 5px;
-          }
-        }
-      }
-    }
-  }
-}
-
-// Footer styling
-.footer {
-  text-align: center;
-  padding: $padding;
-  background-color: $background-color;
-
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    // Social media icons
-    .social-icons {
-      display: flex;
-      gap: 15px;
-
-      a {
-        color: $text-color;
-
-        &:hover {
-          color: $accent-color;
-        }
-      }
-    }
-
-    // Footer links (e.g., privacy policy, terms of service)
-    .footer-links {
-      display: flex;
-      gap: 20px;
-
-      a {
-        color: $text-color;
+        background-color: hsl(133, 97%, 38%);
+        text-align: center;
         text-decoration: none;
+        transition: all 0.1s ease-in-out;
+        border: solid black 2px;
 
-        &:hover {
-          color: $accent-color;
+        div {
+          text-decoration: none;
+          color: black;
+          flex-basis: 85%;
+          flex-grow: 1;
+          padding: 0.5em;
+          font-weight: 500;
+        }
+
+        img {
+          aspect-ratio: 1/1;
+          width: auto;
+          height: 100%;
+          flex-basis: 5%;
+          flex-grow: 0;
+          padding: 0.5em;
+          background-color: white;
+          border-radius: 50%;
+          box-shadow: 0 0 4px white;
+        }
+
+        img.leftPointArrow {
+          display: none;
+        }
+
+        img.rightPointArrow {
+          display: inline-block;
+          transform: rotate(180deg);
+        }
+      }
+
+      a.leaveSiteLink:hover {
+        background-color: hsl(133, 91%, 29%);
+        transform: translateY(-4px);
+        box-shadow: 0 4px 0 black;
+
+        div {
+          color: white;
+        }
+      }
+
+      a.leaveSiteLink:active {
+        background-color: hsl(133, 97%, 38%);
+        transform: translateY(0);
+        box-shadow: none;
+
+        div {
+          color: black;
         }
       }
     }
   }
-}
 
-// Responsive Design
-@media (max-width: 768px) {
-  .robot-card {
-    flex-direction: column; // Stack image and text vertically
-    text-align: center; // Center text for better appearance
+  section.reversed {
+    div.contentContainer {
+      flex-direction: row-reverse;
+    }
 
-    img {
-      margin: 0 auto $padding auto; // Center image with margin on top and bottom
+    a.leaveSiteLink {
+      background-color: hsl(133, 97%, 38%);
+
+      img.leftPointArrow {
+        display: inline-block;
+      }
+
+      img.rightPointArrow {
+        display: none;
+      }
     }
   }
-
-  .footer-content {
-    flex-direction: column; // Stack footer content vertically
-    gap: 20px; // Increase spacing for readability
+  section::before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: hsla(0, 0%, 5%, 90%);
+    content: "";
   }
 }
+@media only screen and (max-width: 768px) {
+  main {
+    h2 {
+      font-size: calc(1rem + 3vw);
+      margin: 0.2em 0;
+    }
+    section {
+      padding: 8vh 6vw;
+    }
+    div.contentContainer {
+      flex-direction: column-reverse !important;
+      gap: 4;
+      margin: 0;
 
-@media (max-width: 480px) {
-  .robot-card {
-    padding: $padding / 2; // Reduce padding for smaller screens
-  }
+      picture.imageContainer {
+        width: 100%;
+      }
 
-  .footer-content {
-    gap: 10px; // Reduce gap further for smaller screens
+      div.imageContainer::before {
+        filter: blur(5svh);
+      }
+
+      article {
+        width: 100%;
+
+        a.leaveSiteLink {
+          div {
+            padding: 0.7em 0;
+          }
+
+          img {
+            padding: 0.7em;
+          }
+
+          img.leftPointArrow {
+            display: none !important;
+          }
+
+          img.rightPointArrow {
+            display: inline-block !important;
+            transform: rotate(180deg);
+          }
+        }
+
+        div.articleHeader {
+          padding-bottom: 2em;
+        }
+      }
+    }
+
+    section.reversed {
+      flex-direction: column;
+    }
   }
 }

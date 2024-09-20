@@ -26,9 +26,9 @@ $(document).ready(function () {
         <section aria-label = "Robot links">
           <h2>Robots</h2>
           <ul role = "menu">
-            <li role = "menuitem"><a href = "./Robots.html">Link 1</a></li>
-            <li role = "menuitem"><a href = "./Robots.html">Link 2</a></li>
-            <li role = "menuitem"><a href = "./Robots.html">Link 3</a></li>
+            <li role = "menuitem"><a href = "./Robots.html">Viator</a></li>
+            <li role = "menuitem"><a href = "./Robots.html">Houdini</a></li>
+            <li role = "menuitem"><a href = "./Robots.html">Atlas</a></li>
           </ul>
         </section>
         <section aria-label = "Contact links">
@@ -39,6 +39,8 @@ $(document).ready(function () {
                 ><img
                   src="assets/images/icons/EmailIcon.svg"
                   alt="Email icon"
+                  loading="lazy"
+                  encoding="async"
                 />Mail</a
               >
             </li>
@@ -46,7 +48,7 @@ $(document).ready(function () {
               <a
                 href="https://www.linkedin.com/company/trickfire-robotics/"
                 target="_blank"
-                ><img src="assets/images/icons/LinkedInIcon.svg" alt="LinkedIn icon" />
+                ><img src="assets/images/icons/LinkedInIcon.svg" alt="LinkedIn icon" loading="lazy" encoding="async"/>
                 LinkedIn</a
               >
             </li>
@@ -55,6 +57,8 @@ $(document).ready(function () {
                 ><img
                   src="assets/images/icons/InstagramIcon.svg"
                   alt="Instagram icon"
+                  loading="lazy"
+                  encoding="async"
                 />Instagram</a
               >
             </li>
@@ -66,20 +70,20 @@ $(document).ready(function () {
           <ul role = "menu">
             <li role = "menuitem">
               <a href="mailto:tfrbtcs@uw.edu" target=""
-                ><img src="assets/images/icons/EmailIcon.svg" alt="Link to email"
+                ><img src="assets/images/icons/EmailIcon.svg" alt="Link to email" loading="lazy" encoding="async"
               /></a>
             </li>
             <li role = "menuitem">
               <a
                 href="https://www.linkedin.com/company/trickfire-robotics/"
                 target="_blank"
-                ><img src="assets/images/icons/LinkedInIcon.svg" alt="Link to LinkedIn" />
+                ><img src="assets/images/icons/LinkedInIcon.svg" alt="Link to LinkedIn" loading="lazy" encoding="async"/>
               </a>
             </li>
             <li role = "menuitem">
               <a href="https://www.instagram.com/trickfirerobotics/?hl=en"
                 target = "_blank"
-                ><img src="assets/images/icons/InstagramIcon.svg" alt="Link to Instagram"
+                ><img src="assets/images/icons/InstagramIcon.svg" alt="Link to Instagram" loading="lazy" encoding="async"
               /></a>
             </li>
           </ul>
