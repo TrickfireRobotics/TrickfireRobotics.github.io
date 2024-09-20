@@ -111,7 +111,7 @@ header button {
   display: none;
 }
 
-header [aria-hidden*=false],
+header [aria-hidden*="false"],
 header navbar#dropDownNav {
   display: none;
   background-color: red;
@@ -190,7 +190,7 @@ footer #mobileFooterContentContainer {
   display: none;
 }
 footer p {
-  font-family: "Overpass Mono", "Courier New", monospace;
+  font-family: "Overpass Mono", monospace;
   text-align: center;
   font-size: small;
   padding-bottom: 1em;
@@ -222,10 +222,10 @@ footer p {
     font-size: calc(1rem + 0.01vw);
     color: hsl(0, 0%, 70%);
   }
-  header button[aria-expanded=true] {
+  header button[aria-expanded="true"] {
     background-color: hsla(0, 0%, 70%, 0.1);
   }
-  header button[aria-expanded=true] p {
+  header button[aria-expanded="true"] p {
     color: hsl(0, 100%, 98%);
   }
   header navbar {
@@ -276,7 +276,7 @@ footer p {
     height: 0.1em;
     background-color: hsl(0, 2%, 35%);
   }
-  header navbar#dropDownNav[aria-hidden*=false] {
+  header navbar#dropDownNav[aria-hidden*="false"] {
     transform: scaleY(1);
   }
   header #navSponsorLink {
@@ -325,4 +325,4 @@ footer p {
   * {
     animation: none !important;
   }
-}/*# sourceMappingURL=default.css.map */
+} /*# sourceMappingURL=default.css.map */
