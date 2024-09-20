@@ -5,7 +5,7 @@ main {
   /* Second column */
 }
 main h1 {
-  color: #FFF;
+  color: #fff;
 }
 main .page-setup {
   overflow: hidden;
@@ -41,11 +41,11 @@ main .previous-events {
   scroll-behavior: smooth;
 }
 main .previous-events .title {
-  background-color: #65746B;
+  background-color: #65746b;
 }
 main .previous-events .tags,
 main .previous-events .location {
-  background-color: #929D97;
+  background-color: #929d97;
 }
 main .event-card {
   width: 300px;
@@ -74,7 +74,7 @@ main .time {
   left: 0%;
   background-color: rgba(0, 0, 0, 0.6);
   padding: 0.6rem 0.5rem;
-  color: #FFF;
+  color: #fff;
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -120,7 +120,7 @@ main .location h3 {
   font-size: 1.2rem;
   font-family: "Outfit", Arial, sans-serif;
   font-weight: lighter;
-  color: #FFF;
+  color: #fff;
   margin: 0%;
 }
 main .tags {
@@ -140,7 +140,7 @@ main .tags div {
 main .tags p {
   margin: 0;
   font-size: 0.8em;
-  color: #FFF;
+  color: #fff;
   font-weight: lighter;
 }
 main .button-img {
@@ -152,7 +152,7 @@ main .back-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #FFF;
+  background: #fff;
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -190,7 +190,7 @@ main .popup {
   transition: all 1s ease-in-out;
 }
 main .popup-content {
-  background: linear-gradient(to right, #A6A6A6, #D9D9D9);
+  background: linear-gradient(to right, #a6a6a6, #d9d9d9);
   display: flex;
   padding: 20px;
   border-radius: 8px;
@@ -211,18 +211,22 @@ main .popup-img {
   border-radius: 8px;
   margin-bottom: 10px;
 }
-main .time-hold, main .location-hold {
+main .time-hold,
+main .location-hold {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
   gap: 10px;
 }
-main .popup-clock, main .popup-waypoint {
+main .popup-clock,
+main .popup-waypoint {
   width: 25px;
   height: 25px;
   margin-right: 10px;
 }
-main .popup-date, main .popup-time, main .popup-location {
+main .popup-date,
+main .popup-time,
+main .popup-location {
   font-size: 20px;
   font-family: "Outfit", Arial, sans-serif;
 }
@@ -282,7 +286,7 @@ main .events-navigation {
   main .events-navigation {
     display: flex;
     flex-direction: row;
-    background-color: #3B3B3B;
+    background-color: #3b3b3b;
     width: 100%;
     gap: 20px;
     justify-content: center;
@@ -308,15 +312,16 @@ main .events-navigation {
     text-align: center;
     padding: 10px;
     border-radius: 5px;
-    background-color: #3B3B3B;
+    background-color: #3b3b3b;
     color: #fff;
     font-family: "Overpass Mono", "Courier New", monospace;
   }
   main .upcoming-header.active {
     background-color: rgb(69, 139, 96);
+    color: rgb(0, 0, 0);
   }
   main .previous-header.active {
-    background-color: #B2B2B2;
+    background-color: #b2b2b2;
   }
   main .upcoming-events {
     flex-wrap: wrap;
@@ -329,7 +334,7 @@ main .events-navigation {
   main .event-card {
     height: 95px;
     width: 90%;
-    border: 1px solid #FFF;
+    border: 1px solid #fff;
     display: flex;
     margin: 40px 6px 0px 6px;
     background-color: rgb(69, 139, 96);
@@ -337,7 +342,7 @@ main .events-navigation {
   }
   main .title {
     background-color: rgb(69, 139, 96);
-    color: #FFF;
+    color: #000;
     padding: 7px 7px 7px 20px;
     font-size: 0.8rem;
     margin-top: 3px;
@@ -369,20 +374,20 @@ main .events-navigation {
   }
   main .previous-events .event-card {
     border: none;
-    background-color: #2C2C2C;
+    background-color: #2c2c2c !important;
     box-shadow: 0px 5px 5px rgba(50, 50, 50, 0.6);
   }
   main .previous-events .title {
-    background-color: #2C2C2C;
+    background-color: #2c2c2c;
     color: #727272;
     margin-top: 5px;
   }
   main .previous-events .time {
-    background-color: #2C2C2C;
-    color: #9C9B9B;
+    background-color: #2c2c2c;
+    color: #9c9b9b;
   }
   main .previous-events .time img {
-    fill: #9C9B9B;
+    fill: #9c9b9b;
   }
   main .previous-events .event {
     border: none;
@@ -397,12 +402,14 @@ main .events-navigation {
   }
   main .first-column {
     width: 40%;
-    height: 50%;
+    display: flex;
+    flex-direction: column;
   }
-  main .time-hold, main .location-hold {
+  main .time-hold,
+  main .location-hold {
     margin-bottom: 10px;
     margin-top: 20px;
-    gap: 15px;
+    gap: 0.5em;
     flex-direction: column;
     justify-content: center;
   }
@@ -416,12 +423,19 @@ main .events-navigation {
     height: 27px;
     margin-right: 10px;
   }
-  main .popup-date, main .popup-time, main .popup-location {
+  main .popup-date,
+  main .popup-time,
+  main .popup-location {
     font-size: 18px;
     font-family: "Outfit", Arial, sans-serif;
   }
   main .popup-time {
     margin-left: 5px;
+  }
+  main .popup-img {
+    max-height: 40%;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   main .second-column {
     width: 50%;
@@ -461,4 +475,4 @@ main .events-navigation {
     padding: 3px 10px 5px 10px;
     border: 1px solid #000;
   }
-}/*# sourceMappingURL=events.css.map */
+}/*# sourceMappingURL=Events.css.map */
