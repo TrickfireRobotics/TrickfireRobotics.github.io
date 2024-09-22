@@ -59,7 +59,7 @@ main section ul {
 }
 main section ul li {
   font-size: calc(1rem + 0.2vw);
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 main section picture.imageContainer {
   width: 50%;
@@ -67,6 +67,7 @@ main section picture.imageContainer {
 main section picture.imageContainer img {
   width: 100%;
   height: 100% !important;
+  aspect-ratio: 8/7;
   -o-object-fit: cover;
      object-fit: cover;
   border: hsl(222, 61%, 87%) 0.5em solid;

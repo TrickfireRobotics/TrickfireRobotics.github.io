@@ -10,7 +10,7 @@ main ol,
 main p {
   color: hsl(0, 5%, 95%);
   font-weight: 300;
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: calc(1rem + 0.1vw);
   line-height: 160%;
   letter-spacing: 0.05em;
@@ -38,6 +38,7 @@ main picture img {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  aspect-ratio: 4/3;
   border: hsl(222, 61%, 87%) 0.5em solid;
 }
 main picture#starBackgroundContainer {

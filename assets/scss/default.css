@@ -15,12 +15,12 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Overpass Mono", "Courier New", monospace;
+  font-family: "Overpass Mono", monospace;
 }
 
 p,
 a {
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 
 main {
@@ -94,6 +94,7 @@ header #navTitleSection h1 {
 }
 header #navTitleSection img {
   width: 1.75em;
+  aspect-ratio: 1/2;
 }
 header #navSponsorLink {
   border: 2px solid hsl(133, 97%, 38%);
@@ -182,6 +183,7 @@ footer section li a {
 }
 footer section li a img {
   width: 1.75em;
+  aspect-ratio: 1/1;
 }
 footer section li a:hover {
   color: hsl(0, 100%, 99%);
