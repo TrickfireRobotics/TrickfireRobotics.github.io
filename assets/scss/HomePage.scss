@@ -66,6 +66,7 @@ main {
           picture img {
             display: none;
             width: 100%;
+            aspect-ratio: 16 / 9;
             height: auto;
             object-fit: cover;
             border: hsl(222, 61%, 87%) 0.5em solid;

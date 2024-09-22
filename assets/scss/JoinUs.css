@@ -35,6 +35,7 @@ main section picture.imageContainer {
 main section picture.imageContainer img {
   width: 100%;
   height: 100% !important;
+  aspect-ratio: 3/2;
   -o-object-fit: cover;
      object-fit: cover;
   border: hsl(222, 61%, 87%) 0.5em solid;

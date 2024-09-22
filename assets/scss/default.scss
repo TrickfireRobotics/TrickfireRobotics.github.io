@@ -98,6 +98,7 @@ header {
     }
     img {
       width: 1.75em;
+      aspect-ratio: 1 / 2;
     }
   }
 
@@ -199,6 +200,7 @@ footer {
         transition: color 0.1s linear;
         img {
           width: 1.75em;
+          aspect-ratio: 1 / 1;
         }
       }
       a:hover {

@@ -82,7 +82,7 @@ main .time {
   align-items: center;
   gap: 5%;
   font-size: 0.8rem;
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", sans-serif;
   letter-spacing: -1px;
 }
 main .clock {
@@ -97,7 +97,7 @@ main .date {
 }
 main .title {
   padding: 0.4rem 0.3rem 0.3rem 0.8rem;
-  font-family: "Overpass Mono", "Courier New", monospace;
+  font-family: "Overpass Mono", monospace;
   background-color: rgb(116, 186, 143);
 }
 main .title h2 {
@@ -118,7 +118,7 @@ main .waypoint {
 }
 main .location h3 {
   font-size: 1.2rem;
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: lighter;
   color: #fff;
   margin: 0%;
@@ -228,7 +228,7 @@ main .popup-date,
 main .popup-time,
 main .popup-location {
   font-size: 20px;
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 main .popup-time {
   margin-left: 5px;
@@ -243,12 +243,12 @@ main .popup-title {
   font-size: 24px;
   font-weight: bold;
   color: black;
-  font-family: "Overpass Mono", "Courier New", monospace;
+  font-family: "Overpass Mono", monospace;
 }
 main .popup-description {
   font-size: 16px;
   margin-top: 5%;
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 main .share {
   position: absolute;
@@ -258,7 +258,7 @@ main .share {
   margin-top: 25%;
   display: flex;
   align-items: center;
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 main .share .link {
   width: 100px;
@@ -314,7 +314,7 @@ main .events-navigation {
     border-radius: 5px;
     background-color: #3b3b3b;
     color: #fff;
-    font-family: "Overpass Mono", "Courier New", monospace;
+    font-family: "Overpass Mono", monospace;
   }
   main .upcoming-header.active {
     background-color: rgb(69, 139, 96);
@@ -427,7 +427,7 @@ main .events-navigation {
   main .popup-time,
   main .popup-location {
     font-size: 18px;
-    font-family: "Outfit", Arial, sans-serif;
+    font-family: "Outfit", sans-serif;
   }
   main .popup-time {
     margin-left: 5px;
@@ -447,12 +447,12 @@ main .events-navigation {
     font-size: 24px;
     font-weight: bold;
     color: black;
-    font-family: "Overpass Mono", "Courier New", monospace;
+    font-family: "Overpass Mono", monospace;
   }
   main .popup-description {
     font-size: 16px;
     margin-top: 5%;
-    font-family: "Outfit", Arial, sans-serif;
+    font-family: "Outfit", sans-serif;
   }
   main .share {
     position: absolute;
@@ -462,7 +462,7 @@ main .events-navigation {
     margin-top: 25%;
     display: flex;
     align-items: center;
-    font-family: "Outfit", Arial, sans-serif;
+    font-family: "Outfit", sans-serif;
   }
   main .share .link {
     width: 100%;
