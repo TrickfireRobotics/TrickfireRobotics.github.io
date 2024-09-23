@@ -32,6 +32,10 @@ main picture#backgroundContainer img {
   width: 100%;
   height: auto;
   z-index: -1;
+  aspect-ratio: 16/9;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-top: 3em;
 }
 main picture#backgroundContainer::before {
   content: "";
@@ -209,8 +213,6 @@ main section#teamCompetitionSection div#awardLogoContainer img {
   main section#teamTextSection h2 {
     font-size: 2.6rem;
     line-height: normal;
-    padding-top: 12svh;
-    padding-bottom: 12svh;
   }
   main section#teamTextSection article p {
     padding-bottom: 3em;

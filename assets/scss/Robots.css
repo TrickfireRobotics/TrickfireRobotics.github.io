@@ -5,7 +5,7 @@ main {
   flex-direction: column;
 }
 main h2 {
-  font-size: calc(1rem + 1.5vw);
+  font-size: calc(1rem + 2.5vw);
   font-weight: bold;
   letter-spacing: 0.1em;
   color: hsl(0, 100%, 99%);
@@ -16,7 +16,7 @@ main li {
   letter-spacing: 0.05em;
   font-weight: 300;
   color: hsl(0, 5%, 95%);
-  font-size: calc(1rem + 0.1vw);
+  font-size: calc(1rem + 0.2vw);
 }
 main p a,
 main li a {
@@ -34,8 +34,9 @@ main section div.contentContainer {
 }
 main section h3 {
   color: rgb(0, 255, 0);
-  font-size: calc(1rem + 0.5vw);
+  font-size: calc(1rem + 0.6vw);
   font-weight: normal;
+  text-transform: uppercase;
 }
 main section picture.backgroundImage {
   position: absolute;
@@ -58,8 +59,9 @@ main section ul {
   margin-top: 0.5em;
 }
 main section ul li {
-  font-size: calc(1rem + 0.2vw);
+  font-size: calc(1rem + 0.5vw);
   font-family: "Outfit", sans-serif;
+  font-weight: 400;
 }
 main section picture.imageContainer {
   width: 50%;
@@ -155,7 +157,7 @@ main section::before {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: hsla(0, 0%, 5%, 0.9);
+  background-color: hsla(0, 0%, 5%, 0.7);
   content: "";
 }
 
