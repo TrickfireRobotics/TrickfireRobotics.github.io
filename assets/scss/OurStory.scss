@@ -37,6 +37,9 @@ main {
       width: 100%;
       height: auto;
       z-index: -1;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      margin-top: 3em;
     }
   }
 
@@ -250,8 +253,6 @@ main {
       h2 {
         font-size: 2.6rem;
         line-height: normal;
-        padding-top: 12svh;
-        padding-bottom: 12svh;
       }
 
       article p {

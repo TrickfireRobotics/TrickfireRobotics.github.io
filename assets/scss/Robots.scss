@@ -7,7 +7,7 @@ main {
   flex-direction: column;
 
   h2 {
-    font-size: calc(1rem + 1.5vw);
+    font-size: calc(1rem + 2.5vw);
     font-weight: bold;
     letter-spacing: 0.1em;
     color: hsl(0, 100%, 99%);
@@ -19,7 +19,7 @@ main {
     letter-spacing: 0.05em;
     font-weight: 300;
     color: hsl(0, 5%, 95%);
-    font-size: calc(1rem + 0.1vw);
+    font-size: calc(1rem + 0.2vw);
 
     a {
       color: $neon-green;
@@ -39,8 +39,9 @@ main {
 
     h3 {
       color: $neon-green;
-      font-size: calc(1rem + 0.5vw);
+      font-size: calc(1rem + 0.6vw);
       font-weight: normal;
+      text-transform: uppercase;
     }
 
     picture.backgroundImage {
@@ -63,8 +64,9 @@ main {
       padding-left: 1em;
       margin-top: 0.5em;
       li {
-        font-size: calc(1rem + 0.2vw);
+        font-size: calc(1rem + 0.5vw);
         font-family: $text-font;
+        font-weight: 400;
       }
     }
 
@@ -181,7 +183,7 @@ main {
     height: 100%;
     top: 0;
     left: 0;
-    background-color: hsla(0, 0%, 5%, 90%);
+    background-color: hsla(0, 0%, 5%, 70%);
     content: "";
   }
 }
