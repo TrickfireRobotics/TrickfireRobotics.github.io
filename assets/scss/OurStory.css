@@ -172,9 +172,10 @@ main section#teamInstagramSection div#photoContainer:has(button) {
 main section#teamInstagramSection div#photoContainer:has(button) h4 {
   color: hsl(0, 100%, 99%);
   font-size: calc(1rem + 0.4vw);
+  text-align: center;
 }
 main section#teamInstagramSection div#photoContainer:has(button) button {
-  width: 25%;
+  width: 25vw;
   background-color: hsl(133, 97%, 38%);
   padding: 1.5em 0.5em;
   margin: 1em 0;
@@ -186,20 +187,6 @@ main section#teamInstagramSection div#photoContainer:has(button) button {
 main section#teamInstagramSection div#photoContainer:has(button) button:hover {
   background-color: hsl(133, 91%, 29%);
 }
-main section#teamCompetitionSection {
-  text-align: center;
-  padding: 4em 12vw;
-}
-main section#teamCompetitionSection div#awardLogoContainer {
-  display: flex;
-  justify-content: space-between;
-  padding: 6em 0;
-}
-main section#teamCompetitionSection div#awardLogoContainer img {
-  height: 8em;
-  width: auto;
-}
-
 @media only screen and (max-width: 768px) {
   main section#teamTextSection div {
     flex-direction: column;

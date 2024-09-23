@@ -241,10 +241,12 @@ footer {
       border: none;
       background-color: transparent;
       padding: 0.25em;
+
       img {
         aspect-ratio: 1 / 1;
         width: 3em;
       }
+
       p {
         font-size: calc(1rem + 0.01vw);
         color: hsl(0, 0%, 70%);
@@ -265,17 +267,18 @@ footer {
     navbar#dropDownNav {
       display: inline-block;
       position: absolute;
+      background-color: hsla(0, 0%, 0%, 0.95);
       top: 5em;
-      background-color: hsla(0, 0%, 0%, 0.886);
       z-index: 1;
-      padding: 3em;
-      padding-top: 0.5em;
-      transform-origin: top;
-      transform: scaleY(0);
-      transition: transform 0.2s ease-in-out;
+      max-height: 0;
+      overflow: hidden;
+      margin: 0;
+      transition: max-height 0.2s ease-in-out;
 
       ul {
         flex-direction: column;
+        margin: 3em;
+        margin-top: 0.5em;
         li {
           padding: 2em 1.5em;
           a {
@@ -312,7 +315,7 @@ footer {
     }
 
     navbar#dropDownNav[aria-hidden*="false"] {
-      transform: scaleY(1);
+      max-height: 100svh;
     }
 
     #navSponsorLink {

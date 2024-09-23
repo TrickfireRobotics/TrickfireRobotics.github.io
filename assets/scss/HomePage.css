@@ -74,7 +74,7 @@ main div#starBackgroundSection section div.imageContainer div#galleryImagesConta
 main div#starBackgroundSection section picture.imageContainer div#galleryImagesContainer picture img {
   display: none;
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 3/2;
   height: auto;
   -o-object-fit: cover;
      object-fit: cover;
@@ -300,12 +300,6 @@ main div#starBackgroundSection::before {
   left: 0;
   background-color: hsla(250, 40%, 10%, 0.4);
 }
-main div#starBackgroundSection section#teamCompetitionSection {
-  flex-direction: column;
-  text-align: center;
-  padding: 0em 7vw;
-}
-
 @media only screen and (max-width: 768px) {
   main div#introductionSection,
   main div#starBackgroundSection {
@@ -328,7 +322,6 @@ main div#starBackgroundSection section#teamCompetitionSection {
   main div#introductionSection section div.imageContainer div#galleryImagesContainer img,
   main div#starBackgroundSection section picture.imageContainer div#galleryImagesContainer img,
   main div#starBackgroundSection section div.imageContainer div#galleryImagesContainer img {
-    display: none;
     width: 100%;
     height: 50svh;
     -o-object-fit: cover;

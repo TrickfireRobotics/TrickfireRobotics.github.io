@@ -100,20 +100,6 @@ main section#sponsorshipFundsSection div#fundLocationContainer article.fundLocat
     width: 20%;
   }
 }
-main section#sponsorsSection {
-  text-align: center;
-  margin-left: 12vw;
-  margin-right: 12vw;
-}
-main section#sponsorsSection div#sponsorLogoContainer {
-  display: flex;
-  justify-content: space-between;
-  margin: 8svh 0;
-}
-main section#sponsorsSection div#sponsorLogoContainer img {
-  height: 8em;
-  width: auto;
-}
 main section#howToSection h3 {
   text-align: center;
 }
@@ -157,12 +143,6 @@ main section#howToSection div.mainContentContainer article p {
   }
   main section#howToSection div.mainContentContainer {
     flex-direction: column-reverse;
-  }
-  main section#sponsorsSection div#sponsorLogoContainer {
-    gap: 4em;
-    flex-direction: column;
-    padding: 0 6vw;
-    align-items: center;
   }
 }
 
