@@ -304,24 +304,6 @@ function openPopup(eventData) {
   popup.style.display = "flex";
 }
 
-// // Adding event listeners to each card
-// document.querySelectorAll('.event-card').forEach((card, index) => {
-//   card.addEventListener('click', () => {
-//     console.log("activated")
-//     console.log(window.innerWidth)
-//     if (window.innerWidth >= 1000) {
-//         openPopup(events[index]);
-//     }
-//   });
-// });
-
-// // Closing the popup when clicking outside of the popup content
-// popup.addEventListener('click', (e) => {
-//   if (e.target === popup) {
-//     popup.style.display = "none";
-//   }
-// });
-
 function addPopupEventListeners() {
   document.querySelectorAll(".event-card").forEach((card, index) => {
     card.addEventListener("click", () => {

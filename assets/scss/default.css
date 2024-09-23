@@ -112,7 +112,7 @@ header button {
   display: none;
 }
 
-header [aria-hidden*="false"],
+header [aria-hidden*=false],
 header navbar#dropDownNav {
   display: none;
   background-color: red;
@@ -224,10 +224,10 @@ footer p {
     font-size: calc(1rem + 0.01vw);
     color: hsl(0, 0%, 70%);
   }
-  header button[aria-expanded="true"] {
+  header button[aria-expanded=true] {
     background-color: hsla(0, 0%, 70%, 0.1);
   }
-  header button[aria-expanded="true"] p {
+  header button[aria-expanded=true] p {
     color: hsl(0, 100%, 98%);
   }
   header navbar {
@@ -236,17 +236,18 @@ footer p {
   header navbar#dropDownNav {
     display: inline-block;
     position: absolute;
+    background-color: hsla(0, 0%, 0%, 0.95);
     top: 5em;
-    background-color: hsla(0, 0%, 0%, 0.886);
     z-index: 1;
-    padding: 3em;
-    padding-top: 0.5em;
-    transform-origin: top;
-    transform: scaleY(0);
-    transition: transform 0.2s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    transition: max-height 0.2s ease-in-out;
   }
   header navbar#dropDownNav ul {
     flex-direction: column;
+    margin: 3em;
+    margin-top: 0.5em;
   }
   header navbar#dropDownNav ul li {
     padding: 2em 1.5em;
@@ -278,8 +279,8 @@ footer p {
     height: 0.1em;
     background-color: hsl(0, 2%, 35%);
   }
-  header navbar#dropDownNav[aria-hidden*="false"] {
-    transform: scaleY(1);
+  header navbar#dropDownNav[aria-hidden*=false] {
+    max-height: 100svh;
   }
   header #navSponsorLink {
     display: none;
@@ -327,4 +328,4 @@ footer p {
   * {
     animation: none !important;
   }
-} /*# sourceMappingURL=default.css.map */
+}/*# sourceMappingURL=default.css.map */

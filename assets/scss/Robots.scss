@@ -183,12 +183,10 @@ main {
     height: 100%;
     top: 0;
     left: 0;
-    background-color: hsla(0, 0%, 5%, 70%);
+    background-color: hsla(0, 0%, 5%, 80%);
     content: "";
   }
-}
-@media only screen and (max-width: 768px) {
-  main {
+  @media only screen and (max-width: 768px) {
     h2 {
       font-size: calc(1rem + 3vw);
       margin: 0.2em 0;
