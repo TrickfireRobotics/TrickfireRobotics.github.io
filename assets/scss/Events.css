@@ -1,5 +1,6 @@
 main {
   background-color: rgb(23, 23, 23);
+  width: 100vw;
   /* Popup content */
   /* First column */
   /* Second column */
@@ -10,7 +11,9 @@ main h1 {
 main .page-setup {
   overflow: hidden;
   justify-content: center;
-  padding: 100px;
+  padding: 3em 6vw 6em 6vw;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 main .upcoming-card-wrapper {
   position: relative;
@@ -46,6 +49,9 @@ main .previous-events .title {
 main .previous-events .tags,
 main .previous-events .location {
   background-color: #929d97;
+}
+main .previous-events::-webkit-scrollbar {
+  display: none;
 }
 main .event-card {
   width: 300px;

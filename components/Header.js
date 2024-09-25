@@ -34,6 +34,7 @@ $(document).ready(function () {
   }
 
   header.html(` 
+    <div class = "contentWidthContainer">
       <button aria-roledescription = "Open the nav menu" aria-haspopup = "true" aria-expanded = "false">
         <img
           src="./assets/images/icons/MenuIcon.svg"
@@ -85,7 +86,9 @@ $(document).ready(function () {
           </li>
         </ul>
       </navbar>
-      <a id="navSponsorLink" href="./Sponsor.html">Sponsor</a>`);
+      <a id="navSponsorLink" href="./Sponsor.html">Sponsor</a>
+    </div>
+    `);
 
   $("body").prepend(header);
 

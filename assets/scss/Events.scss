@@ -2,6 +2,7 @@
 
 main {
   background-color: $background-color;
+  width: 100vw;
 
   h1 {
     color: #fff;
@@ -9,7 +10,9 @@ main {
   .page-setup {
     overflow: hidden;
     justify-content: center;
-    padding: 100px;
+    padding: 3em 6vw 6em 6vw;
+    max-width: 1500px;
+    margin: 0 auto;
   }
   .upcoming-card-wrapper {
     position: relative;
@@ -45,6 +48,10 @@ main {
     .location {
       background-color: #929d97;
     }
+  }
+
+  .previous-events::-webkit-scrollbar {
+    display: none;
   }
 
   .event-card {
