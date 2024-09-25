@@ -124,6 +124,7 @@ main section#teamLeadersSection div.contentWidthContainer article div.quote h3 {
   margin-bottom: 0.75em;
   font-size: calc(1rem + 0.4vw);
   background-color: rgb(69, 139, 96);
+  font-weight: 400;
   box-shadow: 0 -0.2em 0 hsl(143, 34%, 30%) inset;
 }
 main section#teamLeadersSection div.contentWidthContainer article.reversed {
@@ -135,6 +136,7 @@ main section#teamLeadersSection div.contentWidthContainer article.reversed div.q
 main section#teamInstagramSection {
   background-color: rgb(23, 23, 23);
   padding: 4em 6vw;
+  text-align: center;
 }
 main section#teamInstagramSection div#photoContainer {
   display: grid;

@@ -365,33 +365,36 @@ main {
 
     section#missionSection {
       background-color: black;
-      overflow-y: visible;
 
-      h2 {
-        margin-bottom: 3vh;
-      }
+      div.contentWidthContainer {
+        overflow-y: visible;
 
-      div#cardContainer {
-        flex-direction: column;
-        gap: 2em;
+        h2 {
+          margin-bottom: 3vh;
+        }
 
-        article {
-          flex-direction: row;
-          background-color: hsl(0, 0%, 19%);
-          text-align: left;
-          gap: 1em;
+        div#cardContainer {
+          flex-direction: column;
+          gap: 2em;
 
-          img {
-            height: 4em;
-            width: auto;
-            padding: 0;
-            margin: auto 0;
-          }
+          article {
+            flex-direction: row;
+            background-color: hsl(0, 0%, 19%);
+            text-align: left;
+            gap: 1em;
 
-          h3,
-          p,
-          img {
-            padding: 0;
+            img {
+              height: 4em;
+              width: auto;
+              padding: 0;
+              margin: auto 0;
+            }
+
+            h3,
+            p,
+            img {
+              padding: 0;
+            }
           }
         }
       }
