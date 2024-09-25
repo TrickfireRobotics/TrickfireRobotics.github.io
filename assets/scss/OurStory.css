@@ -194,6 +194,7 @@ main section#teamInstagramSection div#photoContainer:has(button) button {
 main section#teamInstagramSection div#photoContainer:has(button) button:hover {
   background-color: hsl(133, 91%, 29%);
 }
+
 @media only screen and (max-width: 1000px) {
   main section#teamTextSection div.contentWidthContainer div {
     flex-direction: column;
