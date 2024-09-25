@@ -153,6 +153,7 @@ main {
             margin-bottom: 0.75em;
             font-size: calc(1rem + 0.4vw);
             background-color: $muted-green;
+            font-weight: 400;
             box-shadow: 0 -0.2em 0 hsl(143, 34%, 30%) inset;
           }
         }
@@ -169,6 +170,7 @@ main {
   section#teamInstagramSection {
     background-color: $background-color;
     padding: 4em 6vw;
+    text-align: center;
 
     div#photoContainer {
       display: grid;

@@ -369,30 +369,32 @@ main div#starBackgroundSection::before {
   }
   main section#missionSection {
     background-color: black;
+  }
+  main section#missionSection div.contentWidthContainer {
     overflow-y: visible;
   }
-  main section#missionSection h2 {
+  main section#missionSection div.contentWidthContainer h2 {
     margin-bottom: 3vh;
   }
-  main section#missionSection div#cardContainer {
+  main section#missionSection div.contentWidthContainer div#cardContainer {
     flex-direction: column;
     gap: 2em;
   }
-  main section#missionSection div#cardContainer article {
+  main section#missionSection div.contentWidthContainer div#cardContainer article {
     flex-direction: row;
     background-color: hsl(0, 0%, 19%);
     text-align: left;
     gap: 1em;
   }
-  main section#missionSection div#cardContainer article img {
+  main section#missionSection div.contentWidthContainer div#cardContainer article img {
     height: 4em;
     width: auto;
     padding: 0;
     margin: auto 0;
   }
-  main section#missionSection div#cardContainer article h3,
-  main section#missionSection div#cardContainer article p,
-  main section#missionSection div#cardContainer article img {
+  main section#missionSection div.contentWidthContainer div#cardContainer article h3,
+  main section#missionSection div.contentWidthContainer div#cardContainer article p,
+  main section#missionSection div.contentWidthContainer div#cardContainer article img {
     padding: 0;
   }
   main section#missionSection::before {
