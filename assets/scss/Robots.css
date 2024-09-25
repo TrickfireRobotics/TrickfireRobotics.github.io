@@ -5,7 +5,7 @@ main {
   flex-direction: column;
 }
 main h2 {
-  font-size: calc(1rem + 2.5vw);
+  font-size: clamp(1.1rem, 1.1rem + 2.5vw, 70px);
   font-weight: bold;
   letter-spacing: 0.1em;
   color: hsl(0, 100%, 99%);
@@ -16,7 +16,7 @@ main li {
   letter-spacing: 0.05em;
   font-weight: 300;
   color: hsl(0, 5%, 95%);
-  font-size: calc(1rem + 0.2vw);
+  font-size: clamp(1.1rem, 1.1rem + 0.2vw, 20px);
 }
 main p a,
 main li a {
@@ -30,6 +30,8 @@ main section div.contentContainer {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
   gap: 5vw;
 }
 main section h3 {
@@ -159,6 +161,9 @@ main section::before {
   left: 0;
   background-color: hsla(0, 0%, 5%, 0.8);
   content: "";
+}
+main section#firstSection {
+  padding-top: 4em;
 }
 @media only screen and (max-width: 768px) {
   main h2 {

@@ -3,9 +3,6 @@
 main {
   padding: 5em 6vw;
   color: hsl(0, 100%, 99%);
-  display: flex;
-  flex-direction: column;
-  gap: 7em;
 
   ul,
   ol,
@@ -13,7 +10,7 @@ main {
     color: hsl(0, 5%, 95%);
     font-weight: 300;
     font-family: $text-font;
-    font-size: calc(1rem + 0.1vw);
+    font-size: clamp(1.1rem, 1.1rem + 0.1vw, 20px);
     line-height: 160%;
     letter-spacing: 0.05em;
   }
@@ -28,11 +25,19 @@ main {
 
   h2 {
     text-align: center;
-    font-size: calc(1rem + 3vw);
+    font-size: clamp(1.1rem, 1.1rem + 3vw, 80px);
   }
 
   h3 {
-    font-size: calc(1rem + 1.5vw);
+    font-size: clamp(1.1rem, 1rem + 1.5vw, 50px);
+  }
+
+  div#contentWidthContainer {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 7em;
   }
 
   picture {
@@ -146,7 +151,7 @@ main {
     }
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1000px) {
     section#introductionSection div.mainContentContainer {
       flex-direction: column-reverse;
       margin-top: 6vh;
@@ -188,7 +193,7 @@ main::before {
   position: absolute;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1000px) {
   main {
     padding: 6vh 6vw 8vh 6vw;
     gap: 8vh;
