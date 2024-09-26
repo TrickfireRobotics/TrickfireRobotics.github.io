@@ -19,16 +19,16 @@ $(document).ready(function () {
         <section aria-label = "Join us links">
           <h2>Join Us</h2>
           <ul role = "menu">
-            <li role  = "menuitem"><a href = "./JoinUs.html">Students</a></li>
-            <li role = "menuitem"><a href = "./JoinUs.html">Mentors</a></li>
+            <li role  = "menuitem"><a href = "./join-us.html">Students</a></li>
+            <li role = "menuitem"><a href = "./join-us.html">Mentors</a></li>
           </ul>
         </section>
         <section aria-label = "Robot links">
           <h2>Robots</h2>
           <ul role = "menu">
-            <li role = "menuitem"><a href = "./Robots.html">Viator</a></li>
-            <li role = "menuitem"><a href = "./Robots.html">Houdini</a></li>
-            <li role = "menuitem"><a href = "./Robots.html">Atlas</a></li>
+            <li role = "menuitem"><a href = "./robots.html">Viator</a></li>
+            <li role = "menuitem"><a href = "./robots.html">Houdini</a></li>
+            <li role = "menuitem"><a href = "./robots.html">Atlas</a></li>
           </ul>
         </section>
         <section aria-label = "Contact links">
@@ -69,7 +69,7 @@ $(document).ready(function () {
         <section id="mobileContactContainer" aria-label = "Contact links">
           <ul role = "menu">
             <li role = "menuitem">
-              <a href="mailto:tfrbtcs@uw.edu" target=""
+              <a href="mailto:tfrbtcs@uw.edu"
                 ><img src="assets/images/icons/EmailIcon.svg" alt="Link to email" loading="lazy" encoding="async"
               /></a>
             </li>
@@ -90,9 +90,9 @@ $(document).ready(function () {
         </section>
         <section id="siteLinkContainer" aria-label = "Page links">
           <ul role = "menu">
-            <li role = "menuitem"><a href="./JoinUs.html">Join Us</a></li>
+            <li role = "menuitem"><a href="./join-us.html">Join Us</a></li>
             <li role = "presentation">|</li>
-            <li role = "menuitem"><a href="./Robots.html">Robots</a></li>
+            <li role = "menuitem"><a href="./robots.html">Robots</a></li>
           </ul>
         </section>
       </div>
