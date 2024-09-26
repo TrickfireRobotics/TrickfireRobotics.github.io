@@ -4,6 +4,8 @@ $(document).ready(function () {
     url = new URL(window.location.href).pathname;
   let subpageName, navClass;
 
+  console.log(url);
+
   //Assign subpageName and navClass according to the current URL path.
   switch (url) {
     case "/":
@@ -43,19 +45,19 @@ $(document).ready(function () {
       <navbar id = "dropDownNav" role = "navigation" aria-hidden = "true">
         <ul role="menubar">
           <li role = "menuitem">
-            <a class = "robots" href="./robots.html">Robots</a>
+            <a class = "robots" href="./robots">Robots</a>
           </li role = "menuitem">
           <li role = "menuitem">
-            <a class = "ourStory" href="./our-story.html">Our Story</a>
+            <a class = "ourStory" href="./our-story">Our Story</a>
           </li>
           <li role = "menuitem">
-            <a class = "events" href="./events.html">Events</a>
+            <a class = "events" href="./events">Events</a>
           </li>
           <li role = "menuitem">
-            <a class = "joinUs" href="./join-us.html">Join Us</a>
+            <a class = "joinUs" href="./join-us">Join Us</a>
           </li>
           <li role = "menuitem">
-            <a class = "sponsor" href="./sponsor.html">Sponsor</a>
+            <a class = "sponsor" href="./sponsor">Sponsor</a>
           </li>
         </ul>
       </navbar>
@@ -71,20 +73,20 @@ $(document).ready(function () {
       <navbar role = "navigation">
         <ul role="menubar">
           <li role = "menuitem">
-            <a class = "robots" href="./robots.html">Robots</a>
+            <a class = "robots" href="./robots">Robots</a>
           </li role = "menuitem">
           <li role = "menuitem">
-            <a class = "ourStory" href="./our-story.html">Our Story</a>
+            <a class = "ourStory" href="./our-story">Our Story</a>
           </li>
           <li role = "menuitem">
-            <a class = "events" href="./events.html">Events</a>
+            <a class = "events" href="./events">Events</a>
           </li>
           <li role = "menuitem">
-            <a class = "joinUs" href="./join-us.html">Join Us</a>
+            <a class = "joinUs" href="./join-us">Join Us</a>
           </li>
         </ul>
       </navbar>
-      <a id="navSponsorLink" href="./sponsor.html">Sponsor</a>
+      <a id="navSponsorLink" href="./sponsor">Sponsor</a>
     </div>
     `);
 

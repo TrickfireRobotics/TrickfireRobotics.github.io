@@ -19,16 +19,16 @@ $(document).ready(function () {
         <section aria-label = "Join us links">
           <h2>Join Us</h2>
           <ul role = "menu">
-            <li role  = "menuitem"><a href = "./join-us.html">Students</a></li>
-            <li role = "menuitem"><a href = "./join-us.html">Mentors</a></li>
+            <li role  = "menuitem"><a href = "./join-us">Students</a></li>
+            <li role = "menuitem"><a href = "./join-us">Mentors</a></li>
           </ul>
         </section>
         <section aria-label = "Robot links">
           <h2>Robots</h2>
           <ul role = "menu">
-            <li role = "menuitem"><a href = "./robots.html">Viator</a></li>
-            <li role = "menuitem"><a href = "./robots.html">Houdini</a></li>
-            <li role = "menuitem"><a href = "./robots.html">Atlas</a></li>
+            <li role = "menuitem"><a href = "./robots">Viator</a></li>
+            <li role = "menuitem"><a href = "./robots">Houdini</a></li>
+            <li role = "menuitem"><a href = "./robots">Atlas</a></li>
           </ul>
         </section>
         <section aria-label = "Contact links">
@@ -90,9 +90,9 @@ $(document).ready(function () {
         </section>
         <section id="siteLinkContainer" aria-label = "Page links">
           <ul role = "menu">
-            <li role = "menuitem"><a href="./join-us.html">Join Us</a></li>
+            <li role = "menuitem"><a href="./join-us">Join Us</a></li>
             <li role = "presentation">|</li>
-            <li role = "menuitem"><a href="./robots.html">Robots</a></li>
+            <li role = "menuitem"><a href="./robots">Robots</a></li>
           </ul>
         </section>
       </div>
