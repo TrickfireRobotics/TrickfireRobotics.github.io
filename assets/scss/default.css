@@ -106,7 +106,7 @@ header #navTitleSection h1 {
 }
 header #navTitleSection img {
   width: 1.75em;
-  aspect-ratio: 1/2;
+  aspect-ratio: 3/5.8;
 }
 header #navSponsorLink {
   border: 2px solid hsl(133, 97%, 38%);

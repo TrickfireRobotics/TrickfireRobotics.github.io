@@ -1,5 +1,6 @@
 // Array of event data with placeholder image
 const events = [
+  /*
   {
     date: "Sep 15th, 24",
     time: "5 pm - 7 pm",
@@ -70,6 +71,7 @@ const events = [
       "A fun and engaging orientation session to kickstart the new term!",
     image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
   },
+*/
 ];
 // Helper function to parse the date and time from the event
 function parseEventDateTime(event) {

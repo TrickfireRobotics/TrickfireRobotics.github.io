@@ -162,7 +162,6 @@ main section::before {
   background-color: hsla(0, 0%, 5%, 0.8);
   content: "";
 }
-
 main section#firstSection {
   padding-top: 4em;
 }
