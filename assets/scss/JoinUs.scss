@@ -1,0 +1,211 @@
+@import "./variables.scss";
+
+main {
+  background-color: $background-color;
+  padding: 4em 6vw 7em 6vw;
+  overflow-x: hidden;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  gap: 7em;
+
+  h2 {
+    font-size: clamp(1.1rem, 1.1rem + 2vw, 55px);
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    color: hsl(0, 100%, 99%);
+  }
+
+  p {
+    line-height: 160%;
+    letter-spacing: 0.05em;
+    font-weight: 300;
+    color: hsl(0, 5%, 99%);
+    font-size: clamp(1.1rem, 1.1rem + 0.1vw, 18px);
+
+    a {
+      color: $neon-green;
+    }
+  }
+
+  section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    gap: min(5vw, 150px);
+
+    picture.imageContainer {
+      width: 50%;
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        border: hsl(222, 61%, 87%) 0.5em solid;
+      }
+    }
+
+    picture.imageContainer::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      left: 0%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: hsl(0, 0%, 65%);
+      filter: blur(20vw);
+    }
+
+    article {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      div.articleHeader {
+        width: 100%;
+        padding-bottom: 2em;
+      }
+
+      h2 {
+        margin-bottom: 0.5em;
+      }
+
+      a.leaveSiteLink {
+        width: 100%;
+        border-radius: 2em;
+        display: flex;
+        background-color: hsl(133, 97%, 38%);
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.1s ease-in-out;
+        border: solid black 2px;
+
+        div {
+          text-decoration: none;
+          color: black;
+          flex-basis: 85%;
+          flex-grow: 1;
+          padding: 0.5em;
+          font-weight: 500;
+        }
+
+        img {
+          aspect-ratio: 1/1;
+          width: auto;
+          height: 100%;
+          flex-basis: 5%;
+          flex-grow: 0;
+          padding: 0.5em;
+          background-color: white;
+          border-radius: 50%;
+          box-shadow: 0 0 4px white;
+        }
+
+        img.leftPointArrow {
+          display: none;
+        }
+
+        img.rightPointArrow {
+          display: inline-block;
+          transform: rotate(180deg);
+        }
+      }
+
+      a.leaveSiteLink:hover {
+        background-color: hsl(133, 91%, 29%);
+        transform: translateY(-4px);
+        box-shadow: 0 4px 0 black;
+
+        div {
+          color: white;
+        }
+      }
+
+      a.leaveSiteLink:active {
+        background-color: hsl(133, 97%, 38%);
+        transform: translateY(0);
+        box-shadow: none;
+
+        div {
+          color: black;
+        }
+      }
+    }
+  }
+
+  section.reversed {
+    flex-direction: row-reverse;
+
+    a.leaveSiteLink {
+      background-color: hsl(133, 97%, 38%);
+
+      img.leftPointArrow {
+        display: inline-block;
+      }
+
+      img.rightPointArrow {
+        display: none;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  main {
+    padding: 4vh 6vw 8svh 6vw;
+    gap: 12svh;
+    h2 {
+      font-size: calc(1rem + 3vw);
+      margin: 0.2em 0;
+    }
+    section {
+      flex-direction: column-reverse !important;
+      gap: 4;
+      margin: 0;
+
+      picture.imageContainer {
+        width: 100%;
+      }
+
+      div.imageContainer::before {
+        filter: blur(5svh);
+      }
+
+      article {
+        width: 100%;
+
+        a.leaveSiteLink {
+          div {
+            padding: 0.7em 0;
+          }
+
+          img {
+            padding: 0.7em;
+          }
+
+          img.leftPointArrow {
+            display: none !important;
+          }
+
+          img.rightPointArrow {
+            display: inline-block !important;
+            transform: rotate(180deg);
+          }
+        }
+
+        div.articleHeader {
+          padding-bottom: 3em;
+        }
+      }
+    }
+
+    section.reversed {
+      flex-direction: column;
+    }
+  }
+}

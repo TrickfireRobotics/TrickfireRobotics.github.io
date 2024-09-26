@@ -1,363 +1,390 @@
-@import './variables.scss';
+@import "./variables.scss";
 //Styles that are shared between pages
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
 }
 
-//From "home_page_style.css"
-
-.dark_background {
-    background-color: rgb(22, 22, 22);
+html {
+  background-color: $background-color;
 }
 
-.gray_background {
-    background-color: rgb(63, 63, 63);
-}
-
-.black_background {
-    background-color: rgb(0, 0, 0);
-}
-
-.dark_gray_background {
-    background-color: rgb(40, 40, 40);
-}
-
-//default new
-body {
-    background-color: $background-color;
-    color: $text-color;
-}
-img {
-    max-height: 100%;
-    max-width: 100%;
-}
 h1,
 h2,
 h3,
-h4,
-p {
-    font-family: $text-font;
+h4 {
+  font-family: $header-font;
 }
 
-.nav-item {
+p,
+a {
+  font-family: $text-font;
+}
+
+main {
+  overflow: hidden;
+  max-width: 100%;
+  top: 5em;
+}
+
+//Header Desktop Styles
+header {
+  width: 100vw;
+  height: 5em;
+  padding: 0.8em 0;
+  padding-right: 1vw;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background-color: $background-color;
+  color: white;
+  position: fixed;
+  z-index: 9999;
+
+  div.contentWidthContainer {
+    width: 100%;
+    height: 100%;
+    max-width: 1500px;
+    padding: 0 6vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: hsl(0, 100%, 99%);
+  }
+
+  ul {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
     a {
-        
-        &:hover {
-            color: $accent-text-color;
-        }
-        &:active {
-            color: inherit;
-        }
-        
+      margin-left: 4vw;
+      text-decoration: none;
+      font-weight: normal;
+      color: hsl(0, 0%, 70%);
+      transition: color 0.1s linear;
     }
-}
-
-
-
-
-//Navbar
-nav {
-    background-color: $navbar-background-color;
-    /*makes the bootstrap navbar this green color*/
-    min-height: 59px;
-}
-
-.nav-link {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 0 10px;
-    color: $navbar-text-color;
-}
-
-footer {
-    height: 40vh;
-    min-height: 200px;
-    background-color: $dark-background-color;
-    text-align: center;
-    position: relative;
-    padding-top: 100px;
-    //The dividing line
-    &::after {
-        content: '';
-        position: absolute;
-        top: -45px;
-        left: 0;
-        height: 90px;
-        width: 100%;
-        background-image: url('../images/line_divider_svg.svg');
-        background-repeat: repeat-x;
+    a.currPage {
+      color: hsl(0, 100%, 99%);
+      font-weight: bold;
     }
-    .social-media-icons {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        li {
-            list-style: none;
-            height: calc(clamp(35px, 3vw, 70px));
-            width: calc(clamp(35px, 3vw, 70px));
-            position: relative;
-            a {
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                border-radius: 50%;
-                background-color: $background-color;
-                line-height: 0;
-                display: flex;
-                align-items: center;
-                &:hover {
-                    background-color: $text-color;
-                    svg {
-                        fill: $background-color;
-                    }
-                }
-                //dynamically changes color when hovering and clicked on
-                &:active {
-                    background-color: $background-color;
-                    svg {
-                        fill: inherit;
-                    }
-                }
-            }
-            svg {
-                height: 50%;
-                width: 50%;
-                fill: $text-color;
-                margin: auto;
-            }
-        }
+    a.currPage::before {
+      display: inline-block;
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 0.1em;
+      background-color: hsl(0, 100%, 99%);
+      animation: underlineFadeIn 0.33s cubic-bezier(0.37, 0, 0.63, 1) forwards;
     }
-    #copyright-text {
-        color: $background-color;
-        font-weight: 500;
+    @keyframes underlineFadeIn {
+      0% {
+        top: 170%;
+        opacity: 0;
+      }
+      100% {
+        top: 120%;
+        opacity: 100%;
+      }
     }
-}
-.photo-section {
-    height: 70vh;
-    background-position-x: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    justify-content: center;
-    position: relative;
-    display: grid;
-    place-items: center;
+    a:hover {
+      color: hsl(0, 100%, 99%);
+    }
+  }
 
-    //dividing line
-    &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        //bottom and height are relative to each other
-        bottom: -18px;
-        height: 38px;
-        width: 100%;
-        background-image: url('../images/Line\ Dash\ Thing.png');
-        transform: scaleY(80%);
-        background-repeat: repeat-x;
-    }
-    //Dark gradient on photo
-    &::before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-    }
-
+  #navTitleSection {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
     h1 {
-        position: absolute;
-        font-size: calc(clamp(2rem, 10vw, 6rem));
-        color: $text-color;
-        font-weight: 550;
+      color: $neon-green;
+      font-size: x-large;
+      margin-top: 0.2em;
     }
+    img {
+      width: 1.75em;
+      aspect-ratio: 3 / 5.8;
+    }
+  }
+
+  #navSponsorLink {
+    border: 2px solid hsl(133, 97%, 38%);
+    border-radius: 0.5em;
+    text-decoration: none;
+    padding: 0.3em 2em;
+    color: white;
+    transition: background-color, color ease-in-out 0.33s;
+  }
+
+  #navSponsorLink:hover {
+    background-color: hsl(133, 97%, 38%);
+    color: $background-color;
+  }
+
+  button {
+    display: none;
+  }
 }
 
-@media only screen and (max-width: 767px) {
-    .small_social-media-logo {
-        max-width: 10vw;
-        max-height: 10vw;
-    }
-}
-@media only screen and (max-width: 1050px) {
-    // From "home_page _style.css
-    .small_index_row {
-        flex-direction: column;
-        padding: 2%;
-    }
-
-    .small_row {
-        display: none;
-    }
-
-    .small_row_text_setup {
-        position: static;
-        text-align: center;
-        background-color: rgb(42, 42, 42);
-        width: 100%;
-        margin-left: 0;
-        order: 1;
-        padding: 0% 0% 0% 0%;
-    }
-
-    .small_picture {
-        align-self: center;
-        padding: 2%;
-        order: 2;
-    }
+header [aria-hidden*="false"],
+header navbar#dropDownNav {
+  display: none;
+  background-color: red;
 }
 
-//ROW STUFF
+//Footer Desktop Styles
+footer {
+  background-color: $background-color;
+  color: white;
+  top: 5em;
+  max-width: 1500px;
+  margin: 0 auto;
 
-//small row
-@media only screen and (max-width: 1150px) {
-    .row-pic-right {
-        display: none;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  hr {
+    margin: 0 6vw;
+    border: 0.1px solid hsl(0, 0%, 40%);
+  }
+
+  #footerContentContainer {
+    display: flex;
+    padding: 3em 0;
+  }
+
+  #footerTitleContainer {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      display: flex;
+      align-items: center;
+      color: $neon-green;
     }
 
-    .row-pic-left {
-        display: none;
+    a h2 {
+      color: $neon-green;
+      text-align: center;
     }
-
-    .small-stacked-row {
-        text-align: center;
-        background-color: $row-background-color;
-
-        img {
-            padding: 0% 5% 5% 5%;
-            max-height: 400px;
-        }
-        .main-image {
-            width: 100%;
-            padding: 0;
-            object-fit: cover;
-        }
-        h1 {
-            padding-top: 5%;
-            font-size: calc(clamp(3rem, 5vw, 10rem));
-        }
-
-        p {
-            padding: 0% 5% 5% 5%;
-        }
-    }
-
-    .small-row-padding {
-        padding-top: 50px;
-    }
-}
-
-//To hide the rows when they are not needed
-@media only screen and (min-width: 1151px) {
-    .small-stacked-row {
-        display: none;
-    }
-
-    .small-row-padding {
-        display: none;
-    }
-}
-
-.space-after-rows {
-    padding-top: 100px;
-}
-
-.row-padding {
-    padding-top: 50px;
-}
-
-.row-pic-right {
-    justify-content: space-between;
-    flex-direction: row-reverse;
-
-    .words-on-background {
-        img {
-            object-fit: cover;
-            object-position: 100%;
-        }
-
-        //Title
-        h1 {
-            padding: 0% 10% 0% 0%;
-            left: 20px;
-            top: 10px;
-        }
-
-        //Text
-        p {
-            padding: 0% 10% 0% 0%;
-            left: 20px;
-            top: 110px;
-        }
-    }
-}
-
-.row-pic-left {
-    justify-content: space-between;
-    overflow: hidden;
-
-    .words-on-background {
-        img {
-            object-fit: cover;
-            object-position: 0%;
-        }
-
-        //Title
-        h1 {
-            padding: 0% 2% 0% 0%;
-            left: 120px;
-            top: 10px;
-        }
-
-        //Text
-        p {
-            padding: 0% 2% 0% 0%;
-            left: 120px;
-            top: 110px;
-        }
-    }
-}
-
-.words-on-background {
-    position: relative;
 
     img {
-        min-width: 100%;
-        min-height: 100%;
+      aspect-ratio: 1 / 1;
+      width: 6em;
+    }
+  }
+
+  section {
+    flex-basis: 15%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+
+    h2 {
+      font-size: medium;
     }
 
-    //Title
-    h1 {
-        position: absolute; /* This is absolute to make it overlay on the image*/
-        font-size: calc(clamp(3rem, 5vw, 5rem));
-        top: 0px;
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
     }
 
-    //Text
-    p {
-        position: absolute; /* This is absolute to make it overlay on the image*/
-        font-size: 20px;
-        top: 0px;
+    li {
+      list-style-type: none;
+      a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5em;
+        font-size: calc(1rem + 0.01vw);
+        font-weight: 300;
+        padding: 0.5em 0;
+        color: hsl(0, 0%, 70%);
+        transition: color 0.1s linear;
+        img {
+          width: 1.75em;
+          aspect-ratio: 1 / 1;
+        }
+      }
+      a:hover {
+        color: hsla(0, 100%, 99%);
+      }
     }
+  }
+
+  #mobileFooterContentContainer {
+    display: none;
+  }
+
+  p {
+    font-family: $header-font;
+    text-align: center;
+    font-size: small;
+    padding-bottom: 1em;
+    color: hsl(0, 0%, 70%);
+  }
 }
 
-.wide-screen-support {
-    max-width: $widescreen-min-width;
-    justify-content: center;
-    padding: 0px; //prevent the padding on the left and right that comes with bootstrap
+@media only screen and (max-width: 768px) {
+  //Moves down main for fixed navbar
+  main {
+    top: 5em;
+  }
+
+  //Header Mobile Styles
+  header {
+    overflow: visible;
+    position: fixed;
+    z-index: 2;
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      border: none;
+      background-color: transparent;
+      padding: 0.25em;
+
+      img {
+        aspect-ratio: 1 / 1;
+        width: 3em;
+      }
+
+      p {
+        font-size: calc(1rem + 0.01vw);
+        color: hsl(0, 0%, 70%);
+      }
+    }
+
+    button[aria-expanded="true"] {
+      background-color: hsla(0, 0%, 70%, 10%);
+      p {
+        color: hsl(0, 100%, 98%);
+      }
+    }
+
+    navbar {
+      display: none;
+    }
+
+    navbar#dropDownNav {
+      display: inline-block;
+      position: absolute;
+      background-color: hsla(0, 0%, 0%, 0.95);
+      top: 4.2em;
+      z-index: 1;
+      max-height: 0;
+      overflow: hidden;
+      margin: 0;
+      transition: max-height 0.2s ease-in-out;
+
+      ul {
+        flex-direction: column;
+        margin: 3em;
+        margin-top: 0.5em;
+        li {
+          padding: 2em 1.5em;
+          a {
+            margin: 0;
+            padding: 2em 1.5em;
+          }
+          a.currPage::before {
+            display: none;
+            animation: underlineFadeIn 0.33s cubic-bezier(0.37, 0, 0.63, 1)
+              forwards;
+          }
+          @keyframes underlineFadeIn {
+            0% {
+              top: 120%;
+              opacity: 0;
+            }
+            100% {
+              top: 50%;
+              opacity: 100%;
+            }
+          }
+        }
+      }
+
+      ul li:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        left: 0%;
+        height: 0.1em;
+        background-color: hsl(0, 2%, 35%);
+      }
+    }
+
+    navbar#dropDownNav[aria-hidden*="false"] {
+      max-height: 100svh;
+    }
+
+    #navSponsorLink {
+      display: none;
+    }
+
+    navbar ul li:first-child,
+    navbar ul li:last-child {
+      display: inline-block;
+    }
+  }
+
+  //Footer Mobile Styles
+  footer {
+    top: 5em;
+    section ul {
+      flex-direction: row;
+      a {
+        font-size: medium;
+      }
+    }
+
+    #footerContentContainer {
+      display: none;
+    }
+
+    #mobileFooterContentContainer {
+      display: block;
+    }
+
+    #mobileContactContainer ul {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 20vw;
+      margin-top: 2em;
+      align-items: center;
+      li {
+        margin: auto 0;
+      }
+    }
+
+    #siteLinkContainer ul {
+      display: flex;
+      justify-content: space-between;
+      margin: 2em 25vw;
+      align-items: center;
+      li {
+        margin: auto 0;
+      }
+    }
+  }
 }
-
-.trickfire-green {
-    background-color: $primary-color;
-}
-
-
-
-.link-in-text {
-    text-decoration: underline;
-    color: aliceblue;
+@media screen and (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
 }

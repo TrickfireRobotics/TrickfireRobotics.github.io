@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Events</title>
+
+    <!-- General Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Join us for some of our upcoming events"
+    />
+
+    <!-- Link Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Overpass+Mono:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/scss/Events.css" />
+    <link rel="stylesheet" type="text/css" href="assets/scss/default.css" />
+
+    <!-- jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Loads module Html -->
+    <script src="./components/Header.js"></script>
+    <script src="./components/Footer.js"></script>
+  </head>
+
+  <body>
+    <!-- Header will be loaded here -->
+    <main>
+      <!-- Mobile Page Navigation-->
+      <div class="page-setup">
+        <div class="events-navigation">
+          <div class="upcoming-header active" id="upcoming-header">
+            Upcoming Events
+          </div>
+          <div class="previous-header" id="previous-header">
+            Previous Events
+          </div>
+        </div>
+        <div class="upcoming-events-wrapper">
+          <h1 class="upcoming-title">Upcoming Events</h1>
+
+          <!-- Event container with fixed buttons to scroll through events-->
+          <div class="upcoming-card-wrapper">
+            <button class="back-button">
+              <img
+                src="assets/images/icons/backward.png"
+                alt="Back"
+                class="button-img"
+              />
+            </button>
+
+            <div class="upcoming-events">
+              <!-- Event cards will be added here with Javascript-->
+            </div>
+
+            <button class="next-button">
+              <img
+                src="assets/images/icons/forward.png"
+                alt="Next"
+                class="button-img"
+              />
+            </button>
+          </div>
+          <!-- Previous Events cards which their time is before the current date are put here-->
+        </div>
+        <h1 class="previous-title">Previous Events</h1>
+        <div class="previous-events-wrapper">
+          <div class="previous-events">
+            <!-- Event cards will be added here with Javascript-->
+          </div>
+        </div>
+      </div>
+      <!-- Popup HTML -->
+      <div class="popup" id="popup">
+        <div class="popup-content">
+          <div class="first-column">
+            <img src="" alt="Event Image" class="popup-img" id="popup-img" />
+            <div class="time-hold">
+              <img
+                src="assets/images/icons/clock_black.png"
+                alt="Clock icon"
+                class="popup-clock"
+              />
+              <p class="popup-date" id="popup-date">Oct 10th, 24</p>
+              <p class="popup-time" id="popup-time">8 pm - 11 pm</p>
+            </div>
+            <div class="location-hold">
+              <img
+                src="assets/images/icons/waypoint_black.png"
+                alt="Waypoint icon"
+                class="popup-waypoint"
+              />
+              <p class="popup-location" id="popup-location">UWB INV-011</p>
+            </div>
+          </div>
+          <div class="second-column">
+            <h2 class="popup-title" id="popup-title">Event Title</h2>
+            <p class="popup-description" id="popup-description">Description:</p>
+            <div class="share">
+              <span class="link">Share</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="assets/javascript/Event.js"></script>
+    </main>
+    <!-- Footer will be loaded here -->
+  </body>
+</html>

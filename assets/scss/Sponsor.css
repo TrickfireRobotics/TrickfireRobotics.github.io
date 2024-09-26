@@ -1,0 +1,175 @@
+main {
+  padding: 5em 6vw;
+  color: hsl(0, 100%, 99%);
+}
+main ul,
+main ol,
+main p {
+  color: hsl(0, 5%, 95%);
+  font-weight: 300;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(1.1rem, 1.1rem + 0.1vw, 20px);
+  line-height: 160%;
+  letter-spacing: 0.05em;
+}
+main li,
+main p {
+  margin: 1em 0;
+}
+main li a,
+main p a {
+  color: rgb(0, 255, 0);
+}
+main h2 {
+  text-align: center;
+  font-size: clamp(1.1rem, 1.1rem + 3vw, 80px);
+}
+main h3 {
+  font-size: clamp(1.1rem, 1rem + 1.5vw, 50px);
+}
+main div#contentWidthContainer {
+  max-width: 1500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 7em;
+}
+main picture {
+  width: 50%;
+}
+main picture img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 4/3;
+  border: hsl(222, 61%, 87%) 0.5em solid;
+}
+main picture#starBackgroundContainer {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+main picture#starBackgroundContainer img {
+  width: 100%;
+  height: 100%;
+  border: none;
+  aspect-ratio: 16/9 !important;
+}
+main section#introductionSection div.mainContentContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5vw;
+  margin-top: 5em;
+}
+main section#introductionSection div.mainContentContainer article {
+  width: 50%;
+  margin: auto 0;
+}
+main section#sponsorshipFundsSection h3 {
+  text-align: center;
+}
+main section#sponsorshipFundsSection div#fundLocationContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1vw;
+  margin-top: 2.5em;
+}
+main section#sponsorshipFundsSection div#fundLocationContainer article.fundLocation {
+  background-color: black;
+  text-align: center;
+  padding: 1.5em;
+  flex-basis: 25%;
+  border-radius: 1.5em;
+}
+main section#sponsorshipFundsSection div#fundLocationContainer article.fundLocation img {
+  height: auto;
+  width: 50%;
+  margin: 1em;
+  aspect-ratio: 3/2;
+}
+main section#sponsorshipFundsSection div#fundLocationContainer article.fundLocation h4 {
+  color: rgb(0, 255, 0);
+  font-size: calc(1rem + 0.1vw);
+  margin-bottom: 1em;
+}
+@media only screen and (max-width: 1000px) {
+  main section#sponsorshipFundsSection div#fundLocationContainer {
+    grid-template-columns: 1fr;
+    gap: 2svh;
+  }
+  main section#sponsorshipFundsSection div#fundLocationContainer article.fundLocation img {
+    width: 40%;
+  }
+}
+main section#howToSection h3 {
+  text-align: center;
+}
+main section#howToSection div.mainContentContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5vw;
+  margin: 2em 0;
+}
+main section#howToSection div.mainContentContainer article {
+  flex-basis: 70%;
+  background-color: hsla(0, 0%, 19%, 0.7);
+  padding: 0.5em 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5em;
+}
+main section#howToSection div.mainContentContainer article ol {
+  padding-left: 1.5em;
+}
+main section#howToSection div.mainContentContainer article p {
+  text-align: center;
+}
+@media only screen and (max-width: 1000px) {
+  main section#introductionSection div.mainContentContainer {
+    flex-direction: column-reverse;
+    margin-top: 6vh;
+  }
+  main section#introductionSection div.mainContentContainer article {
+    width: 100%;
+  }
+  main section#introductionSection div.mainContentContainer article h3 {
+    text-align: center;
+  }
+  main section#introductionSection div.mainContentContainer article ul {
+    padding-left: 1em;
+  }
+  main picture {
+    width: 100% !important;
+  }
+  main section#howToSection div.mainContentContainer {
+    flex-direction: column-reverse;
+  }
+}
+
+main::before {
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to top, rgb(23, 23, 23) 75%, transparent 100%);
+  content: "";
+  position: absolute;
+}
+
+@media only screen and (max-width: 1000px) {
+  main {
+    padding: 6vh 6vw 8vh 6vw;
+    gap: 8vh;
+  }
+  main h2 {
+    font-size: calc(1rem + 3vw);
+    margin: 0.2em 0;
+  }
+  main::before {
+    background-image: linear-gradient(to top, rgb(23, 23, 23) 85%, transparent 100%);
+  }
+}/*# sourceMappingURL=Sponsor.css.map */

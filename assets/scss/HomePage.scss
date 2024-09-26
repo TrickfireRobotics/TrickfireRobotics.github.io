@@ -1,0 +1,412 @@
+@import "./variables.scss";
+
+main {
+  width: 100vw;
+  h2 {
+    font-size: calc(1rem + 2.5vw);
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    color: hsl(0, 100%, 99%);
+    margin-bottom: 0.4em;
+  }
+
+  p {
+    line-height: 160%;
+    letter-spacing: 0.05em;
+    font-weight: 300;
+    color: hsl(0, 5%, 95%);
+    font-size: calc(1rem + 0.1vw);
+
+    a {
+      color: $neon-green;
+    }
+  }
+
+  div#introductionSection,
+  div#starBackgroundSection {
+    padding: 5em 6vw;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 7em;
+    overflow: none;
+
+    picture.backgroundImage {
+      position: absolute;
+      z-index: -1;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    section {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto;
+      gap: 5vw;
+
+      div.imageContainer,
+      picture.imageContainer {
+        width: 50%;
+        margin: auto 0;
+
+        img.main {
+          width: 100%;
+          border: hsl(222, 61%, 87%) 0.5em solid;
+          aspect-ratio: 3 / 2;
+          object-fit: cover;
+        }
+
+        div#galleryImagesContainer {
+          picture img {
+            display: none;
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            height: auto;
+            object-fit: cover;
+            border: hsl(222, 61%, 87%) 0.5em solid;
+          }
+        }
+
+        div#galleryButtonsContainer {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          padding: 1em;
+          z-index: 1;
+          margin: auto 0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          img {
+            width: 2.5em;
+            height: 2.5em;
+            padding: 0.4em;
+            background-color: hsla(0, 0%, 100%);
+            opacity: 66%;
+            transition: all 0.1s ease-in-out;
+            border-radius: 50%;
+            cursor: pointer;
+          }
+
+          img:hover {
+            opacity: 100%;
+          }
+
+          img#backArrow {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      picture#heroTrickFireLogo img {
+        border: none;
+        aspect-ratio: 3 / 2;
+      }
+
+      picture.imageContainer::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        left: 0%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: hsl(0, 0%, 65%);
+        filter: blur(10vw);
+      }
+
+      article {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        div.articleHeader {
+          width: 100%;
+          padding-bottom: 4.5em;
+        }
+
+        div#linkContainer {
+          display: flex;
+          flex-direction: column;
+          gap: 1em;
+        }
+
+        h2 {
+          margin-bottom: 0.2em;
+        }
+
+        a.leaveSiteLink {
+          width: 100%;
+          border-radius: 2em;
+          display: flex;
+          background-color: hsl(133, 97%, 38%);
+          text-align: center;
+          text-decoration: none;
+          font-weight: 500;
+          transition: all 0.1s ease-in-out;
+          border: solid black 2px;
+
+          div {
+            text-decoration: none;
+            color: black;
+            flex-basis: 85%;
+            flex-grow: 1;
+            padding: 0.5em;
+          }
+
+          img {
+            aspect-ratio: 1/1;
+            width: auto;
+            height: 100%;
+            flex-basis: 5%;
+            flex-grow: 0;
+            padding: 0.5em;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 4px white;
+          }
+
+          img.leftPointArrow {
+            display: inline-block;
+          }
+
+          img.rightPointArrow {
+            display: none;
+          }
+        }
+
+        a.leaveSiteLink:hover {
+          background-color: hsl(133, 91%, 29%);
+          transform: translateY(-4px);
+          box-shadow: 0 4px 0 black;
+          div {
+            color: white;
+          }
+        }
+
+        a.leaveSiteLink:active {
+          background-color: hsl(133, 97%, 38%);
+          transform: translate(0);
+          box-shadow: none;
+
+          div {
+            color: black;
+          }
+        }
+      }
+    }
+
+    section.reversed {
+      flex-direction: row;
+      a.leaveSiteLink {
+        img.leftPointArrow {
+          display: none;
+        }
+
+        img.rightPointArrow {
+          display: inline-block;
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  div#introductionSection {
+    padding-top: 4em;
+  }
+
+  div#introductionSection::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: hsla(0, 0%, 9%, 90%);
+    backdrop-filter: blur(0.1em);
+  }
+
+  section#missionSection {
+    padding: 4em 6vw;
+    width: 100%;
+    background-color: #1f1f1f;
+    overflow-y: hidden;
+    text-align: center;
+    div.contentWidthContainer {
+      max-width: 1500px;
+      margin: 0 auto;
+      h2 {
+        margin-bottom: 0.75em;
+      }
+      div#cardContainer {
+        display: flex;
+        justify-content: space-between;
+        article {
+          background-color: black;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          padding: 1em;
+          border-radius: 1em;
+          flex-basis: 25%;
+
+          img {
+            width: 65%;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+            padding: 1em 0;
+            color: hsl(133, 97%, 38%);
+          }
+
+          h3 {
+            color: hsl(0, 100%, 98%);
+            padding: 0.5em 0;
+            font-weight: normal;
+            letter-spacing: 0.1em;
+          }
+
+          p {
+            padding: 1.5em 0;
+          }
+        }
+      }
+    }
+  }
+
+  section#missionSection::before {
+    content: "";
+    background-color: $neon-green;
+    position: absolute;
+    top: 23%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    border-radius: 100%;
+    filter: blur(20em);
+  }
+
+  div#starBackgroundSection::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: hsla(250, 40%, 10%, 40%);
+  }
+
+  @media only screen and (max-width: 768px) {
+    div#introductionSection,
+    div#starBackgroundSection {
+      padding: 3em 6vw;
+      gap: 5em;
+
+      section {
+        flex-direction: column-reverse !important;
+        margin: 0;
+        gap: 2em;
+
+        picture.imageContainer,
+        div.imageContainer {
+          width: 100%;
+
+          div#galleryImagesContainer img {
+            width: 100%;
+            height: 50svh;
+            object-fit: cover;
+          }
+        }
+
+        article {
+          width: 100%;
+
+          a.leaveSiteLink {
+            div {
+              padding: 0.7em 0;
+            }
+
+            img {
+              padding: 0.7em;
+            }
+
+            img.leftPointArrow {
+              display: none !important;
+            }
+
+            img.rightPointArrow {
+              display: inline-block !important;
+              transform: rotate(180deg);
+            }
+          }
+
+          div.articleHeader {
+            padding-bottom: 3em;
+          }
+        }
+      }
+
+      section.reversed {
+        flex-direction: column;
+      }
+    }
+
+    section#missionSection {
+      background-color: black;
+
+      div.contentWidthContainer {
+        overflow-y: visible;
+
+        h2 {
+          margin-bottom: 3vh;
+        }
+
+        div#cardContainer {
+          flex-direction: column;
+          gap: 2em;
+
+          article {
+            flex-direction: row;
+            background-color: hsl(0, 0%, 19%);
+            text-align: left;
+            gap: 1em;
+
+            img {
+              height: 4em;
+              width: auto;
+              padding: 0;
+              margin: auto 0;
+            }
+
+            h3,
+            p,
+            img {
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+
+    section#missionSection::before {
+      background-color: transparent;
+    }
+
+    div#starBackgroundSection {
+      background-color: black;
+      overflow-y: visible;
+    }
+  }
+}

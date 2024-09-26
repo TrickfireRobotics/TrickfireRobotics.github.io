@@ -1,0 +1,212 @@
+@import "./variables.scss";
+
+main {
+  padding: 5em 6vw;
+  color: hsl(0, 100%, 99%);
+
+  ul,
+  ol,
+  p {
+    color: hsl(0, 5%, 95%);
+    font-weight: 300;
+    font-family: $text-font;
+    font-size: clamp(1.1rem, 1.1rem + 0.1vw, 20px);
+    line-height: 160%;
+    letter-spacing: 0.05em;
+  }
+
+  li,
+  p {
+    margin: 1em 0;
+    a {
+      color: $neon-green;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    font-size: clamp(1.1rem, 1.1rem + 3vw, 80px);
+  }
+
+  h3 {
+    font-size: clamp(1.1rem, 1rem + 1.5vw, 50px);
+  }
+
+  div#contentWidthContainer {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 7em;
+  }
+
+  picture {
+    width: 50%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+      border: hsl(222, 61%, 87%) 0.5em solid;
+    }
+  }
+
+  picture#starBackgroundContainer {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border: none;
+      aspect-ratio: 16 / 9 !important;
+    }
+  }
+
+  section#introductionSection div.mainContentContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 5vw;
+    margin-top: 5em;
+
+    article {
+      width: 50%;
+      margin: auto 0;
+    }
+  }
+  section#sponsorshipFundsSection {
+    h3 {
+      text-align: center;
+    }
+
+    div#fundLocationContainer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1vw;
+      margin-top: 2.5em;
+
+      article.fundLocation {
+        background-color: black;
+        text-align: center;
+        padding: 1.5em;
+        flex-basis: 25%;
+        border-radius: 1.5em;
+
+        img {
+          height: auto;
+          width: 50%;
+          margin: 1em;
+          aspect-ratio: 3 / 2;
+        }
+
+        h4 {
+          color: $neon-green;
+          font-size: calc(1rem + 0.1vw);
+          margin-bottom: 1em;
+        }
+      }
+
+      @media only screen and (max-width: 1000px) {
+        grid-template-columns: 1fr;
+        gap: 2svh;
+
+        article.fundLocation img {
+          width: 40%;
+        }
+      }
+    }
+  }
+  section#howToSection {
+    h3 {
+      text-align: center;
+    }
+
+    div.mainContentContainer {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 5vw;
+      margin: 2em 0;
+
+      article {
+        flex-basis: 70%;
+        background-color: hsl(0, 0%, 19%, 70%);
+        padding: 0.5em 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1.5em;
+
+        ol {
+          padding-left: 1.5em;
+        }
+
+        p {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    section#introductionSection div.mainContentContainer {
+      flex-direction: column-reverse;
+      margin-top: 6vh;
+
+      article {
+        width: 100%;
+
+        h3 {
+          text-align: center;
+        }
+
+        ul {
+          padding-left: 1em;
+        }
+      }
+    }
+
+    picture {
+      width: 100% !important;
+    }
+
+    section#howToSection div.mainContentContainer {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+main::before {
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(
+    to top,
+    $background-color 75%,
+    transparent 100%
+  );
+  content: "";
+  position: absolute;
+}
+
+@media only screen and (max-width: 1000px) {
+  main {
+    padding: 6vh 6vw 8vh 6vw;
+    gap: 8vh;
+    h2 {
+      font-size: calc(1rem + 3vw);
+      margin: 0.2em 0;
+    }
+  }
+  main::before {
+    background-image: linear-gradient(
+      to top,
+      $background-color 85%,
+      transparent 100%
+    );
+  }
+}

@@ -1,279 +1,397 @@
 <!DOCTYPE html>
 
-<html>
-    <head>
-        <title>Homepage</title>
-        <!-- Link Bootstrap -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-                rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <!-- Link jquery -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" 
-                integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">     
-        <!-- Link Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" 
-                integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">   
-        <!-- Link my css -->
-        <link rel="stylesheet" type="text/css" href="assets/css/home_page_style.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/default.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<html lang="en">
+  <head>
+    <title>Homepage</title>
 
-            <!-- jquery -->
-        <script
-            src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous">
-        </script>
-        <!-- Loads module Html -->
-        <script>
-            $(document).ready(function () {
-                $('#navbar').load('./assets/moduleHtml/navbar.html');
-            });
-            $(document).ready(function () {
-                $('#footer').load('./assets/moduleHtml/footer.html');
-            });
-        </script>
-    </head>
+    <!-- General Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TrickFire Robotics is a student-led robotics team focused on providing a unique educational experience through hands-on work on large scale projects."
+    />
 
+    <!-- Link Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Overpass+Mono:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
 
-    <body>
+    <!-- Link CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/scss/HomePage.css" />
+    <link rel="stylesheet" type="text/css" href="assets/scss/default.css" />
 
-        
-        <nav id="navbar"></nav>
+    <!-- jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
 
+    <!-- Loads module Html -->
+    <script src="./components/Header.js"></script>
+    <script src="./components/Footer.js"></script>
 
-        <section class="container-fluid dark_background">
+    <!-- Loads image gallery functionality -->
+    <script src="./assets/javascript/imageGallery.js" defer></script>
+  </head>
 
-            <div class="container-fluid wide-screen-support">
-                <div class="row">
-
-                    <div class="col-sm-12 col-md-6 trickfire_logo_left_text">
-
-                        <p class="trickfire_text">
-                            <b><i>TRICKFIRE</i></b>
-                            </br>
-                            <b><i>ROBOTICS</i></b>
-                        </p>
-
-                        <p class="text-intro">
-                            TrickFire Robotics is a student-led robotics team focused on providing a 
-                            unique educational experience through hands-on work on large scale projects. 
-                            TrickFire originally competed in the NASA Lunabotics RMC from 2016 to 2021 and
-                            now competes in the University Rover Challenge hosted by The Mars Society.
-                        </p> 
-
-                    </div>
-
-                    <img src="assets/images/front_logo.svg" class="col trickfire_logo " alt="Trickfire Robotics Logo">
-
-
-                </div>
-            </div>   
-        </section>
-
-        <section class="container-fluid dark_background">
-
-            <div class="row flex-nowrap">
-                <div class="divider-edges top-divider-edges-image"></div>
-
-                <img src="assets/images/divider1.png">
-    
-                <div class="divider-edges top-divider-edges-image"></div>          
-                
+  <body>
+    <!-- Header will be loaded here -->
+    <main>
+      <div id="introductionSection" role="presentation">
+        <picture class="backgroundImage">
+          <source
+            type="image/webp"
+            srcset="
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-320w.webp?width=320    320w,
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-520w.webp?width=520    520w,
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-768w.webp?width=768    768w,
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-768w.webp?width=1200  1200w,
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-1920w.webp?width=1920 1920w
+            "
+          />
+          <img
+            src="assets/images/photos/AsteroidSurfaceBackground/AsteroidSurfaceBackground-320w.jpg"
+            srcset="
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-320w.jpg   320w,
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-520w.jpg   520w,
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-768w.jpg   768w,
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-1200w.jpg 1200w,
+              assets/images/photos/asteroidSurfaceBackground/asteroidSurfaceBackground-1920w.jpg 1920w
+            "
+            sizes="80vw"
+            alt="Background image of asteroid surface"
+            class="backgroundImage"
+          />
+        </picture>
+        <section class="reversed">
+          <article>
+            <div class="articleHeader" role="presentation">
+              <h2>UW Bothell's Robotics Team</h2>
+              <p>
+                Welcome! TrickFire Robotics is the premier aerospace robotics
+                club at the University of Washington Bothell. We currently
+                compete in the University Rover Challenge by the Mars Society
+                and have been competing in robotics competitions since 2016. We
+                are diverse, interdisciplinary, and 100% student-led.
+              </p>
             </div>
+            <div id="linkContainer" role="presentation">
+              <a class="leaveSiteLink" href="./join-us.html">
+                <img
+                  class="leftPointArrow"
+                  src="assets/images/icons/arrowIcon.svg"
+                  alt="Arrow icon"
+                />
+                <div>Join Us</div>
+                <img
+                  class="rightPointArrow"
+                  src="assets/images/icons/arrowIcon.svg"
+                  alt="Arrow icon"
+                />
+              </a>
+              <a class="leaveSiteLink" href="./sponsor.html">
+                <img
+                  class="leftPointArrow"
+                  src="assets/images/icons/arrowIcon.svg"
+                  alt="Arrow icon"
+                />
+                <div>Sponsor Us</div>
+                <img
+                  class="rightPointArrow"
+                  src="assets/images/icons/arrowIcon.svg"
+                  alt="Arrow icon"
+                />
+              </a>
+            </div>
+          </article>
+          <picture class="imageContainer" id="heroTrickFireLogo">
+            <img
+              src="assets/images/logos/HeroTrickFireLogo/TrickFireLogo-320w.png"
+              srcset="
+                assets/images/logos/HeroTrickFireLogo/TrickFireLogo-320w.png?width=320    320w,
+                assets/images/logos/HeroTrickFireLogo/TrickFireLogo-520w.png?width=520    520w,
+                assets/images/logos/HeroTrickFireLogo/TrickFireLogo-768w.png?width=768    768w,
+                assets/images/logos/HeroTrickFireLogo/TrickFireLogo-1200w.png?width=1200 1200w,
+                assets/images/logos/HeroTrickFireLogo/TrickFireLogo-1920w.png?width=1920 1920w
+              "
+              sizes="(max-width: 768px) 80vw, 30vw"
+              alt="TrickFire Logo"
+              class="main"
+            />
+          </picture>
         </section>
-
-    
-        <div class="container-fluid wide-screen-support">
-
-            <section class="container-fluid gray_background" > 
-    
-                <!--THE HORIZONTAL ROWS-->
-    
-                <div class="row flex-nowrap row-pic-right row-padding" >
-    
-                    <img src="./assets/images/slanted_rover_image_1.png">
-    
-                    
-                    <div class="words-on-background">
-                        <img src="./assets/images/fixed_index_header_left.png">
-    
-                        <h1>
-                            What We Do
-                        </h1>
-        
-                        <p>
-                            Throughout the year, the team develops a number of different skills as members research, design, and build the robot. 
-                            Other members learn the skills of team management, financial responsibilities, and public relations.
-                            But most importantly, everyone gains the skills of professionalism that prepares them for their future work.
-                        </p>
-                    </div>
-                </div>
-    
-                
-                <div class="row flex-nowrap row-pic-left row-padding">
-    
-                    <img src="./assets/images/slanted_team_photo_rmc_2017.png">
-    
-                    <div class="words-on-background">
-                        <img src="./assets/images/fixed_index_header_right.png">
-    
-                        <h1>
-                            Meet the Team
-                        </h1>
-        
-                        <p>
-                            The team is composed of five major sub-teams. The mechanical team is responsible for building and designing the robot. 
-                            The electrical team is responsible for properly wiring the up whilst working closely with the mechanical team. 
-                            The software team is responsible for making the robot function through autonomous or through teleoperated controls. 
-                            The financial team is responsible for keeping the team logistically functional and securing funding. 
-                            The outreach team is responsible for advertising TrickFire to the world through advertisements, social media, or through community participation.
-                        </p>
-                    </div>
-                </div>
-    
-                <div class="row flex-nowrap row-pic-right row-padding">
-    
-                    <img src="./assets/images/slanted_teaching_new_member.png">
-    
-                    
-                    <div class="words-on-background">
-                        <img src="./assets/images/fixed_index_header_left.png">
-    
-                        <h1>
-                            How to Join
-                        </h1>
-        
-                        <p>
-                            We accept everyone and anyone who wants to join the team. As long as you have the will to learn, you will succeed.
-                            To join, simply fill out a form and we will get back to you.
-    
-                            <br>
-    
-                            <a class="join-us-button link-in-text"
-                            href="./join_us.html">
-                            Join Us Here
-                            </a> 
-                        </p>
-
-                    </div>
-                </div>
-    
-                <!--THE VERTICAL ROWS-->
-    
-                <div class="small-row-padding">
-                    <div class="small-stacked-row">
-                        <h1>
-                            What We Do
-                        </h1>
-    
-                        <p>
-                            Throughout the year, the team develops a number of different skills as members research, design, and build the robot. 
-                            Other members learn the skills of team management, financial responsibilities, and public relations.
-                            But most importantly, everyone gains the skills of professionalism that prepares them for their future work.
-    
-                        </p>
-    
-                        <img src="./assets/images/rover_image_1.png">
-                    </div>
-    
-    
-    
-                </div>
-    
-                <div class="small-row-padding">
-                    <div class="small-stacked-row">
-                        <h1>
-                            Meet the Team
-                        </h1>
-    
-                        <p>
-                            The team is composed of five major sub-teams. The mechanical team is responsible for building and designing the robot. 
-                            The electrical team is responsible for properly wiring the up whilst working closely with the mechanical team. 
-                            The software team is responsible for making the robot function through autonomous or through teleoperated controls. 
-                            The financial team is responsible for keeping the team logistically functional and securing funding. 
-                            The outreach team is responsible for advertising TrickFire to the world through advertisements, social media, or through community participation.
-    
-                        </p>
-    
-                        <img src="./assets/images/unslanted_team_photo_rmc_2017.jpg">
-                    </div>
-    
-    
-    
-                </div>
-    
-                <div class="small-row-padding">
-                    <div class="small-stacked-row">
-                        <h1>
-                            How to Join
-                        </h1>
-    
-                        <p>
-                            We accept everyone and anyone who wants to join the team. As long as you have the will to learn, you will succeed.
-                            To join, simply fill out a form and we will get back to you.
-    
-                            <br>
-    
-                            <a class="join-us-button link-in-text"
-                            href="./join_us.html">
-                            Join Us Here
-                            </a> 
-    
-                        </p>
-    
-                        <img src="./assets/images/unslanted_teaching_new_member.jpg">
-                    </div>
-    
-    
-    
-                </div>
-    
-    
-    
-    
-                <div class="space-after-rows"></div>
-    
-            </section>
+        <section>
+          <article>
+            <div class="articleHeader" role="presentation">
+              <h2>Our Robot</h2>
+              <p>
+                Our current rover, Viator, is designed specifically for the
+                University Rover Challenge (URC). Through iterative development,
+                our robot will be able to accomplish a wide variety of tasks to
+                help astronauts over the course of four URC missions. For
+                example, the rover will be able to extract regolith, detect
+                life, and type. Viator and related prototypes give us the bulk
+                of our recent experience and hands-on work.
+              </p>
+            </div>
+            <a class="leaveSiteLink" href="robots.html">
+              <img
+                class="leftPointArrow"
+                src="assets/images/icons/arrowIcon.svg"
+                alt="Arrow icon"
+                loading="lazy"
+                encoding="async"
+              />
+              <div role="presentation">Robots</div>
+              <img
+                class="rightPointArrow"
+                src="assets/images/icons/arrowIcon.svg"
+                alt="Arrow icon"
+                loading="lazy"
+                encoding="async"
+              />
+            </a>
+          </article>
+          <picture class="imageContainer">
+            <source
+              type="image/webp"
+              srcset="
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-320w.webp?width=320    320w,
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-520w.webp?width=520    520w,
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-768w.webp?width=768    768w,
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-1200w.webp?width=1200 1200w,
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-1920w.webp?width=1920 1920w
+              "
+              sizes="(max-width: 768px) 88vw, 30vw"
+            />
+            <img
+              src="assets/images/photos/FullRoverPhoto/FullRoverPhoto-320w.jpg"
+              srcset="
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-320w.jpg?wdith=320    320w,
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-520w.jpg?width=520    520w,
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-768w.jpg?width=768    768w,
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-1200w.jpg?width=1200 1200w,
+                assets/images/photos/FullRoverPhoto/FullRoverPhoto-1920w.jpg?width=1920 1920w
+              "
+              sizes="(max-width: 768px) 88vw, 30vw"
+              alt="Photo of the 2024 Viator Rover"
+              class="main"
+              loading="lazy"
+              encoding="async"
+            />
+          </picture>
+        </section>
+      </div>
+      <section id="missionSection">
+        <div class="contentWidthContainer">
+          <h2>Our Goals</h2>
+          <div id="cardContainer">
+            <article>
+              <img
+                src="assets/images/icons/spiralGearIcon.svg"
+                alt="Figure of a gear"
+                loading="lazy"
+                encoding="async"
+              />
+              <div class="contentContainer" role="presentation">
+                <h3>Develop Technical Skills</h3>
+                <p>
+                  We are theory and teaching used in reality to make a physical
+                  product. Through this, such skills will be further improved.
+                  No current experience needed.
+                </p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="assets/images/icons/suitIcon.svg"
+                alt="Figure of a business suit"
+                loading="lazy"
+                encoding="async"
+              />
+              <div class="contentContainer" role="presentation">
+                <h3>Develop Profssional Skills</h3>
+                <p>
+                  We are a large-scale team of students from many different
+                  majors and backgrounds in a professional environment.
+                </p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="assets/images/icons/communityIcon.svg"
+                alt="Figure of a group of people"
+                loading="lazy"
+                encoding="async"
+              />
+              <div class="contentContainer" role="presentation">
+                <h3>Develop Community</h3>
+                <p>
+                  We foster a strong and inclusive community by creating
+                  opportunities for students to engage, collaborate, and support
+                  each other.
+                </p>
+              </div>
+            </article>
+          </div>
         </div>
-    
-        <section class="container-fluid dark_gray_background">
-
-
-            <div class="row flex-nowrap">
-                <div class="divider-edges bottom-divider-edges-image"></div>
-
-                <img src="assets/images/divider2.png">
-    
-                <div class="divider-edges bottom-divider-edges-image"></div>          
-                
+      </section>
+      <div id="starBackgroundSection" role="presentation">
+        <picture class="backgroundImage">
+          <source
+            type="image/webp"
+            srcset="
+              assets/images/photos/StarryNightBackground/StarryNightBackground-320w.webp?width=320    320w,
+              assets/images/photos/StarryNightBackground/StarryNightBackground-520w.webp?width=520    520w,
+              assets/images/photos/StarryNightBackground/StarryNightBackground-768w.webp?width=768    768w,
+              assets/images/photos/StarryNightBackground/StarryNightBackground-1200w.webp?width=1200 1200w,
+              assets/images/photos/StarryNightBackground/StarryNightBackground-1920w.webp?width=1920 1920w
+            "
+          />
+          <img
+            src="assets/images/photos/StarryNightBackground/StarryNightBackground-320w.jpg"
+            srcset="
+              assets/images/photos/StarryNightBackground/StarryNightBackground-320w.jpg?width=320    320w,
+              assets/images/photos/StarryNightBackground/StarryNightBackground-520w.jpg?width=520    520w,
+              assets/images/photos/StarryNightBackground/StarryNightBackground-768w.jpg?width=768    768w,
+              assets/images/photos/StarryNightBackground/StarryNightBackground-1200w.jpg?width=1200 1200w,
+              assets/images/photos/StarryNightBackground/StarryNightBackground-1920w.jpg?width=1920 1920w
+            "
+            sizes="80vw"
+            alt="Background image of a starry night"
+            class="backgroundImage"
+            loading="lazy"
+            encoding="async"
+          />
+        </picture>
+        <section id="imageGallerySection">
+          <article>
+            <div class="articleHeader" role="presentation">
+              <h2>Our Story</h2>
+              <p>
+                Since 2016 TrickFire robotics has been dedicated to building a
+                strong student and alumni community of talented engineers,
+                marketers and scientists. We unite across the years by our
+                mission to develop ourselves by developing our rovers.
+              </p>
             </div>
-
-            <div class="row team-calendar-text">
-                <h1>
-                    Team Calendar
-                </h1>
+            <a class="leaveSiteLink" href="./our-story.html">
+              <img
+                class="leftPointArrow"
+                src="assets/images/icons/arrowIcon.svg"
+                alt="Arrow icon"
+                loading="lazy"
+                encoding="async"
+              />
+              <div>Explore More</div>
+              <img
+                class="rightPointArrow"
+                src="assets/images/icons/arrowIcon.svg"
+                alt="Arrow icon"
+                loading="lazy"
+                encoding="async"
+              />
+            </a>
+          </article>
+          <div class="imageContainer" role="presentation">
+            <div id="galleryButtonsContainer">
+              <img
+                id="backArrow"
+                src="./assets/images/icons/imageCarouselArrow.svg"
+                alt="Back arrow button"
+                loading="lazy"
+                encoding="async"
+              />
+              <img
+                id="forwardArrow"
+                src="./assets/images/icons/imageCarouselArrow.svg"
+                alt="Forward arrow button"
+                loading="lazy"
+                encoding="async"
+              />
             </div>
-
-
-            <div class="row" style="padding-top: 1vw;">
-
-                <div class="calendar-block">
-                    <iframe src="https://calendar.google.com/calendar/embed?src=uw.edu_m3ikh4g2grmsoaejsf26gb5stg%40group.calendar.google.com&ctz=America%2FLos_Angeles" 
-                            frameborder="0" scrolling="no" class="calendar-iframe small_calendar-iframe"></iframe>
-                </div>
-
+            <div id="galleryImagesContainer">
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-320w.webp?width=320    320w,
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-520w.webp?width=520    520w,
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-768w.webp?width=768    768w,
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-1200w.webp?width=1200 1200w,
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-1920w.webp?width=1920 1920w
+                  "
+                />
+                <img
+                  src="assets/images/photos/2024TeamPhoto/2024TeamPhoto-320w.jpg"
+                  srcset="
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-320w.jpg?width=320     320w,
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-520w.jpg?width=520     520w,
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-768w.jpg?width=768     768w,
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-1200w.jpg?width=1200w 1200w,
+                    assets/images/photos/2024TeamPhoto/2024TeamPhoto-1920w.jpg?width=1920w 1920w
+                  "
+                  sizes="(max-width: 768px) 88vw, 45vw"
+                  alt="Photo of the 2020 team in front of Bothell's W"
+                  loading="lazy"
+                  encoding="async"
+                />
+              </picture>
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/images/photos/2020TeamPhoto/2020TeamPhoto-320w.webp   320w,
+                    assets/images/photos/2020TeamPhoto/2020TeamPhoto-768w.webp   768w,
+                    assets/images/photos/2020TeamPhoto/2020TeamPhoto-1920w.webp 1920w
+                  "
+                  sizes="(max-width: 768px) 88vw, 45vw"
+                />
+                <img
+                  src="assets/images/photos/2020TeamPhoto/2020TeamPhoto-320w.jpg"
+                  srcset="
+                    assets/images/photos/2020TeamPhoto/2020TeamPhoto-320w.jpg   320w,
+                    assets/images/photos/2020TeamPhoto/2020TeamPhoto-768w.jpg   768w,
+                    assets/images/photos/2020TeamPhoto/2020TeamPhoto-1920w.jpg 1920w
+                  "
+                  sizes="(max-width: 768px) 88vw, 45vw"
+                  alt="Photo of the 2020 team in front of Bothell's W"
+                />
+              </picture>
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-320w.webp?width=320    320w,
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-520w.webp?width=520    520w,
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-768w.webp?width=768    768w,
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-1200w.webp?width=1200 1200w,
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-1920w.webp?width=1920 1920w
+                  "
+                  sizes="(max-width: 768px) 40vw, 88vw"
+                />
+                <img
+                  src="assets/images/photos/2017TeamPhoto/2017TeamPhoto-320w.jpg"
+                  srcset="
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-320w.jpg?width=320    320w,
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-520w.jpg?width=520    520w,
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-768w.jpg?width=768    768w,
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-768w.jpg?width=1200  1200w,
+                    assets/images/photos/2017TeamPhoto/2017TeamPhoto-1920w.jpg?width=1920 1920w
+                  "
+                  sizes="(max-width: 768px) 40vw, 88vw"
+                  alt="Photo of the 2017 Team in the stands at a competition"
+                />
+              </picture>
             </div>
-            <div class="space-after-rows"></div>
+          </div>
         </section>
-            <footer id="footer"></footer>
-        
-
-
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-            crossorigin="anonymous">
-        </script>
-    </body>
-
+      </div>
+    </main>
+    <!-- Footer will be loaded here -->
+  </body>
 </html>

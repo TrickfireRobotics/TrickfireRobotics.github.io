@@ -1,0 +1,251 @@
+main {
+  overflow: none;
+}
+main p {
+  line-height: 160%;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+  color: hsl(0, 5%, 95%);
+  font-size: clamp(1.1rem, 1.1rem + 0.1vw, 20px);
+}
+main h3 {
+  font-size: clamp(1.1rem, 1.1rem + 1.5vw, 50px);
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  color: rgb(0, 255, 0);
+}
+main hr {
+  border: 0.1px solid hsl(0, 0%, 40%);
+}
+main div.contentWidthContainer {
+  width: 100%;
+  height: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+main section {
+  width: 100%;
+  background-color: rgb(23, 23, 23);
+}
+main picture#backgroundContainer {
+  width: 100vw;
+  position: absolute;
+}
+main picture#backgroundContainer img {
+  width: 100%;
+  height: auto;
+  z-index: -1;
+  aspect-ratio: 16/9;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+main picture#backgroundContainer::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+main section#teamTextSection {
+  background-color: transparent;
+  background-image: linear-gradient(to bottom, hsla(0, 0%, 9%, 0.2) 10%, rgb(23, 23, 23) 55%);
+  padding: 0 6vw;
+}
+main section#teamTextSection div.contentWidthContainer h2 {
+  padding: 6vw 0 8vw 0;
+  font-family: "Outfit", sans-serif;
+  font-weight: 400;
+  font-size: 5rem;
+  line-height: 5rem;
+  color: hsl(0, 100%, 99%);
+  animation: fadeIn 1.2s ease-in-out;
+}
+@keyframes fadeIn {
+  0% {
+    transform: translateY(1em);
+    opacity: 0%;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 100%;
+  }
+}
+main section#teamTextSection div.contentWidthContainer div {
+  display: flex;
+  justify-content: space-between;
+}
+main section#teamTextSection div.contentWidthContainer div hr {
+  display: none;
+}
+main section#teamTextSection div.contentWidthContainer div article {
+  width: 40%;
+}
+main section#teamTextSection div.contentWidthContainer article {
+  padding: 1.5em 0;
+}
+main section#teamTextSection div.contentWidthContainer article p {
+  padding-top: 2em;
+  padding-bottom: 4em;
+}
+main section#teamLeadersSection {
+  background-color: rgb(23, 23, 23);
+  width: 100%;
+  padding: 1.5em 6vw;
+  color: white;
+}
+main section#teamLeadersSection div.contentWidthContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
+}
+main section#teamLeadersSection div.contentWidthContainer h3#leaderTitle {
+  color: rgb(0, 255, 0);
+}
+main section#teamLeadersSection div.contentWidthContainer article {
+  display: flex;
+  gap: 1.5em;
+}
+main section#teamLeadersSection div.contentWidthContainer article div.profile img {
+  aspect-ratio: 1/1;
+  width: 7em;
+  border-radius: 50%;
+  border: hsl(222, 61%, 87%) 0.2em solid;
+}
+main section#teamLeadersSection div.contentWidthContainer article div.profile h3 {
+  text-align: center;
+  color: hsl(0, 100%, 99%);
+  font-size: calc(1rem + 0.1vw);
+  padding-top: 0.5em;
+}
+main section#teamLeadersSection div.contentWidthContainer article div.quote h3 {
+  color: black;
+  display: inline-block;
+  padding: 0.4em 4em;
+  border-radius: 0.5em;
+  margin-bottom: 0.75em;
+  font-size: calc(1rem + 0.4vw);
+  background-color: rgb(69, 139, 96);
+  font-weight: 400;
+  box-shadow: 0 -0.2em 0 hsl(143, 34%, 30%) inset;
+}
+main section#teamLeadersSection div.contentWidthContainer article.reversed {
+  flex-direction: row-reverse;
+}
+main section#teamLeadersSection div.contentWidthContainer article.reversed div.quote {
+  text-align: right;
+}
+main section#teamInstagramSection {
+  background-color: rgb(23, 23, 23);
+  padding: 4em 6vw;
+  text-align: center;
+}
+main section#teamInstagramSection div#photoContainer {
+  display: grid;
+  margin: 2em 4em;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+}
+main section#teamInstagramSection div#photoContainer a {
+  overflow: hidden;
+}
+main section#teamInstagramSection div#photoContainer img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 1/1;
+  -o-object-position: center;
+     object-position: center;
+  transition: transform 0.2s ease-in-out;
+}
+main section#teamInstagramSection div#photoContainer img.postIconOverlay {
+  position: absolute;
+  padding: 40%;
+  z-index: 1;
+  opacity: 0;
+}
+main section#teamInstagramSection div#photoContainer img.postIconOverlay:hover {
+  background-color: hsla(0, 0%, 0%, 0.4);
+  opacity: 100%;
+}
+main section#teamInstagramSection div#photoContainer a:hover img {
+  transform: scale(1.1);
+}
+main section#teamInstagramSection div#photoContainer:has(button) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 4em 4em;
+}
+main section#teamInstagramSection div#photoContainer:has(button) h4 {
+  color: hsl(0, 100%, 99%);
+  font-size: calc(1rem + 0.4vw);
+  text-align: center;
+}
+main section#teamInstagramSection div#photoContainer:has(button) button {
+  width: 25vw;
+  background-color: hsl(133, 97%, 38%);
+  padding: 1.5em 0.5em;
+  margin: 1em 0;
+  border: none;
+  font-size: calc(1rem + 0.1vw);
+  border-radius: 1em;
+  cursor: pointer;
+}
+main section#teamInstagramSection div#photoContainer:has(button) button:hover {
+  background-color: hsl(133, 91%, 29%);
+}
+@media only screen and (max-width: 1000px) {
+  main section#teamTextSection div.contentWidthContainer div {
+    flex-direction: column;
+  }
+  main section#teamTextSection div.contentWidthContainer div hr {
+    display: inline-block;
+  }
+  main section#teamTextSection div.contentWidthContainer div article {
+    width: 100%;
+  }
+  main section#teamTextSection div.contentWidthContainer h2 {
+    font-size: 2.6rem;
+    line-height: normal;
+  }
+  main section#teamTextSection div.contentWidthContainer article p {
+    padding-bottom: 3em;
+  }
+  main section#teamLeadersSection div.contentWidthContainer article {
+    flex-direction: column !important;
+  }
+  main section#teamLeadersSection div.contentWidthContainer article div.profile {
+    text-align: center;
+  }
+  main section#teamLeadersSection div.contentWidthContainer article div.profile img {
+    width: calc(10em + 15vw);
+  }
+  main section#teamLeadersSection div.contentWidthContainer article div.profile h3 {
+    font-size: calc(1rem + 2.5vw);
+  }
+  main section#teamLeadersSection div.contentWidthContainer article div.quote h3 {
+    font-size: 1rem;
+    padding: 0.4em 0.4em;
+    text-align: center;
+    width: 100%;
+  }
+  main section#teamLeadersSection div.contentWidthContainer article.reversed {
+    flex-direction: row;
+  }
+  main section#teamLeadersSection div.contentWidthContainer article.reversed div.quote {
+    text-align: left;
+  }
+  main section#teamInstagramSection {
+    padding: 2em 6vw;
+  }
+  main section#teamInstagramSection div#photoContainer {
+    margin: 2em 0;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  html {
+    background-color: black !important;
+  }
+}/*# sourceMappingURL=OurStory.css.map */
