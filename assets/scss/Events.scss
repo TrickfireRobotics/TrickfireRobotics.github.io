@@ -19,6 +19,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 20em;
   }
   .upcoming-events {
     display: flex;
@@ -41,6 +42,7 @@ main {
     align-items: start;
     overflow-x: auto;
     scroll-behavior: smooth;
+    min-height: 15em;
     .title {
       background-color: #65746b;
     }

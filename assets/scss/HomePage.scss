@@ -123,6 +123,7 @@ main {
         border-radius: 50%;
         background-color: hsl(0, 0%, 65%);
         filter: blur(10vw);
+        -webkit-filter: blur(10vw);
       }
 
       article {
@@ -236,6 +237,7 @@ main {
     left: 0;
     background-color: hsla(0, 0%, 9%, 90%);
     backdrop-filter: blur(0.1em);
+    -webkit-backdrop-filter: blur(0.1em);
   }
 
   section#missionSection {
@@ -295,6 +297,7 @@ main {
     height: 50%;
     border-radius: 100%;
     filter: blur(20em);
+    -webkit-filter: blur(20em);
   }
 
   div#starBackgroundSection::before {

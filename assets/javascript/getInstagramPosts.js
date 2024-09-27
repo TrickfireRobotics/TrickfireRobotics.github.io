@@ -34,10 +34,11 @@ async function getInstagramPosts() {
 
     //Renders an error mesage and retry button.
     const errorMessage = $("<h4>Error Loading Instagram Feed</h4>");
-    const refreshButton = $("<button>Refresh</button>");
-    refreshButton.click(getInstagramPosts);
+    const instagramLink = $(
+      "<a id = 'errorInstagramLink' href = 'https://www.instagram.com/trickfirerobotics/?hl=en' target = '_blank'>Go to Instagram</a>"
+    );
     photoContainer.append(errorMessage);
-    photoContainer.append(refreshButton);
+    photoContainer.append(instagramLink);
   }
 }
 getInstagramPosts();

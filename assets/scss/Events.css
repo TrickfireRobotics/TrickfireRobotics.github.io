@@ -20,6 +20,7 @@ main .upcoming-card-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 20em;
 }
 main .upcoming-events {
   display: flex;
@@ -42,6 +43,7 @@ main .previous-events {
   align-items: start;
   overflow-x: auto;
   scroll-behavior: smooth;
+  min-height: 15em;
 }
 main .previous-events .title {
   background-color: #65746b;

@@ -169,19 +169,19 @@ main section#teamInstagramSection div#photoContainer img.postIconOverlay:hover {
 main section#teamInstagramSection div#photoContainer a:hover img {
   transform: scale(1.1);
 }
-main section#teamInstagramSection div#photoContainer:has(button) {
+main section#teamInstagramSection div#photoContainer:has(a#errorInstagramLink) {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 4em 4em;
 }
-main section#teamInstagramSection div#photoContainer:has(button) h4 {
+main section#teamInstagramSection div#photoContainer:has(a#errorInstagramLink) h4 {
   color: hsl(0, 100%, 99%);
   font-size: calc(1rem + 0.4vw);
   text-align: center;
 }
-main section#teamInstagramSection div#photoContainer:has(button) button {
+main section#teamInstagramSection div#photoContainer:has(a#errorInstagramLink) a {
   width: 25vw;
   background-color: hsl(133, 97%, 38%);
   padding: 1.5em 0.5em;
@@ -189,9 +189,12 @@ main section#teamInstagramSection div#photoContainer:has(button) button {
   border: none;
   font-size: calc(1rem + 0.1vw);
   border-radius: 1em;
+  text-decoration: none;
+  color: #0c0c0c;
+  font-weight: bold;
   cursor: pointer;
 }
-main section#teamInstagramSection div#photoContainer:has(button) button:hover {
+main section#teamInstagramSection div#photoContainer:has(a#errorInstagramLink) a:hover {
   background-color: hsl(133, 91%, 29%);
 }
 @media only screen and (max-width: 1000px) {
