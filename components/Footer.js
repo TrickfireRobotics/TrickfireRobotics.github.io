@@ -41,7 +41,7 @@ $(document).ready(function () {
                   alt="Email icon"
                   loading="lazy"
                   encoding="async"
-                />Mail</a
+                />tfrbtcs@uw.edu</a
               >
             </li>
             <li role = "menuitem">
