@@ -7,7 +7,7 @@ main ol,
 main p {
   color: hsl(0, 5%, 95%);
   font-weight: 300;
-  font-family: "Outfit", sans-serif;
+  font-family: "Outfit", "Arial", sans-serif;
   font-size: clamp(1.1rem, 1.1rem + 0.1vw, 20px);
   line-height: 160%;
   letter-spacing: 0.05em;

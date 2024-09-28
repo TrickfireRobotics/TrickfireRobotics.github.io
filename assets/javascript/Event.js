@@ -1,5 +1,45 @@
 // Array of event data with placeholder image
 const events = [
+  {
+    date: "Oct 1st, 2024",
+    time: "11 am - 2 pm",
+    title: "Club Fair",
+    location: "ARC Overlook (top floor)",
+    tags: ["Introductions", "Rover Demo"],
+    description:
+      "TrickFire members, the rover, and other items will be present for you to speak and interact with! Come ask questions about the club, ourselves, and school. We are also happy to help you join the club. UW and Cascadia students are welcome.",
+    image: "assets/images/photos/ClubFair.png",
+  },
+  {
+    date: "Middle / Late October, 2024",
+    time: "",
+    title: "Group Onboarding",
+    location: "ARC Overlook (Top Floor)",
+    tags: ["Introductions", "Onboarding"],
+    description:
+      "Meet club officers and others who are joining the club! Learn about the University Rover Challenge, club structure, how we are funded, and more. You will not only be a part of the club, but understand it!",
+    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
+  },
+  {
+    date: "Nov 13, 2024",
+    time: "11:30 am - 1 pm",
+    title: "I <3 UW Bothell Luncheon",
+    location: "Westin Bellevue Hotel",
+    tags: ["Rover Demo", "Free Food", "RSVP Required"],
+    description:
+      "TrickFire is demoing at a UWB fundraising event that will raise hundreds of thousands of dollars and have hundreds of attendees. Network, impress, and eat free food! We are one of a few clubs with this opportunity to help the community and ourselves. You must RSVP on the club Discord server to attend.",
+    image: "assets/images/photos/LuncheonBanner.jpg",
+  },
+  {
+    date: "Spring Quarter 2025",
+    time: "",
+    title: "TrickFire Robotics Rover Unveiling",
+    location: "ARC Overlook (Top Floor)",
+    tags: ["Rover Demo", "Free Food"],
+    description:
+      "TrickFire is showcasing its rover to UWB and our supporters. Invite your friends, family, and mentors to eat pizza and more, learn about the club, and see the rover in action! Club alumni also are invited. Network! All UWB and Cascadia students are welcome.",
+    image: "assets/images/photos/RoverReveal.png",
+  },
   /*
   {
     date: "Sep 15th, 24",
@@ -247,12 +287,12 @@ function addEventCards() {
       eventCard = createDeskTopEventCard(event);
     }
 
-    if (eventDate > now) {
-      // Append to upcoming events
-      eventContainer.appendChild(eventCard);
-    } else {
+    if (eventDate < now) {
       // Append to previous events
       previousContainer.appendChild(eventCard);
+    } else {
+      // Append to upcoming events
+      eventContainer.appendChild(eventCard);
     }
   });
 }

@@ -62,7 +62,7 @@ main section ul {
 }
 main section ul li {
   font-size: calc(1rem + 0.5vw);
-  font-family: "Outfit", sans-serif;
+  font-family: "Outfit", "Arial", sans-serif;
   font-weight: 400;
 }
 main section picture.imageContainer {

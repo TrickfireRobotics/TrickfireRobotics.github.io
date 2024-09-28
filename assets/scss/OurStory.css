@@ -52,7 +52,7 @@ main section#teamTextSection {
 }
 main section#teamTextSection div.contentWidthContainer h2 {
   padding: 6vw 0 8vw 0;
-  font-family: "Outfit", sans-serif;
+  font-family: "Outfit", "Arial", sans-serif;
   font-weight: 400;
   font-size: 5rem;
   line-height: 5rem;
@@ -175,11 +175,6 @@ main section#teamInstagramSection div#photoContainer:has(a#errorInstagramLink) {
   align-items: center;
   justify-content: center;
   margin: 4em 4em;
-}
-main section#teamInstagramSection div#photoContainer:has(a#errorInstagramLink) h4 {
-  color: hsl(0, 100%, 99%);
-  font-size: calc(1rem + 0.4vw);
-  text-align: center;
 }
 main section#teamInstagramSection div#photoContainer:has(a#errorInstagramLink) a {
   width: 25vw;

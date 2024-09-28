@@ -65,6 +65,7 @@ main {
     position: relative;
     flex-shrink: 0;
     flex-grow: 0;
+    cursor: pointer !important;
   }
 
   .image-container {
@@ -73,7 +74,7 @@ main {
 
   .event {
     width: 100%;
-    height: auto;
+    height: 30svh;
     object-fit: cover;
     display: block;
   }
@@ -233,7 +234,8 @@ main {
 
   .popup-img {
     width: 100%;
-    height: auto;
+    max-height: 70svh;
+    object-fit: cover;
     border-radius: 8px;
     margin-bottom: 10px;
   }
