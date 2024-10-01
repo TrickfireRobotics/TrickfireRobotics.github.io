@@ -19,8 +19,8 @@ $(document).ready(function () {
         <section aria-label = "Join us links">
           <h2>Join Us</h2>
           <ul role = "menu">
-            <li role  = "menuitem"><a href = "./join-us">Students</a></li>
-            <li role = "menuitem"><a href = "./join-us">Mentors</a></li>
+            <li role  = "menuitem"><a href = "./join_us">Students</a></li>
+            <li role = "menuitem"><a href = "./join_us">Mentors</a></li>
           </ul>
         </section>
         <section aria-label = "Robot links">
@@ -90,7 +90,7 @@ $(document).ready(function () {
         </section>
         <section id="siteLinkContainer" aria-label = "Page links">
           <ul role = "menu">
-            <li role = "menuitem"><a href="./join-us">Join Us</a></li>
+            <li role = "menuitem"><a href="./join_us">Join Us</a></li>
             <li role = "presentation">|</li>
             <li role = "menuitem"><a href="./robots">Robots</a></li>
           </ul>

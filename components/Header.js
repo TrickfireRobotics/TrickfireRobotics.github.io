@@ -15,7 +15,7 @@ $(document).ready(function () {
       subpageName = "Robots";
       navClass = ".robots";
       break;
-    case "/our-story":
+    case "/our_story":
       subpageName = "Our Story";
       navClass = ".ourStory";
       break;
@@ -23,7 +23,7 @@ $(document).ready(function () {
       subpageName = "Events";
       navClass = ".events";
       break;
-    case "/join-us":
+    case "/join_us":
       subpageName = "Join Us";
       navClass = ".joinUs";
       break;
@@ -48,13 +48,13 @@ $(document).ready(function () {
             <a class = "robots" href="./robots">Robots</a>
           </li role = "menuitem">
           <li role = "menuitem">
-            <a class = "ourStory" href="./our-story">Our Story</a>
+            <a class = "ourStory" href="./our_story">Our Story</a>
           </li>
           <li role = "menuitem">
             <a class = "events" href="./events">Events</a>
           </li>
           <li role = "menuitem">
-            <a class = "joinUs" href="./join-us">Join Us</a>
+            <a class = "joinUs" href="./join_us">Join Us</a>
           </li>
           <li role = "menuitem">
             <a class = "sponsor" href="./sponsor">Sponsor</a>
@@ -76,13 +76,13 @@ $(document).ready(function () {
             <a class = "robots" href="./robots">Robots</a>
           </li role = "menuitem">
           <li role = "menuitem">
-            <a class = "ourStory" href="./our-story">Our Story</a>
+            <a class = "ourStory" href="./our_story">Our Story</a>
           </li>
           <li role = "menuitem">
             <a class = "events" href="./events">Events</a>
           </li>
           <li role = "menuitem">
-            <a class = "joinUs" href="./join-us">Join Us</a>
+            <a class = "joinUs" href="./join_us">Join Us</a>
           </li>
         </ul>
       </navbar>
