@@ -313,7 +313,6 @@ main .events-navigation {
   }
   main .previous-events-wrapper {
     display: none;
-    margin-bottom: 160px;
     height: 450px;
   }
   main .upcoming-header,
@@ -341,6 +340,7 @@ main .events-navigation {
   main .previous-events {
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
   }
   main .event-card {
     height: 95px;
