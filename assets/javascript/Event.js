@@ -11,16 +11,6 @@ const events = [
     image: "assets/images/photos/ClubFair.png",
   },
   {
-    date: "Middle / Late October, 2024",
-    time: "",
-    title: "Group Onboarding",
-    location: "ARC Overlook (Top Floor)",
-    tags: ["Introductions", "Onboarding"],
-    description:
-      "Meet club officers and others who are joining the club! Learn about the University Rover Challenge, club structure, how we are funded, and more. You will not only be a part of the club, but understand it!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-  {
     date: "Nov 13, 2024",
     time: "11:30 am - 1 pm",
     title: "I <3 UW Bothell Luncheon",
