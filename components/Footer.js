@@ -1,6 +1,8 @@
 //When linked to an HTML file this script will append the footer as the last child of the body element.
 $(document).ready(function () {
   const footer = $("<footer></footer>");
+  
+  const date = new Date();
 
   footer.html(`
       <hr role="presentation" />
@@ -97,7 +99,7 @@ $(document).ready(function () {
         </section>
       </div>
       <p>
-        Copyright © 2024 TrickFire Robotics.<br />All rights reserved.<br />Bothell,
+        Copyright © ${date.getFullYear()} TrickFire Robotics.<br />All rights reserved.<br />Bothell,
         WA<br />
       </p>
       `);
