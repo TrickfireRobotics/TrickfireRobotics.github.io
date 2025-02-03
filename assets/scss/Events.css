@@ -1,5 +1,6 @@
 main {
   background-color: rgb(23, 23, 23);
+  width: 100vw;
   /* Popup content */
   /* First column */
   /* Second column */
@@ -10,13 +11,16 @@ main h1 {
 main .page-setup {
   overflow: hidden;
   justify-content: center;
-  padding: 100px;
+  padding: 3em 6vw 6em 6vw;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 main .upcoming-card-wrapper {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 20em;
 }
 main .upcoming-events {
   display: flex;
@@ -39,6 +43,7 @@ main .previous-events {
   align-items: start;
   overflow-x: auto;
   scroll-behavior: smooth;
+  min-height: 15em;
 }
 main .previous-events .title {
   background-color: #65746b;
@@ -46,6 +51,9 @@ main .previous-events .title {
 main .previous-events .tags,
 main .previous-events .location {
   background-color: #929d97;
+}
+main .previous-events::-webkit-scrollbar {
+  display: none;
 }
 main .event-card {
   width: 300px;
@@ -56,13 +64,14 @@ main .event-card {
   position: relative;
   flex-shrink: 0;
   flex-grow: 0;
+  cursor: pointer !important;
 }
 main .image-container {
   position: relative;
 }
 main .event {
   width: 100%;
-  height: auto;
+  height: 30svh;
   -o-object-fit: cover;
      object-fit: cover;
   display: block;
@@ -82,7 +91,7 @@ main .time {
   align-items: center;
   gap: 5%;
   font-size: 0.8rem;
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", "Arial", sans-serif;
   letter-spacing: -1px;
 }
 main .clock {
@@ -97,7 +106,7 @@ main .date {
 }
 main .title {
   padding: 0.4rem 0.3rem 0.3rem 0.8rem;
-  font-family: "Overpass Mono", "Courier New", monospace;
+  font-family: "Overpass Mono", "Courier", monospace;
   background-color: rgb(116, 186, 143);
 }
 main .title h2 {
@@ -118,7 +127,7 @@ main .waypoint {
 }
 main .location h3 {
   font-size: 1.2rem;
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", "Arial", sans-serif;
   font-weight: lighter;
   color: #fff;
   margin: 0%;
@@ -189,7 +198,6 @@ main .popup {
   text-align: center;
   transition: all 1s ease-in-out;
 }
-
 main .popup-content {
   background: linear-gradient(to right, #a6a6a6, #d9d9d9);
   display: flex;
@@ -200,21 +208,20 @@ main .popup-content {
   justify-content: space-between;
   color: #000;
 }
-
 main .first-column {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 40%;
 }
-
 main .popup-img {
   width: 100%;
-  height: auto;
+  max-height: 70svh;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 8px;
   margin-bottom: 10px;
 }
-
 main .time-hold,
 main .location-hold {
   display: flex;
@@ -222,19 +229,17 @@ main .location-hold {
   margin-bottom: 10px;
   gap: 10px;
 }
-
 main .popup-clock,
 main .popup-waypoint {
   width: 25px;
   height: 25px;
   margin-right: 10px;
 }
-
 main .popup-date,
 main .popup-time,
 main .popup-location {
   font-size: 20px;
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", "Arial", sans-serif;
 }
 main .popup-time {
   margin-left: 5px;
@@ -249,12 +254,12 @@ main .popup-title {
   font-size: 24px;
   font-weight: bold;
   color: black;
-  font-family: "Overpass Mono", "Courier New", monospace;
+  font-family: "Overpass Mono", "Courier", monospace;
 }
 main .popup-description {
   font-size: 16px;
   margin-top: 5%;
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", "Arial", sans-serif;
 }
 main .share {
   position: absolute;
@@ -264,7 +269,7 @@ main .share {
   margin-top: 25%;
   display: flex;
   align-items: center;
-  font-family: "Outfit", Arial, sans-serif;
+  font-family: "Outfit", "Arial", sans-serif;
 }
 main .share .link {
   width: 100px;
@@ -281,10 +286,6 @@ main .events-navigation {
   display: none;
 }
 @media (max-width: 1000px) {
-  main {
-    /* First column */
-    /* Second column */
-  }
   main .page-setup {
     justify-content: center;
     padding: 10px;
@@ -308,8 +309,7 @@ main .events-navigation {
   }
   main .previous-events-wrapper {
     display: none;
-    margin-bottom: 160px;
-    height: 450px;
+    height: 100%;
   }
   main .upcoming-header,
   main .previous-header {
@@ -320,7 +320,7 @@ main .events-navigation {
     border-radius: 5px;
     background-color: #3b3b3b;
     color: #fff;
-    font-family: "Overpass Mono", "Courier New", monospace;
+    font-family: "Overpass Mono", "Courier", monospace;
   }
   main .upcoming-header.active {
     background-color: rgb(69, 139, 96);
@@ -332,25 +332,30 @@ main .events-navigation {
   main .upcoming-events {
     flex-wrap: wrap;
     justify-content: center;
+    margin: 10px;
+    width: 100%;
   }
   main .previous-events {
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
+    margin: 10px;
   }
   main .event-card {
     height: 95px;
     width: 90%;
     border: 1px solid #fff;
     display: flex;
-    margin: 40px 6px 0px 6px;
+    margin: 40px 6px 40px 6px;
     background-color: rgb(69, 139, 96);
     border: 1px solid rgb(69, 139, 96);
   }
   main .title {
     background-color: rgb(69, 139, 96);
     color: #000;
-    padding: 7px 7px 7px 20px;
-    font-size: 0.8rem;
+    padding: 7px 7px 7px 14px;
+    font-size: 0.65rem;
+    flex-wrap:wrap;
     margin-top: 3px;
   }
   main .event {
@@ -382,6 +387,7 @@ main .events-navigation {
     border: none;
     background-color: #2c2c2c !important;
     box-shadow: 0px 5px 5px rgba(50, 50, 50, 0.6);
+    margin: 40px 6px 40px 6px;
   }
   main .previous-events .title {
     background-color: #2c2c2c;
@@ -433,7 +439,7 @@ main .events-navigation {
   main .popup-time,
   main .popup-location {
     font-size: 18px;
-    font-family: "Outfit", Arial, sans-serif;
+    font-family: "Outfit", "Arial", sans-serif;
   }
   main .popup-time {
     margin-left: 5px;
@@ -453,12 +459,12 @@ main .events-navigation {
     font-size: 24px;
     font-weight: bold;
     color: black;
-    font-family: "Overpass Mono", "Courier New", monospace;
+    font-family: "Overpass Mono", "Courier", monospace;
   }
   main .popup-description {
     font-size: 16px;
     margin-top: 5%;
-    font-family: "Outfit", Arial, sans-serif;
+    font-family: "Outfit", "Arial", sans-serif;
   }
   main .share {
     position: absolute;
@@ -468,7 +474,7 @@ main .events-navigation {
     margin-top: 25%;
     display: flex;
     align-items: center;
-    font-family: "Outfit", Arial, sans-serif;
+    font-family: "Outfit", "Arial", sans-serif;
   }
   main .share .link {
     width: 100%;

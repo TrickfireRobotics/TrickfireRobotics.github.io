@@ -1,6 +1,46 @@
 // Array of event data with placeholder image
 const events = [
   {
+    date: "Oct 1st, 2024",
+    time: "11 am - 2 pm",
+    title: "Autumn Club Fair",
+    location: "ARC Overlook (top floor)",
+    tags: ["Introductions", "Rover Demo"],
+    description:
+      "TrickFire members, the rover, and other items will be present for you to speak and interact with! Come ask questions about the club, ourselves, and school. We are also happy to help you join the club. UW and Cascadia students are welcome.",
+    image: "assets/images/photos/ClubFair.png",
+  },
+  {
+    date: "Nov 13th, 2024",
+    time: "11:30 am - 1 pm",
+    title: "I <3 UW Bothell Luncheon",
+    location: "Westin Bellevue Hotel",
+    tags: ["Rover Demo", "Free Food", "RSVP Required"],
+    description:
+      "TrickFire is demoing at a UWB fundraising event that will raise hundreds of thousands of dollars and have hundreds of attendees. Network, impress, and eat free food! We are one of a few clubs with this opportunity to help the community and ourselves. You must RSVP on the club Discord server to attend.",
+    image: "assets/images/photos/LuncheonBanner.jpg",
+  },
+  {
+    date: "Feb, 2025",
+    time: "",
+    title: "TrickFire Robotics Rover Unveiling",
+    location: "ARC Overlook (Top Floor)",
+    tags: ["Rover Demo", "Free Food"],
+    description: "TrickFire is showcasing its rover to UWB and our supporters. Invite your friends, family, and mentors to eat pizza and more, learn about the club, and see the rover in action! Club alumni also are invited. Network! All UWB and Cascadia students are welcome.",
+    image: "assets/images/photos/RoverReveal.png",
+  },
+  {
+    date: "Feb 5th, 2025",
+    time: "11:00 am - 3 pm",
+    title: "Winter Club Fair",
+    location: "ARC Overlook & North Creek Events Center",
+    tags: ["Fair", "Academic Clubs", "Club Community", "Cultural Clubs"],
+    description:
+      "If you are interested in joining a club, and/or interested in seeing what clubs we have on campus, come to the Winter Club Fair that is happening February 5th from 11am-3pm in both the ARC Overlook and North Creek Events Center!",
+    image: "assets/images/photos/winter_club_fair.png",
+  },
+  /*
+  {
     date: "Sep 15th, 24",
     time: "5 pm - 7 pm",
     title: "Welcome Meeting",
@@ -70,25 +110,20 @@ const events = [
       "A fun and engaging orientation session to kickstart the new term!",
     image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
   },
+*/
 ];
 // Helper function to parse the date and time from the event
 function parseEventDateTime(event) {
   // Remove ordinal suffix (1st, 2nd, 3rd, 4th, etc.)
-  const dateParts = event.date.replace(/(\d+)(st|nd|rd|th)/, "$1"); // Removes 'th', 'nd', 'rd', etc.
+  const dateParts = event.date.replace(/(\d+)(st|nd|rd|th)/, "$1").split(" ");
 
-  // Split the date string into parts (e.g., "Oct 10th, 24" -> ["Oct", "10", "24"])
-  const [month, day, year] = dateParts.split(" ");
+  if (dateParts.length < 3) {
+    console.error("Invalid date format:", event.date);
+    return new Date(); // Return current date so it doesn’t break sorting
+  }
 
-  // Convert the year to full format (e.g., "24" -> "2024")
+  const [month, day, year] = dateParts;
   const fullYear = year.length === 2 ? `20${year}` : year;
-
-  // Convert the time (e.g., "8 pm - 11 pm" -> "8 pm")
-  const eventStartTime = event.time.split("-")[0].trim(); // Only the start time is needed for comparison
-
-  // Construct a valid date string (e.g., "Oct 10 2024 8:00 pm")
-  const validDateString = `${month} ${day} ${fullYear}`;
-  // Parse the date string into a JavaScript Date object
-  return new Date(validDateString);
 }
 
 //Helper factory function we use to create elements. Note: please specify an empty string if you need a future parameter but not the current one.
@@ -246,11 +281,12 @@ function addEventCards() {
     }
 
     if (eventDate > now) {
-      // Append to upcoming events
-      eventContainer.appendChild(eventCard);
-    } else {
+    if (eventDate < now) {
       // Append to previous events
       previousContainer.appendChild(eventCard);
+    } else {
+      // Append to upcoming events
+      eventContainer.appendChild(eventCard);
     }
   });
 }
@@ -303,24 +339,6 @@ function openPopup(eventData) {
   // Revealing the popup
   popup.style.display = "flex";
 }
-
-// // Adding event listeners to each card
-// document.querySelectorAll('.event-card').forEach((card, index) => {
-//   card.addEventListener('click', () => {
-//     console.log("activated")
-//     console.log(window.innerWidth)
-//     if (window.innerWidth >= 1000) {
-//         openPopup(events[index]);
-//     }
-//   });
-// });
-
-// // Closing the popup when clicking outside of the popup content
-// popup.addEventListener('click', (e) => {
-//   if (e.target === popup) {
-//     popup.style.display = "none";
-//   }
-// });
 
 function addPopupEventListeners() {
   document.querySelectorAll(".event-card").forEach((card, index) => {
