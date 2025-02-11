@@ -2,7 +2,7 @@
 const events = [
   {
     date: "Oct 1st, 2024",
-    time: "11 am - 2 pm",
+    time: "11:00 am - 2 pm",
     title: "Autumn Club Fair",
     location: "ARC Overlook (top floor)",
     tags: ["Introductions", "Rover Demo"],
@@ -21,7 +21,7 @@ const events = [
     image: "assets/images/photos/LuncheonBanner.jpg",
   },
   {
-    date: "Feb, 2025",
+    date: "Spring 2025",
     time: "",
     title: "TrickFire Robotics Rover Unveiling",
     location: "ARC Overlook (Top Floor)",
@@ -30,7 +30,7 @@ const events = [
     image: "assets/images/photos/RoverReveal.png",
   },
   {
-    date: "Feb 5th, 2025",
+    date: "Feb 19th, 2025",
     time: "11:00 am - 3 pm",
     title: "Winter Club Fair",
     location: "ARC Overlook & North Creek Events Center",
@@ -39,92 +39,50 @@ const events = [
       "If you are interested in joining a club, and/or interested in seeing what clubs we have on campus, come to the Winter Club Fair that is happening February 5th from 11am-3pm in both the ARC Overlook and North Creek Events Center!",
     image: "assets/images/photos/winter_club_fair.png",
   },
-  /*
-  {
-    date: "Sep 15th, 24",
-    time: "5 pm - 7 pm",
-    title: "Welcome Meeting",
-    location: "Room 101",
-    tags: ["Introduction", "Team"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-  {
-    date: "Oct 10th, 24",
-    time: "8 pm - 11 pm",
-    title: "Kick Off & Orientation",
-    location: "UWB INV-011",
-    tags: ["Introductions", "Sub-teams"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-  {
-    date: "Nov 20th, 24",
-    time: "3 pm - 6 pm",
-    title: "Hackathon Event",
-    location: "Auditorium 3",
-    tags: ["Coding", "Competition"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-  {
-    date: "Nov 20th, 24",
-    time: "3 pm - 6 pm",
-    title: "Hackathon Event",
-    location: "Auditorium 3",
-    tags: ["Coding", "Competition"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-  {
-    date: "Nov 20th, 24",
-    time: "3 pm - 6 pm",
-    title: "Hackathon Event",
-    location: "Auditorium 3",
-    tags: ["Coding", "Competition"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-  {
-    date: "Nov 20th, 23",
-    time: "3 pm - 6 pm",
-    title: "Hackathon Event",
-    location: "Auditorium 3",
-    tags: ["Coding", "Competition"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-  {
-    date: "Nov 20th, 23",
-    time: "3 pm - 6 pm",
-    title: "Hackathon Event",
-    location: "Auditorium 3",
-    tags: ["Coding", "Competition"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-*/
 ];
+// Find the current season to help with if the time is a season.
 // Helper function to parse the date and time from the event
 function parseEventDateTime(event) {
-  // Remove ordinal suffix (1st, 2nd, 3rd, 4th, etc.)
-  const dateParts = event.date.replace(/(\d+)(st|nd|rd|th)/, "$1").split(" ");
-
-  if (dateParts.length < 3) {
-    console.error("Invalid date format:", event.date);
-    return new Date(); // Return current date so it doesn’t break sorting
+  if (!event.date || typeof event.date !== "string") {
+    console.error("Invalid or missing date:", event);
+    return null;
   }
 
-  const [month, day, year] = dateParts;
-  const fullYear = year.length === 2 ? `20${year}` : year;
+  // Remove ordinal suffix (1st, 2nd, 3rd, 4th, etc.)
+  const dateParts = event.date.replace(/(\d+)(st|nd|rd|th)/, "$1").split(" ");
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  
+  let validDateString = "Jan 1 2025"; // Default fallback
+  
+  if (dateParts.length < 3) {
+    console.warn("Season format detected for:", event.date);
+    
+    if (dateParts[1] == "Winter") {
+      validDateString = `Dec 21 ${currentYear}`;
+    } else if (dateParts[1] == "Spring") {
+      validDateString = `Mar 21 ${currentYear}`;
+    } else if (dateParts[1] == "Summer") {
+      validDateString = `Jun 21 ${currentYear}`;
+    } else {
+      validDateString = `Sep 22 ${currentYear}`;
+    }
+  } else {
+    // Extract date parts (e.g., "Oct 10 24")
+    const [month, day, year] = dateParts;
+    const fullYear = year.length === 2 ? `20${year}` : year;
+    validDateString = `${month} ${day} ${fullYear}`;
+  }
+
+  // Convert the time (e.g., "8 pm - 11 pm" -> "8 pm")
+  let eventStartTime = event.time;
+  if (event.time && typeof event.time === "string") {
+    eventStartTime = event.time.split("-")[0].trim(); // Get only start time
+  }
+
+  return new Date(`${validDateString} ${eventStartTime}`);
 }
+
 
 //Helper factory function we use to create elements. Note: please specify an empty string if you need a future parameter but not the current one.
 function createElement(tag, className, text = "", src = "", alt = "") {
@@ -271,7 +229,6 @@ function addEventCards() {
   const previousContainer = document.querySelector(".previous-events");
   const now = new Date();
   let eventCard;
-
   events.forEach((event) => {
     const eventDate = parseEventDateTime(event);
     if (window.innerWidth <= 1000) {
@@ -279,8 +236,7 @@ function addEventCards() {
     } else {
       eventCard = createDeskTopEventCard(event);
     }
-
-    if (eventDate > now) {
+    console.log(eventDate);
     if (eventDate < now) {
       // Append to previous events
       previousContainer.appendChild(eventCard);
@@ -289,7 +245,7 @@ function addEventCards() {
       eventContainer.appendChild(eventCard);
     }
   });
-}
+};
 
 // Function to handle slider
 function initSlider() {
