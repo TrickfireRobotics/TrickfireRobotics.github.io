@@ -2,8 +2,8 @@
 const events = [
   {
     date: "Oct 1st, 2024",
-    time: "11 am - 2 pm",
-    title: "Club Fair",
+    time: "11:00 am - 2 pm",
+    title: "Autumn Club Fair",
     location: "ARC Overlook (top floor)",
     tags: ["Introductions", "Rover Demo"],
     description:
@@ -11,7 +11,7 @@ const events = [
     image: "assets/images/photos/ClubFair.png",
   },
   {
-    date: "Nov 13, 2024",
+    date: "Nov 13th, 2024",
     time: "11:30 am - 1 pm",
     title: "I <3 UW Bothell Luncheon",
     location: "Westin Bellevue Hotel",
@@ -21,107 +21,68 @@ const events = [
     image: "assets/images/photos/LuncheonBanner.jpg",
   },
   {
-    date: "Spring Quarter 2025",
+    date: "Spring 2025",
     time: "",
     title: "TrickFire Robotics Rover Unveiling",
     location: "ARC Overlook (Top Floor)",
     tags: ["Rover Demo", "Free Food"],
-    description:
-      "TrickFire is showcasing its rover to UWB and our supporters. Invite your friends, family, and mentors to eat pizza and more, learn about the club, and see the rover in action! Club alumni also are invited. Network! All UWB and Cascadia students are welcome.",
+    description: "TrickFire is showcasing its rover to UWB and our supporters. Invite your friends, family, and mentors to eat pizza and more, learn about the club, and see the rover in action! Club alumni also are invited. Network! All UWB and Cascadia students are welcome.",
     image: "assets/images/photos/RoverReveal.png",
   },
-  /*
   {
-    date: "Sep 15th, 24",
-    time: "5 pm - 7 pm",
-    title: "Welcome Meeting",
-    location: "Room 101",
-    tags: ["Introduction", "Team"],
+    date: "Feb 19th, 2025",
+    time: "11:00 am - 3 pm",
+    title: "Winter Club Fair",
+    location: "ARC Overlook & North Creek Events Center",
+    tags: ["Fair", "Academic Clubs", "Club Community", "Cultural Clubs"],
     description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
+      "If you are interested in joining a club, and/or interested in seeing what clubs we have on campus, come to the Winter Club Fair that is happening February 5th from 11am-3pm in both the ARC Overlook and North Creek Events Center!",
+    image: "assets/images/photos/winter_club_fair.png",
   },
-  {
-    date: "Oct 10th, 24",
-    time: "8 pm - 11 pm",
-    title: "Kick Off & Orientation",
-    location: "UWB INV-011",
-    tags: ["Introductions", "Sub-teams"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-  {
-    date: "Nov 20th, 24",
-    time: "3 pm - 6 pm",
-    title: "Hackathon Event",
-    location: "Auditorium 3",
-    tags: ["Coding", "Competition"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-  {
-    date: "Nov 20th, 24",
-    time: "3 pm - 6 pm",
-    title: "Hackathon Event",
-    location: "Auditorium 3",
-    tags: ["Coding", "Competition"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-  {
-    date: "Nov 20th, 24",
-    time: "3 pm - 6 pm",
-    title: "Hackathon Event",
-    location: "Auditorium 3",
-    tags: ["Coding", "Competition"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-  {
-    date: "Nov 20th, 23",
-    time: "3 pm - 6 pm",
-    title: "Hackathon Event",
-    location: "Auditorium 3",
-    tags: ["Coding", "Competition"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-  {
-    date: "Nov 20th, 23",
-    time: "3 pm - 6 pm",
-    title: "Hackathon Event",
-    location: "Auditorium 3",
-    tags: ["Coding", "Competition"],
-    description:
-      "A fun and engaging orientation session to kickstart the new term!",
-    image: "assets/images/photos/outreach_trickfire_robotics_compressed.jpg",
-  },
-*/
 ];
+// Find the current season to help with if the time is a season.
 // Helper function to parse the date and time from the event
 function parseEventDateTime(event) {
+  if (!event.date || typeof event.date !== "string") {
+    console.error("Invalid or missing date:", event);
+    return null;
+  }
+
   // Remove ordinal suffix (1st, 2nd, 3rd, 4th, etc.)
-  const dateParts = event.date.replace(/(\d+)(st|nd|rd|th)/, "$1"); // Removes 'th', 'nd', 'rd', etc.
-
-  // Split the date string into parts (e.g., "Oct 10th, 24" -> ["Oct", "10", "24"])
-  const [month, day, year] = dateParts.split(" ");
-
-  // Convert the year to full format (e.g., "24" -> "2024")
-  const fullYear = year.length === 2 ? `20${year}` : year;
+  const dateParts = event.date.replace(/(\d+)(st|nd|rd|th)/, "$1").split(" ");
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  
+  let validDateString = "Jan 1 2025"; // Default fallback
+  
+  if (dateParts.length < 3) {
+    console.warn("Season format detected for:", event.date);
+    
+    if (dateParts[1] == "Winter") {
+      validDateString = `Dec 21 ${currentYear}`;
+    } else if (dateParts[1] == "Spring") {
+      validDateString = `Mar 21 ${currentYear}`;
+    } else if (dateParts[1] == "Summer") {
+      validDateString = `Jun 21 ${currentYear}`;
+    } else {
+      validDateString = `Sep 22 ${currentYear}`;
+    }
+  } else {
+    // Extract date parts (e.g., "Oct 10 24")
+    const [month, day, year] = dateParts;
+    const fullYear = year.length === 2 ? `20${year}` : year;
+    validDateString = `${month} ${day} ${fullYear}`;
+  }
 
   // Convert the time (e.g., "8 pm - 11 pm" -> "8 pm")
-  const eventStartTime = event.time.split("-")[0].trim(); // Only the start time is needed for comparison
+  let eventStartTime = event.time;
+  if (event.time && typeof event.time === "string") {
+    eventStartTime = event.time.split("-")[0].trim(); // Get only start time
+  }
 
-  // Construct a valid date string (e.g., "Oct 10 2024 8:00 pm")
-  const validDateString = `${month} ${day} ${fullYear}`;
-  // Parse the date string into a JavaScript Date object
-  return new Date(validDateString);
+  return new Date(`${validDateString} ${eventStartTime}`);
 }
+
 
 //Helper factory function we use to create elements. Note: please specify an empty string if you need a future parameter but not the current one.
 function createElement(tag, className, text = "", src = "", alt = "") {
@@ -268,7 +229,6 @@ function addEventCards() {
   const previousContainer = document.querySelector(".previous-events");
   const now = new Date();
   let eventCard;
-
   events.forEach((event) => {
     const eventDate = parseEventDateTime(event);
     if (window.innerWidth <= 1000) {
@@ -276,7 +236,7 @@ function addEventCards() {
     } else {
       eventCard = createDeskTopEventCard(event);
     }
-
+    console.log(eventDate);
     if (eventDate < now) {
       // Append to previous events
       previousContainer.appendChild(eventCard);
@@ -285,7 +245,7 @@ function addEventCards() {
       eventContainer.appendChild(eventCard);
     }
   });
-}
+};
 
 // Function to handle slider
 function initSlider() {
