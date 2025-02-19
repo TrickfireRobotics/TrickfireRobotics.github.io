@@ -4,7 +4,7 @@ main {
   width: 100vw;
   h2 {
     font-size: calc(1rem + 2.3vw);
-    font-weight: normal;
+    font-weight: bold;
     letter-spacing: 0.1em;
     color: hsl(0, 100%, 99%);
     margin-bottom: 0.4em;
@@ -287,18 +287,6 @@ main {
     }
   }
 
-  section#missionSection::before {
-    content: "";
-    background-color: $neon-green;
-    position: absolute;
-    top: 23%;
-    left: 25%;
-    width: 50%;
-    height: 50%;
-    border-radius: 100%;
-    filter: blur(20em);
-    -webkit-filter: blur(20em);
-  }
 
   div#starBackgroundSection::before {
     content: "";

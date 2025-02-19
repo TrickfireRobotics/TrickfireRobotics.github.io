@@ -3,7 +3,7 @@ main {
 }
 main h2 {
   font-size: calc(1rem + 2.3vw);
-  font-weight: normal;
+  font-weight: bold;
   letter-spacing: 0.1em;
   color: hsl(0, 100%, 99%);
   margin-bottom: 0.4em;
@@ -290,18 +290,6 @@ main section#missionSection div.contentWidthContainer div#cardContainer article 
 }
 main section#missionSection div.contentWidthContainer div#cardContainer article p {
   padding: 1.5em 0;
-}
-main section#missionSection::before {
-  content: "";
-  background-color: rgb(0, 255, 0);
-  position: absolute;
-  top: 23%;
-  left: 25%;
-  width: 50%;
-  height: 50%;
-  border-radius: 100%;
-  filter: blur(20em);
-  -webkit-filter: blur(20em);
 }
 main div#starBackgroundSection::before {
   content: "";
