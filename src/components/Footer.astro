@@ -4,21 +4,6 @@ const year = new Date().getFullYear();
 
 <footer>
     <div class="footer-content">
-        <div class="links">
-            <a href="https://github.com/TrickfireRobotics" target="_blank" rel="noopener noreferrer"
-                >GitHub</a
-            >
-            <span class="sep">&middot;</span>
-            <a
-                href="https://www.notion.so/trickfire/invite/7f153eec8ed8ebe4608dc95892fce859540f8640"
-                target="_blank"
-                rel="noopener noreferrer">Notion</a
-            >
-            <span class="sep">&middot;</span>
-            <a href="https://trickfirerobotics.com" target="_blank" rel="noopener noreferrer"
-                >TrickFire Robotics</a
-            >
-        </div>
         <p class="copyright">&copy; {year} TrickFire Robotics</p>
     </div>
 </footer>
@@ -35,26 +20,6 @@ const year = new Date().getFullYear();
         margin: 0 auto;
         text-align: center;
     }
-
-    .links {
-        margin-bottom: 0.75rem;
-    }
-
-    .links a {
-        color: var(--tf-text-muted);
-        font-size: 0.9rem;
-        transition: color 0.15s;
-    }
-
-    .links a:hover {
-        color: var(--tf-white);
-    }
-
-    .sep {
-        color: var(--tf-border);
-        margin: 0 0.5rem;
-    }
-
     .copyright {
         color: var(--tf-text-muted);
         font-size: 0.8rem;
