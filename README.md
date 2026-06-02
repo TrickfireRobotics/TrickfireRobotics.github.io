@@ -1,5 +1,5 @@
 > [!NOTE]
-> Looking for the TrickFire website? This repo is only the docs portal. The main TrickFire Robotics website ([trickfirerobotics.com](https://trickfirerobotics.com/)) lives at [github.com/TrickfireRobotics/TrickFire-Website](https://github.com/TrickfireRobotics/TrickFire-Website).
+> Looking for the TrickFire website? This repo is only the docs portal. The main TrickFire Robotics website [trickfirerobotics.com](https://trickfirerobotics.com/) lives at [github.com/TrickfireRobotics/TrickFire-Website](https://github.com/TrickfireRobotics/TrickFire-Website).
 
 # TrickfireRobotics.github.io
 
