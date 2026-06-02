@@ -1,12 +1,11 @@
 ---
-import { Image } from 'astro:assets';
-import navLogo from '../assets/nav-logo.png';
+
 ---
 
 <header>
     <nav>
         <a href="/" class="logo-link">
-            <Image src={navLogo} alt="TrickFire Robotics" height={40} />
+            <img src="/nav-logo.png" alt="TrickFire Robotics" height="40" />
         </a>
         <div class="nav-links">
             <a
@@ -15,10 +14,45 @@ import navLogo from '../assets/nav-logo.png';
                 rel="noopener noreferrer"
                 aria-label="GitHub"
             >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path
-                        d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+                        d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"
                     ></path>
+                </svg>
+            </a>
+            <a
+                href="https://www.notion.so/trickfire/invite/7f153eec8ed8ebe4608dc95892fce859540f8640"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Notion"
+            >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                        d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"
+                    ></path>
+                </svg>
+            </a>
+            <a
+                href="https://trickfirerobotics.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TrickFire Robotics"
+            >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"
+                    ></circle>
+                    <line
+                        x1="2"
+                        y1="12"
+                        x2="22"
+                        y2="12"
+                        stroke="currentColor"
+                        stroke-width="2"></line>
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"></path>
                 </svg>
             </a>
         </div>
@@ -32,20 +66,20 @@ import navLogo from '../assets/nav-logo.png';
         z-index: 100;
         background: var(--tf-bg-nav);
         border-bottom: 1px solid var(--tf-border);
+        width: 100%;
     }
 
     nav {
-        max-width: 72rem;
-        margin: 0 auto;
+        width: 100%;
         padding: 0.75rem 1.5rem;
         display: flex;
         align-items: center;
-        justify-content: space-between;
     }
 
     .logo-link {
         display: flex;
         align-items: center;
+        flex-shrink: 0;
     }
 
     .logo-link:hover {
@@ -53,13 +87,23 @@ import navLogo from '../assets/nav-logo.png';
         opacity: 0.85;
     }
 
+    .logo-link img {
+        height: 2.5rem;
+        width: auto;
+        max-width: 100%;
+    }
+
     .nav-links {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 0.25rem;
+        margin-left: auto;
     }
 
     .nav-links a {
+        display: flex;
+        align-items: center;
+        padding: 0.4rem;
         color: var(--tf-text-muted);
         transition: color 0.15s;
     }
@@ -67,5 +111,10 @@ import navLogo from '../assets/nav-logo.png';
     .nav-links a:hover {
         color: var(--tf-white);
         text-decoration: none;
+    }
+
+    .nav-links svg {
+        width: 1.25rem;
+        height: 1.25rem;
     }
 </style>
