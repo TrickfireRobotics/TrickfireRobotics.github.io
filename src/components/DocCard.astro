@@ -1,0 +1,62 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    href: string;
+}
+
+const { title, description, href } = Astro.props;
+---
+
+<a class="card" href={href}>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <span class="arrow">&rarr;</span>
+</a>
+
+<style>
+    .card {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        background: var(--tf-bg-card);
+        border: 1px solid var(--tf-border);
+        border-radius: 0.75rem;
+        text-decoration: none;
+        color: var(--tf-text);
+        transition:
+            border-color 0.2s,
+            box-shadow 0.2s;
+    }
+
+    .card:hover {
+        border-color: var(--tf-green);
+        box-shadow: 0 0 20px rgba(0, 254, 0, 0.08);
+        text-decoration: none;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        color: var(--tf-pink);
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        color: var(--tf-text-muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        flex: 1;
+    }
+
+    .arrow {
+        display: block;
+        margin-top: 1rem;
+        color: var(--tf-green);
+        font-size: 1.25rem;
+        transition: transform 0.2s;
+    }
+
+    .card:hover .arrow {
+        transform: translateX(4px);
+    }
+</style>
