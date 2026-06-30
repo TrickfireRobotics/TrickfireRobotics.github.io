@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# testing
+coverage/
+
+# misc
+.DS_Store
+*.tsbuildinfo
+
+# package tarballs
+**/*.tgz
+
+# debug
+npm-debug.log*
+.pnpm-debug.log*
+.pnpm-store/
