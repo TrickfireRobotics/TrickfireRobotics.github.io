@@ -3,12 +3,35 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import type { ResolvedDocsConfig } from "../config/resolve.js";
 
+/**
+ * Astro's `base` config only auto-prefixes Starlight sidebar `slug` references - raw
+ * hrefs in MDX content (LinkCard, hero actions) are passed through unprefixed and would
+ * 404 once the site is served under a subpath. External links are left untouched.
+ */
+function withBase(base: string, link: string): string {
+    return /^https?:\/\//.test(link) ? link : `${base}${link}`;
+}
+
 function generateIndexMdx(config: ResolvedDocsConfig): string {
     const cards = config.landing
         .map(
             (item) =>
-                `  <LinkCard title=${JSON.stringify(item.title)} description=${JSON.stringify(item.description)} href=${JSON.stringify(item.link)} />`
+                `  <LinkCard title=${JSON.stringify(item.title)} description=${JSON.stringify(item.description)} href=${JSON.stringify(withBase(config.base, item.link))} />`
         )
+        .join("\n");
+
+    const githubHref = config.social.find((link) => link.icon === "github")?.href;
+    const heroImage = `<img src="${config.base}/logo-small.png" alt="TrickFire Robotics Logo" class="hero-logo">`;
+
+    const actions = [
+        config.landing[0]
+            ? `    - text: Get Started\n      link: ${JSON.stringify(withBase(config.base, config.landing[0].link))}\n      icon: right-arrow`
+            : null,
+        githubHref
+            ? `    - text: View on GitHub\n      link: ${JSON.stringify(githubHref)}\n      icon: external\n      variant: minimal`
+            : null,
+    ]
+        .filter((action) => action !== null)
         .join("\n");
 
     return `---
@@ -18,7 +41,9 @@ template: splash
 hero:
   title: ${JSON.stringify(config.name)}
   tagline: ${JSON.stringify(config.description)}
----
+  image:
+    html: ${JSON.stringify(heroImage)}
+${actions ? `  actions:\n${actions}\n` : ""}---
 
 import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 

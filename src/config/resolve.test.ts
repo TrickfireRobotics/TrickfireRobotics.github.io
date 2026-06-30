@@ -26,7 +26,7 @@ describe("resolveDocsConfig", () => {
         expect(resolved.base).toBe("/gazebo-simulations");
     });
 
-    it("defaults social to a GitHub link derived from the repo name", async () => {
+    it("always includes GitHub, Notion, and TrickFire Robotics in the nav", async () => {
         const dir = await makeProject("gazebo-simulations");
         const resolved = await resolveDocsConfig(dir, baseConfig);
         expect(resolved.social).toEqual([
@@ -35,14 +35,25 @@ describe("resolveDocsConfig", () => {
                 label: "GitHub",
                 href: "https://github.com/TrickfireRobotics/gazebo-simulations",
             },
+            {
+                icon: "external",
+                label: "Notion",
+                href: "https://www.notion.so/trickfire/invite/7f153eec8ed8ebe4608dc95892fce859540f8640",
+            },
+            {
+                icon: "external",
+                label: "TrickFire Robotics",
+                href: "https://docs.trickfirerobotics.com",
+            },
         ]);
     });
 
-    it("respects an explicit social override", async () => {
+    it("appends user-provided social links after the fixed defaults", async () => {
         const dir = await makeProject("gazebo-simulations");
         const social = [{ icon: "discord", label: "Discord", href: "https://discord.gg/example" }];
         const resolved = await resolveDocsConfig(dir, { ...baseConfig, social });
-        expect(resolved.social).toBe(social);
+        expect(resolved.social).toHaveLength(4);
+        expect(resolved.social.at(-1)).toEqual(social[0]);
     });
 
     it("throws if package.json has no name field", async () => {

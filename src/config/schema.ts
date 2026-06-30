@@ -45,7 +45,10 @@ export interface DocsConfig {
     landing: LandingItem[];
     /** Sidebar nav structure - same shape as Starlight's `sidebar` config. */
     sidebar: SidebarConfig;
-    /** Defaults to this repo's GitHub link, derived from package.json's "name". */
+    /**
+     * Extra nav icons, appended after the fixed GitHub (derived from package.json's
+     * "name"), Notion, and TrickFire Robotics links that are always present.
+     */
     social?: SocialLinks;
 }
 
