@@ -1,7 +1,7 @@
 {
-    "name": "my-tool",
+    "name": "trickfire-docs",
     "version": "0.1.0",
-    "description": "Example CLI package scaffold.",
+    "description": "A TrickFire robotics documentation framework wrapping Astro Starlight",
     "license": "MIT",
     "author": "TrickFire Robotics",
     "type": "module",
