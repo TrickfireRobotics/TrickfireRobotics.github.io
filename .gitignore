@@ -19,3 +19,6 @@ coverage/
 npm-debug.log*
 .pnpm-debug.log*
 .pnpm-store/
+
+# test
+.test-repo/
