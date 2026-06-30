@@ -11,6 +11,7 @@ GitHub serves an organization's `<org>.github.io` repository at the root of its 
 
 - `docs.trickfirerobotics.com/gazebo-simulations/` — from the `gazebo-simulations` repo
 - `docs.trickfirerobotics.com/trickfire-urc/` — from the `trickfire-urc` repo
+- `docs.trickfirerobotics.com/ak-series-lib/` - from the `ak-series-lib` repo
 
 This gives us a unified docs domain without needing a reverse proxy.
 
