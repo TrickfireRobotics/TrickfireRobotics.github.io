@@ -21,6 +21,7 @@ npm-debug.log*
 .pnpm-debug.log*
 .pnpm-store/
 .test-repo/
+.framework-test/
 
 # Editor
 .vscode/*
