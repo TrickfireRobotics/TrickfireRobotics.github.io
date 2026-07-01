@@ -7,5 +7,5 @@
         "skipLibCheck": true,
         "outDir": "dist-cli"
     },
-    "include": ["src"]
+    "include": ["framework"]
 }

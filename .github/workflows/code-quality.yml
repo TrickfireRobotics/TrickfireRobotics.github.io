@@ -38,5 +38,5 @@ jobs:
             - name: Run TypeScript check
               run: pnpm typecheck
 
-            - name: Build CLI
-              run: pnpm build:cli
+            - name: Build framework
+              run: pnpm framework:build

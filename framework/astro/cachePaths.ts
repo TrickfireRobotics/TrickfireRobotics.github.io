@@ -17,7 +17,7 @@ function findPackageRoot(startDir: string): string {
 /**
  * The installed trickfire-docs package's own root - not the consumer project's root.
  * Resolved relative to this file's own location so it works both from dist-cli/ (built,
- * installed inside a consumer's node_modules/trickfire-docs/) and from src/ (dev, via tsx).
+ * installed inside a consumer's node_modules/trickfire-docs/) and from framework/ (dev, via tsx).
  */
 export function getPackageRoot(): string {
     const here = path.dirname(fileURLToPath(import.meta.url));

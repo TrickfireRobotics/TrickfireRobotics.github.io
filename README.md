@@ -18,8 +18,8 @@ This gives us a unified docs domain without needing a reverse proxy.
 
 One repo, one `package.json`, two things it produces - they just happen to share a "docs" domain:
 
-- **The portal site** — `website/`, `public/`, `astro.config.ts` — served at [docs.trickfirerobotics.com](https://docs.trickfirerobotics.com/), deployed by `.github/workflows/pages.yml`.
-- **`trickfire-docs`** — `src/`, `internal/`, `scaffold/`, `tsup.config.ts`, `vitest.config.ts`, `tsconfig.cli.json`, `release.config.cjs` — the Astro/Starlight-based docs framework other TrickFire repos install to generate their own `docs.trickfirerobotics.com/<repo-name>/` sites (documented below). Published to npm independently via `.github/workflows/release.yml` (only runs on changes to the paths listed above).
+- **The portal site** (a side project living in this repo, not the main point) — `website/`, `public/`, `astro.config.ts` — served at [docs.trickfirerobotics.com](https://docs.trickfirerobotics.com/), deployed by `.github/workflows/pages.yml`.
+- **`trickfire-docs`** — `framework/`, `internal/`, `scaffold/`, `tsup.config.ts`, `vitest.config.ts`, `tsconfig.cli.json`, `release.config.cjs` — the Astro/Starlight-based docs framework other TrickFire repos install to generate their own `docs.trickfirerobotics.com/<repo-name>/` sites (documented below). Published to npm independently via `.github/workflows/release.yml` (only runs on changes to the paths listed above).
 
 Both share the same `pnpm-lock.yaml`, ESLint/Prettier/commitlint config, and git hooks - there's nothing to separately install or configure. `tsconfig.json` (portal, Astro) and `tsconfig.cli.json` (framework, Node) stay separate since they target genuinely different runtimes; same for `astro.config.ts` vs `tsup.config.ts`/`vitest.config.ts`.
 
@@ -27,10 +27,10 @@ Both share the same `pnpm-lock.yaml`, ESLint/Prettier/commitlint config, and git
 
 ```sh
 pnpm install
-pnpm dev          # start the portal's dev server at http://localhost:4321
-pnpm build        # production build of the portal → dist/
-pnpm preview      # preview the portal's production build locally
-pnpm check        # lint + format check + typecheck the whole workspace
+pnpm website:dev      # start the portal's dev server at http://localhost:4321
+pnpm website:build    # production build of the portal → dist/
+pnpm website:preview  # preview the portal's production build locally
+pnpm check            # lint + format check + typecheck everything (portal + framework)
 ```
 
 ## `trickfire-docs` — the docs framework
@@ -140,10 +140,10 @@ Every push to `main` that touches `docs/` or `docs.config.ts` rebuilds and redep
 Because this package generates and drives a real Astro project from inside its own install location (`node_modules/trickfire-docs/.astro-cache/`), changes don't show up correctly under `pnpm link` - a symlink doesn't reproduce how a real consumer's package manager lays out `node_modules`. Test changes against a real, packed install instead:
 
 ```bash
-pnpm check       # lint/format/typecheck everything (portal + framework)
-pnpm test        # run the framework's tests
-pnpm build:cli    # compile the framework to dist/
-npm pack          # produces trickfire-docs-<version>.tgz
+pnpm check            # lint/format/typecheck everything (portal + framework)
+pnpm test             # run the framework's tests
+pnpm framework:build  # compile the framework to dist-cli/
+npm pack              # produces trickfire-docs-<version>.tgz
 ```
 
 Then in a throwaway project (not inside this repo):
@@ -159,13 +159,13 @@ npx trickfire-docs dev      # check hot reload works
 npx trickfire-docs build    # check dist/ output
 ```
 
-Test with **both `npm` and `pnpm`** when changing anything that touches dependency resolution or the cache layout (`src/astro/`). `npm`'s default hoisting is more forgiving and can hide bugs that only show up under `pnpm`'s strict, non-hoisted isolation - that's exactly how the `outDir`/dev-watch issues during initial development were found.
+Test with **both `npm` and `pnpm`** when changing anything that touches dependency resolution or the cache layout (`framework/astro/`). `npm`'s default hoisting is more forgiving and can hide bugs that only show up under `pnpm`'s strict, non-hoisted isolation - that's exactly how the `outDir`/dev-watch issues during initial development were found.
 
 Delete the throwaway project and the `.tgz` when done; `.astro-cache/` inside this repo (if you ever run the CLI directly from source) is gitignored and safe to delete at any time.
 
 ### Releasing `trickfire-docs` to npm
 
-Releases are fully automated via [semantic-release](https://semantic-release.gitbook.io/) (`.github/workflows/release.yml`, config in `release.config.cjs`) - there's no manual version bump or `npm publish` step. The release workflow only runs on pushes to `main` that touch the framework's own paths (`src/`, `internal/`, `scaffold/`, `tsup.config.ts`, `vitest.config.ts`, `tsconfig.cli.json`, `release.config.cjs`) - a portal-only change won't trigger it. Once triggered, semantic-release:
+Releases are fully automated via [semantic-release](https://semantic-release.gitbook.io/) (`.github/workflows/release.yml`, config in `release.config.cjs`) - there's no manual version bump or `npm publish` step. The release workflow only runs on pushes to `main` that touch the framework's own paths (`framework/`, `internal/`, `scaffold/`, `tsup.config.ts`, `vitest.config.ts`, `tsconfig.cli.json`, `release.config.cjs`) - a portal-only change won't trigger it. Once triggered, semantic-release:
 
 1. Reads commit messages since the last release (relies on the [Conventional Commits](https://www.conventionalcommits.org/) enforced by commitlint) to decide whether a release is needed and what the next version is - `fix:` → patch, `feat:` → minor, a `BREAKING CHANGE:` footer → major. `chore:`/`docs:`/`style:`/etc. don't trigger a release on their own.
 2. Publishes the new version to the public npm registry.

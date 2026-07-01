@@ -2,7 +2,7 @@ import { defineConfig } from "tsup";
 
 export default defineConfig([
     {
-        entry: { cli: "src/cli.ts" },
+        entry: { cli: "framework/cli.ts" },
         format: ["esm"],
         banner: { js: "#!/usr/bin/env node" },
         tsconfig: "tsconfig.cli.json",
@@ -10,7 +10,7 @@ export default defineConfig([
         clean: true,
     },
     {
-        entry: { index: "src/index.ts" },
+        entry: { index: "framework/index.ts" },
         format: ["esm"],
         dts: true,
         tsconfig: "tsconfig.cli.json",

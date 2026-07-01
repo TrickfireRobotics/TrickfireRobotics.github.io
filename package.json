@@ -25,11 +25,11 @@
         "access": "public"
     },
     "scripts": {
-        "dev": "astro dev",
-        "build": "astro build",
-        "preview": "astro preview",
-        "dev:cli": "tsx src/cli.ts",
-        "build:cli": "tsup",
+        "website:dev": "astro dev",
+        "website:build": "astro build",
+        "website:preview": "astro preview",
+        "framework:dev": "tsx framework/cli.ts",
+        "framework:build": "tsup",
         "test": "vitest run",
         "test:watch": "vitest",
         "release:dry-run": "semantic-release --dry-run --no-ci",

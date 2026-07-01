@@ -4,7 +4,7 @@ on:
     push:
         branches: [main]
         paths-ignore:
-            - "src/**"
+            - "framework/**"
             - "internal/**"
             - "scaffold/**"
             - "tsup.config.ts"
@@ -44,7 +44,7 @@ jobs:
             - uses: actions/configure-pages@v5
 
             - name: Build Astro site
-              run: pnpm build
+              run: pnpm website:build
 
             - uses: actions/upload-pages-artifact@v3
               with:
