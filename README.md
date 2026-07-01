@@ -111,7 +111,7 @@ If the repo already has a self-contained `docs/` folder with its own `astro.conf
 
 ```bash
 cd path/to/repo
-curl -fsSL https://raw.githubusercontent.com/TrickfireRobotics/TrickfireRobotics.github.io/main/migrate-docs.py | python3
+curl -fsSL https://raw.githubusercontent.com/TrickfireRobotics/TrickfireRobotics.github.io/refs/heads/main/migrate-docs.py | python3
 ```
 
 The script moves `docs/content/docs/**` into `docs/`, generates `docs.config.ts`, adds `trickfire-docs` to `package.json` (creating one if the repo has none), and runs `pnpm install`. Fill in the `description` TODOs in `docs.config.ts` when done.
