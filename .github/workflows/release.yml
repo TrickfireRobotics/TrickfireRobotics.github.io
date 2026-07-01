@@ -48,7 +48,7 @@ jobs:
               run: pnpm install --frozen-lockfile
 
             - name: Run ESLint
-              run: pnpm exec eslint framework internal scaffold tsup.config.ts vitest.config.ts release.config.cjs
+              run: pnpm exec eslint framework scaffold tsup.config.ts vitest.config.ts release.config.cjs
 
             - name: Run Prettier check
               run: pnpm exec prettier --check framework internal scaffold tsup.config.ts vitest.config.ts release.config.cjs package.json
