@@ -1,51 +1,21 @@
 > [!NOTE]
-> Looking for the TrickFire website? This repo is only the docs portal. The main TrickFire Robotics website [trickfirerobotics.com](https://trickfirerobotics.com/) lives at [github.com/TrickfireRobotics/TrickFire-Website](https://github.com/TrickfireRobotics/TrickFire-Website).
+> Looking for the TrickFire website? The main TrickFire Robotics website [trickfirerobotics.com](https://trickfirerobotics.com/) lives at [github.com/TrickfireRobotics/TrickFire-Website](https://github.com/TrickfireRobotics/TrickFire-Website).
 
-# TrickfireRobotics.github.io
+# TrickFire Docs
 
-The central documentation portal for TrickFire Robotics, served at [docs.trickfirerobotics.com](https://docs.trickfirerobotics.com/) — and the home of `trickfire-docs`, the framework other TrickFire repos use to publish their own docs there.
+`trickfire-docs` is TrickFire Robotics' documentation framework - an Astro/Starlight-based tool other TrickFire repos install to generate and publish their own docs at `docs.trickfirerobotics.com/<repo-name>`. This repo is where it's built and published from.
 
-## Why this repo name?
+It also happens to host the tiny Astro site that serves `docs.trickfirerobotics.com` itself - more on that [below](#also-in-this-repo-the-docstrickfireroboticscom-portal).
 
-GitHub serves an organization's `<org>.github.io` repository at the root of its GitHub Pages domain. By naming this repo `TrickfireRobotics.github.io` and pointing the custom domain at it, we own `docs.trickfirerobotics.com/`. Every other repo in the organization can then deploy its own GitHub Pages site at a subpath of that domain — for example:
+## Using `trickfire-docs` in a project
 
-- `docs.trickfirerobotics.com/gazebo-simulations/` — from the `gazebo-simulations` repo
-- `docs.trickfirerobotics.com/trickfire-urc/` — from the `trickfire-urc` repo
-
-This gives us a unified docs domain without needing a reverse proxy.
-
-## Repo layout
-
-One repo, one `package.json`, two things it produces - they just happen to share a "docs" domain:
-
-- **The portal site** (a side project living in this repo, not the main point) — `website/`, `public/`, `astro.config.ts` — served at [docs.trickfirerobotics.com](https://docs.trickfirerobotics.com/), deployed by `.github/workflows/pages.yml`.
-- **`trickfire-docs`** — `framework/`, `internal/`, `scaffold/`, `tsup.config.ts`, `vitest.config.ts`, `tsconfig.cli.json`, `release.config.cjs` — the Astro/Starlight-based docs framework other TrickFire repos install to generate their own `docs.trickfirerobotics.com/<repo-name>/` sites (documented below). Published to npm independently via `.github/workflows/release.yml` (only runs on changes to the paths listed above).
-
-Both share the same `pnpm-lock.yaml`, ESLint/Prettier/commitlint config, and git hooks - there's nothing to separately install or configure. `tsconfig.json` (portal, Astro) and `tsconfig.cli.json` (framework, Node) stay separate since they target genuinely different runtimes; same for `astro.config.ts` vs `tsup.config.ts`/`vitest.config.ts`.
-
-## Developing the portal
-
-```sh
-pnpm install
-pnpm website:dev      # start the portal's dev server at http://localhost:4321
-pnpm website:build    # production build of the portal → dist/
-pnpm website:preview  # preview the portal's production build locally
-pnpm check            # lint + format check + typecheck everything (portal + framework)
-```
-
-## `trickfire-docs` — the docs framework
-
-A documentation framework wrapping Astro and Starlight with a custom config for a clean and easy setup, published to npm from this repo.
-
-### Using `trickfire-docs` in a project
-
-#### Install
+### Install
 
 ```bash
 pnpm add -D trickfire-docs
 ```
 
-#### Set up
+### Set up
 
 ```bash
 pnpm trickfire-docs init
@@ -55,7 +25,7 @@ Creates a `docs/` folder (Markdown/MDX pages) and a `docs.config.ts` at the proj
 
 The site's URL and base path (`docs.trickfirerobotics.com/<repo-name>`) are derived automatically from `package.json`'s `"name"` field - there's nothing to configure for that.
 
-#### Develop
+### Develop
 
 ```bash
 pnpm trickfire-docs dev
@@ -63,7 +33,7 @@ pnpm trickfire-docs dev
 
 Starts a local dev server with live reload. Edits under `docs/` hot-reload; changes to `docs.config.ts` require restarting the dev server.
 
-#### Build
+### Build
 
 ```bash
 pnpm trickfire-docs build
@@ -71,7 +41,7 @@ pnpm trickfire-docs build
 
 Outputs the static site to `dist/`.
 
-### Publishing to docs.trickfirerobotics.com
+## Publishing to docs.trickfirerobotics.com
 
 `docs.trickfirerobotics.com` is the TrickFire Robotics organization's GitHub Pages site. Any other repo in the org that enables GitHub Pages (without setting its own custom domain) is automatically served at `docs.trickfirerobotics.com/<repo-name>/` - which is exactly the base path `trickfire-docs` already builds for.
 
@@ -135,12 +105,12 @@ jobs:
 
 Every push to `main` that touches `docs/` or `docs.config.ts` rebuilds and redeploys the site.
 
-### Developing `trickfire-docs` itself
+## Developing `trickfire-docs` itself
 
 Because this package generates and drives a real Astro project from inside its own install location (`node_modules/trickfire-docs/.astro-cache/`), changes don't show up correctly under `pnpm link` - a symlink doesn't reproduce how a real consumer's package manager lays out `node_modules`. Test changes against a real, packed install instead:
 
 ```bash
-pnpm check            # lint/format/typecheck everything (portal + framework)
+pnpm check            # lint/format/typecheck everything (framework + portal)
 pnpm test             # run the framework's tests
 pnpm framework:build  # compile the framework to dist-cli/
 npm pack              # produces trickfire-docs-<version>.tgz
@@ -163,7 +133,7 @@ Test with **both `npm` and `pnpm`** when changing anything that touches dependen
 
 Delete the throwaway project and the `.tgz` when done; `.astro-cache/` inside this repo (if you ever run the CLI directly from source) is gitignored and safe to delete at any time.
 
-### Releasing `trickfire-docs` to npm
+## Releasing `trickfire-docs` to npm
 
 Releases are fully automated via [semantic-release](https://semantic-release.gitbook.io/) (`.github/workflows/release.yml`, config in `release.config.cjs`) - there's no manual version bump or `npm publish` step. The release workflow only runs on pushes to `main` that touch the framework's own paths (`framework/`, `internal/`, `scaffold/`, `tsup.config.ts`, `vitest.config.ts`, `tsconfig.cli.json`, `release.config.cjs`) - a portal-only change won't trigger it. Once triggered, semantic-release:
 
@@ -182,3 +152,25 @@ pnpm release:dry-run
 ```
 
 This README is also what gets published to npm alongside `trickfire-docs` and shown on its registry page, portal section included.
+
+## Also in this repo: the docs.trickfirerobotics.com portal
+
+GitHub serves an organization's `<org>.github.io` repository at the root of its GitHub Pages domain. By naming this repo `TrickfireRobotics.github.io` and pointing the custom domain at it, we own `docs.trickfirerobotics.com/` - which is also the base path every other repo's own docs (built with `trickfire-docs`, above) get served under. Rather than leave that root domain pointing at nothing, this repo also builds and deploys a small Astro site as the `docs.trickfirerobotics.com` landing page itself.
+
+That site lives in `website/`, `public/`, and `astro.config.ts`, and is deployed by `.github/workflows/pages.yml` - unrelated to the `trickfire-docs` framework beyond sharing this repo and its toolchain.
+
+```sh
+pnpm install
+pnpm website:dev      # start the portal's dev server at http://localhost:4321
+pnpm website:build    # production build of the portal → dist/
+pnpm website:preview  # preview the portal's production build locally
+```
+
+## Repo layout
+
+One repo, one `package.json`, two things it produces:
+
+- **`trickfire-docs`** (the main point of this repo) - `framework/`, `internal/`, `scaffold/`, `tsup.config.ts`, `vitest.config.ts`, `tsconfig.cli.json`, `release.config.cjs` - published to npm independently via `.github/workflows/release.yml` (only runs on changes to the paths listed above).
+- **The portal site** (a side project living in this repo) - `website/`, `public/`, `astro.config.ts` - deployed by `.github/workflows/pages.yml`.
+
+Both share the same `pnpm-lock.yaml`, ESLint/Prettier/commitlint config, and git hooks - there's nothing to separately install or configure. `tsconfig.cli.json` (framework, Node) and `tsconfig.json` (portal, Astro) stay separate since they target genuinely different runtimes; same for `tsup.config.ts`/`vitest.config.ts` vs `astro.config.ts`.
