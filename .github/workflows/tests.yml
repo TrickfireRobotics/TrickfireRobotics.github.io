@@ -1,4 +1,4 @@
-name: Code Quality
+name: Tests
 
 on:
     push:
@@ -7,8 +7,8 @@ on:
         branches: [main]
 
 jobs:
-    lint-and-format:
-        name: Lint & Format Check
+    test:
+        name: Unit Tests
         runs-on: ubuntu-latest
 
         steps:
@@ -29,14 +29,5 @@ jobs:
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
-            - name: Run ESLint
-              run: pnpm lint
-
-            - name: Run Prettier check
-              run: pnpm format:check
-
-            - name: Run TypeScript check
-              run: pnpm typecheck
-
-            - name: Build
-              run: pnpm build
+            - name: Run tests
+              run: pnpm --filter trickfire-docs test

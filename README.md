@@ -14,11 +14,23 @@ GitHub serves an organization's `<org>.github.io` repository at the root of its 
 
 This gives us a unified docs domain without needing a reverse proxy.
 
+## Repo layout
+
+This is a pnpm workspace hosting two independent projects that just happen to share a "docs" domain and, for convenience, a single toolchain:
+
+- **Repo root** — this portal site, served at [docs.trickfirerobotics.com](https://docs.trickfirerobotics.com/), deployed by `.github/workflows/pages.yml`.
+- **[`framework/`](framework/README.md)** — `trickfire-docs`, the Astro/Starlight-based docs framework other TrickFire repos install to generate their own `docs.trickfirerobotics.com/<repo-name>/` sites. Published to npm independently via `.github/workflows/release.yml` (only runs on changes under `framework/**`); see its own README for setup, development, and release details.
+
+They share one `pnpm-lock.yaml`, ESLint config, Prettier config, commitlint rules, and git hooks — installing once at the repo root sets both up. Each still has its own `package.json`, build tooling, and CI jobs for its own build/test/deploy, since they produce genuinely different things (a static site vs. an npm package).
+
 ## Development
 
 ```sh
-npm install
-npm run dev      # start dev server at http://localhost:4321
-npm run build    # production build → dist/
-npm run preview  # preview the production build locally
+pnpm install
+pnpm dev          # start the portal's dev server at http://localhost:4321
+pnpm build        # production build of the portal → dist/
+pnpm preview      # preview the portal's production build locally
+pnpm check        # lint + format check + typecheck the whole workspace
 ```
+
+To work on the docs framework itself, see [`framework/README.md`](framework/README.md).

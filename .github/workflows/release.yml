@@ -1,8 +1,9 @@
-name: Release
+name: Framework Release
 
 on:
     push:
         branches: [main]
+        paths: ["framework/**"]
 
 permissions:
     contents: write
@@ -11,8 +12,12 @@ permissions:
     id-token: write
 
 concurrency:
-    group: release
+    group: framework-release
     cancel-in-progress: false
+
+defaults:
+    run:
+        working-directory: framework
 
 jobs:
     release:
@@ -39,8 +44,14 @@ jobs:
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
-            - name: Run checks
-              run: pnpm check
+            - name: Run ESLint
+              run: pnpm exec eslint .
+
+            - name: Run Prettier check
+              run: pnpm exec prettier --check .
+
+            - name: Run TypeScript check
+              run: pnpm exec tsc --noEmit
 
             - name: Run tests
               run: pnpm test

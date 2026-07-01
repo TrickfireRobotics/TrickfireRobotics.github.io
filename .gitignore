@@ -9,6 +9,9 @@ node_modules/
 dist/
 .astro/
 
+# Test coverage
+coverage/
+
 # Editor
 .vscode/*
 !.vscode/settings.json

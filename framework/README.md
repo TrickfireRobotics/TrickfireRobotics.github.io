@@ -105,9 +105,12 @@ Every push to `main` that touches `docs/` or `docs.config.ts` rebuilds and redep
 Because this package generates and drives a real Astro project from inside its own install location (`node_modules/trickfire-docs/.astro-cache/`), changes don't show up correctly under `pnpm link` - a symlink doesn't reproduce how a real consumer's package manager lays out `node_modules`. Test changes against a real, packed install instead:
 
 ```bash
-pnpm check && pnpm test && pnpm build   # lint/format/typecheck/tests/compile this package
-npm pack                                 # produces trickfire-docs-<version>.tgz
+pnpm check                # from the repo root: lint/format/typecheck the whole workspace
+pnpm test && pnpm build   # from framework/: tests and compile this package
+npm pack                  # from framework/: produces trickfire-docs-<version>.tgz
 ```
+
+This package lives in a pnpm workspace alongside the `docs.trickfirerobotics.com` portal at the repo root - there's one shared `pnpm-lock.yaml`, ESLint config, Prettier config, and set of git hooks for both. Only `test`/`build`/`dev`/`release:dry-run` are framework-specific scripts.
 
 Then in a throwaway project (not inside this repo):
 
@@ -128,7 +131,7 @@ Delete the throwaway project and the `.tgz` when done; `.astro-cache/` inside th
 
 ## Releasing `trickfire-docs` to npm
 
-Releases are fully automated via [semantic-release](https://semantic-release.gitbook.io/) (`.github/workflows/release.yml`, config in `release.config.cjs`) - there's no manual version bump or `npm publish` step. Every push to `main` runs `pnpm check && pnpm test && pnpm build`, then semantic-release:
+Releases are fully automated via [semantic-release](https://semantic-release.gitbook.io/) (`.github/workflows/release.yml`, config in `release.config.cjs`) - there's no manual version bump or `npm publish` step. The release workflow only runs on pushes to `main` that touch `framework/**`, and its checks/tests/build all run scoped to this package. Once triggered, semantic-release:
 
 1. Reads commit messages since the last release (relies on the [Conventional Commits](https://www.conventionalcommits.org/) enforced by commitlint) to decide whether a release is needed and what the next version is - `fix:` → patch, `feat:` → minor, a `BREAKING CHANGE:` footer → major. `chore:`/`docs:`/`style:`/etc. don't trigger a release on their own.
 2. Publishes the new version to the public npm registry.

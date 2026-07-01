@@ -17,5 +17,5 @@
 ## Checklist
 
 - [ ] `pnpm check` passes (lint, format, typecheck)
-- [ ] `pnpm test` passes
+- [ ] `pnpm --filter trickfire-docs test` passes
 - [ ] PR is focused on one concern

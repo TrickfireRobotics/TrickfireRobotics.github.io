@@ -1,0 +1,7 @@
+packages:
+    - "."
+    - "framework"
+
+allowBuilds:
+    esbuild: true
+    sharp: true
