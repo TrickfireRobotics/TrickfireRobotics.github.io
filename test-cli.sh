@@ -3,6 +3,8 @@
 
 set -euo pipefail
 
+cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 pnpm install
 pnpm framework:build
 npm pack
