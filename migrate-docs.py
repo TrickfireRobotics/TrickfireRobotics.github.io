@@ -252,6 +252,33 @@ def main() -> None:
         pkg_json_path.write_text(json.dumps(pkg, indent=4) + "\n")
         print(f"    created  : package.json  (name={repo_name})")
 
+    # ---- Exempt trickfire-docs from the minimum release age policy ---------
+    # pnpm's supply-chain policy blocks newly published packages; since
+    # trickfire-docs is first-party we always skip that check for it.
+
+    workspace_yaml = repo_root / "pnpm-workspace.yaml"
+    section = "minimumReleaseAgeExclude"
+    exclude_entry = "  - trickfire-docs"
+
+    if workspace_yaml.exists():
+        content = workspace_yaml.read_text()
+        if "trickfire-docs" not in content:
+            if f"{section}:" in content:
+                content = content.replace(f"{section}:\n", f"{section}:\n{exclude_entry}\n", 1)
+            else:
+                content += f"\n{section}:\n{exclude_entry}\n"
+            workspace_yaml.write_text(content)
+            print("    updated  : pnpm-workspace.yaml (minimumReleaseAgeExclude)")
+    else:
+        workspace_yaml.write_text(f"{section}:\n{exclude_entry}\n")
+        print("    created  : pnpm-workspace.yaml")
+
+    # Delete any stale lockfile so pnpm re-resolves against the updated policy.
+    lockfile = repo_root / "pnpm-lock.yaml"
+    if lockfile.exists():
+        lockfile.unlink()
+        print("    removed  : stale pnpm-lock.yaml")
+
     # ---- Install dependencies ---------------------------------------------
 
     print()
