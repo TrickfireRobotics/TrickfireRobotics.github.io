@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script is used to test the trickfire-framework package in a clean environment
+# This script is used to test the trickfire-docs package in a clean environment
 
 set -euo pipefail
 
@@ -14,3 +14,5 @@ cd .framework-test
 touch package.json
 echo '{"name": "framework-test", "version": "1.0.0"}' >package.json
 npm install ../trickfire-docs-*.tgz
+npx trickfire-docs init
+npx trickfire-docs build
