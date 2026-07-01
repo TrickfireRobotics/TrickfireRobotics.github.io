@@ -201,6 +201,21 @@ def main() -> None:
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
+    # ---- Fix image paths in migrated content ------------------------------
+    # Old content lived at docs/content/docs/, 2 levels deeper than the new
+    # docs/ root. Any relative image path pointing at docs/assets/ had 2 extra
+    # "../" (e.g. "../../../assets/X" from docs/content/docs/cat/). Strip them.
+
+    img_pat = re.compile(r'(!\[[^\]]*\]\()((?:\.\.\/){2,})(assets\/[^)]+\))')
+    for md_file in docs_dir.rglob("*.md"):
+        text = md_file.read_text()
+        def _fix(m: re.Match) -> str:
+            return m.group(1) + m.group(2)[6:] + m.group(3)
+        new_text = img_pat.sub(_fix, text)
+        if new_text != text:
+            md_file.write_text(new_text)
+            print(f"    fixed    : image paths in docs/{md_file.relative_to(docs_dir)}")
+
     # ---- Generate docs.config.ts ------------------------------------------
 
     landing = build_landing(sidebar_raw)
