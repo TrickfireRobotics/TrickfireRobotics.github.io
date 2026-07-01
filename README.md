@@ -5,7 +5,7 @@
 
 `trickfire-docs` is TrickFire Robotics' documentation framework - an Astro/Starlight-based tool other TrickFire repos install to generate and publish their own docs at `docs.trickfirerobotics.com/<repo-name>`. This repo is where it's built and published from.
 
-It also happens to host the tiny Astro site that serves `docs.trickfirerobotics.com` itself - more on that [below](#also-in-this-repo-the-docstrickfireroboticscom-portal).
+This repo also servers `docs.trickfirerobotics.com` itself - more on that [below](#also-in-this-repo-the-docstrickfireroboticscom-portal).
 
 ## Using `trickfire-docs` in a project
 

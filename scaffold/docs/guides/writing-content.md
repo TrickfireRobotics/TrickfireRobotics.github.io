@@ -16,7 +16,7 @@ Your content here.
 
 ## Formatting
 
-Standard Markdown works as expected — headings, lists, tables, links, and fenced code blocks with syntax highlighting:
+Standard Markdown works as expected - headings, lists, tables, links, and fenced code blocks with syntax highlighting:
 
 ```bash title="Terminal"
 echo "code blocks support a title and language"

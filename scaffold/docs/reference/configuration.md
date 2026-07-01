@@ -31,7 +31,7 @@ export default defineConfig({
 | `name`        | Yes      | Site title, shown in the nav, browser tab, and hero.                                                                        |
 | `description` | Yes      | One-line summary, used as the hero tagline and meta description.                                                            |
 | `landing`     | Yes      | Cards shown on the landing page. The **first item's link** is also used as the hero's "Get Started" button.                 |
-| `sidebar`     | Yes      | Nav structure — same shape as [Starlight's sidebar config](https://starlight.astro.build/reference/configuration/#sidebar). |
+| `sidebar`     | Yes      | Nav structure - same shape as [Starlight's sidebar config](https://starlight.astro.build/reference/configuration/#sidebar). |
 | `social`      | No       | Extra nav icons, appended after the fixed GitHub/Notion/TrickFire Robotics links every site always has.                     |
 
 The site URL and base path (`docs.trickfirerobotics.com/<repo-name>`) are derived automatically from `package.json`'s `"name"` field and aren't configurable here. The hero's "View on GitHub" button uses the same auto-derived GitHub link.
