@@ -1,5 +1,6 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
-    site: 'https://docs.trickfirerobotics.com'
+    site: "https://docs.trickfirerobotics.com",
+    srcDir: "./website",
 });

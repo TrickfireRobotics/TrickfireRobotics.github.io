@@ -29,12 +29,18 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true
     },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
     "files.exclude": {
         "**/.git": true,
         "**/.DS_Store": true,
         "**/node_modules": true,
         "**/.astro": true,
-        "**/dist": true
-    },
-    "cSpell.words": ["trickfire", "trickfirerobotics"]
+        "**/dist": true,
+        "**/dist-cli": true,
+        "**/.husky/_*": true,
+        "**/.pnpm-store": true
+    }
 }
