@@ -5,12 +5,16 @@ export default defineConfig([
         entry: { cli: "src/cli.ts" },
         format: ["esm"],
         banner: { js: "#!/usr/bin/env node" },
+        tsconfig: "tsconfig.cli.json",
+        outDir: "dist-cli",
         clean: true,
     },
     {
         entry: { index: "src/index.ts" },
         format: ["esm"],
         dts: true,
+        tsconfig: "tsconfig.cli.json",
+        outDir: "dist-cli",
         clean: false,
     },
 ]);

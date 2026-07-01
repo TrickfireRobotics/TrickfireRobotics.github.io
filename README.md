@@ -16,12 +16,12 @@ This gives us a unified docs domain without needing a reverse proxy.
 
 ## Repo layout
 
-This is a pnpm workspace hosting two independent projects that just happen to share a "docs" domain and, for convenience, a single toolchain:
+One repo, one `package.json`, two things it produces - they just happen to share a "docs" domain:
 
-- **`website/`** — this portal site, served at [docs.trickfirerobotics.com](https://docs.trickfirerobotics.com/), deployed by `.github/workflows/pages.yml`.
-- **`framework/`** — `trickfire-docs`, the Astro/Starlight-based docs framework other TrickFire repos install to generate their own `docs.trickfirerobotics.com/<repo-name>/` sites (documented below). Published to npm independently via `.github/workflows/release.yml` (only runs on changes under `framework/**`).
+- **The portal site** — `website/`, `public/`, `astro.config.ts` — served at [docs.trickfirerobotics.com](https://docs.trickfirerobotics.com/), deployed by `.github/workflows/pages.yml`.
+- **`trickfire-docs`** — `src/`, `internal/`, `scaffold/`, `tsup.config.ts`, `vitest.config.ts`, `tsconfig.cli.json`, `release.config.cjs` — the Astro/Starlight-based docs framework other TrickFire repos install to generate their own `docs.trickfirerobotics.com/<repo-name>/` sites (documented below). Published to npm independently via `.github/workflows/release.yml` (only runs on changes to the paths listed above).
 
-They share one `pnpm-lock.yaml`, ESLint config, Prettier config, commitlint rules, and git hooks — installing once at the repo root sets both up. Each still has its own `package.json`, build tooling, and CI jobs for its own build/test/deploy, since they produce genuinely different things (a static site vs. an npm package).
+Both share the same `pnpm-lock.yaml`, ESLint/Prettier/commitlint config, and git hooks - there's nothing to separately install or configure. `tsconfig.json` (portal, Astro) and `tsconfig.cli.json` (framework, Node) stay separate since they target genuinely different runtimes; same for `astro.config.ts` vs `tsup.config.ts`/`vitest.config.ts`.
 
 ## Developing the portal
 
@@ -35,7 +35,7 @@ pnpm check        # lint + format check + typecheck the whole workspace
 
 ## `trickfire-docs` — the docs framework
 
-A documentation framework wrapping Astro and Starlight with a custom config for a clean and easy setup, published to npm from `framework/`.
+A documentation framework wrapping Astro and Starlight with a custom config for a clean and easy setup, published to npm from this repo.
 
 ### Using `trickfire-docs` in a project
 
@@ -140,9 +140,10 @@ Every push to `main` that touches `docs/` or `docs.config.ts` rebuilds and redep
 Because this package generates and drives a real Astro project from inside its own install location (`node_modules/trickfire-docs/.astro-cache/`), changes don't show up correctly under `pnpm link` - a symlink doesn't reproduce how a real consumer's package manager lays out `node_modules`. Test changes against a real, packed install instead:
 
 ```bash
-pnpm check                # from the repo root: lint/format/typecheck the whole workspace
-pnpm test && pnpm build   # from framework/: tests and compile this package
-npm pack                  # from framework/: produces trickfire-docs-<version>.tgz
+pnpm check       # lint/format/typecheck everything (portal + framework)
+pnpm test        # run the framework's tests
+pnpm build:cli    # compile the framework to dist/
+npm pack          # produces trickfire-docs-<version>.tgz
 ```
 
 Then in a throwaway project (not inside this repo):
@@ -164,7 +165,7 @@ Delete the throwaway project and the `.tgz` when done; `.astro-cache/` inside th
 
 ### Releasing `trickfire-docs` to npm
 
-Releases are fully automated via [semantic-release](https://semantic-release.gitbook.io/) (`.github/workflows/release.yml`, config in `framework/release.config.cjs`) - there's no manual version bump or `npm publish` step. The release workflow only runs on pushes to `main` that touch `framework/**`, and its checks/tests/build all run scoped to this package. Once triggered, semantic-release:
+Releases are fully automated via [semantic-release](https://semantic-release.gitbook.io/) (`.github/workflows/release.yml`, config in `release.config.cjs`) - there's no manual version bump or `npm publish` step. The release workflow only runs on pushes to `main` that touch the framework's own paths (`src/`, `internal/`, `scaffold/`, `tsup.config.ts`, `vitest.config.ts`, `tsconfig.cli.json`, `release.config.cjs`) - a portal-only change won't trigger it. Once triggered, semantic-release:
 
 1. Reads commit messages since the last release (relies on the [Conventional Commits](https://www.conventionalcommits.org/) enforced by commitlint) to decide whether a release is needed and what the next version is - `fix:` → patch, `feat:` → minor, a `BREAKING CHANGE:` footer → major. `chore:`/`docs:`/`style:`/etc. don't trigger a release on their own.
 2. Publishes the new version to the public npm registry.
@@ -180,4 +181,4 @@ To preview what the next release would look like without actually publishing:
 pnpm release:dry-run
 ```
 
-This README is also what gets published to npm alongside `trickfire-docs` (copied into `framework/` at pack time - see `framework/package.json`'s `prepack` script), so the whole thing, portal section included, is what shows up on the npm registry page.
+This README is also what gets published to npm alongside `trickfire-docs` and shown on its registry page, portal section included.

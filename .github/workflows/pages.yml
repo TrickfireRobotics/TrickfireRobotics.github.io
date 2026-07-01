@@ -3,7 +3,14 @@ name: Deploy GitHub Pages
 on:
     push:
         branches: [main]
-        paths-ignore: ["framework/**"]
+        paths-ignore:
+            - "src/**"
+            - "internal/**"
+            - "scaffold/**"
+            - "tsup.config.ts"
+            - "vitest.config.ts"
+            - "tsconfig.cli.json"
+            - "release.config.cjs"
     workflow_dispatch:
 
 permissions:

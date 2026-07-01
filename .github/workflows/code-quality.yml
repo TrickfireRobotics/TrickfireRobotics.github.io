@@ -38,5 +38,5 @@ jobs:
             - name: Run TypeScript check
               run: pnpm typecheck
 
-            - name: Build framework
-              run: pnpm --filter trickfire-docs build
+            - name: Build CLI
+              run: pnpm build:cli

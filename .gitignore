@@ -12,6 +12,16 @@ dist/
 # Test coverage
 coverage/
 
+# CLI framework build/dev artifacts
+dist-cli/
+.astro-cache/
+*.tsbuildinfo
+**/*.tgz
+npm-debug.log*
+.pnpm-debug.log*
+.pnpm-store/
+.test-repo/
+
 # Editor
 .vscode/*
 !.vscode/settings.json
