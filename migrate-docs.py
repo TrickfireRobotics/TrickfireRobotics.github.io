@@ -222,9 +222,15 @@ def main() -> None:
 
     # ---- Create or update package.json ------------------------------------
 
+    NEEDS_BUILD = ["esbuild", "sharp"]
+
     if pkg_json_path.exists():
         pkg = json.loads(pkg_json_path.read_text())
         pkg.setdefault("dependencies", {})["trickfire-docs"] = "latest"
+        pkg.setdefault("pnpm", {}).setdefault("onlyBuiltDependencies", [])
+        for dep in NEEDS_BUILD:
+            if dep not in pkg["pnpm"]["onlyBuiltDependencies"]:
+                pkg["pnpm"]["onlyBuiltDependencies"].append(dep)
         pkg_json_path.write_text(json.dumps(pkg, indent=4) + "\n")
         print("    updated  : package.json (added trickfire-docs dependency)")
     else:
@@ -238,6 +244,9 @@ def main() -> None:
             },
             "dependencies": {
                 "trickfire-docs": "latest",
+            },
+            "pnpm": {
+                "onlyBuiltDependencies": NEEDS_BUILD,
             },
         }
         pkg_json_path.write_text(json.dumps(pkg, indent=4) + "\n")
