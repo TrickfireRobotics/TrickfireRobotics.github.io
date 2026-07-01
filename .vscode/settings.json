@@ -39,8 +39,8 @@
         "**/node_modules": true,
         "**/.astro": true,
         "**/dist": true,
+        "**/dist-cli": true,
         "**/.husky/_*": true,
         "**/.pnpm-store": true
-    },
-    "cSpell.words": ["trickfire", "trickfirerobotics"]
+    }
 }
