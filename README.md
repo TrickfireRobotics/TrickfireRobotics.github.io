@@ -125,3 +125,21 @@ npx trickfire-docs build    # check dist/ output
 Test with **both `npm` and `pnpm`** when changing anything that touches dependency resolution or the cache layout (`src/astro/`). `npm`'s default hoisting is more forgiving and can hide bugs that only show up under `pnpm`'s strict, non-hoisted isolation - that's exactly how the `outDir`/dev-watch issues during initial development were found.
 
 Delete the throwaway project and the `.tgz` when done; `.astro-cache/` inside this repo (if you ever run the CLI directly from source) is gitignored and safe to delete at any time.
+
+## Releasing `trickfire-docs` to npm
+
+Releases are fully automated via [semantic-release](https://semantic-release.gitbook.io/) (`.github/workflows/release.yml`, config in `release.config.cjs`) - there's no manual version bump or `npm publish` step. Every push to `main` runs `pnpm check && pnpm test && pnpm build`, then semantic-release:
+
+1. Reads commit messages since the last release (relies on the [Conventional Commits](https://www.conventionalcommits.org/) enforced by commitlint) to decide whether a release is needed and what the next version is - `fix:` → patch, `feat:` → minor, a `BREAKING CHANGE:` footer → major. `chore:`/`docs:`/`style:`/etc. don't trigger a release on their own.
+2. Publishes the new version to the public npm registry.
+3. Tags the commit, creates a GitHub Release with generated notes, and commits the bumped `package.json`/`CHANGELOG.md` back to `main`.
+
+If a push to `main` only contains non-releasing commit types, the workflow runs but semantic-release no-ops - nothing gets published.
+
+**One-time setup required:** add an npm [automation token](https://docs.npmjs.com/creating-and-viewing-access-tokens) as the `NPM_TOKEN` repository secret (Settings → Secrets and variables → Actions). The workflow's `GITHUB_TOKEN` is automatic and just needs `contents: write` (already set) to push the version-bump commit and create releases.
+
+To preview what the next release would look like without actually publishing:
+
+```bash
+pnpm release:dry-run
+```
