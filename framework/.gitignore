@@ -1,6 +1,9 @@
 # build output
 .astro-cache/
 
+# copied in by the prepack script from the repo-root README
+README.md
+
 # misc
 *.tsbuildinfo
 

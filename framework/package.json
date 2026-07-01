@@ -29,7 +29,8 @@
         "dev": "tsx src/cli.ts",
         "test": "vitest run",
         "test:watch": "vitest",
-        "release:dry-run": "semantic-release --dry-run --no-ci"
+        "release:dry-run": "semantic-release --dry-run --no-ci",
+        "prepack": "cp ../README.md ./README.md"
     },
     "devDependencies": {
         "@semantic-release/changelog": "^6.0.3",
