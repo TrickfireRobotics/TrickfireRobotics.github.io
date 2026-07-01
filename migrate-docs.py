@@ -156,6 +156,39 @@ def main() -> None:
 
     print(f"    repo name: {repo_name}")
 
+    # ---- Extract description and landing cards from old index.mdx ----------
+
+    description: str | None = None
+    landing_from_index: list[dict] | None = None
+
+    index_mdx = old_content / "index.mdx"
+    if index_mdx.exists():
+        mdx = index_mdx.read_text()
+
+        # description: from frontmatter, fall back to tagline
+        for field in ("description", "tagline"):
+            m = re.search(rf"^{field}:\s*(.+)$", mdx, re.MULTILINE)
+            if m:
+                description = m.group(1).strip().strip("\"'")
+                break
+
+        # LinkCard components → landing array
+        def _attr(block: str, name: str) -> str | None:
+            m = re.search(rf'{name}=["\']([^"\']+)["\']', block)
+            return m.group(1) if m else None
+
+        cards = []
+        for card_m in re.finditer(r"<LinkCard\b(.*?)/>", mdx, re.DOTALL):
+            block = card_m.group(1)
+            t, d, h = _attr(block, "title"), _attr(block, "description"), _attr(block, "href")
+            if t and d and h:
+                # Strip the base-path prefix the old config baked into hrefs
+                h = re.sub(rf"^/{re.escape(repo_name)}/", "/", h)
+                cards.append({"title": t, "description": d, "link": h})
+
+        if cards:
+            landing_from_index = cards[:4]
+
     # ---- Identify user assets to preserve ---------------------------------
     # Framework provides these; everything else in assets/ and public/ is user content.
     FRAMEWORK_FILES = {"nav-logo.png", "favicon.ico", "logo-small.png"}
@@ -218,7 +251,8 @@ def main() -> None:
 
     # ---- Generate docs.config.ts ------------------------------------------
 
-    landing = build_landing(sidebar_raw)
+    landing = landing_from_index or build_landing(sidebar_raw)
+    desc = description or f"TODO: One-line description of {title}."
     sidebar_ts = js_to_ts_strings(sidebar_raw)
 
     config_src = textwrap.dedent(f"""\
@@ -226,7 +260,7 @@ def main() -> None:
 
         export default defineConfig({{
             name: {json.dumps(title)},
-            description: "TODO: One-line description of {title}.",
+            description: {json.dumps(desc)},
             landing: {format_landing_ts(landing)},
             sidebar: {sidebar_ts},
         }});
