@@ -165,8 +165,8 @@ def main() -> None:
     if index_mdx.exists():
         mdx = index_mdx.read_text()
 
-        # description: from frontmatter, fall back to tagline
-        for field in ("description", "tagline"):
+        # tagline is the visible hero text; description is just the SEO meta field
+        for field in ("tagline", "description"):
             m = re.search(rf"^{field}:\s*(.+)$", mdx, re.MULTILINE)
             if m:
                 description = m.group(1).strip().strip("\"'")
