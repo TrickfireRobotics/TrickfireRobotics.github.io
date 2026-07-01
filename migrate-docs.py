@@ -167,7 +167,7 @@ def main() -> None:
 
         # tagline is the visible hero text; description is just the SEO meta field
         for field in ("tagline", "description"):
-            m = re.search(rf"^{field}:\s*(.+)$", mdx, re.MULTILINE)
+            m = re.search(rf"^\s*{field}:\s*(.+)$", mdx, re.MULTILINE)
             if m:
                 description = m.group(1).strip().strip("\"'")
                 break
