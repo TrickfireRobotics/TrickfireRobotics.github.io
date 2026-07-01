@@ -180,12 +180,20 @@ def main() -> None:
             old_index.unlink()
             print("    removed  : docs/content/docs/index.mdx (framework regenerates it)")
 
+        # Stash user assets into temp dir before docs/ is deleted
+        tmp_assets = tmp / "assets_stash"
+        for rel, src_path in user_assets.items():
+            dest = tmp_assets / rel
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src_path, dest)
+
         print("    removing : old docs/ infrastructure…")
         shutil.rmtree(docs_dir)
 
         shutil.copytree(tmp_content, docs_dir)
 
-        for rel, src_path in user_assets.items():
+        for rel in user_assets:
+            src_path = tmp_assets / rel
             dest = docs_dir / rel
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src_path, dest)
