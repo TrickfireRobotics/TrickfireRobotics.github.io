@@ -105,6 +105,17 @@ jobs:
 
 Every push to `main` that touches `docs/` or `docs.config.ts` rebuilds and redeploys the site.
 
+## Migrating from a legacy docs setup
+
+If the repo already has a self-contained `docs/` folder with its own `astro.config.mjs` and `package.json`, run this from the repo root to convert it to `trickfire-docs`:
+
+```bash
+cd path/to/repo
+curl -fsSL https://raw.githubusercontent.com/TrickfireRobotics/TrickfireRobotics.github.io/main/migrate-docs.py | python3
+```
+
+The script moves `docs/content/docs/**` into `docs/`, generates `docs.config.ts`, adds `trickfire-docs` to `package.json` (creating one if the repo has none), and runs `pnpm install`. Fill in the `description` TODOs in `docs.config.ts` when done.
+
 ## Developing `trickfire-docs` itself
 
 Because this package generates and drives a real Astro project from inside its own install location (`node_modules/trickfire-docs/.astro-cache/`), changes don't show up correctly under `pnpm link` - a symlink doesn't reproduce how a real consumer's package manager lays out `node_modules`. Test changes against a real, packed install instead:
