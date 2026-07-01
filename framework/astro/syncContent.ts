@@ -66,7 +66,12 @@ export async function syncContentOnce(
     const destDir = contentDocsDir(cacheRoot);
     await fs.rm(destDir, { recursive: true, force: true });
     await fs.mkdir(destDir, { recursive: true });
-    await fs.cp(docsSourceDir, destDir, { recursive: true });
+    // docs/assets/ holds static reference files (PDFs, raw markdown notes, images) that
+    // are not Starlight content pages — skip them so the schema validator doesn't reject them.
+    await fs.cp(docsSourceDir, destDir, {
+        recursive: true,
+        filter: (src) => path.relative(docsSourceDir, src).split(path.sep)[0] !== "assets",
+    });
     await fs.writeFile(path.join(destDir, "index.mdx"), generateIndexMdx(config));
 }
 
@@ -81,10 +86,19 @@ export function watchContent(cacheRoot: string, docsSourceDir: string): () => Pr
     const destPathFor = (sourcePath: string) =>
         path.join(destDir, path.relative(docsSourceDir, sourcePath));
 
+    const isAsset = (sourcePath: string) =>
+        path.relative(docsSourceDir, sourcePath).split(path.sep)[0] === "assets";
+
     const watcher = chokidar.watch(docsSourceDir, { ignoreInitial: true });
-    watcher.on("add", (sourcePath) => fs.cp(sourcePath, destPathFor(sourcePath)));
-    watcher.on("change", (sourcePath) => fs.cp(sourcePath, destPathFor(sourcePath)));
-    watcher.on("unlink", (sourcePath) => fs.rm(destPathFor(sourcePath), { force: true }));
+    watcher.on("add", (sourcePath) => {
+        if (!isAsset(sourcePath)) fs.cp(sourcePath, destPathFor(sourcePath));
+    });
+    watcher.on("change", (sourcePath) => {
+        if (!isAsset(sourcePath)) fs.cp(sourcePath, destPathFor(sourcePath));
+    });
+    watcher.on("unlink", (sourcePath) => {
+        if (!isAsset(sourcePath)) fs.rm(destPathFor(sourcePath), { force: true });
+    });
 
     return () => watcher.close();
 }
