@@ -28,11 +28,19 @@ jobs:
     release:
         runs-on: ubuntu-latest
         steps:
+            - name: Generate token
+              id: app-token
+              uses: actions/create-github-app-token@v1
+              with:
+                  app-id: ${{ secrets.GH_APP_ID }}
+                  private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
             - name: Checkout
               uses: actions/checkout@v7
               with:
                   fetch-depth: 0
                   persist-credentials: true
+                  token: ${{ steps.app-token.outputs.token }}
 
             - name: Setup pnpm
               uses: pnpm/action-setup@v6
@@ -63,13 +71,6 @@ jobs:
 
             - name: Build
               run: pnpm framework:build
-
-            - name: Generate token
-              id: app-token
-              uses: actions/create-github-app-token@v1
-              with:
-                  app-id: ${{ secrets.GH_APP_ID }}
-                  private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
             - name: Release
               env:
