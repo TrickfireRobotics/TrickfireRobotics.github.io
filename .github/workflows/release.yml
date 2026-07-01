@@ -11,6 +11,7 @@ on:
             - "vitest.config.ts"
             - "tsconfig.cli.json"
             - "release.config.cjs"
+    workflow_dispatch: {}
 
 permissions:
     contents: write
