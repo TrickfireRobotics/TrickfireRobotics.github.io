@@ -222,15 +222,11 @@ def main() -> None:
 
     # ---- Create or update package.json ------------------------------------
 
-    NEEDS_BUILD = ["esbuild", "sharp"]
-
     if pkg_json_path.exists():
         pkg = json.loads(pkg_json_path.read_text())
         pkg.setdefault("dependencies", {})["trickfire-docs"] = "latest"
-        pkg.setdefault("pnpm", {}).setdefault("onlyBuiltDependencies", [])
-        for dep in NEEDS_BUILD:
-            if dep not in pkg["pnpm"]["onlyBuiltDependencies"]:
-                pkg["pnpm"]["onlyBuiltDependencies"].append(dep)
+        # Remove stale pnpm key if present — these settings moved to pnpm-workspace.yaml
+        pkg.pop("pnpm", None)
         pkg_json_path.write_text(json.dumps(pkg, indent=4) + "\n")
         print("    updated  : package.json (added trickfire-docs dependency)")
     else:
@@ -245,32 +241,40 @@ def main() -> None:
             "dependencies": {
                 "trickfire-docs": "latest",
             },
-            "pnpm": {
-                "onlyBuiltDependencies": NEEDS_BUILD,
-            },
         }
         pkg_json_path.write_text(json.dumps(pkg, indent=4) + "\n")
         print(f"    created  : package.json  (name={repo_name})")
 
-    # ---- Exempt trickfire-docs from the minimum release age policy ---------
-    # pnpm's supply-chain policy blocks newly published packages; since
-    # trickfire-docs is first-party we always skip that check for it.
+    # ---- Write pnpm-workspace.yaml ----------------------------------------
+    # Modern pnpm reads onlyBuiltDependencies and minimumReleaseAgeExclude from
+    # pnpm-workspace.yaml, not package.json.
+    # esbuild and sharp need their build scripts to run; trickfire-docs is
+    # first-party so it's exempt from the minimum release age supply-chain check.
 
+    NEEDS_BUILD = ["esbuild", "sharp"]
     workspace_yaml = repo_root / "pnpm-workspace.yaml"
-    section = "minimumReleaseAgeExclude"
-    exclude_entry = "  - trickfire-docs"
+
+    def yaml_ensure_list_entry(content: str, key: str, value: str) -> str:
+        entry = f"  - {value}"
+        if value in content:
+            return content
+        if f"{key}:" in content:
+            return content.replace(f"{key}:\n", f"{key}:\n{entry}\n", 1)
+        return content + f"\n{key}:\n{entry}\n"
 
     if workspace_yaml.exists():
         content = workspace_yaml.read_text()
-        if "trickfire-docs" not in content:
-            if f"{section}:" in content:
-                content = content.replace(f"{section}:\n", f"{section}:\n{exclude_entry}\n", 1)
-            else:
-                content += f"\n{section}:\n{exclude_entry}\n"
-            workspace_yaml.write_text(content)
-            print("    updated  : pnpm-workspace.yaml (minimumReleaseAgeExclude)")
+        for dep in NEEDS_BUILD:
+            content = yaml_ensure_list_entry(content, "onlyBuiltDependencies", dep)
+        content = yaml_ensure_list_entry(content, "minimumReleaseAgeExclude", "trickfire-docs")
+        workspace_yaml.write_text(content)
+        print("    updated  : pnpm-workspace.yaml")
     else:
-        workspace_yaml.write_text(f"{section}:\n{exclude_entry}\n")
+        build_entries = "\n".join(f"  - {d}" for d in NEEDS_BUILD)
+        workspace_yaml.write_text(
+            f"onlyBuiltDependencies:\n{build_entries}\n"
+            f"\nminimumReleaseAgeExclude:\n  - trickfire-docs\n"
+        )
         print("    created  : pnpm-workspace.yaml")
 
     # Delete any stale lockfile so pnpm re-resolves against the updated policy.
