@@ -246,13 +246,27 @@ def main() -> None:
         print(f"    created  : package.json  (name={repo_name})")
 
     # ---- Write pnpm-workspace.yaml ----------------------------------------
-    # Modern pnpm reads onlyBuiltDependencies and minimumReleaseAgeExclude from
-    # pnpm-workspace.yaml, not package.json.
-    # esbuild and sharp need their build scripts to run; trickfire-docs is
-    # first-party so it's exempt from the minimum release age supply-chain check.
+    # pnpm 11 reads build-script approvals and supply-chain policy from
+    # pnpm-workspace.yaml. allowBuilds approves build scripts per package;
+    # minimumReleaseAgeExclude skips the release-age check for first-party packages.
 
     NEEDS_BUILD = ["esbuild", "sharp"]
     workspace_yaml = repo_root / "pnpm-workspace.yaml"
+
+    def yaml_ensure_map_entry(content: str, key: str, field: str, value: str) -> str:
+        """Ensure `field: value` exists under the `key:` map block."""
+        entry = f"  {field}: {value}"
+        if f"{field}: {value}" in content:
+            return content
+        # Update an existing placeholder for this field
+        import re as _re
+        content = _re.sub(rf"  {field}:.*", entry, content)
+        if entry in content:
+            return content
+        # Append under the key block if it already exists
+        if f"{key}:" in content:
+            return content.replace(f"{key}:\n", f"{key}:\n{entry}\n", 1)
+        return content + f"\n{key}:\n{entry}\n"
 
     def yaml_ensure_list_entry(content: str, key: str, value: str) -> str:
         entry = f"  - {value}"
@@ -265,14 +279,14 @@ def main() -> None:
     if workspace_yaml.exists():
         content = workspace_yaml.read_text()
         for dep in NEEDS_BUILD:
-            content = yaml_ensure_list_entry(content, "onlyBuiltDependencies", dep)
+            content = yaml_ensure_map_entry(content, "allowBuilds", dep, "true")
         content = yaml_ensure_list_entry(content, "minimumReleaseAgeExclude", "trickfire-docs")
         workspace_yaml.write_text(content)
         print("    updated  : pnpm-workspace.yaml")
     else:
-        build_entries = "\n".join(f"  - {d}" for d in NEEDS_BUILD)
+        build_entries = "\n".join(f"  {d}: true" for d in NEEDS_BUILD)
         workspace_yaml.write_text(
-            f"onlyBuiltDependencies:\n{build_entries}\n"
+            f"allowBuilds:\n{build_entries}\n"
             f"\nminimumReleaseAgeExclude:\n  - trickfire-docs\n"
         )
         print("    created  : pnpm-workspace.yaml")
