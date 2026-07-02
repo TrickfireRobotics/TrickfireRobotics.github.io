@@ -1,3 +1,22 @@
+# [1.1.0](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/compare/trickfire-docs-v1.0.0...trickfire-docs-v1.1.0) (2026-07-02)
+
+### Bug Fixes
+
+- added security bypass to our custom package installation ([a5b6f2e](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/a5b6f2e1cc3abcb5d8529618f80f1b98439a6005))
+- fix asset early remove issue with the migrate script ([ed0796c](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/ed0796c83743389df31a8a3804e90aa940a22eb0))
+- fixed migrate script ([b1ee1db](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/b1ee1dbbce7b88139dd633336a66a1d07eb8a1db))
+- **migrate:** match indented tagline in hero frontmatter block ([8ed2bce](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/8ed2bce98a7f71993bacee430b7d6249b32db1ee))
+- **migrate:** move pnpm settings to pnpm-workspace.yaml ([6093ad4](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/6093ad4f30451a7739d8eda53cfcc29a541d1cb2))
+- **migrate:** prefer tagline over description for docs.config.ts ([f8b0924](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/f8b092418836f8c5c5ad2dc7f93042bdb9238abc))
+- **migrate:** rewrite image paths after content dir flattening ([0632c9e](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/0632c9e42339152ecb8750df7ef5ec47cd893812))
+- **migrate:** use allowBuilds for pnpm 11 build script approval ([6369b12](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/6369b12435f32cfc630cc263a8af45b377b307cc))
+
+### Features
+
+- added a migrate script ([00762a3](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/00762a342c79270fcd158c2ee2a6d06115a4d8b0))
+- made assets be ignored in page building process ([ff0b68c](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/ff0b68cf2cc29e3a7b587877b269b855925a2fd7))
+- **migrate:** extract description and landing cards from old index.mdx ([fcd7d11](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/fcd7d11e0cd5b5215a2d47699e7615e6d0a9ca30))
+
 # 1.0.0 (2026-07-01)
 
 ### Bug Fixes
