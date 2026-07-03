@@ -9,26 +9,31 @@ This repo also servers `docs.trickfirerobotics.com` itself - more on that [below
 
 ## Using `trickfire-docs` in a project
 
-### Install
-
-```bash
-pnpm add -D trickfire-docs
-```
-
 ### Set up
 
+Run this in your project root (the repo must already exist and have `git remote origin` set):
+
 ```bash
-pnpm trickfire-docs init
+curl -fsSL https://raw.githubusercontent.com/TrickfireRobotics/TrickfireRobotics.github.io/refs/heads/main/init.sh | bash
 ```
 
-Creates a `docs/` folder (Markdown/MDX pages) and a `docs.config.ts` at the project root - site name, description, the 4 landing page cards, and the sidebar structure all live there. See the generated `docs/reference/configuration.md` for the full field reference.
+This script:
+
+- Creates `package.json` (if absent or name matches the repo) with the correct `name`, scripts, and `trickfire-docs` dependency
+- Creates `pnpm-workspace.yaml`
+- Creates `.github/workflows/pages.yml` for automated Pages deployment
+- Appends `node_modules/`, `dist/`, and `.pnpm-store/` to `.gitignore`
+- Runs `pnpm install`
+- Scaffolds `docs/` and `docs.config.ts` via `trickfire-docs init`
+
+Edit `docs.config.ts` to set your project's name, description, landing page cards, and sidebar.
 
 The site's URL and base path (`docs.trickfirerobotics.com/<repo-name>`) are derived automatically from `package.json`'s `"name"` field - there's nothing to configure for that.
 
 ### Develop
 
 ```bash
-pnpm trickfire-docs dev
+pnpm docs:dev
 ```
 
 Starts a local dev server with live reload. Edits under `docs/` hot-reload; changes to `docs.config.ts` require restarting the dev server.
@@ -36,7 +41,7 @@ Starts a local dev server with live reload. Edits under `docs/` hot-reload; chan
 ### Build
 
 ```bash
-pnpm trickfire-docs build
+pnpm docs:build
 ```
 
 Outputs the static site to `dist/`.
@@ -45,65 +50,9 @@ Outputs the static site to `dist/`.
 
 `docs.trickfirerobotics.com` is the TrickFire Robotics organization's GitHub Pages site. Any other repo in the org that enables GitHub Pages (without setting its own custom domain) is automatically served at `docs.trickfirerobotics.com/<repo-name>/` - which is exactly the base path `trickfire-docs` already builds for.
 
-To wire this up for a project:
+The init script creates `.github/workflows/pages.yml` which handles builds and deploys automatically. The one manual step: in the repo's **Settings → Pages**, set **Source** to **GitHub Actions** and leave the custom domain field empty.
 
-1. In the repo's **Settings → Pages**, set **Source** to **GitHub Actions**. Leave the custom domain field empty.
-2. Add `.github/workflows/docs.yml`:
-
-```yaml
-name: Deploy Docs
-
-on:
-    push:
-        branches: [main]
-        paths:
-            - "docs/**"
-            - "docs.config.ts"
-    workflow_dispatch:
-
-permissions:
-    contents: read
-    pages: write
-    id-token: write
-
-concurrency:
-    group: pages
-    cancel-in-progress: true
-
-jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v6
-
-            - uses: pnpm/action-setup@v6
-              with:
-                  version: latest
-
-            - uses: actions/setup-node@v6
-              with:
-                  node-version: 22
-                  cache: pnpm
-
-            - run: pnpm install --frozen-lockfile
-            - run: pnpm trickfire-docs build
-
-            - uses: actions/upload-pages-artifact@v4
-              with:
-                  path: dist
-
-    deploy:
-        needs: build
-        runs-on: ubuntu-latest
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-        steps:
-            - id: deployment
-              uses: actions/deploy-pages@v4
-```
-
-Every push to `main` that touches `docs/` or `docs.config.ts` rebuilds and redeploys the site.
+Every push to `main` that touches `docs/` or `docs.config.ts` will then rebuild and redeploy the site.
 
 ## Migrating from a legacy docs setup
 
