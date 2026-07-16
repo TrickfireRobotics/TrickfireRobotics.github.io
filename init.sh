@@ -56,7 +56,12 @@ fi
 # ---------------------------------------------------------------------------
 # pnpm-workspace.yaml
 # ---------------------------------------------------------------------------
-cat > pnpm-workspace.yaml <<'EOF'
+if [[ -f pnpm-workspace.yaml ]]; then
+    warn "pnpm-workspace.yaml already exists - skipping. Make sure it includes:"
+    warn "  allowBuilds: { esbuild: true, sharp: true }"
+    warn "  minimumReleaseAgeExclude: [trickfire-docs]"
+else
+    cat > pnpm-workspace.yaml <<'EOF'
 allowBuilds:
   esbuild: true
   sharp: true
@@ -64,7 +69,8 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - trickfire-docs
 EOF
-info "Created pnpm-workspace.yaml"
+    info "Created pnpm-workspace.yaml"
+fi
 
 # ---------------------------------------------------------------------------
 # .github/workflows/pages.yml
