@@ -36,6 +36,18 @@ export interface LandingItem {
     link: string;
 }
 
+export interface AdvancedConfig {
+    /**
+     * Extra Starlight options, deep-merged over the framework's generated `starlight()`
+     * config. Values must be JSON-serializable - they're written into a generated
+     * astro.config.mjs, so functions/imports (e.g. a custom Vite plugin instance) won't
+     * survive the round-trip.
+     */
+    starlight?: Record<string, unknown>;
+    /** Extra Vite options, deep-merged over the framework's generated `vite` config. Same JSON-serializability caveat as `starlight` above. */
+    vite?: Record<string, unknown>;
+}
+
 export interface DocsConfig {
     /** Site name, shown in the nav and browser tab. */
     name: string;
@@ -50,6 +62,8 @@ export interface DocsConfig {
      * "name"), Notion, and TrickFire Robotics links that are always present.
      */
     social?: SocialLinks;
+    /** Escape hatch for Starlight/Vite options this config doesn't otherwise expose. */
+    advanced?: AdvancedConfig;
 }
 
 export function defineConfig(config: DocsConfig): DocsConfig {
