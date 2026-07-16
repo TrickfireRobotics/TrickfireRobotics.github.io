@@ -158,6 +158,8 @@ pnpm install
 # ---------------------------------------------------------------------------
 if [[ -d docs ]] || [[ -f docs.config.ts ]]; then
     warn "docs/ or docs.config.ts already exist - skipping scaffold"
+    warn "To scaffold the starter docs/ and docs.config.ts anyway (existing files with the same names are overwritten, others are left alone), run:"
+    warn "  pnpm exec trickfire-docs init --force"
 else
     info "Scaffolding docs..."
     pnpm exec trickfire-docs init
