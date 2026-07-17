@@ -21,6 +21,4 @@ pnpm trickfire-docs build
 
 Outputs the static site to `dist/`.
 
-:::tip
-Changes to `docs.config.ts` (site name, description, landing page, sidebar) require restarting the dev server - only content edits under `docs/` hot-reload.
-:::
+> Changes to `docs.config.ts` (site name, description, sidebar) require restarting the dev server - only content edits under `docs/` hot-reload.

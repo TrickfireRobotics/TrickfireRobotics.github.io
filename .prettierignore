@@ -1,5 +1,9 @@
 node_modules/
 dist/
+dist-cli/
 .astro/
+.next-cache/
+.next/
+.source/
 coverage/
 pnpm-lock.yaml

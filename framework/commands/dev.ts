@@ -1,9 +1,9 @@
-import { dev } from "astro";
 import { existsSync } from "node:fs";
 import path from "node:path";
-import { getCacheRoot } from "../astro/cachePaths.js";
-import { writeAstroProject } from "../astro/buildAstroConfig.js";
-import { syncContentOnce, watchContent } from "../astro/syncContent.js";
+import { getCacheRoot } from "../next/cachePaths.js";
+import { writeFumadocsProject, writeMetaFiles } from "../next/buildFumadocsProject.js";
+import { syncContentOnce, watchContent } from "../next/syncContent.js";
+import { runNext } from "../next/runNext.js";
 import { loadDocsConfig } from "../config/load.js";
 import { resolveDocsConfig } from "../config/resolve.js";
 
@@ -17,19 +17,19 @@ export async function runDev(projectRoot: string): Promise<void> {
 
     const config = await loadDocsConfig(projectRoot);
     const resolved = await resolveDocsConfig(projectRoot, config);
-    const cacheRoot = getCacheRoot();
+    const cacheRoot = getCacheRoot(projectRoot);
 
-    await writeAstroProject(cacheRoot, resolved);
-    await syncContentOnce(cacheRoot, docsSourceDir, resolved);
-    const stopWatching = watchContent(cacheRoot, docsSourceDir);
+    await writeFumadocsProject(cacheRoot, resolved, { isDev: true });
+    await syncContentOnce(cacheRoot, docsSourceDir, resolved.sidebar);
+    await writeMetaFiles(cacheRoot, resolved.sidebar);
+    const stopWatching = watchContent(cacheRoot, docsSourceDir, resolved.sidebar);
 
-    const server = await dev({ root: cacheRoot, logLevel: "info" });
-
-    const shutdown = async () => {
+    // `next dev` (spawned below) inherits our terminal, so Ctrl+C reaches it directly via the
+    // OS's normal foreground process-group signal delivery - no manual SIGINT plumbing needed,
+    // same as any other CLI-wrapping-CLI dev tool.
+    try {
+        await runNext(["dev", cacheRoot], cacheRoot);
+    } finally {
         await stopWatching();
-        await server.stop();
-        process.exit(0);
-    };
-    process.on("SIGINT", shutdown);
-    process.on("SIGTERM", shutdown);
+    }
 }

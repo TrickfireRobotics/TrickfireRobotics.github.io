@@ -4,6 +4,9 @@ import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import DocCard from "../components/DocCard.astro";
 import Footer from "../components/Footer.astro";
+import { getRepos } from "../data/repos";
+
+const repos = getRepos();
 ---
 
 <BaseLayout
@@ -15,23 +18,21 @@ import Footer from "../components/Footer.astro";
         <Hero />
         <section class="docs">
             <h2>Documentation</h2>
-            <div class="card-grid">
-                <DocCard
-                    title="Gazebo Simulations"
-                    description="Setup guides, simulation tutorials, and deep dives for the TrickFire ROS2/Gazebo simulation environment."
-                    href="/gazebo-simulations/"
-                />
-                <DocCard
-                    title="URC Codebase"
-                    description="Documentation for the TrickFire Robotics URC competition codebase."
-                    href="/trickfire-urc/"
-                />
-                <DocCard
-                    title="AK Series Motor Library"
-                    description="Documentation for the AK Series motor library."
-                    href="/ak-series-lib/"
-                />
-            </div>
+            {
+                repos.length > 0 ? (
+                    <div class="card-grid">
+                        {repos.map((repo) => (
+                            <DocCard
+                                title={repo.name}
+                                description={repo.description}
+                                href={repo.href}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <p class="empty">No docs sites published yet - check back soon.</p>
+                )
+            }
         </section>
     </main>
     <Footer />
@@ -41,21 +42,24 @@ import Footer from "../components/Footer.astro";
     .docs {
         max-width: 72rem;
         margin: 0 auto;
-        padding: 2rem 1.5rem;
+        padding: 1.5rem 1.5rem 3rem;
     }
 
     h2 {
-        font-size: 1.5rem;
-        color: var(--tf-pink);
-        margin-bottom: 1.5rem;
-        text-align: center;
+        font-size: 0.85rem;
+        color: var(--tf-text-muted);
+        letter-spacing: 0.08em;
+        margin-bottom: 1.25rem;
     }
 
     .card-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-        gap: 1.5rem;
-        max-width: 48rem;
-        margin: 0 auto;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+        gap: 1.25rem;
+    }
+
+    .empty {
+        color: var(--tf-text-muted);
+        padding: 1.5rem 0;
     }
 </style>

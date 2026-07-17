@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { getScaffoldDir } from "../astro/cachePaths.js";
+import { getScaffoldDir } from "../next/cachePaths.js";
 
 export interface InitOptions {
     /** Scaffold over an existing docs/ and/or docs.config.ts instead of refusing. */

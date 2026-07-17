@@ -8,8 +8,7 @@ import type { DocsConfig } from "./schema.js";
 const baseConfig: DocsConfig = {
     name: "Test Project",
     description: "A test project.",
-    landing: [],
-    sidebar: [],
+    sidebar: [{ label: "Getting Started", slug: "getting-started" }],
 };
 
 async function makeProject(name: string): Promise<string> {
@@ -60,5 +59,45 @@ describe("resolveDocsConfig", () => {
         const dir = await fs.mkdtemp(path.join(os.tmpdir(), "trickfire-docs-test-"));
         await fs.writeFile(path.join(dir, "package.json"), JSON.stringify({}));
         await expect(resolveDocsConfig(dir, baseConfig)).rejects.toThrow(/missing a "name" field/);
+    });
+
+    it("resolves firstPageSlug from a top-level link item", async () => {
+        const dir = await makeProject("gazebo-simulations");
+        const resolved = await resolveDocsConfig(dir, baseConfig);
+        expect(resolved.firstPageSlug).toBe("getting-started");
+    });
+
+    it("resolves firstPageSlug depth-first through nested groups", async () => {
+        const dir = await makeProject("gazebo-simulations");
+        const sidebar: DocsConfig["sidebar"] = [
+            {
+                label: "Guides",
+                items: [
+                    {
+                        label: "Nested",
+                        items: [{ label: "Deep Page", slug: "guides/nested/deep-page" }],
+                    },
+                ],
+            },
+            { label: "Getting Started", slug: "getting-started" },
+        ];
+        const resolved = await resolveDocsConfig(dir, { ...baseConfig, sidebar });
+        expect(resolved.firstPageSlug).toBe("guides/nested/deep-page");
+    });
+
+    it("falls back to a link item's href, with slashes trimmed", async () => {
+        const dir = await makeProject("gazebo-simulations");
+        const sidebar: DocsConfig["sidebar"] = [
+            { label: "External-ish", link: "/getting-started/" },
+        ];
+        const resolved = await resolveDocsConfig(dir, { ...baseConfig, sidebar });
+        expect(resolved.firstPageSlug).toBe("getting-started");
+    });
+
+    it("throws a clear error when the sidebar is empty", async () => {
+        const dir = await makeProject("gazebo-simulations");
+        await expect(resolveDocsConfig(dir, { ...baseConfig, sidebar: [] })).rejects.toThrow(
+            /sidebar is empty/
+        );
     });
 });

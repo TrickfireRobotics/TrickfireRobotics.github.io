@@ -61,59 +61,6 @@ def js_to_ts_strings(js: str) -> str:
     )
 
 
-def build_landing(sidebar_raw: str) -> list[dict]:
-    group_pat = re.compile(
-        r'\{\s*label:\s*[\'"]([^\'"]+)[\'"][^{}]*items:\s*\[', re.DOTALL
-    )
-    slug_pat = re.compile(r"slug:\s*['\"]([^'\"]+)['\"]")
-
-    landing = []
-    for gm in group_pat.finditer(sidebar_raw):
-        label = gm.group(1)
-        slug_m = slug_pat.search(sidebar_raw[gm.end() :])
-        slug = slug_m.group(1) if slug_m else label.lower().replace(" ", "-")
-        landing.append({
-            "title": label,
-            "description": f"TODO: Add a description for {label}.",
-            "link": f"/{slug}/",
-        })
-
-    # Fallback: top-level link items
-    if not landing:
-        for lm in re.finditer(
-            r'\{\s*label:\s*[\'"]([^\'"]+)[\'"][^{}]*slug:\s*[\'"]([^\'"]+)[\'"]',
-            sidebar_raw,
-        ):
-            landing.append({
-                "title": lm.group(1),
-                "description": "TODO: Add a description.",
-                "link": f"/{lm.group(2)}/",
-            })
-            if len(landing) >= 4:
-                break
-
-    if not landing:
-        landing = [{
-            "title": "Getting Started",
-            "description": "TODO: Add a description.",
-            "link": "/getting-started/",
-        }]
-
-    return landing[:4]
-
-
-def format_landing_ts(items: list[dict]) -> str:
-    lines = ["["]
-    for item in items:
-        lines.append("        {")
-        lines.append(f"            title: {json.dumps(item['title'])},")
-        lines.append(f"            description: {json.dumps(item['description'])},")
-        lines.append(f"            link: {json.dumps(item['link'])},")
-        lines.append("        },")
-    lines.append("    ]")
-    return "\n".join(lines)
-
-
 def main() -> None:
     repo_root = Path(os.getcwd()).resolve()
 
@@ -156,10 +103,9 @@ def main() -> None:
 
     print(f"    repo name: {repo_name}")
 
-    # ---- Extract description and landing cards from old index.mdx ----------
+    # ---- Extract description from old index.mdx ----------------------------
 
     description: str | None = None
-    landing_from_index: list[dict] | None = None
 
     index_mdx = old_content / "index.mdx"
     if index_mdx.exists():
@@ -171,23 +117,6 @@ def main() -> None:
             if m:
                 description = m.group(1).strip().strip("\"'")
                 break
-
-        # LinkCard components → landing array
-        def _attr(block: str, name: str) -> str | None:
-            m = re.search(rf'{name}=["\']([^"\']+)["\']', block)
-            return m.group(1) if m else None
-
-        cards = []
-        for card_m in re.finditer(r"<LinkCard\b(.*?)/>", mdx, re.DOTALL):
-            block = card_m.group(1)
-            t, d, h = _attr(block, "title"), _attr(block, "description"), _attr(block, "href")
-            if t and d and h:
-                # Strip the base-path prefix the old config baked into hrefs
-                h = re.sub(rf"^/{re.escape(repo_name)}/", "/", h)
-                cards.append({"title": t, "description": d, "link": h})
-
-        if cards:
-            landing_from_index = cards[:4]
 
     # ---- Identify user assets to preserve ---------------------------------
     # Framework provides these; everything else in assets/ and public/ is user content.
@@ -211,7 +140,7 @@ def main() -> None:
         old_index = tmp_content / "index.mdx"
         if old_index.exists():
             old_index.unlink()
-            print("    removed  : docs/content/docs/index.mdx (framework regenerates it)")
+            print("    removed  : docs/content/docs/index.mdx (base URL now redirects to the first sidebar page)")
 
         # Stash user assets into temp dir before docs/ is deleted
         tmp_assets = tmp / "assets_stash"
@@ -251,7 +180,6 @@ def main() -> None:
 
     # ---- Generate docs.config.ts ------------------------------------------
 
-    landing = landing_from_index or build_landing(sidebar_raw)
     desc = description or f"TODO: One-line description of {title}."
     sidebar_ts = js_to_ts_strings(sidebar_raw)
 
@@ -261,7 +189,6 @@ def main() -> None:
         export default defineConfig({{
             name: {json.dumps(title)},
             description: {json.dumps(desc)},
-            landing: {format_landing_ts(landing)},
             sidebar: {sidebar_ts},
         }});
     """)
@@ -357,7 +284,6 @@ def main() -> None:
     print()
     print("TODOs in docs.config.ts:")
     print("  • Fill in the description field")
-    print("  • Update landing card descriptions")
     print()
     print("To preview:")
     print("  pnpm exec trickfire-docs dev")

@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+
+@theme inline {
+    --font-sans: var(--font-sans);
+}
+
+/*
+ * TrickFire Robotics brand colors
+ *   Green:      #00FE00
+ *   Pink:       #E93CAC
+ *   Eerie Black:#222222
+ *   Dark White: #CCCCCC
+ *
+ * One consistent near-black background everywhere (nav, sidebar, content, cards) - no
+ * separate lighter/gray surface for the sidebar or nav, unlike Starlight's defaults. Green is
+ * the single primary accent (active sidebar item, links, buttons); pink is reserved for rare,
+ * deliberate emphasis rather than baked into every heading like the old theme did.
+ */
+:root {
+    --color-fd-background: #0e0b0e;
+    --color-fd-foreground: #cccccc;
+    --color-fd-card: #0e0b0e;
+    --color-fd-card-foreground: #cccccc;
+    --color-fd-popover: #141014;
+    --color-fd-popover-foreground: #cccccc;
+    --color-fd-muted: #1a161a;
+    --color-fd-muted-foreground: #8a848a;
+    --color-fd-border: #242024;
+    --color-fd-ring: #00fe00;
+    --color-fd-primary: #00fe00;
+    --color-fd-primary-foreground: #0e0b0e;
+    --color-fd-secondary: #1a161a;
+    --color-fd-secondary-foreground: #cccccc;
+    --color-fd-accent: #1a161a;
+    --color-fd-accent-foreground: #00fe00;
+}
+
+.dark {
+    --color-fd-background: #0e0b0e;
+    --color-fd-foreground: #cccccc;
+    --color-fd-card: #0e0b0e;
+    --color-fd-card-foreground: #cccccc;
+    --color-fd-popover: #141014;
+    --color-fd-popover-foreground: #cccccc;
+    --color-fd-muted: #1a161a;
+    --color-fd-muted-foreground: #8a848a;
+    --color-fd-border: #242024;
+    --color-fd-ring: #00fe00;
+    --color-fd-primary: #00fe00;
+    --color-fd-primary-foreground: #0e0b0e;
+    --color-fd-secondary: #1a161a;
+    --color-fd-secondary-foreground: #cccccc;
+    --color-fd-accent: #1a161a;
+    --color-fd-accent-foreground: #00fe00;
+}

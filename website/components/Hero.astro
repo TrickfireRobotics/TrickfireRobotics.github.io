@@ -4,46 +4,46 @@
 
 <section class="hero">
     <img src="/logo.png" alt="TrickFire Robotics Logo" class="hero-logo" />
-    <h1>TrickFire Robotics</h1>
-    <p class="tagline">Documentation Portal</p>
-    <p class="description">Central hub for all TrickFire Robotics technical documentation.</p>
+    <div class="hero-text">
+        <h1>TrickFire Robotics Docs</h1>
+        <p class="description">Central hub for all TrickFire Robotics technical documentation.</p>
+    </div>
 </section>
 
 <style>
     .hero {
-        text-align: center;
-        padding: 4rem 1.5rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 1.5rem;
     }
 
     .hero-logo {
         width: auto;
-        height: min(35vh, 16rem);
+        height: 4rem;
         max-width: 100%;
         object-fit: contain;
-        display: block;
-        margin: 0 auto 2rem;
+        flex-shrink: 0;
     }
 
     h1 {
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        color: var(--tf-green);
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
+        color: var(--tf-white);
         margin-bottom: 0.25rem;
-    }
-
-    .tagline {
-        font-family: var(--tf-font-heading);
-        font-weight: 600;
-        font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--tf-pink);
-        margin-bottom: 1rem;
     }
 
     .description {
         color: var(--tf-text-muted);
-        font-size: 1.05rem;
+        font-size: 1rem;
         max-width: 36rem;
-        margin: 0 auto;
+    }
+
+    @media (max-width: 32rem) {
+        .hero {
+            flex-direction: column;
+            text-align: center;
+        }
     }
 </style>

@@ -12,6 +12,11 @@ on:
             - "tsconfig.cli.json"
             - "release.config.cjs"
     workflow_dispatch:
+    schedule:
+        # Portal repo discovery (website/data/fetchRepos.ts) depends on other repos' docs
+        # sites being published, not just this repo's own file changes, so re-run daily to
+        # pick up newly-published repos without needing a commit here.
+        - cron: "17 9 * * *"
 
 permissions:
     contents: read
@@ -45,6 +50,11 @@ jobs:
 
             - name: Build Astro site
               run: pnpm website:build
+              env:
+                  # Raises fetchRepos.ts's GitHub API rate limit from 60/hr (unauthenticated)
+                  # to 1000/hr - matters most on the daily schedule trigger above, which runs
+                  # unattended with no PR/push to correlate failures against.
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - uses: actions/upload-pages-artifact@v5
               with:

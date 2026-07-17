@@ -133,7 +133,7 @@ info "Created .github/workflows/pages.yml"
 # ---------------------------------------------------------------------------
 # .gitignore
 # ---------------------------------------------------------------------------
-GITIGNORE_ENTRIES=("node_modules/" "dist/" ".pnpm-store/")
+GITIGNORE_ENTRIES=("node_modules/" "dist/" ".pnpm-store/" ".next-cache/")
 GITIGNORE_ADDED=()
 for entry in "${GITIGNORE_ENTRIES[@]}"; do
     if ! grep -qxF "$entry" .gitignore 2>/dev/null; then

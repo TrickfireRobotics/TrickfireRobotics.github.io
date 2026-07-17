@@ -6,9 +6,13 @@ export default tseslint.config(
     {
         ignores: [
             "**/dist",
+            "**/dist-cli",
             "**/node_modules",
             "**/coverage",
             "**/.astro",
+            "**/.next-cache",
+            "**/.next",
+            "**/.source",
             "internal",
             "commitlint.config.cjs",
             "release.config.cjs",

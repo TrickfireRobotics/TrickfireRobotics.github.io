@@ -3,7 +3,7 @@
 
 # TrickFire Docs
 
-`trickfire-docs` is TrickFire Robotics' documentation framework - an Astro/Starlight-based tool other TrickFire repos install to generate and publish their own docs at `docs.trickfirerobotics.com/<repo-name>`. This repo is where it's built and published from.
+`trickfire-docs` is TrickFire Robotics' documentation framework - a Next.js/Fumadocs-based tool other TrickFire repos install to generate and publish their own docs at `docs.trickfirerobotics.com/<repo-name>`. This repo is where it's built and published from.
 
 This repo also servers `docs.trickfirerobotics.com` itself - more on that [below](#also-in-this-repo-the-docstrickfireroboticscom-portal).
 
@@ -26,7 +26,7 @@ This script:
 - Runs `pnpm install`
 - Scaffolds `docs/` and `docs.config.ts` via `trickfire-docs init`
 
-Edit `docs.config.ts` to set your project's name, description, landing page cards, and sidebar.
+Edit `docs.config.ts` to set your project's name, description, and sidebar.
 
 The site's URL and base path (`docs.trickfirerobotics.com/<repo-name>`) are derived automatically from `package.json`'s `"name"` field - there's nothing to configure for that.
 
@@ -67,7 +67,7 @@ The script moves `docs/content/docs/**` into `docs/`, generates `docs.config.ts`
 
 ## Developing `trickfire-docs` itself
 
-Because this package generates and drives a real Astro project from inside its own install location (`node_modules/trickfire-docs/.astro-cache/`), changes don't show up correctly under `pnpm link` - a symlink doesn't reproduce how a real consumer's package manager lays out `node_modules`. Test changes against a real, packed install instead:
+Because this package generates and drives a real Next.js project inside the consumer's own project root (`<project>/.next-cache/`, with `next`/`react`/`fumadocs-*` symlinked in individually - see `framework/next/cachePaths.ts`), changes don't show up correctly under `pnpm link` - a symlink doesn't reproduce how a real consumer's package manager lays out `node_modules`. Test changes against a real, packed install instead:
 
 ```bash
 pnpm check            # lint/format/typecheck everything (framework + portal)
@@ -89,9 +89,9 @@ npx trickfire-docs dev      # check hot reload works
 npx trickfire-docs build    # check dist/ output
 ```
 
-Test with **both `npm` and `pnpm`** when changing anything that touches dependency resolution or the cache layout (`framework/astro/`). `npm`'s default hoisting is more forgiving and can hide bugs that only show up under `pnpm`'s strict, non-hoisted isolation - that's exactly how the `outDir`/dev-watch issues during initial development were found.
+Test with **both `npm` and `pnpm`** when changing anything that touches dependency resolution or the cache layout (`framework/next/`). `npm`'s default hoisting is more forgiving and can hide bugs that only show up under `pnpm`'s strict, non-hoisted isolation - that's exactly how the `outDir`/dev-watch issues during initial development were found.
 
-Delete the throwaway project and the `.tgz` when done; `.astro-cache/` inside this repo (if you ever run the CLI directly from source) is gitignored and safe to delete at any time.
+Delete the throwaway project and the `.tgz` when done; `.next-cache/` inside it is gitignored (per `init.sh`) and safe to delete at any time.
 
 ## Releasing `trickfire-docs` to npm
 

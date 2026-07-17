@@ -3,13 +3,13 @@ title: FAQ
 description: Common questions.
 ---
 
-### Where do I edit the landing page?
+### Where does visiting the site's base URL take me?
 
-The landing page is generated from `docs.config.ts`'s `name`, `description`, and `landing` fields - there's no `docs/index.md` to edit directly.
+There's no landing/splash page - the base URL redirects straight to the first page in your `sidebar` config.
 
 ### Can I nest sidebar groups?
 
-Yes, the `sidebar` field accepts the same structure as [Starlight's sidebar config](https://starlight.astro.build/reference/configuration/#sidebar), including nested groups.
+Yes - each nested group needs its own subfolder one level deeper than its parent (see [Organizing the Sidebar](/guides/organizing-sidebar)).
 
 ### Does editing `docs.config.ts` hot-reload?
 

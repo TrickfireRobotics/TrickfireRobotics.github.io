@@ -1,10 +1,10 @@
-import { build } from "astro";
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { getCacheRoot } from "../astro/cachePaths.js";
-import { writeAstroProject } from "../astro/buildAstroConfig.js";
-import { syncContentOnce } from "../astro/syncContent.js";
+import { getCacheRoot } from "../next/cachePaths.js";
+import { writeFumadocsProject, writeMetaFiles } from "../next/buildFumadocsProject.js";
+import { syncContentOnce } from "../next/syncContent.js";
+import { runNext } from "../next/runNext.js";
 import { loadDocsConfig } from "../config/load.js";
 import { resolveDocsConfig } from "../config/resolve.js";
 
@@ -18,22 +18,34 @@ export async function runBuild(projectRoot: string): Promise<void> {
 
     const config = await loadDocsConfig(projectRoot);
     const resolved = await resolveDocsConfig(projectRoot, config);
-    const cacheRoot = getCacheRoot();
+    const cacheRoot = getCacheRoot(projectRoot);
     const finalOutDir = path.join(projectRoot, "dist");
 
-    // Astro writes intermediate SSR/prerender chunks into outDir and resolves their own
-    // runtime imports (e.g. "piccolore") relative to wherever outDir lives. Building
-    // straight into the consumer's bare dist/ - outside any path that resolves to our
-    // package's own dependencies - breaks under pnpm's strict, non-hoisted isolation.
-    // Building into a staging dir inside the cache root (which DOES resolve correctly,
-    // same as `root`) and copying the result out afterwards avoids that.
-    const stagingOutDir = path.join(cacheRoot, ".output");
+    await writeFumadocsProject(cacheRoot, resolved, { isDev: false });
+    await syncContentOnce(cacheRoot, docsSourceDir, resolved.sidebar);
+    await writeMetaFiles(cacheRoot, resolved.sidebar);
 
-    await writeAstroProject(cacheRoot, resolved);
-    await syncContentOnce(cacheRoot, docsSourceDir, resolved);
+    // `output: "export"` (set in the generated next.config.mjs) makes `next build` emit a
+    // static site into <cacheRoot>/out/ instead of a server bundle.
+    await runNext(["build", cacheRoot], cacheRoot);
 
-    await build({ root: cacheRoot, outDir: stagingOutDir, logLevel: "info" });
-
+    const stagingOutDir = path.join(cacheRoot, "out");
     await fs.rm(finalOutDir, { recursive: true, force: true });
     await fs.cp(stagingOutDir, finalOutDir, { recursive: true });
+
+    // GitHub Pages runs Jekyll by default, which ignores any file/folder starting with "_" -
+    // including Next's own _next/ build assets - unless this marker is present.
+    await fs.writeFile(path.join(finalOutDir, ".nojekyll"), "");
+
+    // Lets the portal (website/data/fetchRepos.ts) discover this site and its metadata by
+    // probing docs.trickfirerobotics.com/<repo>/docs-manifest.json, instead of a hardcoded list.
+    const manifest = {
+        name: resolved.name,
+        description: resolved.description,
+        base: resolved.base,
+    };
+    await fs.writeFile(
+        path.join(finalOutDir, "docs-manifest.json"),
+        JSON.stringify(manifest, null, 4)
+    );
 }

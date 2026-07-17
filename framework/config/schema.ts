@@ -1,22 +1,25 @@
-// Starlight ships its config types as raw TypeScript that references Astro's
-// virtual modules (astro:content, virtual:starlight/*) - those only resolve
-// inside a real Astro/Vite project, not under plain `tsc`. So these mirror
-// Starlight's documented sidebar/social shapes locally instead of importing
-// them; Starlight's own schema still validates the generated astro.config.mjs
-// at build time regardless.
+// These mirror Fumadocs' sidebar/meta.json shapes locally rather than importing them, since
+// this file is loaded under plain `tsc`/`jiti` in the consumer's project, not inside a real
+// Next.js build. framework/next/buildFumadocsProject.ts turns this into real meta.json files
+// that Fumadocs itself then validates at build time.
 
 export interface SidebarLinkItem {
     label: string;
     slug?: string;
     link?: string;
-    badge?: string;
 }
 
 export interface SidebarGroup {
     label: string;
     items: SidebarItem[];
+    /** Collapsed (closed) by default - Fumadocs' folders are expanded by default otherwise. */
     collapsed?: boolean;
-    badge?: string;
+    /**
+     * Name of a lucide-react icon to show next to the group label (e.g. "BookOpen",
+     * "Rocket", "Settings") - PascalCase, matching the component's export name. Browse the
+     * full icon set at https://lucide.dev/icons.
+     */
+    icon?: string;
 }
 
 export type SidebarItem = SidebarLinkItem | SidebarGroup;
@@ -30,22 +33,14 @@ export interface SocialLink {
 
 export type SocialLinks = SocialLink[];
 
-export interface LandingItem {
-    title: string;
-    description: string;
-    link: string;
-}
-
 export interface AdvancedConfig {
     /**
-     * Extra Starlight options, deep-merged over the framework's generated `starlight()`
-     * config. Values must be JSON-serializable - they're written into a generated
-     * astro.config.mjs, so functions/imports (e.g. a custom Vite plugin instance) won't
+     * Extra Next.js config options, deep-merged over the framework's generated
+     * next.config.js. Values must be JSON-serializable - they're written into a generated
+     * config file, so functions/imports (e.g. a custom webpack plugin instance) won't
      * survive the round-trip.
      */
-    starlight?: Record<string, unknown>;
-    /** Extra Vite options, deep-merged over the framework's generated `vite` config. Same JSON-serializability caveat as `starlight` above. */
-    vite?: Record<string, unknown>;
+    next?: Record<string, unknown>;
 }
 
 export interface DocsConfig {
@@ -53,16 +48,14 @@ export interface DocsConfig {
     name: string;
     /** One-line summary, used as the hero tagline and meta description. */
     description: string;
-    /** Cards shown on the auto-generated landing page. */
-    landing: LandingItem[];
-    /** Sidebar nav structure - same shape as Starlight's `sidebar` config. */
+    /** Sidebar nav structure - groups map to `docs/` folders, each with its own `meta.json`. */
     sidebar: SidebarConfig;
     /**
      * Extra nav icons, appended after the fixed GitHub (derived from package.json's
      * "name"), Notion, and TrickFire Robotics links that are always present.
      */
     social?: SocialLinks;
-    /** Escape hatch for Starlight/Vite options this config doesn't otherwise expose. */
+    /** Escape hatch for Next.js options this config doesn't otherwise expose. */
     advanced?: AdvancedConfig;
 }
 

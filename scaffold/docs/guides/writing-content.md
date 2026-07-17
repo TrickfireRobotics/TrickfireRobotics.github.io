@@ -24,16 +24,14 @@ echo "code blocks support a title and language"
 
 ## Callouts
 
-Use asides to highlight important information:
+Files ending in `.mdx` can import and use components alongside regular Markdown - `Callout` highlights important information:
 
-:::note
-A neutral callout for extra context.
-:::
+```mdx title="docs/guides/example.mdx"
+import { Callout } from "fumadocs-ui/components/callout";
 
-:::caution
-A warning callout for things readers should be careful about.
-:::
+<Callout>A neutral callout for extra context.</Callout>
 
-## MDX
+<Callout type="warn">A warning callout for things readers should be careful about.</Callout>
+```
 
-Files ending in `.mdx` can import and use components, like `CardGrid`/`LinkCard` from Starlight, alongside regular Markdown.
+See [Fumadocs' built-in components](https://fumadocs.dev/docs/ui/mdx) for the full set (cards, tabs, steps, and more).
