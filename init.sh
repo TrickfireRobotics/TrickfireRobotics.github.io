@@ -56,7 +56,12 @@ fi
 # ---------------------------------------------------------------------------
 # pnpm-workspace.yaml
 # ---------------------------------------------------------------------------
-cat > pnpm-workspace.yaml <<'EOF'
+if [[ -f pnpm-workspace.yaml ]]; then
+    warn "pnpm-workspace.yaml already exists - skipping. Make sure it includes:"
+    warn "  allowBuilds: { esbuild: true, sharp: true }"
+    warn "  minimumReleaseAgeExclude: [trickfire-docs]"
+else
+    cat > pnpm-workspace.yaml <<'EOF'
 allowBuilds:
   esbuild: true
   sharp: true
@@ -64,7 +69,8 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - trickfire-docs
 EOF
-info "Created pnpm-workspace.yaml"
+    info "Created pnpm-workspace.yaml"
+fi
 
 # ---------------------------------------------------------------------------
 # .github/workflows/pages.yml
@@ -152,6 +158,8 @@ pnpm install
 # ---------------------------------------------------------------------------
 if [[ -d docs ]] || [[ -f docs.config.ts ]]; then
     warn "docs/ or docs.config.ts already exist - skipping scaffold"
+    warn "To scaffold the starter docs/ and docs.config.ts anyway (existing files with the same names are overwritten, others are left alone), run:"
+    warn "  pnpm exec trickfire-docs init --force"
 else
     info "Scaffolding docs..."
     pnpm exec trickfire-docs init

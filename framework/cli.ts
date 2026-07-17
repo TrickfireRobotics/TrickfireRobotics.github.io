@@ -2,7 +2,7 @@ import { runBuild } from "./commands/build.js";
 import { runDev } from "./commands/dev.js";
 import { runInit } from "./commands/init.js";
 
-const [, , command] = process.argv;
+const [, , command, ...args] = process.argv;
 const projectRoot = process.cwd();
 
 async function main(): Promise<void> {
@@ -14,10 +14,10 @@ async function main(): Promise<void> {
             await runBuild(projectRoot);
             break;
         case "init":
-            await runInit(projectRoot);
+            await runInit(projectRoot, { force: args.includes("--force") });
             break;
         default:
-            console.error("Usage: trickfire-docs <dev|build|init>");
+            console.error("Usage: trickfire-docs <dev|build|init> [--force]");
             process.exit(1);
     }
 }
