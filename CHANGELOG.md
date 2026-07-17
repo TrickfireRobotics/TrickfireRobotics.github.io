@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/compare/trickfire-docs-v1.1.0...trickfire-docs-v1.2.0) (2026-07-17)
+
+### Features
+
+- added ak-series-lib to main docs page ([8585eeb](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/8585eebdaf228d9daf8a075fa2c3d94d8c2d176d))
+- added init script ([6bcf4e5](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/commit/6bcf4e5ab43de9c1dd340ca09caaa6e1d440f059))
+
 # [1.1.0](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/compare/trickfire-docs-v1.0.0...trickfire-docs-v1.1.0) (2026-07-02)
 
 ### Bug Fixes
