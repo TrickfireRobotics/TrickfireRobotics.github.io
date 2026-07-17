@@ -1,0 +1,38 @@
+name: Sync Docs (Reusable)
+
+on:
+    workflow_call:
+        inputs:
+            repo-name:
+                description: "URL path segment for this project (defaults to the calling repo's name)"
+                required: false
+                type: string
+                default: ""
+
+jobs:
+    sync:
+        name: Sync docs and rebuild site
+        runs-on: [self-hosted, docs]
+
+        steps:
+            - name: Checkout calling repo
+              uses: actions/checkout@v4
+
+            - name: Resolve repo name
+              id: name
+              run: |
+                  NAME="${{ inputs.repo-name }}"
+                  if [ -z "$NAME" ]; then
+                    NAME="${{ github.event.repository.name }}"
+                  fi
+                  echo "value=$NAME" >> "$GITHUB_OUTPUT"
+
+            - name: Sync docs content
+              run: |
+                  DEST="/srv/trickfire-docs/content/${{ steps.name.outputs.value }}"
+                  mkdir -p "$DEST"
+                  rsync -av --delete --checksum docs/ "$DEST/"
+                  cp docs.config.ts "$DEST/docs.config.ts"
+
+            - name: Rebuild and deploy docs site
+              run: bash /srv/trickfire-docs/scripts/build.sh

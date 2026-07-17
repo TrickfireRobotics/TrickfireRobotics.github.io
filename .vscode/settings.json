@@ -1,10 +1,6 @@
 {
     "files.eol": "\n",
     "editor.rulers": [100],
-    "[astro]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": true
-    },
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true
@@ -37,7 +33,6 @@
         "**/.git": true,
         "**/.DS_Store": true,
         "**/node_modules": true,
-        "**/.astro": true,
         "**/dist": true,
         "**/dist-cli": true,
         "**/.husky/_*": true,

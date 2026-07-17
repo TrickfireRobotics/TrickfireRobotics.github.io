@@ -1,7 +1,7 @@
 {
     "name": "trickfire-docs",
     "version": "1.2.0",
-    "description": "TrickFire Robotics' docs.trickfirerobotics.com portal, and trickfire-docs - the Astro/Starlight docs framework other TrickFire repos use to publish their own docs there",
+    "description": "Documentation framework for TrickFire Robotics",
     "license": "Apache-2.0",
     "author": "TrickFire Robotics",
     "type": "module",
@@ -10,28 +10,19 @@
     },
     "main": "./dist-cli/index.js",
     "types": "./dist-cli/index.d.ts",
-    "exports": {
-        ".": {
-            "types": "./dist-cli/index.d.ts",
-            "import": "./dist-cli/index.js"
-        }
-    },
     "files": [
         "dist-cli",
-        "internal",
-        "scaffold"
+        "scaffold",
+        "src/css"
     ],
-    "publishConfig": {
-        "access": "public"
-    },
     "scripts": {
-        "website:dev": "astro dev",
-        "website:build": "astro build",
-        "website:preview": "astro preview",
+        "website:dev": "docusaurus start",
+        "website:build": "docusaurus build",
+        "website:serve": "docusaurus serve",
+        "website:clear": "docusaurus clear",
         "framework:dev": "tsx framework/cli.ts",
         "framework:build": "tsup",
         "test": "vitest run",
-        "test:watch": "vitest",
         "release:dry-run": "semantic-release --dry-run --no-ci",
         "lint": "eslint .",
         "format": "prettier --write .",
@@ -45,29 +36,31 @@
             "eslint --fix",
             "prettier --write"
         ],
-        "*.astro": "prettier --write",
-        "*.{json,md,yml,yaml}": "prettier --write"
+        "*.{json,md,yml,yaml,css}": "prettier --write"
     },
     "dependencies": {
-        "@astrojs/starlight": "^0.41.1",
-        "astro": "^7.0.3",
-        "chokidar": "^5.0.0",
-        "jiti": "^2.7.0",
-        "sharp": "^0.35.2"
+        "@docusaurus/core": "^3.8.0",
+        "@docusaurus/faster": "^3.10.2",
+        "@docusaurus/preset-classic": "^3.8.0",
+        "jiti": "^2.4.2",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
     },
     "devDependencies": {
         "@commitlint/cli": "^21.0.2",
         "@commitlint/config-conventional": "^21.0.2",
+        "@docusaurus/plugin-content-docs": "^3.8.0",
+        "@docusaurus/types": "^3.8.0",
         "@eslint/js": "^9.0.0",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/git": "^10.0.1",
         "@types/node": "^26.0.1",
+        "@types/react": "^18.3.18",
         "eslint": "^9.0.0",
         "eslint-config-prettier": "^10.1.8",
         "husky": "^9.1.7",
         "lint-staged": "^17.0.7",
         "prettier": "^3.8.4",
-        "prettier-plugin-astro": "^0.14.1",
         "semantic-release": "^25.0.5",
         "tsup": "^8.0.0",
         "tsx": "^4.0.0",

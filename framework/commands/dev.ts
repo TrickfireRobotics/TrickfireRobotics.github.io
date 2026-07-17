@@ -1,35 +1,38 @@
-import { dev } from "astro";
-import { existsSync } from "node:fs";
+import fs from "node:fs/promises";
 import path from "node:path";
-import { getCacheRoot } from "../astro/cachePaths.js";
-import { writeAstroProject } from "../astro/buildAstroConfig.js";
-import { syncContentOnce, watchContent } from "../astro/syncContent.js";
+import { spawn } from "node:child_process";
 import { loadDocsConfig } from "../config/load.js";
 import { resolveDocsConfig } from "../config/resolve.js";
+import { generateFiles } from "../config/generate.js";
+import { findDocusaurusBin } from "../utils/docusaurus.js";
+import { THEME_CSS } from "../theme.js";
 
 export async function runDev(projectRoot: string): Promise<void> {
-    const docsSourceDir = path.join(projectRoot, "docs");
-    if (!existsSync(docsSourceDir)) {
-        throw new Error(
-            `No docs/ folder found at ${docsSourceDir}. Run "trickfire-docs init" first.`
-        );
+    const raw = await loadDocsConfig(projectRoot);
+    const config = await resolveDocsConfig(projectRoot, raw);
+    const { config: configJs, sidebars } = generateFiles(config);
+
+    const trickfireDir = path.join(projectRoot, ".trickfire");
+    await fs.mkdir(trickfireDir, { recursive: true });
+
+    await fs.writeFile(path.join(trickfireDir, "custom.css"), THEME_CSS, "utf-8");
+    await fs.writeFile(path.join(trickfireDir, "docusaurus.config.js"), configJs, "utf-8");
+    if (sidebars) {
+        await fs.writeFile(path.join(trickfireDir, "sidebars.js"), sidebars, "utf-8");
     }
 
-    const config = await loadDocsConfig(projectRoot);
-    const resolved = await resolveDocsConfig(projectRoot, config);
-    const cacheRoot = getCacheRoot();
+    const bin = await findDocusaurusBin();
 
-    await writeAstroProject(cacheRoot, resolved);
-    await syncContentOnce(cacheRoot, docsSourceDir, resolved);
-    const stopWatching = watchContent(cacheRoot, docsSourceDir);
-
-    const server = await dev({ root: cacheRoot, logLevel: "info" });
-
-    const shutdown = async () => {
-        await stopWatching();
-        await server.stop();
-        process.exit(0);
-    };
-    process.on("SIGINT", shutdown);
-    process.on("SIGTERM", shutdown);
+    await new Promise<void>((resolve, reject) => {
+        const child = spawn(
+            process.execPath,
+            [bin, "start", "--config", ".trickfire/docusaurus.config.js"],
+            { cwd: projectRoot, stdio: "inherit" }
+        );
+        child.on("close", (code) => {
+            if (code === 0 || code === null) resolve();
+            else reject(new Error(`docusaurus exited with code ${code}`));
+        });
+        child.on("error", reject);
+    });
 }

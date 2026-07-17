@@ -1,0 +1,103 @@
+export const THEME_CSS = `/* TrickFire Robotics — forced dark theme */
+/* Keep in sync with src/css/custom.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root,
+[data-theme='light'],
+[data-theme='dark'] {
+  /* TrickFire Green as primary */
+  --ifm-color-primary: #00fe00;
+  --ifm-color-primary-dark: #00e400;
+  --ifm-color-primary-darker: #00d600;
+  --ifm-color-primary-darkest: #00b000;
+  --ifm-color-primary-light: #1afe1a;
+  --ifm-color-primary-lighter: #33fe33;
+  --ifm-color-primary-lightest: #66fe66;
+
+  /* Background layers */
+  --ifm-background-color: #181818;
+  --ifm-background-surface-color: #222222;
+
+  /* Text */
+  --ifm-font-color-base: #cccccc;
+  --ifm-heading-color: #ffffff;
+
+  /* Fonts */
+  --ifm-font-family-base: 'Overpass', system-ui, sans-serif;
+  --ifm-heading-font-family: 'Overpass', system-ui, sans-serif;
+  --ifm-font-family-monospace: 'Roboto Mono', 'SFMono-Regular', monospace;
+
+  /* Code */
+  --ifm-code-font-size: 90%;
+  --ifm-code-background: #1e1e1e;
+
+  /* Navbar */
+  --ifm-navbar-background-color: #1a1a1a;
+  --ifm-navbar-height: 56px;
+
+  /* Sidebar */
+  --ifm-menu-color: #aaaaaa;
+  --ifm-menu-color-active: #00fe00;
+  --ifm-menu-color-background-active: rgba(0, 254, 0, 0.08);
+  --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.04);
+
+  /* TOC */
+  --ifm-toc-border-color: #2a2a2a;
+  --ifm-color-secondary: #aaaaaa;
+
+  /* Footer */
+  --ifm-footer-background-color: #141414;
+
+  /* Dividers */
+  --ifm-hr-border-color: #2a2a2a;
+  --ifm-table-border-color: #2a2a2a;
+
+  /* Admonition accent */
+  --ifm-color-info: #3cc4e9;
+  --ifm-color-success: #00fe00;
+  --ifm-color-warning: #ffcc00;
+  --ifm-color-danger: #e93cac;
+
+  /* Code highlight */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 254, 0, 0.1);
+
+  color-scheme: dark;
+}
+
+html, body {
+  background-color: #181818;
+}
+
+/* Navbar */
+.navbar {
+  border-bottom: 1px solid #2a2a2a;
+  box-shadow: none;
+}
+
+.navbar__brand {
+  font-weight: 700;
+}
+
+.navbar__link--active,
+.navbar__link:hover {
+  color: #00fe00;
+}
+
+/* Active sidebar link */
+.menu__link--active:not(.menu__link--sublist) {
+  color: #00fe00;
+  background-color: rgba(0, 254, 0, 0.08);
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #2a2a2a;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #222222; }
+::-webkit-scrollbar-thumb { background: #444444; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #555555; }
+`;
