@@ -32,7 +32,7 @@ jobs:
                   DEST="/home/trickfire/docs/content/${{ steps.name.outputs.value }}"
                   mkdir -p "$DEST"
                   rsync -av --delete --checksum docs/ "$DEST/"
-                  cp docs.config.ts "$DEST/docs.config.ts"
+                  cp docs.config.json "$DEST/docs.config.json"
 
             - name: Rebuild and deploy docs site
               run: bash /home/trickfire/docs/scripts/build.sh
