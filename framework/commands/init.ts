@@ -30,16 +30,20 @@ export interface InitOptions {
 
 const SCAFFOLD_FILES: Array<[string, string]> = [
     ["docs.config.json", "docs.config.json"],
+    [".github/workflows/docs.yml", ".github/workflows/docs.yml"],
+];
+
+const SCAFFOLD_DOCS: Array<[string, string]> = [
     ["docs/getting-started.md", "docs/getting-started.md"],
     ["docs/guides/writing-content.md", "docs/guides/writing-content.md"],
     ["docs/guides/organizing-sidebar.md", "docs/guides/organizing-sidebar.md"],
     ["docs/reference/configuration.md", "docs/reference/configuration.md"],
     ["docs/reference/faq.md", "docs/reference/faq.md"],
-    [".github/workflows/docs.yml", ".github/workflows/docs.yml"],
 ];
 
 export async function runInit(projectRoot: string, options: InitOptions = {}): Promise<void> {
     const configDest = path.join(projectRoot, "docs.config.json");
+    const docsDest = path.join(projectRoot, "docs");
 
     if (existsSync(configDest) && !options.force) {
         console.log("Already initialized. Use --force to re-scaffold.");
@@ -52,6 +56,24 @@ export async function runInit(projectRoot: string, options: InitOptions = {}): P
         await fs.mkdir(path.dirname(destPath), { recursive: true });
         await fs.copyFile(srcPath, destPath);
         console.log(`  created  ${dest}`);
+    }
+
+    let docsEmpty = true;
+    if (existsSync(docsDest)) {
+        const entries = await fs.readdir(docsDest);
+        docsEmpty = entries.length === 0;
+    }
+
+    if (!existsSync(docsDest) || docsEmpty || options.force) {
+        for (const [src, dest] of SCAFFOLD_DOCS) {
+            const srcPath = path.join(SCAFFOLD_DIR, src);
+            const destPath = path.join(projectRoot, dest);
+            await fs.mkdir(path.dirname(destPath), { recursive: true });
+            await fs.copyFile(srcPath, destPath);
+            console.log(`  created  ${dest}`);
+        }
+    } else {
+        console.log("docs directory is not empty. Use --force to re-scaffold.");
     }
 
     // Append trickfire-docs entries to .gitignore
