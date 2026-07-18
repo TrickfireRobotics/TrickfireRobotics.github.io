@@ -1,3 +1,21 @@
+# [1.5.0](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.4.1...trickfire-docs-v1.5.0) (2026-07-18)
+
+### Bug Fixes
+
+- better main page redirect ([6323887](https://github.com/TrickfireRobotics/docs/commit/63238879706fa2c1c253ed612cbbf2173b190458))
+- fixed nginx routing & made build reload nginx ([e4c2bc5](https://github.com/TrickfireRobotics/docs/commit/e4c2bc5b3dcaa433fef836bce295f453ac94c4fa))
+- got rid of the redirect and made links point directly to first page ([5d22b78](https://github.com/TrickfireRobotics/docs/commit/5d22b784bb09ee0a4825fa792524441d5d671455))
+- hopefully fixed main page redirects ([d3daf1c](https://github.com/TrickfireRobotics/docs/commit/d3daf1c36f502b763b67c74af730820c6689be65))
+- improve init command ([47974c9](https://github.com/TrickfireRobotics/docs/commit/47974c9ef1c6d8888321f6e52d61ae02d7d42365))
+- redirects are hell ([5e0d61c](https://github.com/TrickfireRobotics/docs/commit/5e0d61cb485de16730c1a189db6286b52f7f056c))
+- remove deleted dir from eslint in release ci ([f51099c](https://github.com/TrickfireRobotics/docs/commit/f51099c2e85fd9b23bdc8cc99b3bb6f8321ec3ed))
+- used docusaurus native redirect ([88073c5](https://github.com/TrickfireRobotics/docs/commit/88073c51dfd76de4ebba5b64bba6f0f64d5b61df))
+
+### Features
+
+- added dev subpage doc for testing ([1f1f1f1](https://github.com/TrickfireRobotics/docs/commit/1f1f1f108540963af26442bbb9be1e8f10791000))
+- improved styling of main page ([899d286](https://github.com/TrickfireRobotics/docs/commit/899d28617e3d5f67828a0bf41d112d92523a2d66))
+
 ## [1.4.1](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.4.0...trickfire-docs-v1.4.1) (2026-07-18)
 
 ### Bug Fixes
