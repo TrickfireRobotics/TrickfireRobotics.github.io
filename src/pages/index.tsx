@@ -8,6 +8,7 @@ interface RepoMeta {
     id: string;
     name: string;
     description: string;
+    firstDocId?: string;
 }
 
 interface FrameworkMeta {
@@ -45,9 +46,12 @@ export default function Home(): React.JSX.Element {
                                 </Link>
                             </li>
                         )}
-                        {repoMeta.map(({ id, name }) => (
+                        {repoMeta.map(({ id, name, firstDocId }) => (
                             <li key={id}>
-                                <Link className={styles.projectLink} to={`/${id}/`}>
+                                <Link
+                                    className={styles.projectLink}
+                                    to={firstDocId ? `/${id}/${firstDocId}/` : `/${id}/`}
+                                >
                                     {toTitleCase(name)}
                                 </Link>
                             </li>

@@ -95,29 +95,6 @@ export default async function createConfig(): Promise<Config> {
                 firstDocId = getFirstDocId(cfg.sidebar);
             }
 
-            if (firstDocId) {
-                const redirectUrl = `/${repo}/${firstDocId}/`;
-                const title = (cfg.name ?? repo).replace(/"/g, '\\"');
-                writeFileSync(
-                    path.join(CONTENT_DIR, repo, "index.md"),
-                    [
-                        `---`,
-                        `title: "${title}"`,
-                        `---`,
-                        ``,
-                        `import Head from '@docusaurus/Head';`,
-                        `import { Redirect } from '@docusaurus/router';`,
-                        ``,
-                        `<Head>`,
-                        `  <meta httpEquiv="refresh" content="0; url=${redirectUrl}" />`,
-                        `</Head>`,
-                        ``,
-                        `<Redirect to="${redirectUrl}" />`,
-                        ``,
-                    ].join("\n")
-                );
-            }
-
             return {
                 id: repo,
                 name: cfg.name ?? repo,
@@ -176,9 +153,9 @@ export default async function createConfig(): Promise<Config> {
         },
     });
 
-    const projectDropdownItems = repoMeta.map(({ id, name }) => ({
+    const projectDropdownItems = repoMeta.map(({ id, name, firstDocId }) => ({
         label: name,
-        to: `/${id}/`,
+        to: firstDocId ? `/${id}/${firstDocId}/` : `/${id}/`,
     }));
 
     return {
@@ -191,7 +168,12 @@ export default async function createConfig(): Promise<Config> {
         onBrokenLinks: "warn",
         onBrokenMarkdownLinks: "warn",
         customFields: {
-            repoMeta: repoMeta.map(({ id, name, description }) => ({ id, name, description })),
+            repoMeta: repoMeta.map(({ id, name, description, firstDocId }) => ({
+                id,
+                name,
+                description,
+                firstDocId,
+            })),
             frameworkMeta: {
                 name: "Docs Framework",
                 routeBasePath: "trickfire-docs",
