@@ -3,7 +3,7 @@
 # Run on the server by the deploy workflow and the sync-docs reusable workflow.
 set -euo pipefail
 
-REPO_DIR="/srv/trickfire-docs"
+REPO_DIR="/home/trickfire/trickfire-docs"
 
 echo "[trickfire-docs] Build started at $(date)"
 

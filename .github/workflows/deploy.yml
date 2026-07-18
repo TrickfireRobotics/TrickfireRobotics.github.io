@@ -19,4 +19,4 @@ jobs:
 
         steps:
             - name: Rebuild and deploy docs site
-              run: bash /srv/trickfire-docs/scripts/build.sh
+              run: bash /home/trickfire/trickfire-docs/scripts/build.sh

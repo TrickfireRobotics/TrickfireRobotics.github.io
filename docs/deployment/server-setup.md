@@ -5,21 +5,16 @@ sidebar_position: 2
 
 # Server Setup
 
-## Requirements
+This project is ran on our Debian server, but this setup should work on any Debian-based server.
 
-- Debian 11 (Bullseye) or 12 (Bookworm), or Ubuntu 22.04+
-- 1 GB RAM minimum (2 GB recommended for the Docusaurus build)
-- Outbound internet access (for the Cloudflare tunnel and GitHub Actions runner)
-- No inbound ports need to be open
+### 1. Install system dependencies
 
-## 1. Install system dependencies
+This project requires `rsync` for syncing the documentation from repos, and `nginx` for routing, and then `node` for running the framework.
 
 ```bash
 sudo apt update
 sudo apt install -y git curl rsync nginx
 ```
-
-## 2. Install Node.js
 
 Use the NodeSource repo for Node.js 22:
 
@@ -28,33 +23,32 @@ curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt install -y nodejs
 ```
 
-Verify:
+You can verify the correct version matches what this project requires:
 
 ```bash
 node --version   # v22.x.x
 ```
 
-## 3. Install pnpm
+Then we need the `pnpm` package manager:
 
 ```bash
 npm install -g pnpm
 ```
 
-## 4. Create the docs directory
+### 2. Create the docs directory
 
 ```bash
-sudo mkdir -p /srv/trickfire-docs
-sudo chown $USER:$USER /srv/trickfire-docs
+sudo mkdir -p /home/trickfire/trickfire-docs
 ```
 
-## 5. Clone the repo
+### 3. Clone the repo
 
 ```bash
-git clone https://github.com/TrickfireRobotics/trickfire-docs.git /srv/trickfire-docs
-cd /srv/trickfire-docs
+git clone https://github.com/TrickfireRobotics/docs.git /home/trickfire/trickfire-docs
+cd /home/trickfire/trickfire-docs
 ```
 
-## 6. Install dependencies and build
+### 4. Install dependencies and build
 
 ```bash
 pnpm install --frozen-lockfile
@@ -63,20 +57,20 @@ pnpm website:build
 
 The first build takes 1–2 minutes. Subsequent builds are faster due to pnpm's cache.
 
-## 7. Configure nginx
+### 5. Configure `nginx`
 
 Copy the provided nginx config and enable it:
 
 ```bash
-sudo cp /srv/trickfire-docs/scripts/nginx.conf /etc/nginx/sites-available/trickfire-docs
+sudo cp /home/trickfire/trickfire-docs/scripts/nginx.conf /etc/nginx/sites-available/trickfire-docs
 sudo ln -s /etc/nginx/sites-available/trickfire-docs /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo nginx -s reload
 ```
 
-The config serves `build/` on `localhost:80`. The Cloudflare tunnel (set up next) is what exposes this to the internet — nginx itself only listens on localhost.
+The config serves `build/` on `localhost:80`. The Cloudflare tunnel (set up next) is what exposes this to the internet, `nginx` itself only listens on localhost.
 
-## 8. Verify the server
+### 6. Verify the server
 
 ```bash
 curl -s http://localhost/ | grep -o '<title>[^<]*</title>'
@@ -88,7 +82,7 @@ curl -s http://localhost/ | grep -o '<title>[^<]*</title>'
 The `scripts/build.sh` script handles updates automatically. To run it manually:
 
 ```bash
-bash /srv/trickfire-docs/scripts/build.sh
+bash /home/trickfire/trickfire-docs/scripts/build.sh
 ```
 
 This pulls the latest framework code, updates dependencies if the lockfile changed, and rebuilds the site. Content in `content/` is untouched (it's gitignored).

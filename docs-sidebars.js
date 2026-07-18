@@ -11,12 +11,7 @@ export default {
             type: "category",
             label: "Deployment",
             collapsed: false,
-            items: [
-                "deployment/index",
-                "deployment/server-setup",
-                "deployment/cloudflare-tunnel",
-                "deployment/github-actions",
-            ],
+            items: ["deployment/index", "deployment/server-setup", "deployment/cloudflare-tunnel"],
         },
     ],
 };

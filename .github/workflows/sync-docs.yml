@@ -29,10 +29,10 @@ jobs:
 
             - name: Sync docs content
               run: |
-                  DEST="/srv/trickfire-docs/content/${{ steps.name.outputs.value }}"
+                  DEST="/home/trickfire/trickfire-docs/content/${{ steps.name.outputs.value }}"
                   mkdir -p "$DEST"
                   rsync -av --delete --checksum docs/ "$DEST/"
                   cp docs.config.ts "$DEST/docs.config.ts"
 
             - name: Rebuild and deploy docs site
-              run: bash /srv/trickfire-docs/scripts/build.sh
+              run: bash /home/trickfire/trickfire-docs/scripts/build.sh

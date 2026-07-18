@@ -120,8 +120,8 @@ jobs:
 Delete the content directory on the server:
 
 ```bash
-rm -rf /srv/trickfire-docs/content/<repo-name>
-bash /srv/trickfire-docs/scripts/build.sh
+rm -rf /home/trickfire/trickfire-docs/content/<repo-name>
+bash /home/trickfire/trickfire-docs/scripts/build.sh
 ```
 
 The project will disappear from the site after the next build.
