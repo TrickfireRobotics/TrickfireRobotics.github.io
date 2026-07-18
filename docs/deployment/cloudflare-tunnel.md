@@ -71,12 +71,28 @@ Verify in the Cloudflare dashboard under **DNS → Records**.
 
 ### 6. Run as a systemd service
 
-Pass the named config file so `cloudflared` registers a service named `cloudflared-trickfire-docs` instead of the generic `cloudflared`. This lets multiple tunnels coexist on the same server as independent services.
+`cloudflared service install` always creates a unit named `cloudflared.service` regardless of any `--config` flag. To get a named service that can coexist with other tunnels, write the unit file manually:
 
 ```bash
-sudo cloudflared --config /etc/cloudflared/trickfire-docs.yml service install
-sudo systemctl enable cloudflared-trickfire-docs
-sudo systemctl start cloudflared-trickfire-docs
+sudo tee /etc/systemd/system/cloudflared-trickfire-docs.service << 'EOF'
+[Unit]
+Description=cloudflared - trickfire-docs
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+TimeoutStartSec=15
+Type=notify
+ExecStart=/usr/bin/cloudflared --no-autoupdate --config /etc/cloudflared/trickfire-docs.yml tunnel run
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now cloudflared-trickfire-docs
 ```
 
 Check status:
