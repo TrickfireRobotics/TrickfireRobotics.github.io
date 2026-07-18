@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.2.0...trickfire-docs-v1.3.0) (2026-07-18)
+
+### Bug Fixes
+
+- **docs:** cloudflared service install always creates cloudflared.service ([bc75068](https://github.com/TrickfireRobotics/docs/commit/bc7506815ad0b00835e0f352e98b7030302fbc6a))
+- improve error when docs.config.ts is missing ([4b273b7](https://github.com/TrickfireRobotics/docs/commit/4b273b7eb26b0b5025841983428444254b9d4f5a))
+- patch @docusaurus/core SSG renderer for Node.js 22 compatibility ([e381928](https://github.com/TrickfireRobotics/docs/commit/e3819288f44c0ad672f916c1c7139a7c175ed7bf))
+- removed astro plugin from prettier ([ad6c233](https://github.com/TrickfireRobotics/docs/commit/ad6c233c9a2813a64cdeb930bae27959e79d9ae6))
+- write package.json into .docusaurus/ so webpack uses javascript/auto ([12b7a42](https://github.com/TrickfireRobotics/docs/commit/12b7a4262bc389297d89014412ff4124ffa52163))
+
+### Features
+
+- make trickfire-docs dev work in member repos ([345a64c](https://github.com/TrickfireRobotics/docs/commit/345a64c357f67edca65d60e7d27dac04651d1e2c))
+
 # [1.2.0](https://github.com/TrickfireRobotics/TrickfireRobotics.github.io/compare/trickfire-docs-v1.1.0...trickfire-docs-v1.2.0) (2026-07-17)
 
 ### Features
