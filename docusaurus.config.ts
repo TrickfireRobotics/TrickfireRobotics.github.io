@@ -95,6 +95,34 @@ export default async function createConfig(): Promise<Config> {
                 firstDocId = getFirstDocId(cfg.sidebar);
             }
 
+            if (firstDocId) {
+                const redirectUrl = `/${repo}/${firstDocId}/`;
+                const title = (cfg.name ?? repo).replace(/"/g, '\\"');
+                writeFileSync(
+                    path.join(CONTENT_DIR, repo, "index.md"),
+                    [
+                        `---`,
+                        `title: "${title}"`,
+                        `---`,
+                        ``,
+                        `import Head from '@docusaurus/Head';`,
+                        `import BrowserOnly from '@docusaurus/BrowserOnly';`,
+                        ``,
+                        `<Head>`,
+                        `  <meta httpEquiv="refresh" content="0; url=${redirectUrl}" />`,
+                        `</Head>`,
+                        ``,
+                        `<BrowserOnly>`,
+                        `  {() => {`,
+                        `    window.location.replace(${JSON.stringify(redirectUrl)});`,
+                        `    return null;`,
+                        `  }}`,
+                        `</BrowserOnly>`,
+                        ``,
+                    ].join("\n")
+                );
+            }
+
             return {
                 id: repo,
                 name: cfg.name ?? repo,
