@@ -1,3 +1,9 @@
+# [1.4.0](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.3.0...trickfire-docs-v1.4.0) (2026-07-18)
+
+### Features
+
+- fixed semantic release config ([6bfba5e](https://github.com/TrickfireRobotics/docs/commit/6bfba5e0e16d7037f9016775b50dd44182b4c2f7))
+
 # [1.3.0](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.2.0...trickfire-docs-v1.3.0) (2026-07-18)
 
 ### Bug Fixes
