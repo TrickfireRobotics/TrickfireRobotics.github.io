@@ -21,7 +21,7 @@ sidebar_position: 2
                        │ workflow_call → sync-docs.yml
                        ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  Debian server  /home/trickfire/trickfire-docs/                            │
+│  Debian server  /home/trickfire/docs/                            │
 │                                                                 │
 │  content/                    ← synced by member CIs            │
 │  ├── trickfire-can/                                             │
@@ -65,12 +65,12 @@ Member repos need no npm dependencies for the docs tooling. `npx trickfire-docs`
 
 ### Debian server
 
-Hosts everything at `/home/trickfire/trickfire-docs/`. The self-hosted Actions runner (label: `docs`) runs directly on this machine, giving sync jobs direct filesystem access without SSH transfers.
+Hosts everything at `/home/trickfire/docs/`. The self-hosted Actions runner (label: `docs`) runs directly on this machine, giving sync jobs direct filesystem access without SSH transfers.
 
 **Directory layout on server:**
 
 ```
-/home/trickfire/trickfire-docs/
+/home/trickfire/docs/
 ├── content/              ← gitignored, populated by sync jobs
 │   ├── .gitkeep
 │   └── <repo-name>/
@@ -104,9 +104,9 @@ A `cloudflared` daemon on the server opens an outbound tunnel to Cloudflare's ne
 2. GitHub Actions triggers `docs.yml` in that repo.
 3. `docs.yml` calls `sync-docs.yml@main` in this repo.
 4. The self-hosted runner on the server runs:
-    - `rsync docs/ /home/trickfire/trickfire-docs/content/<repo>/`
-    - `cp docs.config.json /home/trickfire/trickfire-docs/content/<repo>/`
-    - `bash /home/trickfire/trickfire-docs/scripts/build.sh`
+    - `rsync docs/ /home/trickfire/docs/content/<repo>/`
+    - `cp docs.config.json /home/trickfire/docs/content/<repo>/`
+    - `bash /home/trickfire/docs/scripts/build.sh`
 5. `build.sh` runs `git pull`, `pnpm install`, `pnpm website:build`.
 6. Docusaurus reads all dirs in `content/`, parses each `docs.config.json`, registers a docs plugin per repo, and outputs a static site to `build/`.
 7. nginx serves `build/` to incoming requests from the Cloudflare tunnel.

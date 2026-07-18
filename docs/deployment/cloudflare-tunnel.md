@@ -138,7 +138,7 @@ Check nginx is running and the build directory exists:
 
 ```bash
 sudo systemctl status nginx
-ls /home/trickfire/trickfire-docs/build/index.html
+ls /home/trickfire/docs/build/index.html
 ```
 
 **DNS not resolving:**

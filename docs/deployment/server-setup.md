@@ -35,20 +35,14 @@ Then we need the `pnpm` package manager:
 npm install -g pnpm
 ```
 
-### 2. Create the docs directory
+### 2. Clone the repo
 
 ```bash
-sudo mkdir -p /home/trickfire/trickfire-docs
+git clone https://github.com/TrickfireRobotics/docs.git /home/trickfire/docs
+cd /home/trickfire/docs
 ```
 
-### 3. Clone the repo
-
-```bash
-git clone https://github.com/TrickfireRobotics/docs.git /home/trickfire/trickfire-docs
-cd /home/trickfire/trickfire-docs
-```
-
-### 4. Install dependencies and build
+### 3. Install dependencies and build
 
 ```bash
 pnpm install --frozen-lockfile
@@ -57,12 +51,12 @@ pnpm website:build
 
 The first build takes 1–2 minutes. Subsequent builds are faster due to pnpm's cache.
 
-### 5. Configure `nginx`
+### 4. Configure `nginx`
 
 Copy the provided nginx config and enable it:
 
 ```bash
-sudo cp /home/trickfire/trickfire-docs/scripts/nginx.conf /etc/nginx/sites-available/trickfire-docs
+sudo cp /home/trickfire/docs/scripts/nginx.conf /etc/nginx/sites-available/trickfire-docs
 sudo ln -s /etc/nginx/sites-available/trickfire-docs /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo nginx -s reload
@@ -70,7 +64,7 @@ sudo nginx -s reload
 
 The config serves `build/` on `localhost:80`. The Cloudflare tunnel (set up next) is what exposes this to the internet, `nginx` itself only listens on localhost.
 
-### 6. Verify the server
+### 5. Verify the server
 
 ```bash
 curl -s http://localhost/ | grep -o '<title>[^<]*</title>'
@@ -82,7 +76,7 @@ curl -s http://localhost/ | grep -o '<title>[^<]*</title>'
 The `scripts/build.sh` script handles updates automatically. To run it manually:
 
 ```bash
-bash /home/trickfire/trickfire-docs/scripts/build.sh
+bash /home/trickfire/docs/scripts/build.sh
 ```
 
 This pulls the latest framework code, updates dependencies if the lockfile changed, and rebuilds the site. Content in `content/` is untouched (it's gitignored).
