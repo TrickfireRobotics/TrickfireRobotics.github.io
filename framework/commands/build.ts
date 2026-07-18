@@ -4,13 +4,13 @@ import { spawn } from "node:child_process";
 import { loadDocsConfig } from "../config/load.js";
 import { resolveDocsConfig } from "../config/resolve.js";
 import { generateFiles } from "../config/generate.js";
-import { findDocusaurusBin } from "../utils/docusaurus.js";
+import { ensureSiteNodeModules, findDocusaurusBin } from "../utils/docusaurus.js";
 import { THEME_CSS } from "../theme.js";
 
 export async function runBuild(projectRoot: string): Promise<void> {
     const raw = await loadDocsConfig(projectRoot);
     const config = await resolveDocsConfig(projectRoot, raw);
-    const { config: configJs, sidebars } = generateFiles(config);
+    const { config: configJs, sidebars } = generateFiles(config, projectRoot);
 
     const trickfireDir = path.join(projectRoot, ".trickfire");
     await fs.mkdir(trickfireDir, { recursive: true });
@@ -20,6 +20,8 @@ export async function runBuild(projectRoot: string): Promise<void> {
     if (sidebars) {
         await fs.writeFile(path.join(trickfireDir, "sidebars.js"), sidebars, "utf-8");
     }
+
+    await ensureSiteNodeModules(path.join(projectRoot, "node_modules"));
 
     const bin = await findDocusaurusBin();
 

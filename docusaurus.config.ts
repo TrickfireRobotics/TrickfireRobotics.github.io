@@ -45,7 +45,7 @@ export default async function createConfig(): Promise<Config> {
         })
     );
 
-    const frameworkDocsPlugin: Config["plugins"][number] = [
+    const frameworkDocsPlugin: NonNullable<Config["plugins"]>[number] = [
         "@docusaurus/plugin-content-docs",
         {
             id: "framework",

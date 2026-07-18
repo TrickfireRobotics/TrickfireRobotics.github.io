@@ -36,6 +36,7 @@ const SCAFFOLD_FILES: Array<[string, string]> = [
     ["docs/reference/configuration.md", "docs/reference/configuration.md"],
     ["docs/reference/faq.md", "docs/reference/faq.md"],
     [".github/workflows/docs.yml", ".github/workflows/docs.yml"],
+    [".npmrc", ".npmrc"],
 ];
 
 export async function runInit(projectRoot: string, options: InitOptions = {}): Promise<void> {
