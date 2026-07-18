@@ -3,6 +3,7 @@ import path from "node:path";
 import type { Config } from "@docusaurus/types";
 import type { Options as PresetOptions } from "@docusaurus/preset-classic";
 import type { Options as DocsOptions } from "@docusaurus/plugin-content-docs";
+import { SHARED_COLOR_MODE, NAVBAR_ICON_ITEMS } from "./framework/shared-config.js";
 
 const SITE_URL = "https://docs.trickfirerobotics.com";
 const CONTENT_DIR = path.join(process.cwd(), "content");
@@ -199,11 +200,7 @@ export default async function createConfig(): Promise<Config> {
             },
         },
         themeConfig: {
-            colorMode: {
-                defaultMode: "dark",
-                disableSwitch: true,
-                respectPrefersColorScheme: false,
-            },
+            colorMode: SHARED_COLOR_MODE,
             navbar: {
                 title: "",
                 logo: {
@@ -223,24 +220,7 @@ export default async function createConfig(): Promise<Config> {
                         ...item,
                         position: "left" as const,
                     })),
-                    {
-                        href: "https://trickfirerobotics.com",
-                        position: "right" as const,
-                        className: "navbar-icon-link navbar-website-link",
-                        "aria-label": "Website",
-                    },
-                    {
-                        href: "https://github.com/TrickfireRobotics",
-                        position: "right" as const,
-                        className: "navbar-icon-link navbar-github-link",
-                        "aria-label": "GitHub",
-                    },
-                    {
-                        href: "https://www.notion.so/trickfire/invite/7f153eec8ed8ebe4608dc95892fce859540f8640",
-                        position: "right" as const,
-                        className: "navbar-icon-link navbar-notion-link",
-                        "aria-label": "Notion",
-                    },
+                    ...NAVBAR_ICON_ITEMS,
                 ],
             },
         },

@@ -2,6 +2,7 @@ import path from "node:path";
 import { createRequire } from "node:module";
 import type { ResolvedDocsConfig } from "./resolve.js";
 import { convertSidebar } from "./sidebar.js";
+import { SHARED_COLOR_MODE, NAVBAR_ICON_ITEMS } from "../shared-config.js";
 
 // Resolve preset/plugin paths from the trickfire-docs package context so that
 // the generated config works in member repos regardless of their node_modules
@@ -19,7 +20,7 @@ export interface GeneratedFiles {
 }
 
 export function generateFiles(config: ResolvedDocsConfig, projectRoot: string): GeneratedFiles {
-    const navItems = config.social.map((s) => ({
+    const socialItems = config.social.map((s) => ({
         href: s.href,
         label: s.label,
         position: "right",
@@ -54,18 +55,10 @@ export function generateFiles(config: ResolvedDocsConfig, projectRoot: string): 
         onBrokenMarkdownLinks: "warn",
         staticDirectories: [path.resolve(projectRoot, "public")],
         themeConfig: {
-            colorMode: {
-                defaultMode: "dark",
-                disableSwitch: true,
-                respectPrefersColorScheme: false,
-            },
+            colorMode: SHARED_COLOR_MODE,
             navbar: {
                 title: config.name,
-                items: navItems,
-            },
-            footer: {
-                style: "dark",
-                copyright: "TrickFire Robotics",
+                items: [...socialItems, ...NAVBAR_ICON_ITEMS],
             },
         },
         presets: [
