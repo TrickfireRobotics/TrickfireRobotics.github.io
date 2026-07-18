@@ -9,15 +9,13 @@ echo "[trickfire-docs] Build started at $(date)"
 
 cd "$REPO_DIR"
 
-# Pull latest framework code (src/, scripts/, package.json, etc.)
-# content/ is gitignored and managed by sync jobs — git pull won't touch it.
 git pull --ff-only origin main
-
-# Install/update deps if the lock file changed
 pnpm install --frozen-lockfile
-
-# Build Docusaurus site
 pnpm website:build
+
+sudo cp "$REPO_DIR/scripts/nginx.conf" /etc/nginx/sites-available/trickfire-docs
+sudo nginx -t
+sudo nginx -s reload
 
 echo "[trickfire-docs] Build complete at $(date)"
 echo "[trickfire-docs] Output: $REPO_DIR/build/"
