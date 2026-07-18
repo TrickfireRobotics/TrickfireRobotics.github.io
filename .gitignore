@@ -12,7 +12,7 @@ build/
 # Test coverage
 coverage/
 
-# CLI framework build/dev artifacts
+# CLI framework
 dist-cli/
 *.tsbuildinfo
 **/*.tgz
@@ -22,12 +22,11 @@ npm-debug.log*
 .test-repo/
 .framework-test/
 
-# trickfire-docs generated site dir (in member repos; also useful to ignore here during testing)
+#content
 .trickfire-docs/
-
-# Synced member repo docs — populated by GitHub Actions runner on the server
 content/*
 !content/.gitkeep
+**/sidebars.generated.js
 
 # Editor
 .vscode/*
