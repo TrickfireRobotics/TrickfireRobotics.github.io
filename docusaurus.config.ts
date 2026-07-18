@@ -45,6 +45,16 @@ export default async function createConfig(): Promise<Config> {
         })
     );
 
+    const frameworkDocsPlugin: Config["plugins"][number] = [
+        "@docusaurus/plugin-content-docs",
+        {
+            id: "framework",
+            path: "docs",
+            routeBasePath: "trickfire-docs",
+            sidebarPath: "./docs-sidebars.js",
+        } satisfies DocsOptions,
+    ];
+
     const docsPlugins: Config["plugins"] = repoMeta.map(({ id }) => [
         "@docusaurus/plugin-content-docs",
         {
@@ -88,6 +98,11 @@ export default async function createConfig(): Promise<Config> {
             navbar: {
                 title: "TrickFire Robotics",
                 items: [
+                    {
+                        to: "/trickfire-docs/",
+                        label: "Docs Framework",
+                        position: "left" as const,
+                    },
                     ...(projectDropdownItems.length > 0
                         ? [
                               {
@@ -125,6 +140,6 @@ export default async function createConfig(): Promise<Config> {
                 } satisfies PresetOptions,
             ],
         ],
-        plugins: docsPlugins,
+        plugins: [frameworkDocsPlugin, ...docsPlugins],
     };
 }
