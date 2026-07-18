@@ -6,7 +6,6 @@ on:
         paths:
             - ".github/workflows/release.yml"
             - "framework/**"
-            - "internal/**"
             - "scaffold/**"
             - "tsup.config.ts"
             - "vitest.config.ts"
@@ -59,7 +58,7 @@ jobs:
               run: pnpm exec eslint framework tsup.config.ts vitest.config.ts release.config.cjs
 
             - name: Run Prettier check
-              run: pnpm exec prettier --check framework internal tsup.config.ts vitest.config.ts release.config.cjs package.json
+              run: pnpm exec prettier --check framework tsup.config.ts vitest.config.ts release.config.cjs package.json
 
             - name: Run TypeScript check
               run: pnpm exec tsc --noEmit -p tsconfig.cli.json
