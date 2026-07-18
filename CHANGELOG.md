@@ -1,3 +1,9 @@
+## [1.5.1](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.5.0...trickfire-docs-v1.5.1) (2026-07-18)
+
+### Bug Fixes
+
+- fixed cli dev not working without package.json ([d1ec40c](https://github.com/TrickfireRobotics/docs/commit/d1ec40c0c821f1f3967257896ad80d800f5fef56))
+
 # [1.5.0](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.4.1...trickfire-docs-v1.5.0) (2026-07-18)
 
 ### Bug Fixes
