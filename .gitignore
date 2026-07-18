@@ -5,16 +5,15 @@
 # Node
 node_modules/
 
-# Astro
-dist/
-.astro/
+# Docusaurus
+build/
+.docusaurus/
 
 # Test coverage
 coverage/
 
 # CLI framework build/dev artifacts
 dist-cli/
-.astro-cache/
 *.tsbuildinfo
 **/*.tgz
 npm-debug.log*
@@ -22,6 +21,13 @@ npm-debug.log*
 .pnpm-store/
 .test-repo/
 .framework-test/
+
+# Local dev generated config (in member repos; also useful to ignore here during testing)
+.trickfire/
+
+# Synced member repo docs — populated by GitHub Actions runner on the server
+content/*
+!content/.gitkeep
 
 # Editor
 .vscode/*

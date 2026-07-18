@@ -1,39 +1,40 @@
-import { build } from "astro";
-import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { getCacheRoot } from "../astro/cachePaths.js";
-import { writeAstroProject } from "../astro/buildAstroConfig.js";
-import { syncContentOnce } from "../astro/syncContent.js";
+import { spawn } from "node:child_process";
 import { loadDocsConfig } from "../config/load.js";
 import { resolveDocsConfig } from "../config/resolve.js";
+import { generateFiles } from "../config/generate.js";
+import { ensureSiteNodeModules, findDocusaurusBin } from "../utils/docusaurus.js";
+import { THEME_CSS } from "../theme.js";
 
 export async function runBuild(projectRoot: string): Promise<void> {
-    const docsSourceDir = path.join(projectRoot, "docs");
-    if (!existsSync(docsSourceDir)) {
-        throw new Error(
-            `No docs/ folder found at ${docsSourceDir}. Run "trickfire-docs init" first.`
-        );
+    const raw = await loadDocsConfig(projectRoot);
+    const config = await resolveDocsConfig(projectRoot, raw);
+    const { config: configJs, sidebars } = generateFiles(config, projectRoot);
+
+    const trickfireDir = path.join(projectRoot, ".trickfire");
+    await fs.mkdir(trickfireDir, { recursive: true });
+
+    await fs.writeFile(path.join(trickfireDir, "custom.css"), THEME_CSS, "utf-8");
+    await fs.writeFile(path.join(trickfireDir, "docusaurus.config.js"), configJs, "utf-8");
+    if (sidebars) {
+        await fs.writeFile(path.join(trickfireDir, "sidebars.js"), sidebars, "utf-8");
     }
 
-    const config = await loadDocsConfig(projectRoot);
-    const resolved = await resolveDocsConfig(projectRoot, config);
-    const cacheRoot = getCacheRoot();
-    const finalOutDir = path.join(projectRoot, "dist");
+    await ensureSiteNodeModules(path.join(projectRoot, "node_modules"));
 
-    // Astro writes intermediate SSR/prerender chunks into outDir and resolves their own
-    // runtime imports (e.g. "piccolore") relative to wherever outDir lives. Building
-    // straight into the consumer's bare dist/ - outside any path that resolves to our
-    // package's own dependencies - breaks under pnpm's strict, non-hoisted isolation.
-    // Building into a staging dir inside the cache root (which DOES resolve correctly,
-    // same as `root`) and copying the result out afterwards avoids that.
-    const stagingOutDir = path.join(cacheRoot, ".output");
+    const bin = await findDocusaurusBin();
 
-    await writeAstroProject(cacheRoot, resolved);
-    await syncContentOnce(cacheRoot, docsSourceDir, resolved);
-
-    await build({ root: cacheRoot, outDir: stagingOutDir, logLevel: "info" });
-
-    await fs.rm(finalOutDir, { recursive: true, force: true });
-    await fs.cp(stagingOutDir, finalOutDir, { recursive: true });
+    await new Promise<void>((resolve, reject) => {
+        const child = spawn(
+            process.execPath,
+            [bin, "build", "--config", ".trickfire/docusaurus.config.js", "--out-dir", "dist"],
+            { cwd: projectRoot, stdio: "inherit" }
+        );
+        child.on("close", (code) => {
+            if (code === 0) resolve();
+            else reject(new Error(`docusaurus build exited with code ${code}`));
+        });
+        child.on("error", reject);
+    });
 }

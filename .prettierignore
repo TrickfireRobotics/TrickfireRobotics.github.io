@@ -1,5 +1,7 @@
 node_modules/
-dist/
-.astro/
+dist-cli/
+build/
+.docusaurus/
 coverage/
 pnpm-lock.yaml
+content/

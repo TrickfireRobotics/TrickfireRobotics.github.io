@@ -1,33 +1,71 @@
-import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { getScaffoldDir } from "../astro/cachePaths.js";
+import { fileURLToPath } from "node:url";
+
+function findPackageRoot(startDir: string): string {
+    let dir = startDir;
+    while (true) {
+        const pkgPath = path.join(dir, "package.json");
+        if (existsSync(pkgPath)) {
+            try {
+                const pkg = JSON.parse(readFileSync(pkgPath, "utf-8")) as { name?: string };
+                if (pkg.name === "trickfire-docs") return dir;
+            } catch {
+                // not our package.json, keep searching
+            }
+        }
+        const parent = path.dirname(dir);
+        if (parent === dir) throw new Error("trickfire-docs package root not found");
+        dir = parent;
+    }
+}
+
+const PACKAGE_ROOT = findPackageRoot(path.dirname(fileURLToPath(import.meta.url)));
+const SCAFFOLD_DIR = path.join(PACKAGE_ROOT, "scaffold");
 
 export interface InitOptions {
-    /** Scaffold over an existing docs/ and/or docs.config.ts instead of refusing. */
     force?: boolean;
 }
 
+const SCAFFOLD_FILES: Array<[string, string]> = [
+    ["docs.config.ts", "docs.config.ts"],
+    ["docs/getting-started.md", "docs/getting-started.md"],
+    ["docs/guides/writing-content.md", "docs/guides/writing-content.md"],
+    ["docs/guides/organizing-sidebar.md", "docs/guides/organizing-sidebar.md"],
+    ["docs/reference/configuration.md", "docs/reference/configuration.md"],
+    ["docs/reference/faq.md", "docs/reference/faq.md"],
+    [".github/workflows/docs.yml", ".github/workflows/docs.yml"],
+    [".npmrc", ".npmrc"],
+];
+
 export async function runInit(projectRoot: string, options: InitOptions = {}): Promise<void> {
-    const scaffoldDir = getScaffoldDir();
-    const docsDest = path.join(projectRoot, "docs");
     const configDest = path.join(projectRoot, "docs.config.ts");
 
-    if (!options.force) {
-        if (existsSync(docsDest)) {
-            throw new Error(
-                `${docsDest} already exists - refusing to overwrite. Re-run with --force to scaffold anyway.`
-            );
-        }
-        if (existsSync(configDest)) {
-            throw new Error(
-                `${configDest} already exists - refusing to overwrite. Re-run with --force to scaffold anyway.`
-            );
-        }
+    if (existsSync(configDest) && !options.force) {
+        console.log("Already initialized. Use --force to re-scaffold.");
+        return;
     }
 
-    await fs.cp(path.join(scaffoldDir, "docs"), docsDest, { recursive: true, force: true });
-    await fs.cp(path.join(scaffoldDir, "docs.config.ts"), configDest, { force: true });
+    for (const [src, dest] of SCAFFOLD_FILES) {
+        const srcPath = path.join(SCAFFOLD_DIR, src);
+        const destPath = path.join(projectRoot, dest);
+        await fs.mkdir(path.dirname(destPath), { recursive: true });
+        await fs.copyFile(srcPath, destPath);
+        console.log(`  created  ${dest}`);
+    }
 
-    console.log(`Created docs/ and docs.config.ts in ${projectRoot}`);
+    // Append trickfire-docs entries to .gitignore
+    const gitignorePath = path.join(projectRoot, ".gitignore");
+    const gitignoreAddition = "\n# trickfire-docs\n.trickfire/\n.docusaurus/\ndist/\n";
+    if (existsSync(gitignorePath)) {
+        const content = await fs.readFile(gitignorePath, "utf-8");
+        if (!content.includes(".trickfire")) {
+            await fs.appendFile(gitignorePath, gitignoreAddition);
+        }
+    } else {
+        await fs.writeFile(gitignorePath, gitignoreAddition.trimStart(), "utf-8");
+    }
+
+    console.log("\nDone. Edit docs.config.ts, then run: pnpm trickfire-docs dev");
 }

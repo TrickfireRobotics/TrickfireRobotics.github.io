@@ -1,0 +1,50 @@
+.main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    color: #aaaaaa;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+}
+
+.empty {
+    color: #666666;
+}
+
+.projectList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.projectLink {
+    display: block;
+    padding: 1rem 1.25rem;
+    background: #222222;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    color: #cccccc;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+        border-color 0.15s,
+        color 0.15s;
+}
+
+.projectLink:hover {
+    border-color: #00fe00;
+    color: #00fe00;
+    text-decoration: none;
+}

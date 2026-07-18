@@ -6,10 +6,12 @@ export default tseslint.config(
     {
         ignores: [
             "**/dist",
+            "**/dist-cli",
             "**/node_modules",
             "**/coverage",
-            "**/.astro",
-            "internal",
+            "**/build",
+            "**/.docusaurus",
+            "content",
             "commitlint.config.cjs",
             "release.config.cjs",
         ],

@@ -1,0 +1,15 @@
+name: Deploy Docs Site
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch:
+
+jobs:
+    deploy:
+        name: Rebuild and deploy to server
+        runs-on: [self-hosted, docs]
+
+        steps:
+            - name: Rebuild and deploy docs site
+              run: bash /home/trickfire/trickfire-docs/scripts/build.sh
