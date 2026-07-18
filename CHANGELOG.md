@@ -1,3 +1,11 @@
+## [1.4.1](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.4.0...trickfire-docs-v1.4.1) (2026-07-18)
+
+### Bug Fixes
+
+- fixed path [skip-ci] ([2cd6a86](https://github.com/TrickfireRobotics/docs/commit/2cd6a86e3cc274b28c476072796db044340b2a2e))
+- fixed scaffold docs source ci ([b35b2d8](https://github.com/TrickfireRobotics/docs/commit/b35b2d81d49a10d3dc8a36dcfc6b6c55174ffe80))
+- serve public/ as static directory and set favicon ([b1f63db](https://github.com/TrickfireRobotics/docs/commit/b1f63db4be74e262acba2d97209e928ea3e3d84c))
+
 # [1.4.0](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.3.0...trickfire-docs-v1.4.0) (2026-07-18)
 
 ### Features
