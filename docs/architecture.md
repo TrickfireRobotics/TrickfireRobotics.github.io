@@ -13,7 +13,7 @@ sidebar_position: 2
 │                                                                 │
 │  trickfire-can/          trickfire-gui/       ak-series-lib/    │
 │  ├── docs/               ├── docs/            ├── docs/         │
-│  ├── docs.config.ts      ├── docs.config.ts   └── docs.config.ts│
+│  ├── docs.config.json      ├── docs.config.json   └── docs.config.json│
 │  └── .github/workflows/  └── .github/workflows/                 │
 │      docs.yml (push)         docs.yml (push)                    │
 └──────────────────────┬──────────────────────────────────────────┘
@@ -26,7 +26,7 @@ sidebar_position: 2
 │  content/                    ← synced by member CIs            │
 │  ├── trickfire-can/                                             │
 │  │   ├── docs/                                                  │
-│  │   └── docs.config.ts                                         │
+│  │   └── docs.config.json                                         │
 │  ├── trickfire-gui/                                             │
 │  └── ak-series-lib/                                             │
 │                                                                 │
@@ -50,18 +50,18 @@ sidebar_position: 2
 
 This repository (`TrickfireRobotics/trickfire-docs`) serves two roles:
 
-1. **npm package** — the `trickfire-docs` CLI that member repos install. It provides `trickfire-docs init`, `trickfire-docs dev`, and `trickfire-docs build`.
+1. **npm package** — the `trickfire-docs` CLI consumed via `npx`. It provides `trickfire-docs init`, `trickfire-docs dev`, and `trickfire-docs build`. Member repos never install it as a dependency.
 2. **Docusaurus site** — the actual docs website. The `docusaurus.config.ts` at the root reads `content/` at build time and registers one `@docusaurus/plugin-content-docs` instance per repo.
 
 ### Member repos
 
-Any TrickFire project that installs `trickfire-docs` as a dev dependency. After running `trickfire-docs init`, the repo contains:
+Any TrickFire project repo. After running `npx trickfire-docs init`, the repo contains:
 
 - `docs/` — markdown files
-- `docs.config.ts` — project name, description, and optional sidebar
+- `docs.config.json` — project name, description, and optional sidebar
 - `.github/workflows/docs.yml` — fires on push to `main`, calls the reusable sync workflow
 
-Member repos never need to update their CI workflow. All changes to the sync logic happen in `sync-docs.yml` inside this repo.
+Member repos need no npm dependencies for the docs tooling. `npx trickfire-docs` downloads and runs the CLI on demand. Member repos never need to update their CI workflow — all changes to the sync logic happen in `sync-docs.yml` inside this repo.
 
 ### Debian server
 
@@ -75,7 +75,7 @@ Hosts everything at `/home/trickfire/trickfire-docs/`. The self-hosted Actions r
 │   ├── .gitkeep
 │   └── <repo-name>/
 │       ├── docs/
-│       └── docs.config.ts
+│       └── docs.config.json
 ├── build/                ← Docusaurus output, served by nginx
 ├── scripts/
 │   └── build.sh
@@ -105,10 +105,10 @@ A `cloudflared` daemon on the server opens an outbound tunnel to Cloudflare's ne
 3. `docs.yml` calls `sync-docs.yml@main` in this repo.
 4. The self-hosted runner on the server runs:
     - `rsync docs/ /home/trickfire/trickfire-docs/content/<repo>/`
-    - `cp docs.config.ts /home/trickfire/trickfire-docs/content/<repo>/`
+    - `cp docs.config.json /home/trickfire/trickfire-docs/content/<repo>/`
     - `bash /home/trickfire/trickfire-docs/scripts/build.sh`
 5. `build.sh` runs `git pull`, `pnpm install`, `pnpm website:build`.
-6. Docusaurus reads all dirs in `content/`, loads each `docs.config.ts` via jiti, registers a docs plugin per repo, and outputs a static site to `build/`.
+6. Docusaurus reads all dirs in `content/`, parses each `docs.config.json`, registers a docs plugin per repo, and outputs a static site to `build/`.
 7. nginx serves `build/` to incoming requests from the Cloudflare tunnel.
 
 ## Data flow: framework update

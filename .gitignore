@@ -22,8 +22,8 @@ npm-debug.log*
 .test-repo/
 .framework-test/
 
-# Local dev generated config (in member repos; also useful to ignore here during testing)
-.trickfire/
+# trickfire-docs generated site dir (in member repos; also useful to ignore here during testing)
+.trickfire-docs/
 
 # Synced member repo docs — populated by GitHub Actions runner on the server
 content/*

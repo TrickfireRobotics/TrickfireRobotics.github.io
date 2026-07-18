@@ -9,24 +9,20 @@ This guide is for TrickFire members who want to add documentation to an existing
 
 ## Prerequisites
 
-- Node.js 20+ and pnpm installed
+- Node.js 20+
 - A TrickFire project repo with write access
 - Access to `TrickfireRobotics/trickfire-docs` (for the reusable CI workflow)
 
+No package installation required — `trickfire-docs` is run via `npx` and never needs to be added to your project's dependencies.
+
 ## Setup
 
-### 1. Install the package
+### 1. Scaffold docs files
 
 In your project repo:
 
 ```bash
-pnpm add -D trickfire-docs
-```
-
-### 2. Scaffold docs files
-
-```bash
-pnpm trickfire-docs init
+npx trickfire-docs init
 ```
 
 This creates:
@@ -41,29 +37,30 @@ your-repo/
 │   └── reference/
 │       ├── configuration.md
 │       └── faq.md
-├── docs.config.ts
+├── docs.config.json
 └── .github/workflows/
     └── docs.yml
 ```
 
-It also appends `.trickfire/`, `.docusaurus/`, and `dist/` to your `.gitignore`.
+It also appends `.trickfire-docs/` and `dist/` to your `.gitignore`.
 
-### 3. Configure your project
+### 2. Configure your project
 
-Edit `docs.config.ts`:
+Edit `docs.config.json`:
 
-```typescript
-import { defineConfig } from "trickfire-docs";
-
-export default defineConfig({
-    name: "TrickFire CAN",
-    description: "CAN bus driver and protocol library for TrickFire robots.",
-});
+```json
+{
+    "$schema": "https://docs.trickfirerobotics.com/docs.config.schema.json",
+    "name": "TrickFire CAN",
+    "description": "CAN bus driver and protocol library for TrickFire robots."
+}
 ```
 
 `name` becomes the project title in the docs navbar dropdown. `description` shows on the docs homepage.
 
-### 4. Write your docs
+VS Code will autocomplete and validate the config automatically thanks to the `$schema` field — no extensions needed.
+
+### 3. Write your docs
 
 Replace the scaffold markdown files with real content. See [Writing Content](./writing-content) for the full guide.
 
@@ -72,17 +69,17 @@ Minimum viable docs:
 - `docs/getting-started.md` — what the project is and how to get it running
 - `docs/reference/` — API or configuration reference
 
-### 5. Preview locally
+### 4. Preview locally
 
 ```bash
-pnpm trickfire-docs dev
+npx trickfire-docs dev
 ```
 
-This opens a local Docusaurus server for your project's docs only. Hot-reload is enabled — edits appear instantly.
+This starts a local Docusaurus server for your project's docs only. Hot-reload is enabled — edits to `docs/` appear instantly. The generated site files are kept in `.trickfire-docs/` (gitignored) and are managed entirely by the CLI.
 
-### 6. Push to publish
+### 5. Push to publish
 
-Commit your `docs/` folder and `docs.config.ts`, then push to `main`.
+Commit your `docs/` folder and `docs.config.json`, then push to `main`.
 
 The `.github/workflows/docs.yml` file runs automatically on push:
 
@@ -92,7 +89,7 @@ on:
         branches: [main]
         paths:
             - "docs/**"
-            - "docs.config.ts"
+            - "docs.config.json"
 ```
 
 Within about a minute, your docs appear at `docs.trickfirerobotics.com/<your-repo-name>`.

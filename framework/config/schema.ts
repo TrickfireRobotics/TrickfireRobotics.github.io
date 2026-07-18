@@ -39,7 +39,3 @@ export interface DocsConfig {
     social?: SocialLinks;
     advanced?: AdvancedConfig;
 }
-
-export function defineConfig(config: DocsConfig): DocsConfig {
-    return config;
-}

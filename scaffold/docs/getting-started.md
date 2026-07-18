@@ -1,6 +1,7 @@
 ---
 title: Getting Started
 description: Write your first page and preview it locally.
+slug: /
 ---
 
 This site is built with [`trickfire-docs`](https://github.com/TrickfireRobotics/trickfire-docs). Pages live in the `docs/` folder as Markdown (or MDX) files - add, edit, or delete files there and the sidebar/site rebuild automatically.
@@ -8,7 +9,7 @@ This site is built with [`trickfire-docs`](https://github.com/TrickfireRobotics/
 ## Preview locally
 
 ```bash title="Terminal"
-pnpm trickfire-docs dev
+npx trickfire-docs dev
 ```
 
 This starts a local dev server with live reload. Edit any file under `docs/` and the browser updates automatically.
@@ -16,11 +17,11 @@ This starts a local dev server with live reload. Edit any file under `docs/` and
 ## Build for production
 
 ```bash title="Terminal"
-pnpm trickfire-docs build
+npx trickfire-docs build
 ```
 
 Outputs the static site to `dist/`.
 
 :::tip
-Changes to `docs.config.ts` (site name, description, landing page, sidebar) require restarting the dev server - only content edits under `docs/` hot-reload.
+Changes to `docs.config.json` (site name, description, sidebar) require restarting the dev server — only content edits under `docs/` hot-reload.
 :::

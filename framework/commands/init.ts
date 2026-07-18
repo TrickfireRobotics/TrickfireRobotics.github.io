@@ -29,7 +29,7 @@ export interface InitOptions {
 }
 
 const SCAFFOLD_FILES: Array<[string, string]> = [
-    ["docs.config.ts", "docs.config.ts"],
+    ["docs.config.json", "docs.config.json"],
     ["docs/getting-started.md", "docs/getting-started.md"],
     ["docs/guides/writing-content.md", "docs/guides/writing-content.md"],
     ["docs/guides/organizing-sidebar.md", "docs/guides/organizing-sidebar.md"],
@@ -40,7 +40,7 @@ const SCAFFOLD_FILES: Array<[string, string]> = [
 ];
 
 export async function runInit(projectRoot: string, options: InitOptions = {}): Promise<void> {
-    const configDest = path.join(projectRoot, "docs.config.ts");
+    const configDest = path.join(projectRoot, "docs.config.json");
 
     if (existsSync(configDest) && !options.force) {
         console.log("Already initialized. Use --force to re-scaffold.");
@@ -57,15 +57,15 @@ export async function runInit(projectRoot: string, options: InitOptions = {}): P
 
     // Append trickfire-docs entries to .gitignore
     const gitignorePath = path.join(projectRoot, ".gitignore");
-    const gitignoreAddition = "\n# trickfire-docs\n.trickfire/\n.docusaurus/\ndist/\n";
+    const gitignoreAddition = "\n# trickfire-docs\n.trickfire-docs/\ndist/\n";
     if (existsSync(gitignorePath)) {
         const content = await fs.readFile(gitignorePath, "utf-8");
-        if (!content.includes(".trickfire")) {
+        if (!content.includes(".trickfire-docs")) {
             await fs.appendFile(gitignorePath, gitignoreAddition);
         }
     } else {
         await fs.writeFile(gitignorePath, gitignoreAddition.trimStart(), "utf-8");
     }
 
-    console.log("\nDone. Edit docs.config.ts, then run: pnpm trickfire-docs dev");
+    console.log("\nDone. Edit docs.config.json, then run: npx trickfire-docs dev");
 }

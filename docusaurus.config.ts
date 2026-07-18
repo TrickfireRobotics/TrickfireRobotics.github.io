@@ -1,6 +1,5 @@
-import { readdirSync, existsSync } from "node:fs";
+import { readdirSync, existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { createJiti } from "jiti";
 import type { Config } from "@docusaurus/types";
 import type { Options as PresetOptions } from "@docusaurus/preset-classic";
 import type { Options as DocsOptions } from "@docusaurus/plugin-content-docs";
@@ -24,26 +23,23 @@ function getRepoDirs(): string[] {
 
 export default async function createConfig(): Promise<Config> {
     const repos = getRepoDirs();
-    const jiti = createJiti(import.meta.url);
 
-    const repoMeta: RepoMeta[] = await Promise.all(
-        repos.map(async (repo) => {
-            try {
-                const cfgPath = path.join(CONTENT_DIR, repo, "docs.config.ts");
-                const cfg = (await jiti.import(cfgPath, { default: true })) as {
-                    name?: string;
-                    description?: string;
-                };
-                return {
-                    id: repo,
-                    name: cfg.name ?? repo,
-                    description: cfg.description ?? "",
-                };
-            } catch {
-                return { id: repo, name: repo, description: "" };
-            }
-        })
-    );
+    const repoMeta: RepoMeta[] = repos.map((repo) => {
+        try {
+            const cfgPath = path.join(CONTENT_DIR, repo, "docs.config.json");
+            const cfg = JSON.parse(readFileSync(cfgPath, "utf-8")) as {
+                name?: string;
+                description?: string;
+            };
+            return {
+                id: repo,
+                name: cfg.name ?? repo,
+                description: cfg.description ?? "",
+            };
+        } catch {
+            return { id: repo, name: repo, description: "" };
+        }
+    });
 
     const frameworkDocsPlugin: NonNullable<Config["plugins"]>[number] = [
         "@docusaurus/plugin-content-docs",

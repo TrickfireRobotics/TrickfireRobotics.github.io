@@ -22,6 +22,7 @@
         "website:clear": "docusaurus clear",
         "framework:dev": "tsx framework/cli.ts",
         "framework:build": "tsup",
+        "framework:test": "./scripts/test-cli.sh",
         "test": "vitest run",
         "release:dry-run": "semantic-release --dry-run --no-ci",
         "lint": "eslint .",
@@ -43,7 +44,6 @@
         "@docusaurus/faster": "^3.10.2",
         "@docusaurus/preset-classic": "^3.8.0",
         "@mdx-js/react": "^3.1.1",
-        "jiti": "^2.4.2",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     },

@@ -11,7 +11,7 @@ The live site is at **[docs.trickfirerobotics.com](https://docs.trickfirerobotic
 
 ## How it works
 
-Each TrickFire project repo contains a `docs/` folder and a `docs.config.ts` file. When you push changes to `main`, a GitHub Actions workflow syncs those files to the docs server and rebuilds the Docusaurus site. The result shows up at `docs.trickfirerobotics.com/<repo-name>` within a minute.
+Each TrickFire project repo contains a `docs/` folder and a `docs.config.json` file. When you push changes to `main`, a GitHub Actions workflow syncs those files to the docs server and rebuilds the Docusaurus site. The result shows up at `docs.trickfirerobotics.com/<repo-name>` within a minute.
 
 ```
 Your repo push → GitHub Actions → sync to server → Docusaurus build → live site

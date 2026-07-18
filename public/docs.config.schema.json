@@ -1,0 +1,124 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://docs.trickfirerobotics.com/docs.config.schema.json",
+    "title": "TrickFire Docs Configuration",
+    "type": "object",
+    "required": ["name", "description"],
+    "additionalProperties": false,
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string",
+            "description": "Display name shown in the navbar and browser tab."
+        },
+        "description": {
+            "type": "string",
+            "description": "One-line description shown as the site tagline."
+        },
+        "sidebar": {
+            "description": "Explicit sidebar definition. Omit to let Docusaurus autogenerate it from your docs/ folder.",
+            "$ref": "#/$defs/SidebarConfig"
+        },
+        "social": {
+            "type": "array",
+            "description": "Extra nav links appended after the built-in GitHub / Notion / TrickFire links.",
+            "items": {
+                "$ref": "#/$defs/SocialLink"
+            }
+        },
+        "advanced": {
+            "$ref": "#/$defs/AdvancedConfig"
+        }
+    },
+    "$defs": {
+        "SidebarConfig": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SidebarItem"
+            }
+        },
+        "SidebarItem": {
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/SidebarLinkItem"
+                },
+                {
+                    "$ref": "#/$defs/SidebarGroup"
+                }
+            ]
+        },
+        "SidebarLinkItem": {
+            "type": "object",
+            "required": ["label"],
+            "additionalProperties": false,
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "Text shown in the sidebar."
+                },
+                "slug": {
+                    "type": "string",
+                    "description": "Path to the doc file relative to docs/ (without .md extension)."
+                },
+                "link": {
+                    "type": "string",
+                    "description": "External URL for a link item."
+                }
+            }
+        },
+        "SidebarGroup": {
+            "type": "object",
+            "required": ["label", "items"],
+            "additionalProperties": false,
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "Text shown for the collapsible group."
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/SidebarItem"
+                    }
+                },
+                "collapsed": {
+                    "type": "boolean",
+                    "description": "Whether the group starts collapsed. Defaults to false.",
+                    "default": false
+                }
+            }
+        },
+        "SocialLink": {
+            "type": "object",
+            "required": ["icon", "label", "href"],
+            "additionalProperties": false,
+            "properties": {
+                "icon": {
+                    "type": "string",
+                    "enum": ["github", "external"],
+                    "description": "Icon style for the nav link."
+                },
+                "label": {
+                    "type": "string"
+                },
+                "href": {
+                    "type": "string",
+                    "format": "uri"
+                }
+            }
+        },
+        "AdvancedConfig": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "docusaurus": {
+                    "type": "object",
+                    "description": "Raw Docusaurus config fields merged into the generated config.",
+                    "additionalProperties": true
+                }
+            }
+        }
+    }
+}

@@ -12,7 +12,7 @@ export async function runDev(projectRoot: string): Promise<void> {
     const config = await resolveDocsConfig(projectRoot, raw);
     const { config: configJs, sidebars } = generateFiles(config, projectRoot);
 
-    const trickfireDir = path.join(projectRoot, ".trickfire");
+    const trickfireDir = path.join(projectRoot, ".trickfire-docs");
     await fs.mkdir(trickfireDir, { recursive: true });
 
     await fs.writeFile(path.join(trickfireDir, "custom.css"), THEME_CSS, "utf-8");
@@ -21,18 +21,22 @@ export async function runDev(projectRoot: string): Promise<void> {
         await fs.writeFile(path.join(trickfireDir, "sidebars.js"), sidebars, "utf-8");
     }
 
-    // Symlink react / react-dom / @mdx-js/react into the project root's
-    // node_modules so Docusaurus's resolveSitePkg() (which uses siteDir=cwd)
-    // can find them regardless of how the member repo's package manager lays
-    // out its node_modules.
-    await ensureSiteNodeModules(path.join(projectRoot, "node_modules"));
+    // Symlink react / react-dom / @mdx-js/react into .trickfire-docs/node_modules
+    // so Docusaurus can find its peer deps without any installation in the project.
+    await ensureSiteNodeModules(path.join(trickfireDir, "node_modules"));
 
     const bin = await findDocusaurusBin();
 
     await new Promise<void>((resolve, reject) => {
         const child = spawn(
             process.execPath,
-            [bin, "start", "--config", ".trickfire/docusaurus.config.js"],
+            [
+                bin,
+                "start",
+                trickfireDir,
+                "--config",
+                path.join(trickfireDir, "docusaurus.config.js"),
+            ],
             { cwd: projectRoot, stdio: "inherit" }
         );
         child.on("close", (code) => {

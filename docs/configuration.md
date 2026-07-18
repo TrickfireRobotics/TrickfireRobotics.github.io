@@ -5,44 +5,40 @@ sidebar_position: 6
 
 # Configuration Reference
 
-`docs.config.ts` lives in the root of your member repo and is the only configuration file you need.
+`docs.config.json` lives in the root of your member repo and is the only configuration file you need.
+
+VS Code (and most editors) autocomplete and validate it automatically using the `$schema` field — no extensions or package installation required.
 
 ## Full example
 
-```typescript
-import { defineConfig } from "trickfire-docs";
-
-export default defineConfig({
-    name: "TrickFire CAN",
-    description: "CAN bus driver and protocol library for TrickFire robots.",
-    sidebar: [
-        { label: "Getting Started", slug: "getting-started" },
+```json
+{
+    "$schema": "https://docs.trickfirerobotics.com/docs.config.schema.json",
+    "name": "TrickFire CAN",
+    "description": "CAN bus driver and protocol library for TrickFire robots.",
+    "sidebar": [
+        { "label": "Getting Started", "slug": "getting-started" },
         {
-            label: "Reference",
-            items: [
-                { label: "API", slug: "reference/api" },
-                { label: "FAQ", slug: "reference/faq" },
-            ],
-        },
+            "label": "Reference",
+            "items": [
+                { "label": "API", "slug": "reference/api" },
+                { "label": "FAQ", "slug": "reference/faq" }
+            ]
+        }
     ],
-    social: [
+    "social": [
         {
-            icon: "github",
-            label: "GitHub",
-            href: "https://github.com/TrickfireRobotics/trickfire-can",
-        },
-        { icon: "notion", label: "Notion", href: "https://notion.so/trickfire/..." },
-    ],
-});
+            "icon": "github",
+            "label": "GitHub",
+            "href": "https://github.com/TrickfireRobotics/trickfire-can"
+        }
+    ]
+}
 ```
 
 ## Fields
 
 ### `name` (required)
-
-```typescript
-name: string;
-```
 
 Display name for your project. Shown in the navbar Projects dropdown and in the site's landing page cards.
 
@@ -50,39 +46,37 @@ Display name for your project. Shown in the navbar Projects dropdown and in the 
 
 ### `description` (required)
 
-```typescript
-description: string;
-```
-
 One-line description of the project. Shown on the docs homepage card for your project.
 
 ---
 
 ### `sidebar` (optional)
 
-```typescript
-sidebar?: SidebarItem[]
-```
-
 Explicit sidebar definition. When omitted, Docusaurus autogenerates the sidebar from your `docs/` file structure.
 
 See [Sidebar Configuration](./sidebar-config) for full documentation.
 
-**Types:**
+Each item is either a **doc link** or a **group**:
 
-```typescript
-type SidebarItem = SidebarLinkItem | SidebarGroup;
+**Doc link:**
 
-interface SidebarLinkItem {
-    label: string;
-    slug?: string; // doc path (relative to docs/, no .md extension)
-    link?: string; // external URL
-}
+```json
+{ "label": "Getting Started", "slug": "getting-started" }
+```
 
-interface SidebarGroup {
-    label: string;
-    items: SidebarItem[];
-    collapsed?: boolean; // default: true
+**External link:**
+
+```json
+{ "label": "GitHub", "link": "https://github.com/TrickfireRobotics" }
+```
+
+**Group:**
+
+```json
+{
+    "label": "Reference",
+    "collapsed": false,
+    "items": [{ "label": "API", "slug": "reference/api" }]
 }
 ```
 
@@ -90,75 +84,40 @@ interface SidebarGroup {
 
 ### `social` (optional)
 
-```typescript
-social?: SocialLink[]
+Extra nav links appended after the built-in GitHub / Notion / TrickFire links.
+
+```json
+"social": [
+    { "icon": "github",   "label": "GitHub", "href": "https://github.com/..." },
+    { "icon": "external", "label": "Notion", "href": "https://notion.so/..." }
+]
 ```
 
-Social/external links shown in your project's header or footer area.
-
-```typescript
-interface SocialLink {
-    icon: string; // icon identifier (e.g. "github", "notion")
-    label: string; // accessible label
-    href: string; // URL
-}
-```
-
----
-
-### `landing` (optional)
-
-```typescript
-landing?: LandingItem[]
-```
-
-Custom cards shown on your project's docs landing page.
-
-```typescript
-interface LandingItem {
-    title: string;
-    description: string;
-    link: string;
-}
-```
+`icon` accepts `"github"` or `"external"`.
 
 ---
 
 ### `advanced` (optional)
 
-```typescript
-advanced?: {
-    docusaurus?: Record<string, unknown>;
-}
-```
+Pass-through options merged into the Docusaurus plugin config for this project. Use this to enable Docusaurus features not exposed by `docs.config.json`.
 
-Pass-through options merged into the Docusaurus plugin config for this project. Use this to enable Docusaurus features not exposed by `docs.config.ts`.
-
-```typescript
-advanced: {
-    docusaurus: {
-        showLastUpdateTime: true,
-        editUrl: "https://github.com/TrickfireRobotics/my-repo/edit/main/",
-    },
+```json
+"advanced": {
+    "docusaurus": {
+        "showLastUpdateTime": true,
+        "editUrl": "https://github.com/TrickfireRobotics/my-repo/edit/main/"
+    }
 }
 ```
 
 ---
 
-## TypeScript types
+## JSON Schema
 
-All types are exported from the `trickfire-docs` package:
+The full schema is published at:
 
-```typescript
-import type {
-    DocsConfig,
-    SidebarConfig,
-    SidebarItem,
-    SidebarLinkItem,
-    SidebarGroup,
-    SocialLinks,
-    SocialLink,
-    LandingItem,
-    AdvancedConfig,
-} from "trickfire-docs";
 ```
+https://docs.trickfirerobotics.com/docs.config.schema.json
+```
+
+Referencing it via `$schema` gives you field descriptions, allowed values, and required-field errors directly in your editor.

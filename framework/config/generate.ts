@@ -25,11 +25,10 @@ export function generateFiles(config: ResolvedDocsConfig, projectRoot: string): 
         position: "right",
     }));
 
-    // Docusaurus treats the config file's directory as the site root.
-    // Our config lives in .trickfire/, so every file reference must be absolute
-    // to avoid resolving against the wrong base directory.
+    // Docusaurus treats siteDir (.trickfire-docs/) as the site root.
+    // Every file reference must be absolute to avoid resolving against the wrong base.
     const docsDir = path.resolve(projectRoot, "docs");
-    const trickfireDir = path.resolve(projectRoot, ".trickfire");
+    const trickfireDir = path.resolve(projectRoot, ".trickfire-docs");
     const customCssPath = path.join(trickfireDir, "custom.css");
     const sidebarsPath = path.join(trickfireDir, "sidebars.js");
 
@@ -53,6 +52,7 @@ export function generateFiles(config: ResolvedDocsConfig, projectRoot: string): 
         baseUrl: "/",
         onBrokenLinks: "warn",
         onBrokenMarkdownLinks: "warn",
+        staticDirectories: [path.resolve(projectRoot, "public")],
         themeConfig: {
             colorMode: {
                 defaultMode: "dark",
