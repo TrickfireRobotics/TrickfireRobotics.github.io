@@ -3,7 +3,17 @@ module.exports = {
     branches: ["main"],
     tagFormat: "trickfire-docs-v${version}",
     plugins: [
-        "@semantic-release/commit-analyzer",
+        [
+            "@semantic-release/commit-analyzer",
+            {
+                releaseRules: [
+                    { type: "refactor", release: "minor" },
+                    { type: "feat", release: "minor" },
+                    { type: "fix", release: "patch" },
+                    { type: "perf", release: "patch" },
+                ],
+            },
+        ],
         "@semantic-release/release-notes-generator",
         "@semantic-release/changelog",
         "@semantic-release/npm",
