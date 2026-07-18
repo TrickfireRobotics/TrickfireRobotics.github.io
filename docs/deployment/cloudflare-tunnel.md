@@ -49,7 +49,7 @@ Create `/etc/cloudflared/trickfire-docs.yml` (named after the tunnel, not the ge
 
 ```yaml
 tunnel: <tunnel-id>
-credentials-file: /root/.cloudflared/<tunnel-id>.json
+credentials-file: /home/trickfire/.cloudflared/<tunnel-id>.json
 
 ingress:
     - hostname: docs.trickfirerobotics.com
@@ -57,7 +57,7 @@ ingress:
     - service: http_status:404
 ```
 
-Replace `<tunnel-id>` with the UUID from step 3. If you ran the login as a non-root user, adjust the `credentials-file` path.
+Replace `<tunnel-id>` with the UUID from step 3.
 
 ### 5. Add the DNS record
 

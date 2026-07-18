@@ -53,11 +53,35 @@ The first build takes 1–2 minutes. Subsequent builds are faster due to pnpm's 
 
 ### 4. Configure `nginx`
 
-Copy the provided nginx config and enable it:
+The `sites-available`/`sites-enabled` directories are not created automatically on all distros. Create them if missing, then copy the config and enable it:
 
 ```bash
+sudo mkdir -p /etc/nginx/sites-available /etc/nginx/sites-enabled
 sudo cp /home/trickfire/docs/scripts/nginx.conf /etc/nginx/sites-available/trickfire-docs
-sudo ln -s /etc/nginx/sites-available/trickfire-docs /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/trickfire-docs /etc/nginx/sites-enabled/trickfire-docs
+```
+
+Make sure `/etc/nginx/nginx.conf` includes the `sites-enabled` directory inside its `http {}` block. Check with:
+
+```bash
+grep -n "sites-enabled" /etc/nginx/nginx.conf
+```
+
+If nothing is returned, add this line inside the `http {}` block:
+
+```nginx
+include /etc/nginx/sites-enabled/*;
+```
+
+nginx runs as `www-data` and cannot traverse `/home/trickfire` by default. Grant execute permission:
+
+```bash
+sudo chmod o+x /home/trickfire
+```
+
+Then test and reload:
+
+```bash
 sudo nginx -t
 sudo nginx -s reload
 ```
@@ -67,8 +91,8 @@ The config serves `build/` on `localhost:80`. The Cloudflare tunnel (set up next
 ### 5. Verify the server
 
 ```bash
-curl -s http://localhost/ | grep -o '<title>[^<]*</title>'
-# <title>TrickFire Robotics Docs</title>
+curl -s http://localhost/ | grep -i title
+# ...<title data-rh=true>Home | TrickFire Robotics Docs</title>...
 ```
 
 ## Updating the server
