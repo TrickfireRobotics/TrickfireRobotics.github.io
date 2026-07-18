@@ -7,12 +7,7 @@ sidebar_position: 3
 
 A Cloudflare tunnel replaces the need for an open inbound port or a TLS certificate. The `cloudflared` daemon on the server opens an outbound connection to Cloudflare's network, and Cloudflare forwards HTTPS traffic from `docs.trickfirerobotics.com` through that connection to nginx on `localhost:80`.
 
-## Prerequisites
-
-- `docs.trickfirerobotics.com` DNS is managed by Cloudflare
-- You have access to the Cloudflare dashboard for the `trickfirerobotics.com` zone
-
-## 1. Install cloudflared
+### 1. Install cloudflared
 
 ```bash
 curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg \
@@ -32,7 +27,7 @@ Verify:
 cloudflared --version
 ```
 
-## 2. Authenticate with Cloudflare
+### 2. Authenticate with Cloudflare
 
 ```bash
 cloudflared tunnel login
@@ -40,7 +35,7 @@ cloudflared tunnel login
 
 This opens a browser URL. Log in and select the `trickfirerobotics.com` zone. A certificate is saved to `~/.cloudflared/cert.pem`.
 
-## 3. Create the tunnel
+### 3. Create the tunnel
 
 ```bash
 cloudflared tunnel create trickfire-docs
@@ -48,9 +43,9 @@ cloudflared tunnel create trickfire-docs
 
 This creates a tunnel and saves a credentials file at `~/.cloudflared/<tunnel-id>.json`. Note the tunnel ID in the output — you'll need it in the next step.
 
-## 4. Write the tunnel config
+### 4. Write the tunnel config
 
-Create `/etc/cloudflared/config.yml`:
+Create `/etc/cloudflared/trickfire-docs.yml` (named after the tunnel, not the generic `config.yml`, so it coexists with other tunnels on the same server):
 
 ```yaml
 tunnel: <tunnel-id>
@@ -64,7 +59,7 @@ ingress:
 
 Replace `<tunnel-id>` with the UUID from step 3. If you ran the login as a non-root user, adjust the `credentials-file` path.
 
-## 5. Add the DNS record
+### 5. Add the DNS record
 
 ```bash
 cloudflared tunnel route dns trickfire-docs docs.trickfirerobotics.com
@@ -74,23 +69,25 @@ This creates a `CNAME` record in Cloudflare pointing `docs.trickfirerobotics.com
 
 Verify in the Cloudflare dashboard under **DNS → Records**.
 
-## 6. Run as a systemd service
+### 6. Run as a systemd service
+
+Pass the named config file so `cloudflared` registers a service named `cloudflared-trickfire-docs` instead of the generic `cloudflared`. This lets multiple tunnels coexist on the same server as independent services.
 
 ```bash
-sudo cloudflared service install
-sudo systemctl enable cloudflared
-sudo systemctl start cloudflared
+sudo cloudflared --config /etc/cloudflared/trickfire-docs.yml service install
+sudo systemctl enable cloudflared-trickfire-docs
+sudo systemctl start cloudflared-trickfire-docs
 ```
 
 Check status:
 
 ```bash
-sudo systemctl status cloudflared
+sudo systemctl status cloudflared-trickfire-docs
 ```
 
 The tunnel starts automatically on boot. Cloudflare will reconnect automatically if the server restarts.
 
-## 7. Verify end-to-end
+### 7. Verify end-to-end
 
 ```bash
 curl -I https://docs.trickfirerobotics.com
@@ -115,7 +112,7 @@ Key points in the nginx config:
 **Tunnel shows as unhealthy in Cloudflare dashboard:**
 
 ```bash
-sudo journalctl -u cloudflared -f
+sudo journalctl -u cloudflared-trickfire-docs -f
 ```
 
 Common causes: server can't reach `cloudflare.com`, or credentials file path is wrong.
@@ -125,7 +122,7 @@ Check nginx is running and the build directory exists:
 
 ```bash
 sudo systemctl status nginx
-ls /srv/trickfire-docs/build/index.html
+ls /home/trickfire/trickfire-docs/build/index.html
 ```
 
 **DNS not resolving:**
