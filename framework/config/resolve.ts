@@ -23,12 +23,14 @@ export interface ResolvedDocsConfig extends DocsConfig {
 
 async function readProjectName(projectRoot: string): Promise<string> {
     const pkgPath = path.join(projectRoot, "package.json");
-    const raw = await fs.readFile(pkgPath, "utf-8");
-    const pkg = JSON.parse(raw) as { name?: string };
-    if (!pkg.name) {
-        throw new Error(`package.json at ${pkgPath} is missing a "name" field`);
+    try {
+        const raw = await fs.readFile(pkgPath, "utf-8");
+        const pkg = JSON.parse(raw) as { name?: string };
+        if (pkg.name) return pkg.name;
+    } catch (err) {
+        if ((err as NodeJS.ErrnoException).code !== "ENOENT") throw err;
     }
-    return pkg.name;
+    return path.basename(projectRoot);
 }
 
 export async function resolveDocsConfig(
