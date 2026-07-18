@@ -1,3 +1,24 @@
+diff --git a/lib/server/codegen/codegen.js b/lib/server/codegen/codegen.js
+index 1a622545264f518381ccfc07c6f7e45f12ce09d2..6751cdca615f5fd702ac0accbd71415d2ca4858c 100644
+--- a/lib/server/codegen/codegen.js
++++ b/lib/server/codegen/codegen.js
+@@ -54,6 +54,16 @@ function genSiteStorage({ generatedFilesDir, siteStorage, }) {
+     return (0, utils_1.generate)(generatedFilesDir, 'site-storage.json', JSON.stringify(siteStorage, null, 2));
+ }
+ async function generateSiteFiles(params) {
++    // Write {"type":"commonjs"} so webpack treats .docusaurus/ files as CJS
++    // even when the host project has "type":"module" in its package.json.
++    // client-modules.js uses require() inside an ESM export — without this,
++    // webpack leaves require() as-is (undefined in the browser).
++    const fs_1 = require("fs-extra");
++    const path_1 = require("path");
++    // No "type" field → webpack uses javascript/auto for .js files in this dir,
++    // which allows the mixed ESM/CJS syntax Docusaurus generates (export default
++    // combined with require() calls in client-modules.js and routes files).
++    await fs_1.outputFile(path_1.join(params.generatedFilesDir, 'package.json'), '{}');
+     await Promise.all([
+         genWarning(params),
+         genClientModules(params),
 diff --git a/lib/ssg/ssgNodeRequire.js b/lib/ssg/ssgNodeRequire.js
 index cfd85dbde0b9a52996b7321bef85eafb7b29ec17..997a5ede76a8035f01d15838a06c7b28315e306a 100644
 --- a/lib/ssg/ssgNodeRequire.js
