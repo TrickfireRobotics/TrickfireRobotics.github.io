@@ -162,7 +162,9 @@ export default async function createConfig(): Promise<Config> {
 
     const projectDropdownItems = repoMeta.map(({ id, name, firstDocId }) => ({
         label: name,
-        to: firstDocId ? `/${id}/${firstDocId}/` : `/${id}/`,
+        // When firstDocId is known, use `to` (SPA navigation) since the route is registered.
+        // When it isn't, fall back to `href` so nginx can serve the static redirect file.
+        ...(firstDocId ? { to: `/${id}/${firstDocId}/` } : { href: `/${id}/` }),
     }));
 
     return {
@@ -171,6 +173,7 @@ export default async function createConfig(): Promise<Config> {
         favicon: "favicon.ico",
         url: SITE_URL,
         baseUrl: "/",
+        trailingSlash: true,
         staticDirectories: ["public"],
         onBrokenLinks: "warn",
         onBrokenMarkdownLinks: "warn",
