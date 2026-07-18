@@ -68,8 +68,10 @@ export default async function createConfig(): Promise<Config> {
     return {
         title: "TrickFire Robotics Docs",
         tagline: "Documentation for TrickFire Robotics projects",
+        favicon: "favicon.ico",
         url: SITE_URL,
         baseUrl: "/",
+        staticDirectories: ["public"],
         onBrokenLinks: "warn",
         onBrokenMarkdownLinks: "warn",
         customFields: {
