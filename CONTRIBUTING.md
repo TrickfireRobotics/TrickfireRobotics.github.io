@@ -15,7 +15,7 @@ pnpm check   # lint + format check + typecheck everything
 pnpm test    # framework tests
 ```
 
-Commit messages must follow [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `chore:`, `docs:`, etc.) - this is enforced by commitlint via a git hook, and it's what drives the framework's automated npm releases (see the README's [Releasing section](README.md#releasing-trickfire-docs-to-npm)). A pre-commit hook also runs lint-staged automatically, so most formatting/lint issues get fixed for you on commit.
+Commit messages must follow [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `chore:`, `docs:`, etc.) - this is enforced by commitlint via a git hook, and it drives the framework's automated npm releases. A pre-commit hook also runs lint-staged automatically, so most formatting/lint issues get fixed for you on commit.
 
 ## Opening a PR
 
