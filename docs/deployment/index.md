@@ -47,10 +47,10 @@ A self-hosted GitHub Actions runner on the docs server processes both the `sync-
 
 ### Register the runner
 
-Go to this repo on GitHub → **Settings → Actions → Runners → New self-hosted runner**, select **Linux / AMD64**, and follow the commands shown. When prompted for labels, add `docs` (keep `self-hosted` too).
+Go to the TrickFire Robotics organisation → **Settings → Actions → Runners → New self-hosted runner**, select the server's CPU architecture, and follow the commands shown. When prompted for labels, add `docs` (keep `self-hosted` too).
 
 ```bash
-mkdir -p ~/actions-runner && cd ~/actions-runner
+mkdir -p ~/docs-runner && cd ~/docs
 # paste the download + configure commands from GitHub
 # when asked for labels:
 # Enter any additional labels: docs
@@ -62,18 +62,4 @@ mkdir -p ~/actions-runner && cd ~/actions-runner
 sudo ./svc.sh install
 sudo ./svc.sh start
 sudo systemctl status actions.runner.*
-```
-
-The runner starts on boot and restarts automatically on failure.
-
-### Re-registration
-
-If the runner token expires or the runner is removed from GitHub, unregister and re-register:
-
-```bash
-cd ~/actions-runner
-sudo ./svc.sh stop
-sudo ./svc.sh uninstall
-./config.sh remove --token <removal-token>
-# then follow the New runner steps again
 ```
