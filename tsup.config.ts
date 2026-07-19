@@ -10,6 +10,13 @@ export default defineConfig([
         clean: true,
     },
     {
+        entry: { "single-project": "framework/config/single-project.ts" },
+        format: ["esm"],
+        tsconfig: "tsconfig.cli.json",
+        outDir: "dist-cli",
+        clean: false,
+    },
+    {
         entry: { index: "framework/index.ts" },
         format: ["esm"],
         dts: true,

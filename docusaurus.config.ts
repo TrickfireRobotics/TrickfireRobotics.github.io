@@ -4,36 +4,14 @@ import type { Config } from "@docusaurus/types";
 import type { Options as PresetOptions } from "@docusaurus/preset-classic";
 import type { Options as DocsOptions } from "@docusaurus/plugin-content-docs";
 import { SHARED_COLOR_MODE, NAVBAR_ICON_ITEMS } from "./framework/shared-config.js";
+import type { SidebarItem } from "./framework/config/schema.js";
+import { convertSidebar } from "./framework/config/sidebar.js";
+import { createAssetsPlugin } from "./framework/config/assets-plugin.js";
 
 const SITE_URL = "https://docs.trickfirerobotics.com";
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const DEV_FIXTURES_DIR = path.join(process.cwd(), "dev-fixtures");
 const IS_DEV = process.env.NODE_ENV !== "production";
-
-// Sidebar types and conversion — mirrors framework/config/sidebar.ts
-type SidebarLinkItem = { label: string; slug?: string; link?: string };
-type SidebarGroup = { label: string; items: SidebarItem[]; collapsed?: boolean };
-type SidebarItem = SidebarLinkItem | SidebarGroup;
-
-type DocusaurusSidebarItem =
-    | { type: "doc"; id: string; label: string }
-    | { type: "link"; href: string; label: string }
-    | { type: "category"; label: string; collapsed: boolean; items: DocusaurusSidebarItem[] };
-
-function convertItem(item: SidebarItem): DocusaurusSidebarItem {
-    if ("items" in item) {
-        return {
-            type: "category",
-            label: item.label,
-            collapsed: item.collapsed ?? false,
-            items: item.items.map(convertItem),
-        };
-    }
-    if (item.link) {
-        return { type: "link", href: item.link, label: item.label };
-    }
-    return { type: "doc", id: item.slug ?? item.label, label: item.label };
-}
 
 function getFirstDocId(sidebar: SidebarItem[]): string | undefined {
     for (const item of sidebar) {
@@ -85,7 +63,7 @@ function getReposFromDir(baseDir: string): RepoMeta[] {
                 let sidebarPath: string | undefined;
                 let firstDocId: string | undefined;
                 if (cfg.sidebar) {
-                    const converted = cfg.sidebar.map(convertItem);
+                    const converted = convertSidebar(cfg.sidebar);
                     const generatedPath = path.join(repoDir, "sidebars.generated.js");
                     writeFileSync(
                         generatedPath,
@@ -131,13 +109,19 @@ export default async function createConfig(): Promise<Config> {
             id,
             path: basePath,
             routeBasePath: id,
+            exclude: ["assets/**"],
             ...(sidebarPath && { sidebarPath }),
         } satisfies DocsOptions,
     ]);
 
-    // Generates build/<id>/index.html redirect pages that Docusaurus doesn't
-    // produce when there is no index.md. Falls back to the first directory in
-    // the build output (= first alphabetical doc) when no sidebar is configured.
+    const projectAssetsPlugin = createAssetsPlugin(
+        repoMeta.map(({ id, basePath }) => ({
+            assetsDir: path.join(basePath, "assets"),
+            publicPath: `/${id}/assets`,
+            outSubPath: `${id}/assets`,
+        }))
+    );
+
     const subprojectRedirectsPlugin: NonNullable<Config["plugins"]>[number] = () => ({
         name: "trickfire-subproject-redirects",
         postBuild({ outDir }: { outDir: string }) {
@@ -234,6 +218,11 @@ export default async function createConfig(): Promise<Config> {
                 } satisfies PresetOptions,
             ],
         ],
-        plugins: [frameworkDocsPlugin, ...docsPlugins, subprojectRedirectsPlugin],
+        plugins: [
+            frameworkDocsPlugin,
+            ...docsPlugins,
+            subprojectRedirectsPlugin,
+            projectAssetsPlugin,
+        ],
     };
 }

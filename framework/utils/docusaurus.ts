@@ -3,6 +3,22 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
 
+async function ensureSymlink(linkPath: string, target: string): Promise<void> {
+    try {
+        await fs.symlink(target, linkPath, "dir");
+    } catch (err) {
+        if ((err as NodeJS.ErrnoException).code === "EEXIST") {
+            const existing = await fs.readlink(linkPath).catch(() => null);
+            if (existing !== target) {
+                await fs.unlink(linkPath);
+                await fs.symlink(target, linkPath, "dir");
+            }
+        } else {
+            throw err;
+        }
+    }
+}
+
 const _require = createRequire(import.meta.url);
 
 function resolvePackageDir(name: string): string {
@@ -48,18 +64,6 @@ export async function ensureSiteNodeModules(siteNodeModules: string): Promise<vo
 
     for (const [linkPath, target] of links) {
         await fs.mkdir(path.dirname(linkPath), { recursive: true });
-        try {
-            await fs.symlink(target, linkPath, "dir");
-        } catch (err) {
-            if ((err as NodeJS.ErrnoException).code === "EEXIST") {
-                const existing = await fs.readlink(linkPath).catch(() => null);
-                if (existing !== target) {
-                    await fs.unlink(linkPath);
-                    await fs.symlink(target, linkPath, "dir");
-                }
-            } else {
-                throw err;
-            }
-        }
+        await ensureSymlink(linkPath, target);
     }
 }
