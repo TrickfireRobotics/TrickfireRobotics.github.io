@@ -49,8 +49,8 @@ A self-hosted GitHub Actions runner on the docs server processes both the `sync-
 
 Go to the TrickFire Robotics organisation → **Settings → Actions → Runners → New self-hosted runner**, select the server's CPU architecture, and follow the commands shown. When prompted for labels, add `docs` (keep `self-hosted` too).
 
-```bash
-mkdir -p ~/docs-runner && cd ~/docs
+```shell-session
+$ mkdir -p ~/docs-runner && cd ~/docs
 # paste the download + configure commands from GitHub
 # when asked for labels:
 # Enter any additional labels: docs
@@ -58,8 +58,8 @@ mkdir -p ~/docs-runner && cd ~/docs
 
 ### Install as a systemd service
 
-```bash
-sudo ./svc.sh install
-sudo ./svc.sh start
-sudo systemctl status actions.runner.*
+```shell-session
+$ sudo ./svc.sh install
+$ sudo ./svc.sh start
+$ sudo systemctl status actions.runner.*
 ```

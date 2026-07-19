@@ -148,6 +148,113 @@ body {
     opacity: 0.75;
 }
 
+/* ── Shiki code blocks ────────────────────────────────────────────── */
+
+.tf-cb {
+    border-radius: 8px;
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+/* Title bar — shown when title="…" is set on a fenced code block */
+.tf-cb-title {
+    background: #252525;
+    border-bottom: 1px solid #333333;
+    padding: 0.55rem 1rem 0.55rem 5rem;
+    font-size: 0.78rem;
+    color: #888888;
+    font-family: var(--ifm-font-family-monospace);
+    letter-spacing: 0.02em;
+    position: relative;
+}
+
+/* Traffic lights */
+.tf-cb-title::before {
+    content: "";
+    position: absolute;
+    left: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ff5f57;
+    box-shadow:
+        19px 0 0 0 #ffbd2e,
+        38px 0 0 0 #28c840;
+}
+
+.tf-cb-body {
+    position: relative;
+    background: #191919;
+}
+
+/* Shiki pre — override inline theme background */
+.tf-cb-body pre.shiki {
+    background: #191919 !important;
+    padding: 1rem 1.25rem;
+    margin: 0;
+    overflow-x: auto;
+    border-radius: 0;
+    font-size: var(--ifm-code-font-size);
+    line-height: 1.6;
+}
+
+.tf-cb-body pre.shiki code {
+    display: block;
+}
+
+/* Copy button */
+.tf-cb-copy {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    color: #666666;
+    font-size: 0.72rem;
+    padding: 0.2rem 0.55rem;
+    cursor: pointer;
+    transition:
+        background 0.15s,
+        color 0.15s,
+        border-color 0.15s;
+    font-family: var(--ifm-font-family-base);
+    line-height: 1.5;
+}
+
+.tf-cb-copy:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #aaaaaa;
+    border-color: #555555;
+}
+
+.tf-cb-copy-done {
+    display: none;
+}
+
+.tf-cb-copy.copied .tf-cb-copy-default {
+    display: none;
+}
+
+.tf-cb-copy.copied .tf-cb-copy-done {
+    display: inline;
+    color: var(--tf-color-green);
+}
+
+.tf-cb-copy.copied {
+    border-color: var(--tf-color-green);
+}
+
+/* shell-session: dim output lines (no $ prefix) */
+.tf-cb-body .shiki .line:not(:has(.token-prompt)) {
+    opacity: 0.7;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────── */
 /* Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;

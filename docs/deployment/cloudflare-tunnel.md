@@ -23,22 +23,22 @@ sudo apt install -y cloudflared
 
 Verify:
 
-```bash
-cloudflared --version
+```shell-session
+$ cloudflared --version
 ```
 
 ### 2. Authenticate with Cloudflare
 
-```bash
-cloudflared tunnel login
+```shell-session
+$ cloudflared tunnel login
 ```
 
 This opens a browser URL. Log in and select the `trickfirerobotics.com` zone. A certificate is saved to `~/.cloudflared/cert.pem`.
 
 ### 3. Create the tunnel
 
-```bash
-cloudflared tunnel create trickfire-docs
+```shell-session
+$ cloudflared tunnel create trickfire-docs
 ```
 
 This creates a tunnel and saves a credentials file at `~/.cloudflared/<tunnel-id>.json`. Note the tunnel ID in the output — you'll need it in the next step.
@@ -61,8 +61,8 @@ Replace `<tunnel-id>` with the UUID from step 3.
 
 ### 5. Add the DNS record
 
-```bash
-cloudflared tunnel route dns trickfire-docs docs.trickfirerobotics.com
+```shell-session
+$ cloudflared tunnel route dns trickfire-docs docs.trickfirerobotics.com
 ```
 
 This creates a `CNAME` record in Cloudflare pointing `docs.trickfirerobotics.com` → `<tunnel-id>.cfargotunnel.com`. Cloudflare automatically sets the record to proxied (orange cloud).
@@ -97,17 +97,17 @@ sudo systemctl enable --now cloudflared-trickfire-docs
 
 Check status:
 
-```bash
-sudo systemctl status cloudflared-trickfire-docs
+```shell-session
+$ sudo systemctl status cloudflared-trickfire-docs
 ```
 
 The tunnel starts automatically on boot. Cloudflare will reconnect automatically if the server restarts.
 
 ### 7. Verify end-to-end
 
-```bash
-curl -I https://docs.trickfirerobotics.com
-# HTTP/2 200
+```shell-session
+$ curl -I https://docs.trickfirerobotics.com
+HTTP/2 200
 ```
 
 You should see `HTTP/2 200` and Cloudflare response headers (`cf-ray`, `server: cloudflare`).
@@ -127,8 +127,8 @@ Key points in the nginx config:
 
 **Tunnel shows as unhealthy in Cloudflare dashboard:**
 
-```bash
-sudo journalctl -u cloudflared-trickfire-docs -f
+```shell-session
+$ sudo journalctl -u cloudflared-trickfire-docs -f
 ```
 
 Common causes: server can't reach `cloudflare.com`, or credentials file path is wrong.
@@ -136,9 +136,9 @@ Common causes: server can't reach `cloudflare.com`, or credentials file path is 
 **Site loads but returns 502:**
 Check nginx is running and the build directory exists:
 
-```bash
-sudo systemctl status nginx
-ls /home/trickfire/docs/build/index.html
+```shell-session
+$ sudo systemctl status nginx
+$ ls /home/trickfire/docs/build/index.html
 ```
 
 **DNS not resolving:**

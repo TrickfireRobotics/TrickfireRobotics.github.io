@@ -3,10 +3,12 @@ import path from "node:path";
 import type { Config } from "@docusaurus/types";
 import type { Options as PresetOptions } from "@docusaurus/preset-classic";
 import type { Options as DocsOptions } from "@docusaurus/plugin-content-docs";
+import { createHighlighter } from "shiki";
 import { SHARED_COLOR_MODE, NAVBAR_ICON_ITEMS } from "./framework/shared-config.js";
 import type { SidebarItem } from "./framework/config/schema.js";
 import { convertSidebar } from "./framework/config/sidebar.js";
 import { createAssetsPlugin } from "./framework/config/assets-plugin.js";
+import { createRehypeShiki } from "./rehype-shiki.js";
 
 const SITE_URL = "https://docs.trickfirerobotics.com";
 const CONTENT_DIR = path.join(process.cwd(), "content");
@@ -87,7 +89,31 @@ function getReposFromDir(baseDir: string): RepoMeta[] {
         });
 }
 
+const SHIKI_THEME = "github-dark";
+
 export default async function createConfig(): Promise<Config> {
+    const shikiHighlighter = await createHighlighter({
+        themes: [SHIKI_THEME],
+        langs: [
+            "bash",
+            "shell",
+            "shellscript",
+            "shellsession",
+            "python",
+            "typescript",
+            "javascript",
+            "json",
+            "yaml",
+            "nginx",
+            "markdown",
+            "c",
+            "cpp",
+            "text",
+        ],
+    });
+
+    const rehypeShiki = createRehypeShiki(shikiHighlighter, SHIKI_THEME);
+
     const repoMeta: RepoMeta[] = [
         ...getReposFromDir(CONTENT_DIR),
         ...(IS_DEV ? getReposFromDir(DEV_FIXTURES_DIR) : []),
@@ -100,6 +126,7 @@ export default async function createConfig(): Promise<Config> {
             path: "docs",
             routeBasePath: "trickfire-docs",
             sidebarPath: "./docs-sidebars.js",
+            rehypePlugins: [rehypeShiki],
         } satisfies DocsOptions,
     ];
 
@@ -111,6 +138,7 @@ export default async function createConfig(): Promise<Config> {
             routeBasePath: id,
             exclude: ["assets/**"],
             ...(sidebarPath && { sidebarPath }),
+            rehypePlugins: [rehypeShiki],
         } satisfies DocsOptions,
     ]);
 

@@ -21,8 +21,8 @@ No package installation required — `trickfire-docs` is run via `npx` and never
 
 In your project repo:
 
-```bash
-npx trickfire-docs init
+```shell-session
+$ npx trickfire-docs init
 ```
 
 This creates:
@@ -71,8 +71,8 @@ Minimum viable docs:
 
 ### 4. Preview locally
 
-```bash
-npx trickfire-docs dev
+```shell-session
+$ npx trickfire-docs dev
 ```
 
 This starts a local Docusaurus server for your project's docs only. Hot-reload is enabled — edits to `docs/` appear instantly. The generated site files are kept in `.trickfire-docs/` (gitignored) and are managed entirely by the CLI.
@@ -116,9 +116,9 @@ jobs:
 
 Delete the content directory on the server:
 
-```bash
-rm -rf /home/trickfire/docs/content/<repo-name>
-bash /home/trickfire/docs/scripts/build.sh
+```shell-session
+$ rm -rf /home/trickfire/docs/content/<repo-name>
+$ bash /home/trickfire/docs/scripts/build.sh
 ```
 
 The project will disappear from the site after the next build.
