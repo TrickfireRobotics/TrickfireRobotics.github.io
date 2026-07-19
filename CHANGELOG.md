@@ -1,3 +1,9 @@
+## [1.6.2](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.6.1...trickfire-docs-v1.6.2) (2026-07-19)
+
+### Bug Fixes
+
+- fix single-project relevant bugs in framework dev ([3f45a82](https://github.com/TrickfireRobotics/docs/commit/3f45a821da27ebee4c60bcc4a8a46b98ccff7014))
+
 ## [1.6.1](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.6.0...trickfire-docs-v1.6.1) (2026-07-19)
 
 ### Bug Fixes
