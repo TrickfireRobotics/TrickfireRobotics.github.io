@@ -20,6 +20,8 @@ function toTitleCase(value: string): string {
     return value.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
+type ProjectEntry = { id: string; name: string; description: string; to: string };
+
 export default function Home(): React.JSX.Element {
     const { siteConfig } = useDocusaurusContext();
     const repoMeta = (siteConfig.customFields?.repoMeta as RepoMeta[]) ?? [];
@@ -27,36 +29,61 @@ export default function Home(): React.JSX.Element {
 
     const isEmpty = repoMeta.length === 0 && !frameworkMeta;
 
+    const allProjects: ProjectEntry[] = [
+        ...(frameworkMeta
+            ? [
+                  {
+                      id: "framework",
+                      name: frameworkMeta.name,
+                      description: "",
+                      to: `/${frameworkMeta.routeBasePath}/`,
+                  },
+              ]
+            : []),
+        ...repoMeta.map(({ id, name, description, firstDocId }) => ({
+            id,
+            name,
+            description,
+            to: firstDocId ? `/${id}/${firstDocId}/` : `/${id}/`,
+        })),
+    ];
+
     return (
         <Layout title="Home" description={siteConfig.tagline}>
-            <main className={styles.main}>
-                <h1 className={styles.title}>TrickFire Robotics</h1>
-                <p className={styles.tagline}>Project documentation</p>
+            <main>
+                <section className={styles.hero}>
+                    <div className={styles.heroGlow} aria-hidden="true" />
+                    <div className={styles.dots} aria-hidden="true" />
+                    <div className={styles.heroContent}>
+                        <img src="/logo.png" alt="TrickFire Robotics" className={styles.heroLogo} />
+                        <h1 className={styles.heroTitle}>TrickFire Robotics</h1>
+                        <p className={styles.heroTagline}>Project Documentation</p>
+                    </div>
+                </section>
+
                 {isEmpty ? (
-                    <p className={styles.empty}>No documentation has been synced yet.</p>
+                    <div className={styles.emptyState}>
+                        <p>No documentation has been synced yet.</p>
+                    </div>
                 ) : (
-                    <ul className={styles.projectList}>
-                        {frameworkMeta && (
-                            <li key="framework">
-                                <Link
-                                    className={styles.projectLink}
-                                    to={`/${frameworkMeta.routeBasePath}/`}
-                                >
-                                    {toTitleCase(frameworkMeta.name)}
-                                </Link>
-                            </li>
-                        )}
-                        {repoMeta.map(({ id, name, firstDocId }) => (
-                            <li key={id}>
-                                <Link
-                                    className={styles.projectLink}
-                                    to={firstDocId ? `/${id}/${firstDocId}/` : `/${id}/`}
-                                >
-                                    {toTitleCase(name)}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
+                    <section className={styles.projects}>
+                        <div className={styles.projectsInner}>
+                            <p className={styles.sectionLabel}>Projects</p>
+                            <div className={styles.grid}>
+                                {allProjects.map(({ id, name, description, to }) => (
+                                    <Link key={id} className={styles.card} to={to}>
+                                        <span className={styles.cardName}>{toTitleCase(name)}</span>
+                                        {description && (
+                                            <span className={styles.cardDesc}>{description}</span>
+                                        )}
+                                        <span className={styles.cardArrow} aria-hidden="true">
+                                            →
+                                        </span>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
                 )}
             </main>
         </Layout>
