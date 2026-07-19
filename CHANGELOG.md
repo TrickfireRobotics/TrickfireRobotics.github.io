@@ -1,3 +1,9 @@
+# [1.6.0](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.5.2...trickfire-docs-v1.6.0) (2026-07-19)
+
+### Features
+
+- improved shared logic, add static assets page ([a193aa3](https://github.com/TrickfireRobotics/docs/commit/a193aa3b17ae4f617f434e89827727994efb2741))
+
 ## [1.5.2](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.5.1...trickfire-docs-v1.5.2) (2026-07-19)
 
 ### Bug Fixes
