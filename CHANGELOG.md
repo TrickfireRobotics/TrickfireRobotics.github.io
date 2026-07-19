@@ -1,3 +1,9 @@
+## [1.5.2](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.5.1...trickfire-docs-v1.5.2) (2026-07-19)
+
+### Bug Fixes
+
+- scaffold docs ci check path ([d8debac](https://github.com/TrickfireRobotics/docs/commit/d8debac62dc09b379c93dfdc011fc6c195765d2e))
+
 ## [1.5.1](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.5.0...trickfire-docs-v1.5.1) (2026-07-18)
 
 ### Bug Fixes
