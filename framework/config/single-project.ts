@@ -20,10 +20,11 @@ export interface SingleProjectOptions {
     sidebarsPath: string | null;
     name: string;
     description: string;
+    firstDocSlug: string | null;
 }
 
 export function createSingleProjectConfig(options: SingleProjectOptions): Record<string, unknown> {
-    const { projectRoot, sidebarsPath, name, description } = options;
+    const { projectRoot, sidebarsPath, name, description, firstDocSlug } = options;
 
     const docsDir = path.resolve(projectRoot, "docs");
     const trickfireDir = path.resolve(projectRoot, ".trickfire-docs");
@@ -62,7 +63,7 @@ export function createSingleProjectConfig(options: SingleProjectOptions): Record
                         ...(sidebarsPath && { sidebarPath: sidebarsPath }),
                     },
                     blog: false,
-                    pages: false,
+                    pages: firstDocSlug ? { path: path.join(trickfireDir, "pages") } : false,
                     theme: { customCss: [customCssPath] },
                 },
             ],

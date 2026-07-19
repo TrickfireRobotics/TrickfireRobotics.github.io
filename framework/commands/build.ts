@@ -10,7 +10,7 @@ import { THEME_CSS } from "../theme.js";
 export async function runBuild(projectRoot: string): Promise<void> {
     const raw = await loadDocsConfig(projectRoot);
     const config = await resolveDocsConfig(projectRoot, raw);
-    const { config: configJs, sidebars } = generateFiles(config, projectRoot);
+    const { config: configJs, sidebars, redirectPage } = generateFiles(config, projectRoot);
 
     const trickfireDir = path.join(projectRoot, ".trickfire-docs");
     await fs.mkdir(trickfireDir, { recursive: true });
@@ -19,6 +19,11 @@ export async function runBuild(projectRoot: string): Promise<void> {
     await fs.writeFile(path.join(trickfireDir, "docusaurus.config.js"), configJs, "utf-8");
     if (sidebars) {
         await fs.writeFile(path.join(trickfireDir, "sidebars.js"), sidebars, "utf-8");
+    }
+    if (redirectPage) {
+        const pagesDir = path.join(trickfireDir, "pages");
+        await fs.mkdir(pagesDir, { recursive: true });
+        await fs.writeFile(path.join(pagesDir, "index.jsx"), redirectPage, "utf-8");
     }
 
     await ensureSiteNodeModules(path.join(trickfireDir, "node_modules"));

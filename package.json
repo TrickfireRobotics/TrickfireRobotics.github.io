@@ -13,7 +13,8 @@
     "files": [
         "dist-cli",
         "scaffold",
-        "src/css"
+        "src/css",
+        "public"
     ],
     "scripts": {
         "website:dev": "docusaurus start",

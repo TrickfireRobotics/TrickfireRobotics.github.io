@@ -32,3 +32,15 @@ function convertItem(item: SidebarItem): DocusaurusSidebarItem {
 export function convertSidebar(sidebar: SidebarConfig): DocusaurusSidebarItem[] {
     return sidebar.map(convertItem);
 }
+
+export function getFirstDocSlug(items: SidebarConfig): string | null {
+    for (const item of items) {
+        if ("items" in item) {
+            const first = getFirstDocSlug(item.items);
+            if (first !== null) return first;
+        } else if (!item.link) {
+            return item.slug ?? item.label;
+        }
+    }
+    return null;
+}
