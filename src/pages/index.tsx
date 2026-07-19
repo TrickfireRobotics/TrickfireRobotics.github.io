@@ -13,6 +13,7 @@ interface RepoMeta {
 
 interface FrameworkMeta {
     name: string;
+    description: string;
     routeBasePath: string;
 }
 
@@ -35,7 +36,7 @@ export default function Home(): React.JSX.Element {
                   {
                       id: "framework",
                       name: frameworkMeta.name,
-                      description: "",
+                      description: frameworkMeta.description,
                       to: `/${frameworkMeta.routeBasePath}/`,
                   },
               ]

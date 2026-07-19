@@ -147,8 +147,6 @@ export default async function createConfig(): Promise<Config> {
 
     const projectDropdownItems = repoMeta.map(({ id, name, firstDocId }) => ({
         label: name,
-        // When firstDocId is known, use `to` (SPA navigation) since the route is registered.
-        // When it isn't, fall back to `href` so nginx can serve the static redirect file.
         ...(firstDocId ? { to: `/${id}/${firstDocId}/` } : { href: `/${id}/` }),
     }));
 
@@ -171,6 +169,7 @@ export default async function createConfig(): Promise<Config> {
             })),
             frameworkMeta: {
                 name: "Docs Framework",
+                description: "Documentation for the TrickFire Docs framework itself",
                 routeBasePath: "trickfire-docs",
             },
         },
