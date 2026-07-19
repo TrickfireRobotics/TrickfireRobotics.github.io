@@ -58,6 +58,7 @@ export function createSingleProjectConfig(options: SingleProjectOptions): Record
                     docs: {
                         path: docsDir,
                         routeBasePath: "/",
+                        exclude: ["assets/**"],
                         ...(sidebarsPath && { sidebarPath: sidebarsPath }),
                     },
                     blog: false,
@@ -68,6 +69,11 @@ export function createSingleProjectConfig(options: SingleProjectOptions): Record
         ],
         plugins: [
             createAssetsPlugin([
+                {
+                    assetsDir: path.resolve(docsDir, "assets"),
+                    publicPath: "/assets",
+                    outSubPath: "assets",
+                },
                 {
                     assetsDir: path.resolve(projectRoot, "assets"),
                     publicPath: "/assets",
