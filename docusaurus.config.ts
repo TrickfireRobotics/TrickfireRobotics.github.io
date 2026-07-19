@@ -1,12 +1,14 @@
-import { readdirSync, existsSync, readFileSync, writeFileSync } from "node:fs";
-import path from "node:path";
-import type { Config } from "@docusaurus/types";
-import type { Options as PresetOptions } from "@docusaurus/preset-classic";
 import type { Options as DocsOptions } from "@docusaurus/plugin-content-docs";
-import { SHARED_COLOR_MODE, NAVBAR_ICON_ITEMS } from "./framework/shared-config.js";
+import type { Options as PresetOptions } from "@docusaurus/preset-classic";
+import type { Config } from "@docusaurus/types";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import path from "node:path";
+import { createAssetsPlugin } from "./framework/config/assets-plugin.js";
 import type { SidebarItem } from "./framework/config/schema.js";
 import { convertSidebar } from "./framework/config/sidebar.js";
-import { createAssetsPlugin } from "./framework/config/assets-plugin.js";
+import { NAVBAR_ICON_ITEMS, SHARED_COLOR_MODE } from "./framework/shared-config.js";
+
+import { themes as prismThemes } from "prism-react-renderer";
 
 const SITE_URL = "https://docs.trickfirerobotics.com";
 const CONTENT_DIR = path.join(process.cwd(), "content");
@@ -205,6 +207,10 @@ export default async function createConfig(): Promise<Config> {
                     })),
                     ...NAVBAR_ICON_ITEMS,
                 ],
+            },
+            prism: {
+                theme: prismThemes.nightOwl,
+                darkTheme: prismThemes.nightOwl,
             },
         },
         presets: [

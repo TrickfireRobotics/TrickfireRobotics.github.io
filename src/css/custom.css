@@ -148,6 +148,30 @@ body {
     opacity: 0.75;
 }
 
+/* Codeblocks */
+.prism-code[title] {
+    margin-top: 0;
+}
+
+.prism-code[title]::before {
+    content: attr(title);
+    display: block;
+    background: var(--ifm-color-emphasis-200);
+    color: var(--ifm-color-emphasis-800);
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+    border-radius: 8px 8px 0 0;
+}
+
+.prism-code {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: #161616 !important;
+    border: 1px solid #2a2a2a;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
