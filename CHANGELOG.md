@@ -1,3 +1,9 @@
+## [1.6.1](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.6.0...trickfire-docs-v1.6.1) (2026-07-19)
+
+### Bug Fixes
+
+- exclude assets dir ([1619644](https://github.com/TrickfireRobotics/docs/commit/1619644a528b597b137268d1d63558cc1a482013))
+
 # [1.6.0](https://github.com/TrickfireRobotics/docs/compare/trickfire-docs-v1.5.2...trickfire-docs-v1.6.0) (2026-07-19)
 
 ### Features
